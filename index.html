@@ -387,6 +387,22 @@ function processJobText(rawText, url) {
   const fit = scoreFit(parsed.description, parsed.requirements);
   const companyOverview = generateCompanyOverview(parsed.company, parsed.description);
 
+  // Extract source domain from URL
+  let source = "";
+  if (url) {
+    try {
+      const hostname = new URL(url).hostname.replace("www.", "");
+      if (hostname.includes("linkedin")) source = "LinkedIn";
+      else if (hostname.includes("indeed")) source = "Indeed";
+      else if (hostname.includes("glassdoor")) source = "Glassdoor";
+      else if (hostname.includes("greenhouse.io")) source = "Greenhouse";
+      else if (hostname.includes("lever.co")) source = "Lever";
+      else if (hostname.includes("ziprecruiter")) source = "ZipRecruiter";
+      else if (hostname.includes("dice.com")) source = "Dice";
+      else source = hostname.split(".").slice(-2).join(".");
+    } catch(e) {}
+  }
+
   return {
     id: Date.now(),
     company: parsed.company,
@@ -397,8 +413,10 @@ function processJobText(rawText, url) {
     dateAdded: new Date().toISOString().split("T")[0],
     dateApplied: "",
     url: url || "",
+    source: source,
     location: parsed.location,
     notes: "",
+    rawText: rawText,
     description: parsed.description,
     requirementsMet: fit.requirementsMet,
     requirementsNotMet: fit.requirementsNotMet,
@@ -3846,6 +3864,20 @@ function getFitColor(score) {
   return COLORS.danger;
 }
 
+function getSourceFromUrl(url) {
+  try {
+    const hostname = new URL(url).hostname.replace("www.", "");
+    if (hostname.includes("linkedin")) return "LinkedIn";
+    if (hostname.includes("indeed")) return "Indeed";
+    if (hostname.includes("glassdoor")) return "Glassdoor";
+    if (hostname.includes("greenhouse.io")) return "Greenhouse";
+    if (hostname.includes("lever.co")) return "Lever";
+    if (hostname.includes("ziprecruiter")) return "ZipRecruiter";
+    if (hostname.includes("dice.com")) return "Dice";
+    return hostname.split(".").slice(-2).join(".");
+  } catch(e) { return "Unknown"; }
+}
+
 function formatDate(d) {
   if (!d) return "—";
   const date = new Date(d + "T00:00:00");
@@ -4218,10 +4250,17 @@ function JobRow({ job, onSelect, onUpdate }) {
         <span style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
           {job.company}
         </span>
+        {job.url && (
+          <span style={{ display: "block", fontSize: 11, color: COLORS.gray400, fontWeight: 400, marginTop: 2 }}>
+            Source: {job.source || getSourceFromUrl(job.url)}
+          </span>
+        )}
       </td>
       <td style={{ padding: "10px 12px" }}>
         <span
           onClick={() => onSelect(job)}
+          onContextMenu={(e) => { if (job.url) { e.preventDefault(); window.open(job.url, "_blank", "noopener,noreferrer"); } }}
+          title={job.url ? "Left-click: view details · Right-click: open posting" : "Click to view details"}
           style={{ color: COLORS.info, cursor: "pointer", fontWeight: 500, textDecoration: "underline" }}
         >
           {job.jobTitle}
@@ -4276,13 +4315,22 @@ function JobRow({ job, onSelect, onUpdate }) {
         )}
       </td>
       <td style={{ padding: "10px 12px", textAlign: "center", whiteSpace: "nowrap" }}>
-        <div style={{ display: "flex", gap: 6, justifyContent: "center" }}>
-          <Button size="sm" variant="accent" onClick={() => onUpdate(job.id, { status: "Kept" })}>
-            ⭐ Keep
-          </Button>
-          <Button size="sm" variant="ghost" onClick={() => onUpdate(job.id, { status: "Discarded" })} style={{ color: COLORS.gray400 }}>
-            🗑️
-          </Button>
+        <div style={{ display: "flex", gap: 6, justifyContent: "center", alignItems: "center" }}>
+          <select
+            value={job.status}
+            onChange={(e) => onUpdate(job.id, { status: e.target.value })}
+            style={{
+              padding: "4px 8px", borderRadius: 6, fontSize: 12, fontWeight: 600,
+              border: `1px solid ${STATUS_CONFIG[job.status]?.color || COLORS.gray300}30`,
+              color: STATUS_CONFIG[job.status]?.color || COLORS.gray700,
+              background: STATUS_CONFIG[job.status]?.bg || COLORS.white,
+              cursor: "pointer", outline: "none",
+            }}
+          >
+            {STATUS_ORDER.map(s => (
+              <option key={s} value={s}>{STATUS_CONFIG[s]?.icon} {s}</option>
+            ))}
+          </select>
         </div>
       </td>
     </tr>
@@ -4291,6 +4339,16 @@ function JobRow({ job, onSelect, onUpdate }) {
 
 // ─── Job Table ───
 function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }) {
+  const [collapsedGroups, setCollapsedGroups] = useState(() => {
+    const initial = {};
+    STATUS_ORDER.forEach(s => { initial[s] = s !== "New"; });
+    return initial;
+  });
+
+  const toggleGroup = (status) => {
+    setCollapsedGroups(prev => ({ ...prev, [status]: !prev[status] }));
+  };
+
   const grouped = useMemo(() => {
     const sorted = _.orderBy(jobs, [sortField], [sortDir]);
     const groups = {};
@@ -4320,7 +4378,10 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
         <tbody>
           {Object.entries(grouped).map(([status, items]) => (
             <React.Fragment key={status}>
-              <tr>
+              <tr
+                onClick={() => toggleGroup(status)}
+                style={{ cursor: "pointer", userSelect: "none" }}
+              >
                 <td
                   colSpan={9}
                   style={{
@@ -4330,10 +4391,11 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
                     borderBottom: `1px solid ${COLORS.gray200}`,
                   }}
                 >
+                  <span style={{ display: "inline-block", width: 16, fontSize: 10, transition: "transform 0.2s", transform: collapsedGroups[status] ? "rotate(-90deg)" : "rotate(0deg)" }}>▼</span>
                   {STATUS_CONFIG[status]?.icon} {status} ({items.length})
                 </td>
               </tr>
-              {items.map((job) => (
+              {!collapsedGroups[status] && items.map((job) => (
                 <JobRow key={job.id} job={job} onSelect={onSelectJob} onUpdate={onUpdateJob} />
               ))}
             </React.Fragment>
@@ -4349,9 +4411,14 @@ const SEC = { fontWeight: 700, textTransform: "uppercase", fontSize: 12, letterS
 const BULLET = { paddingLeft: 16, margin: "2px 0", fontSize: 13, lineHeight: 1.55, color: COLORS.gray600, position: "relative" };
 const DOT = { position: "absolute", left: 0, top: 0 };
 
-function ResumeBullet({ children }) {
-  return <div style={BULLET}><span style={DOT}>•</span> {children}</div>;
+function ResumeBullet({ children, highlighted }) {
+  const style = highlighted
+    ? { ...BULLET, background: "#FFFDE7", borderLeft: "3px solid #FFD600", paddingLeft: 20 }
+    : BULLET;
+  return <div style={style}><span style={DOT}>•</span> {children}</div>;
 }
+
+const HIGHLIGHT_BG = { background: "#FFFDE7", borderLeft: "3px solid #FFD600", paddingLeft: 8, marginLeft: -8 };
 
 // ─── Resume Preview Modal (full ~2-page resume) ───
 function ResumePreview({ job, onClose }) {
@@ -4402,8 +4469,13 @@ function ResumePreview({ job, onClose }) {
               <div style={{ fontSize: 12, color: COLORS.info, marginTop: 2 }}>{RESUME.linkedin}</div>
             </div>
 
+            {/* ── Highlight Legend ── */}
+            <div style={{ marginBottom: 14, padding: "8px 12px", background: "#FFFDE7", borderLeft: "3px solid #FFD600", borderRadius: 4, fontSize: 12, color: COLORS.gray600, display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontWeight: 700 }}>🖍️ Highlighted sections</span> indicate content tailored specifically for the <strong style={{ margin: "0 3px" }}>{job.jobTitle}</strong> role at <strong style={{ margin: "0 3px" }}>{job.company}</strong>
+            </div>
+
             {/* ── Professional Summary ── */}
-            <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 16, ...HIGHLIGHT_BG, padding: "8px 8px 8px 12px", borderRadius: 4 }}>
               <div style={SEC}>PROFESSIONAL SUMMARY</div>
               <p style={{ margin: 0, fontSize: 13, lineHeight: 1.65, color: COLORS.gray600 }}>
                 {RESUME.summary}
@@ -4411,7 +4483,7 @@ function ResumePreview({ job, onClose }) {
             </div>
 
             {/* ── Core Competencies (grid) ── */}
-            <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 16, ...HIGHLIGHT_BG, padding: "8px 8px 8px 12px", borderRadius: 4 }}>
               <div style={SEC}>CORE COMPETENCIES</div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "4px 20px", fontSize: 12, color: COLORS.gray600, marginTop: 4 }}>
                 {RESUME.capabilities.map((c, i) => (
@@ -4431,7 +4503,7 @@ function ResumePreview({ job, onClose }) {
                     <div style={{ fontSize: 12, color: COLORS.gray500 }}>{exp.period}</div>
                   </div>
                   <div style={{ fontStyle: "italic", fontSize: 13, color: COLORS.gray600, marginBottom: 4 }}>{exp.role}</div>
-                  {exp.bullets && exp.bullets.map((b, bi) => <ResumeBullet key={bi}>{b}</ResumeBullet>)}
+                  {exp.bullets && exp.bullets.map((b, bi) => <ResumeBullet key={bi} highlighted={true}>{b}</ResumeBullet>)}
                   {idx === 1 && <div style={{ fontSize: 11, color: COLORS.gray400, textAlign: "right", marginTop: 8, marginBottom: 8, borderTop: `1px dashed ${COLORS.gray300}`, paddingTop: 8 }}>Page 2 of 2</div>}
                 </div>
               ))}
@@ -4454,8 +4526,8 @@ function ResumePreview({ job, onClose }) {
           {/* ═══════════════════════════════════════ */}
           {/* ═══════ TAILORED COVER LETTER ═══════ */}
           {/* ═══════════════════════════════════════ */}
-          <div style={{ border: `1px solid ${COLORS.gray200}`, borderRadius: 8, padding: "32px 36px", background: COLORS.white }}>
-            <div style={{ ...SEC, marginBottom: 16, fontSize: 16, letterSpacing: 0 }}>Tailored Cover Letter</div>
+          <div style={{ border: `1px solid ${COLORS.gray200}`, borderRadius: 8, padding: "32px 36px", background: "#FFFDE7" }}>
+            <div style={{ ...SEC, marginBottom: 16, fontSize: 16, letterSpacing: 0 }}>Tailored Cover Letter <span style={{ fontSize: 11, fontWeight: 400, color: COLORS.gray500 }}>🖍️ Fully tailored for {job.company}</span></div>
             <div style={{ fontSize: 13, lineHeight: 1.85, color: COLORS.gray600 }}>
               <p style={{ marginTop: 0 }}>Dear Hiring Manager,</p>
               {isAI ? (
@@ -4595,10 +4667,21 @@ function JobDetail({ job, onBack, onUpdate, onGenerateResume }) {
           )}
         </div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-          <StatusBadge status={job.status} />
-          <Button variant="accent" onClick={() => onUpdate(job.id, { status: "Kept" })}>⭐ Keep</Button>
+          <select
+            value={job.status}
+            onChange={(e) => onUpdate(job.id, { status: e.target.value })}
+            style={{
+              padding: "6px 12px", borderRadius: 8, fontSize: 13, fontWeight: 600,
+              border: "1px solid rgba(255,255,255,0.3)",
+              color: COLORS.white, background: "rgba(255,255,255,0.15)",
+              cursor: "pointer", outline: "none",
+            }}
+          >
+            {STATUS_ORDER.map(s => (
+              <option key={s} value={s} style={{ color: COLORS.gray800, background: COLORS.white }}>{STATUS_CONFIG[s]?.icon} {s}</option>
+            ))}
+          </select>
           <Button variant="success" onClick={() => onGenerateResume(job)}>📄 Generate Resume & Cover Letter</Button>
-          <Button variant="danger" onClick={() => { onUpdate(job.id, { status: "Discarded" }); onBack(); }}>🗑️ Discard</Button>
         </div>
       </div>
 
@@ -4616,7 +4699,7 @@ function JobDetail({ job, onBack, onUpdate, onGenerateResume }) {
             JOB DESCRIPTION
           </h3>
           <div style={{ fontSize: 14, lineHeight: 1.7, color: COLORS.gray600, whiteSpace: "pre-wrap" }}>
-            {job.description}
+            {job.rawText || job.description}
           </div>
         </div>
 
