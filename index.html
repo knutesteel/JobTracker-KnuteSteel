@@ -7207,172 +7207,168 @@ function ResumePreview({ job, onClose }) {
   );
 }
 
-// ─── Job Detail View ───
-function JobDetail({ job, onBack, onUpdate, onGenerateResume }) {
-  const [notes, setNotes] = useState(job.notes || "");
-  const [saving, setSaving] = useState(false);
+// ─── Open Job Detail in New Tab ───
+function openJobDetailWindow(job) {
+  const esc = (s) => (s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  const fitColor = job.fitScore >= 85 ? "#38a169" : job.fitScore >= 70 ? "#e8a838" : job.fitScore >= 50 ? "#dd6b20" : "#e53e3e";
+  const fitLabel = job.fitScore >= 85 ? "Strong fit" : job.fitScore >= 70 ? "Good fit" : "Moderate fit";
 
-  const saveNotes = () => {
-    setSaving(true);
-    onUpdate(job.id, { notes });
-    setTimeout(() => setSaving(false), 500);
-  };
+  const reqMetHtml = (job.requirementsMet || []).map(r =>
+    `<div style="padding:8px 12px;margin-bottom:6px;background:#f0fff4;border:1px solid #c6f6d5;border-radius:6px;font-size:13px;line-height:1.5;color:#2d3748">${esc(r)}</div>`
+  ).join("");
 
-  return (
-    <div>
-      {/* Header */}
-      <div
-        style={{
-          background: COLORS.primary, color: COLORS.white,
-          padding: "20px 28px", borderRadius: "12px 12px 0 0",
-          display: "flex", flexWrap: "wrap", justifyContent: "space-between",
-          alignItems: "flex-start", gap: 16,
-        }}
-      >
-        <div style={{ flex: 1, minWidth: 280 }}>
-          <button onClick={onBack} style={{ background: "none", border: "none", color: "#90cdf4", cursor: "pointer", fontSize: 13, marginBottom: 6, padding: 0 }}>
-            ← Back to Dashboard
-          </button>
-          <h2 style={{ margin: 0, fontSize: 22, fontWeight: 700 }}>{job.jobTitle}</h2>
-          <div style={{ fontSize: 14, opacity: 0.9, marginTop: 4 }}>
-            {job.company} {job.location && `• ${job.location}`}
-          </div>
-          <div style={{ fontSize: 16, fontWeight: 600, color: COLORS.accent, marginTop: 6 }}>{job.salary}</div>
-          {job.url && (
-            <a href={job.url} target="_blank" rel="noopener noreferrer" style={{ color: "#90cdf4", fontSize: 12, wordBreak: "break-all", display: "inline-block", marginTop: 4 }}>
-              🔗 View Original Posting
-            </a>
-          )}
+  const reqNotMetHtml = (job.requirementsNotMet || []).length > 0
+    ? `<h4 style="margin:0 0 8px;font-size:14px;color:#dd6b20">⚠️ Requirements Not Met</h4>` +
+      job.requirementsNotMet.map(r =>
+        `<div style="padding:8px 12px;margin-bottom:6px;background:#fffaf0;border:1px solid #feebc8;border-radius:6px;font-size:13px;line-height:1.5;color:#2d3748">${esc(r)}</div>`
+      ).join("")
+    : "";
+
+  const companyHtml = job.companyOverview ? `
+    <div style="margin-bottom:18px">
+      <h4 style="margin:0 0 8px;font-size:14px;color:#1e3a5f">🏢 Company Overview</h4>
+      <div style="padding:14px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.6;color:#4a5568">
+        <p style="margin:0 0 10px">${esc(job.companyOverview)}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:12px;margin-top:10px">
+          <span>💰 <strong>Est. Revenue:</strong> ${esc(job.companyRevenue)}</span>
+          <span>👥 <strong>Employees:</strong> ${esc(job.companyEmployees)}</span>
         </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-          <select
-            value={job.status}
-            onChange={(e) => onUpdate(job.id, { status: e.target.value })}
-            style={{
-              padding: "6px 12px", borderRadius: 8, fontSize: 13, fontWeight: 600,
-              border: "1px solid rgba(255,255,255,0.3)",
-              color: COLORS.white, background: "rgba(255,255,255,0.15)",
-              cursor: "pointer", outline: "none",
-            }}
-          >
-            {STATUS_ORDER.map(s => (
-              <option key={s} value={s} style={{ color: COLORS.gray800, background: COLORS.white }}>{STATUS_CONFIG[s]?.icon} {s}</option>
-            ))}
-          </select>
-          <Button variant="success" onClick={() => onGenerateResume(job)}>📄 Generate Resume & Cover Letter</Button>
+        ${job.companyOwnership ? `<div style="font-size:12px;margin-top:6px">🏛️ <strong>${esc(job.companyOwnership)}</strong></div>` : ""}
+        <div style="display:flex;gap:14px;margin-top:10px">
+          ${job.companyWebsite ? `<a href="${esc(job.companyWebsite)}" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#3182ce">🌐 Website</a>` : ""}
+          ${job.companyLinkedin ? `<a href="${esc(job.companyLinkedin)}" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#3182ce">💼 LinkedIn</a>` : ""}
         </div>
       </div>
+    </div>` : "";
 
-      {/* Body: Two Panes */}
-      <div
-        style={{
-          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0,
-          border: `1px solid ${COLORS.gray200}`, borderTop: "none",
-          borderRadius: "0 0 12px 12px", overflow: "hidden", minHeight: 500,
-        }}
-      >
-        {/* Left Pane: Full Job Description */}
-        <div style={{ padding: 24, borderRight: `1px solid ${COLORS.gray200}`, overflowY: "auto", maxHeight: 700 }}>
-          <h3 style={{ margin: "0 0 14px", fontSize: 16, color: COLORS.gray700, borderBottom: `2px solid ${COLORS.primary}`, paddingBottom: 8 }}>
-            JOB DESCRIPTION
-          </h3>
-          <div style={{ fontSize: 14, lineHeight: 1.7, color: COLORS.gray600, whiteSpace: "pre-wrap" }}>
-            {job.rawText || job.description}
-          </div>
+  const descText = esc(job.rawText || job.description || "").replace(/\n/g, "<br>");
+
+  const html = `<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(job.jobTitle)} — ${esc(job.company)}</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0f4f8;color:#2d3748;padding:20px}</style>
+</head><body>
+<div style="max-width:1200px;margin:0 auto">
+  <!-- Header -->
+  <div style="background:#1e3a5f;color:#fff;padding:20px 28px;border-radius:12px 12px 0 0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px">
+    <div style="flex:1;min-width:280px">
+      <h2 style="margin:0;font-size:22px;font-weight:700">${esc(job.jobTitle)}</h2>
+      <div style="font-size:14px;opacity:0.9;margin-top:4px">${esc(job.company)}${job.location ? ` • ${esc(job.location)}` : ""}</div>
+      <div style="font-size:16px;font-weight:600;color:#e8a838;margin-top:6px">${esc(job.salary)}</div>
+      ${job.url ? `<a href="${esc(job.url)}" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;word-break:break-all;display:inline-block;margin-top:4px">🔗 View Original Posting</a>` : ""}
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <span style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600">${esc(job.status)}</span>
+      <button onclick="downloadDocx()" style="background:#38a169;border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;padding:8px 16px;border-radius:6px">📄 Generate Resume & Cover Letter (.docx)</button>
+    </div>
+  </div>
+
+  <!-- Body: Two Panes -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 12px 12px;overflow:hidden;min-height:500px">
+    <!-- Left Pane -->
+    <div style="padding:24px;border-right:1px solid #e2e8f0;overflow-y:auto;max-height:85vh">
+      <h3 style="margin:0 0 14px;font-size:16px;color:#2d3748;border-bottom:2px solid #1e3a5f;padding-bottom:8px">JOB DESCRIPTION</h3>
+      <div style="font-size:14px;line-height:1.7;color:#4a5568">${descText}</div>
+    </div>
+    <!-- Right Pane -->
+    <div style="padding:24px;overflow-y:auto;max-height:85vh;background:#f7fafc">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+        <div style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;background:${fitColor}">${job.fitScore}</div>
+        <div>
+          <div style="font-weight:700;font-size:16px;color:#2d3748">Job Fit Analysis</div>
+          <div style="font-size:13px;color:#718096">Based on resume match • ${fitLabel}</div>
         </div>
-
-        {/* Right Pane: Fit Analysis */}
-        <div style={{ padding: 24, overflowY: "auto", maxHeight: 700, background: COLORS.gray50 }}>
-          {/* Fit Score */}
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-            <FitBadge score={job.fitScore} size="lg" />
-            <div>
-              <div style={{ fontWeight: 700, fontSize: 16, color: COLORS.gray700 }}>Job Fit Analysis</div>
-              <div style={{ fontSize: 13, color: COLORS.gray500 }}>
-                Based on resume match • {job.fitScore >= 85 ? "Strong fit" : job.fitScore >= 70 ? "Good fit" : "Moderate fit"}
-              </div>
-            </div>
-          </div>
-
-          {/* Requirements Met */}
-          <div style={{ marginBottom: 18 }}>
-            <h4 style={{ margin: "0 0 8px", fontSize: 14, color: COLORS.success }}>✅ Requirements Met</h4>
-            {job.requirementsMet?.map((r, i) => (
-              <div key={i} style={{ padding: "8px 12px", marginBottom: 6, background: COLORS.successBg, border: `1px solid ${COLORS.successBorder}`, borderRadius: 6, fontSize: 13, lineHeight: 1.5, color: COLORS.gray700 }}>
-                {r}
-              </div>
-            ))}
-          </div>
-
-          {/* Requirements Not Met */}
-          {job.requirementsNotMet?.length > 0 && (
-            <div style={{ marginBottom: 18 }}>
-              <h4 style={{ margin: "0 0 8px", fontSize: 14, color: COLORS.warning }}>⚠️ Requirements Not Met</h4>
-              {job.requirementsNotMet.map((r, i) => (
-                <div key={i} style={{ padding: "8px 12px", marginBottom: 6, background: COLORS.warningBg, border: `1px solid ${COLORS.warningBorder}`, borderRadius: 6, fontSize: 13, lineHeight: 1.5, color: COLORS.gray700 }}>
-                  {r}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Company Overview */}
-          <div style={{ marginBottom: 18 }}>
-            <h4 style={{ margin: "0 0 8px", fontSize: 14, color: COLORS.primary }}>
-              🏢 Company Overview
-            </h4>
-            <div style={{ padding: 14, background: COLORS.white, border: `1px solid ${COLORS.gray200}`, borderRadius: 8, fontSize: 13, lineHeight: 1.6, color: COLORS.gray600 }}>
-              <p style={{ margin: "0 0 10px" }}>{job.companyOverview}</p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12, fontSize: 12, marginTop: 10 }}>
-                <span>💰 <strong>Est. Revenue:</strong> {job.companyRevenue}</span>
-                <span>👥 <strong>Employees:</strong> {job.companyEmployees}</span>
-              </div>
-              {job.companyOwnership && (
-                <div style={{ fontSize: 12, marginTop: 6 }}>🏛️ <strong>{job.companyOwnership}</strong></div>
-              )}
-              <div style={{ display: "flex", gap: 14, marginTop: 10 }}>
-                {job.companyWebsite && (
-                  <a href={job.companyWebsite} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: COLORS.info }}>
-                    🌐 Website
-                  </a>
-                )}
-                {job.companyLinkedin && (
-                  <a href={job.companyLinkedin} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: COLORS.info }}>
-                    💼 LinkedIn
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Notes */}
-          <div>
-            <h4 style={{ margin: "0 0 8px", fontSize: 14, color: COLORS.gray600 }}>📝 Notes</h4>
-            <textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Add your notes about this opportunity..."
-              style={{
-                width: "100%", minHeight: 100, padding: 12,
-                border: `1px solid ${COLORS.gray200}`, borderRadius: 8,
-                fontSize: 13, lineHeight: 1.5, resize: "vertical",
-                outline: "none", fontFamily: "inherit", boxSizing: "border-box",
-              }}
-            />
-            <Button variant="primary" size="sm" onClick={saveNotes} style={{ marginTop: 6 }}>
-              {saving ? "Saved ✓" : "Save Notes"}
-            </Button>
-          </div>
-        </div>
+      </div>
+      <div style="margin-bottom:18px">
+        <h4 style="margin:0 0 8px;font-size:14px;color:#38a169">✅ Requirements Met</h4>
+        ${reqMetHtml}
+      </div>
+      ${reqNotMetHtml ? `<div style="margin-bottom:18px">${reqNotMetHtml}</div>` : ""}
+      ${companyHtml}
+      <div>
+        <h4 style="margin:0 0 8px;font-size:14px;color:#4a5568">📝 Notes</h4>
+        <div style="padding:12px;min-height:60px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;white-space:pre-wrap">${esc(job.notes) || "<em style='color:#a0aec0'>No notes yet — edit on dashboard</em>"}</div>
       </div>
     </div>
-  );
+  </div>
+</div>
+<script src="https://unpkg.com/docx@9.0.2/build/index.umd.js"><\/script>
+<script>
+var JOB = ${JSON.stringify(job)};
+var RESUME_DATA = ${JSON.stringify(RESUME)};
+function downloadDocx() {
+  var D = window.docx;
+  if (!D) { alert("Document library still loading. Please try again in a moment."); return; }
+  var lower = (JOB.rawText || JOB.description || "").toLowerCase();
+  var isAI = lower.includes("ai") || lower.includes("artificial intelligence") || lower.includes("machine learning") || lower.includes("llm");
+  var isGov = lower.includes("government") || lower.includes("public sector") || lower.includes("federal") || lower.includes("state and local");
+  var coverBody = "";
+  if (isAI) {
+    coverBody = "I am writing to express my strong interest in the " + JOB.jobTitle + " position at " + JOB.company + ". With over 15 years of enterprise technology sales experience \\u2014 including dedicated government roles at Adobe, DocuSign, Salesforce, and BDNA \\u2014 combined with my current work at TrackLight.ai building an AI-driven analytics platform for government program integrity, I bring a unique blend of deep public sector expertise and hands-on AI domain knowledge that is rare in this market.\\n\\nWhat draws me to " + JOB.company + " is the alignment between your focus on AI and my own conviction that responsible AI adoption requires both technical credibility and a deep understanding of the operational realities organizations face. At TrackLight.ai, I have been designing AI-assisted workflows for government investigators and administrators, leading executive conversations on model reliability, hallucination risk, and oversight controls \\u2014 experience that directly informs how I would help customers understand and deploy AI effectively and responsibly.\\n\\nThroughout my career, I have consistently exceeded revenue targets by building trusted advisor relationships and navigating complex enterprise sales cycles. At Adobe, I averaged 130% of quota over four years and closed the largest deal in segment history. At DocuSign, I closed a $2M+ ACV deal and led deployments that eliminated ~700,000 manual hours annually.\\n\\nI am particularly excited about the opportunity to contribute to " + JOB.company + "\\u2019s growth.";
+  } else if (isGov) {
+    coverBody = "I am writing to express my strong interest in the " + JOB.jobTitle + " position at " + JOB.company + ". With over 15 years of enterprise technology sales experience dedicated to government and public sector organizations \\u2014 including roles at Adobe, DocuSign, Salesforce, and BDNA \\u2014 I am confident my background aligns well with this opportunity.\\n\\nThroughout my career, I have consistently excelled at consultative selling into government agencies, managing complex multi-stakeholder sales cycles, and navigating structured procurement processes including GSA, NASPO, SEWP, and RFP-driven buying cycles. At BDNA, I built the entire public sector go-to-market from the ground up. At Adobe, I averaged 130% of quota over four fiscal years and grew government segment revenue ~25% annually.\\n\\nMy current work at TrackLight.ai further demonstrates my ability to sell and position mission-critical technology to public sector organizations.\\n\\nI am excited about the opportunity to bring my public sector expertise and enterprise sales depth to " + JOB.company + ".";
+  } else {
+    coverBody = "I am writing to express my interest in the " + JOB.jobTitle + " position at " + JOB.company + ". With over 15 years of enterprise technology sales experience and a proven track record of exceeding targets at companies including Adobe, DocuSign, Salesforce, and Oracle, I am confident my background aligns well with this opportunity.\\n\\nThroughout my career, I have consistently delivered strong results through consultative selling, complex deal execution, and multi-stakeholder alignment. At Adobe, I averaged 130% of quota over four years and closed the largest deal in segment history. At DocuSign, I closed a $2M+ ACV deal and exceeded quota every year.\\n\\nMy current work at TrackLight.ai demonstrates my ability to operate effectively in entrepreneurial environments while driving measurable results.\\n\\nI am excited about the opportunity to contribute to " + JOB.company + "\\u2019s growth.";
+  }
+  var sectionHeading = function(text) { return new D.Paragraph({ children: [new D.TextRun({ text: text, bold: true, font: "Arial", size: 22, color: "1e3a5f" })], spacing: { before: 300, after: 100 }, border: { bottom: { style: D.BorderStyle.SINGLE, size: 3, color: "1e3a5f", space: 4 } } }); };
+  var expChildren = [];
+  RESUME_DATA.experience.forEach(function(exp) {
+    expChildren.push(new D.Paragraph({ children: [new D.TextRun({ text: exp.company, bold: true, font: "Arial", size: 22 }), new D.TextRun({ text: "\\t" + exp.period, font: "Arial", size: 20, color: "718096" })], tabStops: [{ type: D.TabStopType.RIGHT, position: D.TabStopPosition.MAX }], spacing: { before: 200, after: 20 } }));
+    expChildren.push(new D.Paragraph({ children: [new D.TextRun({ text: exp.role, font: "Arial", size: 20, italics: true, color: "4a5568" })], spacing: { after: 60 } }));
+    (exp.bullets || []).forEach(function(b) { expChildren.push(new D.Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new D.TextRun({ text: b, font: "Arial", size: 20 })], spacing: { after: 40 } })); });
+  });
+  expChildren.push(new D.Paragraph({ children: [new D.TextRun({ text: "Earlier Career", bold: true, font: "Arial", size: 22 })], spacing: { before: 200, after: 60 } }));
+  expChildren.push(new D.Paragraph({ children: [new D.TextRun({ text: RESUME_DATA.earlierCareer, font: "Arial", size: 20 })], spacing: { after: 100 } }));
+  var compChildren = [];
+  for (var i = 0; i < RESUME_DATA.capabilities.length; i += 3) {
+    var row = RESUME_DATA.capabilities.slice(i, i + 3).map(function(c) { return "\\u25B8 " + c; }).join("     ");
+    compChildren.push(new D.Paragraph({ children: [new D.TextRun({ text: row, font: "Arial", size: 18, color: "4a5568" })], spacing: { after: 30 } }));
+  }
+  var doc = new D.Document({
+    numbering: { config: [{ reference: "bullets", levels: [{ level: 0, format: D.LevelFormat.BULLET, text: "\\u2022", alignment: D.AlignmentType.LEFT, style: { paragraph: { indent: { left: 540, hanging: 260 } } } }] }] },
+    sections: [
+      { properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1080, right: 1260, bottom: 1080, left: 1260 } } }, children: [
+        new D.Paragraph({ alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: RESUME_DATA.name, bold: true, font: "Arial", size: 32, color: "1a202c" })], spacing: { after: 40 } }),
+        new D.Paragraph({ alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: RESUME_DATA.location + "  \\u00B7  " + RESUME_DATA.phone + "  \\u00B7  " + RESUME_DATA.email, font: "Arial", size: 20, color: "718096" })], spacing: { after: 20 } }),
+        new D.Paragraph({ alignment: D.AlignmentType.CENTER, children: [new D.TextRun({ text: RESUME_DATA.linkedin, font: "Arial", size: 18, color: "3182ce" })], spacing: { after: 100 }, border: { bottom: { style: D.BorderStyle.SINGLE, size: 4, color: "1e3a5f", space: 8 } } }),
+        sectionHeading("PROFESSIONAL SUMMARY"),
+        new D.Paragraph({ children: [new D.TextRun({ text: RESUME_DATA.summary, font: "Arial", size: 20, color: "4a5568" })], spacing: { after: 100 } }),
+        sectionHeading("CORE COMPETENCIES"), ].concat(compChildren).concat([sectionHeading("PROFESSIONAL EXPERIENCE")]).concat(expChildren).concat([
+        sectionHeading("EDUCATION & TOOLS"),
+        new D.Paragraph({ children: [new D.TextRun({ text: RESUME_DATA.education, bold: true, font: "Arial", size: 20 })], spacing: { after: 40 } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: RESUME_DATA.tools, font: "Arial", size: 18, color: "718096" })], spacing: { after: 200 } }),
+      ]) },
+      { properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } }, children: [
+        new D.Paragraph({ children: [new D.TextRun({ text: "TAILORED COVER LETTER", bold: true, font: "Arial", size: 24, color: "1e3a5f" })], spacing: { after: 80 }, border: { bottom: { style: D.BorderStyle.SINGLE, size: 3, color: "1e3a5f", space: 4 } } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: "Prepared for: " + JOB.jobTitle + " at " + JOB.company, font: "Arial", size: 20, italics: true, color: "718096" })], spacing: { after: 200 } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }), font: "Arial", size: 20 })], spacing: { after: 200 } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: "Dear Hiring Manager,", font: "Arial", size: 20 })], spacing: { after: 200 } }),
+      ].concat(coverBody.split("\\n\\n").map(function(para) { return new D.Paragraph({ children: [new D.TextRun({ text: para, font: "Arial", size: 20 })], spacing: { after: 200 } }); })).concat([
+        new D.Paragraph({ children: [new D.TextRun({ text: "I would welcome the opportunity to discuss how my experience can contribute to your team\\u2019s growth objectives. Thank you for your consideration.", font: "Arial", size: 20 })], spacing: { after: 300 } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: "Sincerely,", font: "Arial", size: 20 })], spacing: { after: 80 } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: RESUME_DATA.name, bold: true, font: "Arial", size: 20 })], spacing: { after: 20 } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: RESUME_DATA.phone + "  |  " + RESUME_DATA.email, font: "Arial", size: 18, color: "718096" })] }),
+      ]) },
+    ],
+  });
+  D.Packer.toBlob(doc).then(function(blob) {
+    var fn = JOB.company.replace(/[^a-zA-Z0-9]/g, "_") + "_" + JOB.jobTitle.replace(/[^a-zA-Z0-9]/g, "_") + ".docx";
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = fn; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  });
+}
+<\/script>
+</body></html>`;
+
+  const w = window.open("", "_blank");
+  if (w) { w.document.write(html); w.document.close(); }
 }
 
 // ─── Main App ───
 function App() {
   const [jobs, setJobs] = useState(() => loadPersistedJobs());
-  const [selectedJob, setSelectedJob] = useState(null);
   const [resumePreview, setResumePreview] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
@@ -7392,7 +7388,6 @@ function App() {
 
   const updateJob = useCallback((id, updates) => {
     setJobs((prev) => prev.map((j) => (j.id === id ? { ...j, ...updates } : j)));
-    setSelectedJob((prev) => (prev && prev.id === id ? { ...prev, ...updates } : prev));
   }, []);
 
   const addJob = useCallback((job) => setJobs((prev) => [job, ...prev]), []);
@@ -7414,21 +7409,6 @@ function App() {
     STATUS_ORDER.forEach((s) => (c[s] = jobs.filter((j) => j.status === s).length));
     return c;
   }, [jobs]);
-
-  // ─── Detail View ───
-  if (selectedJob) {
-    return (
-      <div style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', maxWidth: 1200, margin: "0 auto", padding: 20 }}>
-        <JobDetail
-          job={selectedJob}
-          onBack={() => setSelectedJob(null)}
-          onUpdate={updateJob}
-          onGenerateResume={(job) => setResumePreview(job)}
-        />
-        {resumePreview && <ResumePreview job={resumePreview} onClose={() => setResumePreview(null)} />}
-      </div>
-    );
-  }
 
   // ─── Dashboard View ───
   return (
@@ -7508,7 +7488,7 @@ function App() {
 
         {/* Job Table */}
         <div style={{ background: COLORS.white, borderRadius: 12, boxShadow: "0 1px 3px rgba(0,0,0,0.06)", overflow: "hidden" }}>
-          <JobTable jobs={filteredJobs} onSelectJob={setSelectedJob} onUpdateJob={updateJob} sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+          <JobTable jobs={filteredJobs} onSelectJob={openJobDetailWindow} onUpdateJob={updateJob} sortField={sortField} sortDir={sortDir} onSort={handleSort} />
           {filteredJobs.length === 0 && (
             <div style={{ padding: 40, textAlign: "center", color: COLORS.gray400 }}>
               <div style={{ fontSize: 40, marginBottom: 8 }}>📭</div>
