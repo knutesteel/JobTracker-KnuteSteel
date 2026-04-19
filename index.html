@@ -7243,6 +7243,12 @@ function openJobDetailWindow(job) {
 
   const descText = esc(job.rawText || job.description || "").replace(/\n/g, "<br>");
 
+  // Derive source from URL domain or source field
+  const jobSource = job.source || (() => {
+    try { const h = new URL(job.url).hostname.replace("www.",""); const parts = h.split("."); return parts.length > 2 ? parts.slice(-2).join(".") : h; } catch(e) { return "Unknown"; }
+  })();
+  const datePosted = job.datePosted || "";
+
   const html = `<!DOCTYPE html>
 <html><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7258,9 +7264,16 @@ function openJobDetailWindow(job) {
       <div style="font-size:16px;font-weight:600;color:#e8a838;margin-top:6px">${esc(job.salary)}</div>
       ${job.url ? `<a href="${esc(job.url)}" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;word-break:break-all;display:inline-block;margin-top:4px">🔗 View Original Posting</a>` : ""}
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-      <span style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600">${esc(job.status)}</span>
-      <button onclick="downloadDocx()" style="background:#38a169;border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;padding:8px 16px;border-radius:6px">📄 Generate Resume & Cover Letter (.docx)</button>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+      <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.6;text-align:right">
+        <div><span style="opacity:0.7">Found on:</span> <strong>${esc(jobSource)}</strong></div>
+        ${datePosted ? `<div><span style="opacity:0.7">Date Posted:</span> <strong>${esc(datePosted)}</strong></div>` : ""}
+        <div><span style="opacity:0.7">Date Added:</span> <strong>${esc(job.dateAdded)}</strong></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <span style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600">${esc(job.status)}</span>
+        <button onclick="downloadDocx()" style="background:#38a169;border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;padding:8px 16px;border-radius:6px">📄 Generate Resume & Cover Letter (.docx)</button>
+      </div>
     </div>
   </div>
 
