@@ -7327,6 +7327,7 @@ function changeStatus(newStatus) {
     edits[JOB.id].status = newStatus;
     localStorage.setItem("jobtracker_user_data", JSON.stringify(edits));
   } catch(e) { console.warn("Failed to save status:", e); }
+  window.close();
 }
 function downloadDocx() {
   var D = window.docx;
