@@ -7271,7 +7271,14 @@ function openJobDetailWindow(job) {
         <div><span style="opacity:0.7">Date Added:</span> <strong>${esc(job.dateAdded)}</strong></div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-        <span style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600">${esc(job.status)}</span>
+        <select id="statusSelect" onchange="changeStatus(this.value)" style="padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.3);color:#fff;background:rgba(255,255,255,0.15);outline:none">
+          <option value="Offers" style="color:#2d3748">🏆 Offers</option>
+          <option value="Interviewing" style="color:#2d3748">🎯 Interviewing</option>
+          <option value="Applied" style="color:#2d3748">📨 Applied</option>
+          <option value="Kept" style="color:#2d3748">⭐ Kept</option>
+          <option value="New" style="color:#2d3748">🆕 New</option>
+          <option value="Discarded" style="color:#2d3748">🗑️ Discarded</option>
+        </select>
         <button onclick="downloadDocx()" style="background:#38a169;border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;padding:8px 16px;border-radius:6px">📄 Generate Resume & Cover Letter (.docx)</button>
       </div>
     </div>
@@ -7310,6 +7317,17 @@ function openJobDetailWindow(job) {
 <script>
 var JOB = ${JSON.stringify(job)};
 var RESUME_DATA = ${JSON.stringify(RESUME)};
+document.getElementById("statusSelect").value = JOB.status;
+function changeStatus(newStatus) {
+  JOB.status = newStatus;
+  try {
+    var raw = localStorage.getItem("jobtracker_user_data");
+    var edits = raw ? JSON.parse(raw) : {};
+    if (!edits[JOB.id]) edits[JOB.id] = {};
+    edits[JOB.id].status = newStatus;
+    localStorage.setItem("jobtracker_user_data", JSON.stringify(edits));
+  } catch(e) { console.warn("Failed to save status:", e); }
+}
 function downloadDocx() {
   var D = window.docx;
   if (!D) { alert("Document library still loading. Please try again in a moment."); return; }
