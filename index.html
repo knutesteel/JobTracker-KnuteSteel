@@ -6627,13 +6627,17 @@ function JobRow({ job, onSelect, onUpdate }) {
           ) : (
             <span style={{ color: COLORS.gray700, fontWeight: 500, flex: 1 }}>{job.jobTitle}</span>
           )}
-          <button
-            onClick={() => onSelect(job)}
-            title="View job details"
-            style={{ background: "none", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, cursor: "pointer", padding: "2px 6px", fontSize: 12, color: COLORS.gray500, lineHeight: 1, flexShrink: 0 }}
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener"
+            onMouseEnter={(e) => { e.currentTarget.href = onSelect(job); }}
+            onClick={(e) => { e.preventDefault(); const url = e.currentTarget.href; window.open(url, "_blank"); window.focus(); }}
+            title="View job details (right-click → Open in New Tab to stay on dashboard)"
+            style={{ background: "none", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, cursor: "pointer", padding: "2px 6px", fontSize: 12, color: COLORS.gray500, lineHeight: 1, flexShrink: 0, textDecoration: "none", display: "inline-block" }}
           >
             📋
-          </button>
+          </a>
         </div>
       </td>
       <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{job.salary || "—"}</td>
@@ -7408,8 +7412,8 @@ function downloadDocx() {
 <\/script>
 </body></html>`;
 
-  const w = window.open("", "_blank");
-  if (w) { w.document.write(html); w.document.close(); window.focus(); }
+  const blob = new Blob([html], { type: "text/html" });
+  return URL.createObjectURL(blob);
 }
 
 // ─── Main App ───
