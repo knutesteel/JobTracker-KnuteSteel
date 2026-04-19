@@ -18,6 +18,7 @@
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+  <script crossorigin src="https://unpkg.com/docx@9.0.2/build/index.umd.js"></script>
 </head>
 <body>
   <div id="root"></div>
@@ -6612,14 +6613,28 @@ function JobRow({ job, onSelect, onUpdate }) {
         )}
       </td>
       <td style={{ padding: "10px 12px" }}>
-        <span
-          onClick={() => onSelect(job)}
-          onContextMenu={(e) => { if (job.url) { e.preventDefault(); window.open(job.url, "_blank", "noopener,noreferrer"); } }}
-          title={job.url ? "Left-click: view details · Right-click: open posting" : "Click to view details"}
-          style={{ color: COLORS.info, cursor: "pointer", fontWeight: 500, textDecoration: "underline" }}
-        >
-          {job.jobTitle}
-        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          {job.url ? (
+            <a
+              href={job.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: COLORS.info, fontWeight: 500, textDecoration: "underline", cursor: "pointer", flex: 1 }}
+              title="Open job posting in new tab"
+            >
+              {job.jobTitle}
+            </a>
+          ) : (
+            <span style={{ color: COLORS.gray700, fontWeight: 500, flex: 1 }}>{job.jobTitle}</span>
+          )}
+          <button
+            onClick={() => onSelect(job)}
+            title="View job details"
+            style={{ background: "none", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, cursor: "pointer", padding: "2px 6px", fontSize: 12, color: COLORS.gray500, lineHeight: 1, flexShrink: 0 }}
+          >
+            📋
+          </button>
+        </div>
       </td>
       <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{job.salary || "—"}</td>
       <td style={{ padding: "10px 12px", textAlign: "center" }}>
@@ -6762,6 +6777,206 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
 }
 
 // ─── Styled helpers for resume sections ───
+// ─── DOCX Generation ───
+async function generateResumeDocx(job) {
+  const D = window.docx;
+  if (!D) { alert("Document library still loading. Please try again in a moment."); return; }
+
+  const lower = (job.rawText || job.description || "").toLowerCase();
+  const isAI = lower.includes("ai") || lower.includes("artificial intelligence") || lower.includes("machine learning") || lower.includes("llm");
+  const isGov = lower.includes("government") || lower.includes("public sector") || lower.includes("federal") || lower.includes("state and local");
+
+  // Cover letter text selection
+  let coverBody = "";
+  if (isAI) {
+    coverBody = `I am writing to express my strong interest in the ${job.jobTitle} position at ${job.company}. With over 15 years of enterprise technology sales experience \u2014 including dedicated government roles at Adobe, DocuSign, Salesforce, and BDNA \u2014 combined with my current work at TrackLight.ai building an AI-driven analytics platform for government program integrity, I bring a unique blend of deep public sector expertise and hands-on AI domain knowledge that is rare in this market.\n\nWhat draws me to ${job.company} is the alignment between your focus on AI and my own conviction that responsible AI adoption requires both technical credibility and a deep understanding of the operational realities organizations face. At TrackLight.ai, I have been designing AI-assisted workflows for government investigators and administrators, leading executive conversations on model reliability, hallucination risk, and oversight controls \u2014 experience that directly informs how I would help customers understand and deploy AI effectively and responsibly.\n\nThroughout my career, I have consistently exceeded revenue targets by building trusted advisor relationships and navigating complex enterprise sales cycles. At Adobe, I averaged 130% of quota over four years and closed the largest deal in segment history. At DocuSign, I closed a $2M+ ACV deal and led deployments that eliminated ~700,000 manual hours annually. I understand the challenges of selling emerging technology \u2014 from compliance requirements and procurement vehicles to change management and stakeholder alignment \u2014 and I thrive in environments where strategic thinking and hands-on execution are equally valued.\n\nI am particularly excited about the opportunity to contribute to ${job.company}\u2019s growth. My combination of AI fluency, enterprise sales depth, and entrepreneurial energy would make me a strong contributor to your team.`;
+  } else if (isGov) {
+    coverBody = `I am writing to express my strong interest in the ${job.jobTitle} position at ${job.company}. With over 15 years of enterprise technology sales experience dedicated to government and public sector organizations \u2014 including roles at Adobe, DocuSign, Salesforce, and BDNA \u2014 I am confident my background aligns well with this opportunity.\n\nThroughout my career, I have consistently excelled at consultative selling into government agencies, managing complex multi-stakeholder sales cycles, and navigating structured procurement processes including GSA, NASPO, SEWP, and RFP-driven buying cycles. At BDNA, I built the entire public sector go-to-market from the ground up. At Adobe, I averaged 130% of quota over four fiscal years, owned the full Federal civilian territory, and grew government segment revenue ~25% annually through new logo acquisition and account expansion.\n\nMy current work at TrackLight.ai, where I built and deployed a full go-to-market strategy for state and local government and led AI-enabled process transformation for agency workflows, further demonstrates my ability to sell and position mission-critical technology to public sector organizations. I understand the unique challenges of government sales \u2014 from compliance requirements and contracting vehicles to change management and stakeholder alignment.\n\nI am excited about the opportunity to bring my public sector expertise and enterprise sales depth to ${job.company}. I am confident I can make an immediate and meaningful contribution to your team.`;
+  } else {
+    coverBody = `I am writing to express my interest in the ${job.jobTitle} position at ${job.company}. With over 15 years of enterprise technology sales experience and a proven track record of exceeding targets at companies including Adobe, DocuSign, Salesforce, and Oracle, I am confident my background aligns well with this opportunity.\n\nThroughout my career, I have consistently delivered strong results through consultative selling, complex deal execution, and multi-stakeholder alignment. At Adobe, I averaged 130% of quota over four years and closed the largest deal in segment history. At DocuSign, I closed a $2M+ ACV deal \u2014 the largest in my regional segment \u2014 and exceeded quota every year. I specialize in building trusted advisor relationships and navigating complex enterprise sales cycles from discovery through deployment.\n\nMy current work at TrackLight.ai, where I built and deployed a full go-to-market strategy and managed a partner ecosystem including IBM, Deloitte, and CGI, demonstrates my ability to operate effectively in entrepreneurial environments while driving measurable results. I bring both strategic thinking and hands-on execution to every engagement.\n\nI am excited about the opportunity to contribute to ${job.company}\u2019s growth and am confident that my combination of enterprise sales expertise, strong pipeline discipline, and collaborative approach would make me a valuable addition to your team.`;
+  }
+
+  const border = { style: D.BorderStyle.SINGLE, size: 1, color: "1e3a5f" };
+  const sectionHeading = (text) => new D.Paragraph({
+    children: [new D.TextRun({ text, bold: true, font: "Arial", size: 22, color: "1e3a5f" })],
+    spacing: { before: 300, after: 100 },
+    border: { bottom: { style: D.BorderStyle.SINGLE, size: 3, color: "1e3a5f", space: 4 } },
+  });
+
+  const bullet = (text) => new D.Paragraph({
+    children: [new D.TextRun({ text, font: "Arial", size: 20 })],
+    spacing: { after: 40 },
+    indent: { left: 360, hanging: 180 },
+  });
+
+  // Build experience section
+  const experienceChildren = [];
+  RESUME.experience.forEach((exp) => {
+    experienceChildren.push(new D.Paragraph({
+      children: [
+        new D.TextRun({ text: exp.company, bold: true, font: "Arial", size: 22 }),
+        new D.TextRun({ text: "\t" + exp.period, font: "Arial", size: 20, color: "718096" }),
+      ],
+      tabStops: [{ type: D.TabStopType.RIGHT, position: D.TabStopPosition.MAX }],
+      spacing: { before: 200, after: 20 },
+    }));
+    experienceChildren.push(new D.Paragraph({
+      children: [new D.TextRun({ text: exp.role, font: "Arial", size: 20, italics: true, color: "4a5568" })],
+      spacing: { after: 60 },
+    }));
+    if (exp.bullets) {
+      exp.bullets.forEach((b) => {
+        experienceChildren.push(new D.Paragraph({
+          numbering: { reference: "bullets", level: 0 },
+          children: [new D.TextRun({ text: b, font: "Arial", size: 20 })],
+          spacing: { after: 40 },
+        }));
+      });
+    }
+  });
+  // Earlier career
+  experienceChildren.push(new D.Paragraph({
+    children: [new D.TextRun({ text: "Earlier Career", bold: true, font: "Arial", size: 22 })],
+    spacing: { before: 200, after: 60 },
+  }));
+  experienceChildren.push(new D.Paragraph({
+    children: [new D.TextRun({ text: RESUME.earlierCareer, font: "Arial", size: 20 })],
+    spacing: { after: 100 },
+  }));
+
+  // Build competencies grid (3 per line)
+  const compChildren = [];
+  for (let i = 0; i < RESUME.capabilities.length; i += 3) {
+    const row = RESUME.capabilities.slice(i, i + 3).map(c => "\u25B8 " + c).join("     ");
+    compChildren.push(new D.Paragraph({
+      children: [new D.TextRun({ text: row, font: "Arial", size: 18, color: "4a5568" })],
+      spacing: { after: 30 },
+    }));
+  }
+
+  const doc = new D.Document({
+    numbering: {
+      config: [{
+        reference: "bullets",
+        levels: [{ level: 0, format: D.LevelFormat.BULLET, text: "\u2022", alignment: D.AlignmentType.LEFT,
+          style: { paragraph: { indent: { left: 540, hanging: 260 } } } }],
+      }],
+    },
+    sections: [
+      // ─── SECTION 1: RESUME ───
+      {
+        properties: {
+          page: {
+            size: { width: 12240, height: 15840 },
+            margin: { top: 1080, right: 1260, bottom: 1080, left: 1260 },
+          },
+        },
+        children: [
+          // Name
+          new D.Paragraph({
+            alignment: D.AlignmentType.CENTER,
+            children: [new D.TextRun({ text: RESUME.name, bold: true, font: "Arial", size: 32, color: "1a202c" })],
+            spacing: { after: 40 },
+          }),
+          // Contact info
+          new D.Paragraph({
+            alignment: D.AlignmentType.CENTER,
+            children: [new D.TextRun({ text: `${RESUME.location}  \u00B7  ${RESUME.phone}  \u00B7  ${RESUME.email}`, font: "Arial", size: 20, color: "718096" })],
+            spacing: { after: 20 },
+          }),
+          new D.Paragraph({
+            alignment: D.AlignmentType.CENTER,
+            children: [new D.TextRun({ text: RESUME.linkedin, font: "Arial", size: 18, color: "3182ce" })],
+            spacing: { after: 100 },
+            border: { bottom: { style: D.BorderStyle.SINGLE, size: 4, color: "1e3a5f", space: 8 } },
+          }),
+          // Summary
+          sectionHeading("PROFESSIONAL SUMMARY"),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: RESUME.summary, font: "Arial", size: 20, color: "4a5568" })],
+            spacing: { after: 100 },
+          }),
+          // Core Competencies
+          sectionHeading("CORE COMPETENCIES"),
+          ...compChildren,
+          // Experience
+          sectionHeading("PROFESSIONAL EXPERIENCE"),
+          ...experienceChildren,
+          // Education
+          sectionHeading("EDUCATION & TOOLS"),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: RESUME.education, bold: true, font: "Arial", size: 20 })],
+            spacing: { after: 40 },
+          }),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: RESUME.tools, font: "Arial", size: 18, color: "718096" })],
+            spacing: { after: 200 },
+          }),
+        ],
+      },
+      // ─── SECTION 2: COVER LETTER ───
+      {
+        properties: {
+          page: {
+            size: { width: 12240, height: 15840 },
+            margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 },
+          },
+        },
+        children: [
+          new D.Paragraph({
+            children: [new D.TextRun({ text: "TAILORED COVER LETTER", bold: true, font: "Arial", size: 24, color: "1e3a5f" })],
+            spacing: { after: 80 },
+            border: { bottom: { style: D.BorderStyle.SINGLE, size: 3, color: "1e3a5f", space: 4 } },
+          }),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: `Prepared for: ${job.jobTitle} at ${job.company}`, font: "Arial", size: 20, italics: true, color: "718096" })],
+            spacing: { after: 200 },
+          }),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }), font: "Arial", size: 20 })],
+            spacing: { after: 200 },
+          }),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: "Dear Hiring Manager,", font: "Arial", size: 20 })],
+            spacing: { after: 200 },
+          }),
+          ...coverBody.split("\n\n").map(para => new D.Paragraph({
+            children: [new D.TextRun({ text: para, font: "Arial", size: 20 })],
+            spacing: { after: 200 },
+            alignment: D.AlignmentType.LEFT,
+          })),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: "I would welcome the opportunity to discuss how my experience can contribute to your team\u2019s growth objectives. Thank you for your consideration.", font: "Arial", size: 20 })],
+            spacing: { after: 300 },
+          }),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: "Sincerely,", font: "Arial", size: 20 })],
+            spacing: { after: 80 },
+          }),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: RESUME.name, bold: true, font: "Arial", size: 20 })],
+            spacing: { after: 20 },
+          }),
+          new D.Paragraph({
+            children: [new D.TextRun({ text: `${RESUME.phone}  |  ${RESUME.email}`, font: "Arial", size: 18, color: "718096" })],
+          }),
+        ],
+      },
+    ],
+  });
+
+  const blob = await D.Packer.toBlob(doc);
+  const filename = `${job.company.replace(/[^a-zA-Z0-9]/g, "_")}_${job.jobTitle.replace(/[^a-zA-Z0-9]/g, "_")}.docx`;
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 const SEC = { fontWeight: 700, textTransform: "uppercase", fontSize: 12, letterSpacing: 0.8, color: COLORS.primary, borderBottom: `1.5px solid ${COLORS.primary}`, paddingBottom: 3, marginBottom: 6 };
 const BULLET = { paddingLeft: 16, margin: "2px 0", fontSize: 13, lineHeight: 1.55, color: COLORS.gray600, position: "relative" };
 const DOT = { position: "absolute", left: 0, top: 0 };
@@ -6791,7 +7006,15 @@ function ResumePreview({ job, onClose }) {
             <h3 style={{ margin: 0, fontSize: 18 }}>Generated Resume & Cover Letter</h3>
             <div style={{ fontSize: 12, opacity: 0.8, marginTop: 4 }}>File: {filename}.docx</div>
           </div>
-          <button onClick={onClose} style={{ background: "none", border: "none", color: COLORS.white, fontSize: 24, cursor: "pointer", lineHeight: 1 }}>✕</button>
+          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            <button
+              onClick={() => generateResumeDocx(job)}
+              style={{ background: "#38a169", border: "none", color: COLORS.white, fontSize: 13, fontWeight: 600, cursor: "pointer", padding: "8px 16px", borderRadius: 6 }}
+            >
+              📥 Download .docx
+            </button>
+            <button onClick={onClose} style={{ background: "none", border: "none", color: COLORS.white, fontSize: 24, cursor: "pointer", lineHeight: 1 }}>✕</button>
+          </div>
         </div>
 
         <div style={{ padding: 32 }}>
