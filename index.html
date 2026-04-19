@@ -7395,7 +7395,7 @@ function downloadDocx() {
 </body></html>`;
 
   const w = window.open("", "_blank");
-  if (w) { w.document.write(html); w.document.close(); }
+  if (w) { w.document.write(html); w.document.close(); window.focus(); }
 }
 
 // ─── Main App ───
