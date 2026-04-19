@@ -434,6 +434,88 @@ function processJobText(rawText, url) {
 // ─── Real Job Data (scraped from postings) ───
 const INITIAL_JOBS = [
   {
+    id: 97,
+    company: "Sumsub",
+    jobTitle: "Product Sales Lead, Fraud Prevention",
+    salary: "Not disclosed (fair and transparent pay, benchmarked to market)",
+    fitScore: 72,
+    status: "New",
+    dateAdded: "2026-04-19",
+    dateApplied: "",
+    url: "https://careers.sumsub.com/jobs/7299398-product-sales-lead-fraud-prevention",
+    location: "Multiple locations — Fully Remote",
+    notes: "",
+    description: `Product Sales Lead, Fraud Prevention
+Sumsub
+Sales · Multiple locations · Fully Remote
+
+Now we are looking for a Product Sales Lead to drive the global expansion of our Fraud Prevention products.
+
+Sumsub is a leading full-cycle verification platform that enables scalable compliance. From identity and business verification to ongoing monitoring, our platform adapts to different risk appetites and market demands, ensuring global compliance. It allows customizing analytics and workflows with a no-code interface.
+
+Over 4,000 clients — including Bitpanda, Wirex, Avis, Bybit, Vodafone, Duolingo, Kaizen Gaming, and TransferGo — trust Sumsub to accelerate growth, prevent fraud, and maintain compliance worldwide.
+
+Now we are looking for a Product Sales Lead to drive the global expansion of our Fraud Prevention products. This role is an exciting opportunity to be a corporate entrepreneur and lead the growth of cutting-edge financial crime products on a global scale.
+
+What You Will Be Doing:
+Develop and execute a global Go-to-Market strategy our fraud prevention solutions
+Lead the overall sales strategy across all major global markets, ensuring alignment with the company's global growth objectives
+Supporting high-value deals and negotiations, acting as a Subject Matter Expert
+Drive revenue growth through strategic planning, ensuring sales targets and business KPIs are met
+Identify new market opportunities, develop regional expansion strategies, and drive sales in key industries
+Conduct high-level competitive analysis and implement proactive strategies to strengthen market positioning
+Set strategic direction for the new client acquisition
+Work closely with marketing, product, legal, and customer success teams to ensure seamless execution of sales initiatives
+
+About You:
+5+ years of sales experience, experience in selling Fraud Prevention products is a must
+Deep understanding of the modern fraud prevention and AI trends, including industry and geographic specificities and competitive landscapes
+Demonstrated success in driving revenue growth, managing large enterprise deals, and expanding into new markets
+Proven track record of bringing new complex products to the market
+Experience in designing and executing go-to-market strategies for regional and global expansion while staying agile in a fast-changing business environment
+Have excellent interpersonal skills, including the ability to work across a matrixed organisation, influencing, negotiating effectively with leadership and peers
+Experience in running large-scale education programs for 100+ people
+Proficiency in using sales analytics, CRM tools (e.g., Salesforce, HubSpot), and data-driven decision-making
+Bachelor's degree in Business, Marketing, or a related field; MBA preferred.
+
+What We Offer:
+Remote-first, trust-based culture. Work from the place that works best for you. No mandatory office days, no attendance trackers. In some locations, we provide offices or coworking spaces, but the choice is yours.
+True flexibility. We do not fix you to a 9-to-5 schedule. You can adjust your working hours when needed, as long as your day stays productive and in sync with the team.
+Extra time off. Your birthday is a holiday here. Add to that 10 personal days each year, seven sick days without paperwork, and extra time to enjoy Christmas and New Year. Time to rest is part of the deal.
+Work that matters. Our mission is to build a digital world that is secure, accessible and inclusive for everyone. From fighting fraud to making online services easier and safer to use, your work will have a real impact on how people experience trust online.
+Compensation. We offer fair and transparent pay, benchmarked to the market.
+Truly global. We work across continents and time zones, with teammates and customers from all over the world.
+Growth built in. Clear goals, open feedback and personal development plans.
+Team offsites. Sometimes just Slack is not enough. That is why we meet in person a few times a year. Trips are fully covered, so you can meet, collaborate, and recharge together.
+Getting you set up. We make sure you have access to the tools and hardware you need to do your work well.
+
+The hiring stages: TA screening -> Hiring Manager Interview -> Assignment -> Final Interview.
+
+Department: Sales
+Role: Business Development Manager`,
+    requirementsMet: [
+      "5+ years of sales experience — Candidate has 25+ years of enterprise technology sales across Adobe, DocuSign, Salesforce, Oracle, and others.",
+      "Driving revenue growth and managing large enterprise deals — Proven track record exceeding quota across multiple companies; closed $2M+ ACV deal at DocuSign.",
+      "Go-to-market strategy execution — Built entire public sector GTM from scratch at BDNA; currently co-founding TrackLight.ai with full GTM responsibility.",
+      "CRM tools (Salesforce, HubSpot) — Salesforce listed as core capability; held Strategic Account Executive role at Salesforce directly.",
+      "Bachelor's degree — BA Economics, University of Maryland.",
+      "Cross-functional collaboration — Extensive experience working across marketing, product, legal, and customer success teams throughout career.",
+      "Interpersonal skills and negotiation — Known for building trusted advisor relationships with enterprise decision-makers from technical teams to senior leadership.",
+    ],
+    requirementsNotMet: [
+      "Fraud Prevention product sales experience is a must — No direct fraud prevention product sales background. TrackLight.ai's AI-for-investigation thesis is adjacent but not a direct match.",
+      "Deep understanding of modern fraud prevention and AI trends — Limited specific fraud/financial crime domain expertise; would require domain ramp-up.",
+      "Experience running large-scale education programs for 100+ people — No explicit large-scale enablement/training program experience highlighted in resume.",
+      "MBA preferred — BA Economics only; no MBA.",
+    ],
+    companyOverview: "Sumsub is a leading full-cycle verification platform that enables scalable compliance. From identity and business verification to ongoing monitoring, their platform adapts to different risk appetites and market demands, ensuring global compliance. Over 4,000 clients — including Bitpanda, Wirex, Avis, Bybit, Vodafone, Duolingo, Kaizen Gaming, and TransferGo — trust Sumsub to accelerate growth, prevent fraud, and maintain compliance worldwide.",
+    companyRevenue: "~$100M ARR (estimated, privately held)",
+    companyEmployees: "~600+",
+    companyWebsite: "https://sumsub.com",
+    companyLinkedin: "https://www.linkedin.com/company/sumsub",
+    companyOwnership: "Private — venture-backed",
+  },
+  {
     id: 1,
     company: "Confidential Client (via Peskind Executive Search)",
     jobTitle: "Account Executive - Public Safety Software",
@@ -5409,49 +5491,77 @@ function changeStatus(newStatus) {
   } catch(e) { console.warn("Failed to save status:", e); }
   window.close();
 }
+function runAnalysisOnText(rawText) {
+  var parsed = parseJobForReanalysis(rawText, JOB.url);
+  var fit = scoreFitForReanalysis(parsed.description, parsed.requirements);
+  var compOverview = generateOverviewForReanalysis(JOB.company, parsed.description);
+  var updates = {
+    description: parsed.description,
+    rawText: rawText,
+    fitScore: fit.fitScore,
+    requirementsMet: fit.requirementsMet,
+    requirementsNotMet: fit.requirementsNotMet,
+    companyOverview: compOverview
+  };
+  if (parsed.salary && parsed.salary !== "Not disclosed") updates.salary = parsed.salary;
+  if (parsed.location && parsed.location !== "See posting") updates.location = parsed.location;
+  try {
+    var raw2 = localStorage.getItem("jobtracker_reanalysis");
+    var redata = raw2 ? JSON.parse(raw2) : {};
+    redata[JOB.id] = updates;
+    localStorage.setItem("jobtracker_reanalysis", JSON.stringify(redata));
+  } catch(e) { console.warn(e); }
+  alert("Analysis updated! Fit score: " + fit.fitScore + "/100\\nClose this tab and refresh the dashboard to see changes.");
+  document.getElementById("reanalyzeBtn").textContent = "\\u2705 Done";
+}
 function reanalyze() {
   var btn = document.getElementById("reanalyzeBtn");
-  btn.textContent = "⏳ Fetching...";
+  btn.textContent = "\\u23F3 Fetching...";
   btn.disabled = true;
-  if (!JOB.url) { alert("No URL to fetch."); btn.textContent = "🔄 Analyze Again"; btn.disabled = false; return; }
-  var proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(JOB.url);
-  fetch(proxy).then(function(r) { return r.text(); }).then(function(html) {
-    btn.textContent = "⏳ Analyzing...";
-    // Strip HTML tags to get text
+  if (!JOB.url) { promptManualPaste(); return; }
+  var proxies = [
+    "https://api.allorigins.win/raw?url=" + encodeURIComponent(JOB.url),
+    "https://corsproxy.io/?" + encodeURIComponent(JOB.url),
+    "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(JOB.url)
+  ];
+  tryFetch(proxies, 0);
+}
+function tryFetch(proxies, idx) {
+  var btn = document.getElementById("reanalyzeBtn");
+  if (idx >= proxies.length) {
+    btn.textContent = "\\u{1F4CB} Paste text";
+    btn.disabled = false;
+    promptManualPaste();
+    return;
+  }
+  fetch(proxies[idx], {signal: AbortSignal.timeout(10000)}).then(function(r) {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.text();
+  }).then(function(html) {
+    btn.textContent = "\\u23F3 Analyzing...";
     var doc2 = new DOMParser().parseFromString(html, "text/html");
     var rawText = (doc2.body ? doc2.body.innerText : html).trim();
-    if (!rawText || rawText.length < 50) { alert("Could not extract job text from URL. The posting may require login or may have been removed."); btn.textContent = "🔄 Analyze Again"; btn.disabled = false; return; }
-    // Parse job description
-    var parsed = parseJobForReanalysis(rawText, JOB.url);
-    // Score fit
-    var fit = scoreFitForReanalysis(parsed.description, parsed.requirements);
-    // Company overview
-    var compOverview = generateOverviewForReanalysis(JOB.company, parsed.description);
-    // Build updates object
-    var updates = {
-      description: parsed.description,
-      rawText: rawText,
-      fitScore: fit.fitScore,
-      requirementsMet: fit.requirementsMet,
-      requirementsNotMet: fit.requirementsNotMet,
-      companyOverview: compOverview
-    };
-    if (parsed.salary && parsed.salary !== "Not disclosed") updates.salary = parsed.salary;
-    if (parsed.location && parsed.location !== "See posting") updates.location = parsed.location;
-    // Save to localStorage via jobtracker_reanalysis key (picked up by main app)
-    try {
-      var raw2 = localStorage.getItem("jobtracker_reanalysis");
-      var redata = raw2 ? JSON.parse(raw2) : {};
-      redata[JOB.id] = updates;
-      localStorage.setItem("jobtracker_reanalysis", JSON.stringify(redata));
-    } catch(e) { console.warn(e); }
-    alert("Analysis updated! Fit score: " + fit.fitScore + "/100\\nClose this tab and refresh the dashboard to see changes.");
-    btn.textContent = "✅ Done";
-  }).catch(function(err) {
-    alert("Failed to fetch the job posting. Error: " + err.message + "\\n\\nThe posting may require login or the site may block automated access.");
-    btn.textContent = "🔄 Analyze Again";
-    btn.disabled = false;
+    if (!rawText || rawText.length < 100) throw new Error("Content too short");
+    runAnalysisOnText(rawText);
+  }).catch(function() {
+    tryFetch(proxies, idx + 1);
   });
+}
+function promptManualPaste() {
+  var btn = document.getElementById("reanalyzeBtn");
+  var rawText = prompt("Could not auto-fetch the job posting (site may block automated access).\\n\\nTo analyze, open the job posting URL in your browser, select all text (Ctrl+A), copy it (Ctrl+C), then paste it here:");
+  if (rawText && rawText.trim().length > 50) {
+    btn.textContent = "\\u23F3 Analyzing...";
+    btn.disabled = true;
+    runAnalysisOnText(rawText.trim());
+  } else if (rawText !== null) {
+    alert("Text too short. Please paste the full job posting text.");
+    btn.textContent = "\\u{1F504} Analyze Again";
+    btn.disabled = false;
+  } else {
+    btn.textContent = "\\u{1F504} Analyze Again";
+    btn.disabled = false;
+  }
 }
 function parseJobForReanalysis(rawText, url) {
   var text = rawText.trim();
