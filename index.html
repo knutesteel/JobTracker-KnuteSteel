@@ -3815,6 +3815,112 @@ Compensation: Competitive OTE + equity`,
   },
 ];
 
+// ─── Database Persistence Layer ───
+// USER_EDITABLE_FIELDS: these fields are owned by the user and preserved across app updates.
+// All other fields come from INITIAL_JOBS and get refreshed with each deploy.
+const USER_EDITABLE_FIELDS = ["status", "notes", "dateApplied"];
+const DB_STORAGE_KEY = "jobtracker_user_data";
+const DB_ADDED_JOBS_KEY = "jobtracker_added_jobs";
+
+// Save only user-editable fields to localStorage (keyed by job id)
+function saveUserEdits(jobs) {
+  try {
+    const edits = {};
+    jobs.forEach((j) => {
+      // Only save edits for jobs that exist in INITIAL_JOBS
+      const initial = INITIAL_JOBS.find((ij) => ij.id === j.id);
+      if (initial) {
+        const changed = {};
+        let hasChanges = false;
+        USER_EDITABLE_FIELDS.forEach((f) => {
+          if (j[f] !== initial[f]) { changed[f] = j[f]; hasChanges = true; }
+        });
+        if (hasChanges) edits[j.id] = changed;
+      }
+    });
+    localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(edits));
+  } catch (e) { console.warn("Failed to save user edits:", e); }
+}
+
+// Save user-added jobs (ones not in INITIAL_JOBS) to localStorage
+function saveAddedJobs(jobs) {
+  try {
+    const initialIds = new Set(INITIAL_JOBS.map((j) => j.id));
+    const added = jobs.filter((j) => !initialIds.has(j.id));
+    localStorage.setItem(DB_ADDED_JOBS_KEY, JSON.stringify(added));
+  } catch (e) { console.warn("Failed to save added jobs:", e); }
+}
+
+// Persist both edits and added jobs
+function persistJobs(jobs) {
+  saveUserEdits(jobs);
+  saveAddedJobs(jobs);
+}
+
+// Load and merge: INITIAL_JOBS (source of truth for content) + user edits + user-added jobs
+function loadPersistedJobs() {
+  let mergedJobs = INITIAL_JOBS.map((job) => ({ ...job })); // deep copy initial data
+
+  // Apply saved user edits on top of fresh INITIAL_JOBS
+  try {
+    const raw = localStorage.getItem(DB_STORAGE_KEY);
+    if (raw) {
+      const edits = JSON.parse(raw);
+      mergedJobs = mergedJobs.map((job) => {
+        const edit = edits[job.id];
+        if (edit) {
+          const patched = { ...job };
+          USER_EDITABLE_FIELDS.forEach((f) => { if (f in edit) patched[f] = edit[f]; });
+          return patched;
+        }
+        return job;
+      });
+    }
+  } catch (e) { console.warn("Failed to load user edits:", e); }
+
+  // Append user-added jobs (not in INITIAL_JOBS)
+  try {
+    const rawAdded = localStorage.getItem(DB_ADDED_JOBS_KEY);
+    if (rawAdded) {
+      const addedJobs = JSON.parse(rawAdded);
+      const initialIds = new Set(INITIAL_JOBS.map((j) => j.id));
+      addedJobs.forEach((aj) => {
+        if (!initialIds.has(aj.id)) mergedJobs.unshift(aj); // user-added jobs go to top
+      });
+    }
+  } catch (e) { console.warn("Failed to load added jobs:", e); }
+
+  return mergedJobs;
+}
+
+// Export all job data as JSON (safety net for users)
+function exportJobData(jobs) {
+  const data = JSON.stringify(jobs, null, 2);
+  const blob = new Blob([data], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "jobtracker-backup-" + new Date().toISOString().split("T")[0] + ".json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Import job data from JSON backup
+function importJobData(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const imported = JSON.parse(e.target.result);
+        if (!Array.isArray(imported)) throw new Error("Invalid format");
+        resolve(imported);
+      } catch (err) { reject(err); }
+    };
+    reader.onerror = reject;
+    reader.readAsText(file);
+  });
+}
+
 // ─── Color palette ───
 const COLORS = {
   primary: "#1e3a5f",
@@ -4793,13 +4899,16 @@ function JobDetail({ job, onBack, onUpdate, onGenerateResume }) {
 
 // ─── Main App ───
 function App() {
-  const [jobs, setJobs] = useState(INITIAL_JOBS);
+  const [jobs, setJobs] = useState(() => loadPersistedJobs());
   const [selectedJob, setSelectedJob] = useState(null);
   const [resumePreview, setResumePreview] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
   const [sortField, setSortField] = useState("dateAdded");
   const [sortDir, setSortDir] = useState("desc");
+
+  // Auto-persist whenever jobs change
+  React.useEffect(() => { persistJobs(jobs); }, [jobs]);
 
   const handleSort = useCallback(
     (field) => {
@@ -4861,7 +4970,18 @@ function App() {
             <div style={{ fontSize: 11, opacity: 0.7 }}>Knute Steel — Powered by Claude</div>
           </div>
         </div>
-        <div style={{ fontSize: 13, opacity: 0.8 }}>{RESUME.email}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <button onClick={() => exportJobData(jobs)} title="Export backup" style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", color: COLORS.white, borderRadius: 6, padding: "4px 10px", fontSize: 11, cursor: "pointer" }}>⬇ Export</button>
+          <label title="Import backup" style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", color: COLORS.white, borderRadius: 6, padding: "4px 10px", fontSize: 11, cursor: "pointer" }}>
+            ⬆ Import
+            <input type="file" accept=".json" style={{ display: "none" }} onChange={(e) => {
+              if (e.target.files[0]) importJobData(e.target.files[0]).then((imported) => {
+                if (confirm("This will replace all current data with the backup. Continue?")) setJobs(imported);
+              }).catch(() => alert("Invalid backup file."));
+            }} />
+          </label>
+          <span style={{ fontSize: 13, opacity: 0.8 }}>{RESUME.email}</span>
+        </div>
       </div>
 
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 24px" }}>
