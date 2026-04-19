@@ -4161,7 +4161,7 @@ LaunchDarkly was founded in 2014 in Oakland, California by Edith Harbaugh and Jo
 // ─── Database Persistence Layer ───
 // USER_EDITABLE_FIELDS: these fields are owned by the user and preserved across app updates.
 // All other fields come from INITIAL_JOBS and get refreshed with each deploy.
-const USER_EDITABLE_FIELDS = ["status", "notes", "dateApplied"];
+const USER_EDITABLE_FIELDS = ["status", "notes", "dateApplied", "jobTitle", "company"];
 const DB_STORAGE_KEY = "jobtracker_user_data";
 const DB_ADDED_JOBS_KEY = "jobtracker_added_jobs";
 
@@ -5420,8 +5420,8 @@ function openJobDetailWindow(job) {
   <!-- Header -->
   <div style="background:#1e3a5f;color:#fff;padding:20px 28px;border-radius:12px 12px 0 0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px">
     <div style="flex:1;min-width:280px">
-      <h2 style="margin:0;font-size:22px;font-weight:700">${esc(job.jobTitle)}</h2>
-      <div style="font-size:14px;opacity:0.9;margin-top:4px">${esc(job.company)}${job.location ? ` • ${esc(job.location)}` : ""}</div>
+      <h2 style="margin:0;font-size:22px;font-weight:700"><input id="editTitle" value="${esc(job.jobTitle)}" onchange="saveField('jobTitle',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:22px;font-weight:700;width:100%;padding:0 0 2px;outline:none;font-family:inherit" /></h2>
+      <div style="font-size:14px;opacity:0.9;margin-top:4px"><input id="editCompany" value="${esc(job.company)}" onchange="saveField('company',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:14px;opacity:0.9;padding:0 0 2px;outline:none;font-family:inherit" />${job.location ? ` • ${esc(job.location)}` : ""}</div>
       <div style="font-size:16px;font-weight:600;color:#e8a838;margin-top:6px">${esc(job.salary)}</div>
       ${job.url ? `<a href="${esc(job.url)}" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;word-break:break-all;display:inline-block;margin-top:4px">🔗 View Original Posting</a>` : ""}
     </div>
@@ -5490,6 +5490,16 @@ function changeStatus(newStatus) {
     localStorage.setItem("jobtracker_user_data", JSON.stringify(edits));
   } catch(e) { console.warn("Failed to save status:", e); }
   window.close();
+}
+function saveField(field, value) {
+  JOB[field] = value;
+  try {
+    var raw = localStorage.getItem("jobtracker_user_data");
+    var edits = raw ? JSON.parse(raw) : {};
+    if (!edits[JOB.id]) edits[JOB.id] = {};
+    edits[JOB.id][field] = value;
+    localStorage.setItem("jobtracker_user_data", JSON.stringify(edits));
+  } catch(e) { console.warn("Failed to save:", e); }
 }
 function runAnalysisOnText(rawText) {
   var parsed = parseJobForReanalysis(rawText, JOB.url);
