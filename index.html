@@ -6641,7 +6641,21 @@ function JobRow({ job, onSelect, onUpdate }) {
         <FitBadge score={job.fitScore} />
       </td>
       <td style={{ padding: "10px 12px" }}>
-        <StatusBadge status={job.status} />
+        <select
+          value={job.status}
+          onChange={(e) => onUpdate(job.id, { status: e.target.value })}
+          style={{
+            padding: "4px 8px", borderRadius: 6, fontSize: 12, fontWeight: 600,
+            border: `1px solid ${STATUS_CONFIG[job.status]?.color || COLORS.gray300}30`,
+            color: STATUS_CONFIG[job.status]?.color || COLORS.gray700,
+            background: STATUS_CONFIG[job.status]?.bg || COLORS.white,
+            cursor: "pointer", outline: "none",
+          }}
+        >
+          {STATUS_ORDER.map(s => (
+            <option key={s} value={s}>{STATUS_CONFIG[s]?.icon} {s}</option>
+          ))}
+        </select>
       </td>
       <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{formatDate(job.dateAdded)}</td>
       <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>
