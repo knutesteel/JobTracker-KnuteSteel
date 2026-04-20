@@ -509,7 +509,7 @@ async function saveJobsToGitHub(jobs) {
       content: content,
       sha: _githubSha,
     };
-    const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+    let resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
       method: "PUT",
       headers: {
         "Authorization": `token ${GITHUB_TOKEN}`,
@@ -517,6 +517,23 @@ async function saveJobsToGitHub(jobs) {
       },
       body: JSON.stringify(body),
     });
+    if (resp.status === 409 || (resp.status === 422 && !resp.ok)) {
+      // SHA conflict — refetch current SHA and retry once
+      console.warn("SHA conflict, refetching and retrying...");
+      const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+        headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+      });
+      if (shaResp.ok) {
+        const meta = await shaResp.json();
+        _githubSha = meta.sha;
+        body.sha = _githubSha;
+        resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+          method: "PUT",
+          headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+      }
+    }
     if (!resp.ok) {
       const err = await resp.json();
       throw new Error(err.message || "API error " + resp.status);
