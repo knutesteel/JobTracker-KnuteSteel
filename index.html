@@ -467,7 +467,7 @@ async function loadJobsFromGitHub() {
     if (!apiResp.ok) throw new Error("API HTTP " + apiResp.status);
     const meta = await apiResp.json();
     _githubSha = meta.sha;
-    const content = atob(meta.content);
+    const content = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
     const jobs = JSON.parse(content);
     return jobs;
   } catch (e) {
@@ -2056,11 +2056,12 @@ function App() {
     loadJobsFromGitHub().then((loaded) => { setJobs(loaded); setLoading(false); });
   }, []);
 
-  // Auto-persist whenever jobs change (skip initial empty state and loading)
-  const isFirstRender = React.useRef(true);
+  // Auto-persist whenever jobs change (skip initial load, only save user changes)
+  const _initialLoadDone = React.useRef(false);
   React.useEffect(() => {
-    if (isFirstRender.current) { isFirstRender.current = false; return; }
-    if (!loading && jobs.length > 0) persistJobs(jobs);
+    if (loading) return; // still loading
+    if (!_initialLoadDone.current) { _initialLoadDone.current = true; return; } // skip first render after load
+    if (jobs.length > 0) persistJobs(jobs);
   }, [jobs, loading]);
 
   const handleSort = useCallback(
