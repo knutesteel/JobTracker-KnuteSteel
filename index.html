@@ -1741,7 +1741,8 @@ function openJobDetailWindow(job) {
 </head><body>
 <div style="max-width:1200px;margin:0 auto">
   <!-- Header -->
-  <div style="background:#1e3a5f;color:#fff;padding:20px 28px;border-radius:12px 12px 0 0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px">
+  <div style="padding:8px 28px 0"><a href="https://knutesteel.github.io/JobTracker-KnuteSteel/" style="color:#3182ce;font-size:13px;text-decoration:none;font-weight:600">← Return to Dashboard</a></div>
+  <div style="background:#1e3a5f;color:#fff;padding:20px 28px;border-radius:12px 12px 0 0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px;margin-top:8px">
     <div style="flex:1;min-width:280px">
       <h2 style="margin:0;font-size:22px;font-weight:700"><input id="editTitle" value="${esc(job.jobTitle)}" onchange="saveField('jobTitle',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:22px;font-weight:700;width:100%;padding:0 0 2px;outline:none;font-family:inherit" /></h2>
       <div style="font-size:14px;opacity:0.9;margin-top:4px"><input id="editCompany" value="${esc(job.company)}" onchange="saveField('company',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:14px;opacity:0.9;padding:0 0 2px;outline:none;font-family:inherit" />${job.location ? ` • ${esc(job.location)}` : ""}</div>
