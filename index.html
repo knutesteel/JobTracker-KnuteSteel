@@ -458,28 +458,28 @@ function showSaveStatus(msg, color) {
   if (msg.startsWith("✅")) setTimeout(() => { _saveIndicator.style.opacity = "0"; }, 2000);
 }
 
-// Load jobs from jobs.json in the repo (via GitHub raw or API)
+// Load jobs from jobs.json in the repo via GitHub API (no CDN cache)
 async function loadJobsFromGitHub() {
   try {
-    // Use raw.githubusercontent for fast reads (no auth needed, cached by CDN)
-    const cacheBust = Date.now();
-    const resp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${cacheBust}`);
-    if (!resp.ok) throw new Error("HTTP " + resp.status);
-    const jobs = await resp.json();
-    // Also fetch the SHA so we can update later
-    try {
-      const apiResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-        headers: { "Authorization": `token ${GITHUB_TOKEN}` }
-      });
-      if (apiResp.ok) {
-        const meta = await apiResp.json();
-        _githubSha = meta.sha;
-      }
-    } catch(e) { console.warn("Could not get SHA:", e); }
+    const apiResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+      headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+    });
+    if (!apiResp.ok) throw new Error("API HTTP " + apiResp.status);
+    const meta = await apiResp.json();
+    _githubSha = meta.sha;
+    const content = atob(meta.content);
+    const jobs = JSON.parse(content);
     return jobs;
   } catch (e) {
-    console.warn("Failed to load from GitHub, falling back to INITIAL_JOBS:", e);
-    return INITIAL_JOBS.map((job) => ({ ...job }));
+    console.warn("Failed to load from GitHub API, trying raw fallback:", e);
+    try {
+      const resp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}`);
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      return await resp.json();
+    } catch (e2) {
+      console.warn("Raw fallback also failed, using INITIAL_JOBS:", e2);
+      return INITIAL_JOBS.map((job) => ({ ...job }));
+    }
   }
 }
 
