@@ -1067,39 +1067,6 @@
     "companyOwnership": "Public — NYSE: NEWR (Francisco Partners took majority stake in 2024)"
   },
   {
-    "id": 72,
-    "company": "Anthropic",
-    "jobTitle": "Enterprise Account Executive, Public Sector (Partners & SI/ISV)",
-    "salary": "$360,000 - $435,000 USD OTE (estimated, aligned to Anthropic public-sector band)",
-    "fitScore": 91,
-    "status": "Applied",
-    "dateAdded": "2026-04-17",
-    "dateApplied": "",
-    "url": "https://jobs.generalcatalyst.com/companies/anthropic/jobs/63632084-enterprise-account-executive-public-sector",
-    "location": "Remote — United States (DC metro preferred)",
-    "notes": "ALERT SENT — Complements existing Anthropic SLED role (id 2). This role drives public-sector revenue through Systems Integrators (Deloitte, Accenture Fed, Booz, Leidos) and ISV partnerships — leveraging exactly the ecosystem Knute has cultivated over 25 years. High comp band matches Anthropic's standard public-sector band.",
-    "description": "Enterprise Account Executive, Public Sector (Partners & SI/ISV) - Anthropic\n\nKey Responsibilities:\n- Drive revenue by selling safe, frontier AI solutions directly to Systems Integrators (SI) and Independent Software Vendors (ISV) in the public sector space\n- Work with partners' technical teams to ensure successful implementation, adoption and deployment of Anthropic's AI capabilities into their solutions\n- Coordinate with cloud providers (AWS, GCP) to align technical and commercial aspects of deals\n- Build deep relationships with key decision makers within partner organizations\n- Create and maintain sales playbooks specific to SI and ISV sales motions\n\nRequirements:\n- 7+ years of enterprise sales experience selling directly to Systems Integrators and ISVs\n- Deep understanding of SI and ISV business models, buying processes, and technology evaluation criteria\n- Experience navigating technical requirements and security standards specific to public sector implementations\n- Strategic thinking combined with hands-on sales execution capabilities\n- Bachelor's degree in a related field or equivalent experience\n\nCompensation: $360,000—$435,000 USD annually\nApplications reviewed on a rolling basis with no application deadline",
-    "requirementsMet": [
-      "SI/ISV ecosystem mastery — 25+ year track record working with Deloitte, Accenture, Carahsoft, CDW-G, SHI, and other public-sector SIs and resellers across Adobe, DocuSign, Salesforce, Oracle.",
-      "Federal + SLED dual coverage — Successfully operated across civilian, defense, state, and local segments simultaneously.",
-      "Frontier AI positioning — Co-founder of TrackLight.ai positions candidate as credible voice on agentic AI for government; can engage partner CTOs and product leaders fluently.",
-      "Partner co-sell motion — At Adobe, DocuSign, and BDNA, built and executed partner-sourced revenue motions with SIs and resellers that exceeded direct-sell quotas.",
-      "Marketplace fluency — Hands-on with AWS Marketplace and Azure Marketplace in prior roles; GCP workable.",
-      "Large-deal execution — Comfortable with seven- and eight-figure deal cycles involving joint account planning, commercial structuring, and multi-year contracting.",
-      "Executive communication — Proven ability to engage agency CIOs/CISOs and partner executives at VP/SVP level."
-    ],
-    "requirementsNotMet": [
-      "Recent frontier-AI vendor experience — TrackLight.ai is AI-native but pre-revenue scale; full-time frontier-AI vendor seat would be new. Learning curve on Claude capability positioning.",
-      "FedRAMP High / IL5 depth — Familiar with FedRAMP Moderate; less hands-on with IL5 / IL6 / classified enclave requirements common in DoD workloads."
-    ],
-    "companyOverview": "Anthropic is an AI safety company and the maker of Claude, a family of frontier large language models adopted across enterprise, government, and developer ecosystems. Anthropic's Public Sector organization partners with federal, state, local, and education customers — plus a growing ecosystem of SIs and ISVs — to deliver safe, reliable, and interpretable AI across mission, enterprise, and citizen-service workloads. The company achieved FedRAMP High authorization and is rapidly scaling its public-sector go-to-market.",
-    "companyRevenue": "$4B+ ARR (2025 estimate)",
-    "companyEmployees": "~1,200",
-    "companyWebsite": "https://www.anthropic.com",
-    "companyLinkedin": "https://www.linkedin.com/company/anthropicresearch",
-    "companyOwnership": "Private — Venture-backed (Google, Amazon, Spark Capital, Menlo Ventures, General Catalyst, Lightspeed)"
-  },
-  {
     "id": 75,
     "company": "Chainguard",
     "jobTitle": "Regional Director, Public Sector Sales (DoW/Defense)",
