@@ -924,39 +924,6 @@
     "companyOwnership": "Public — NYSE: PATH"
   },
   {
-    "id": 99,
-    "company": "OpenText",
-    "jobTitle": "Senior Account Executive, Cybersecurity, SLED (Southeast)",
-    "salary": "$117,530 - $193,085 base + commission (OTE varies)",
-    "fitScore": 84,
-    "status": "New",
-    "dateAdded": "2026-04-20",
-    "dateApplied": "",
-    "url": "https://www.glassdoor.com/job-listing/senior-account-executive-cybersecurity-sled-opentext-JV_KO0,43_KE44,52.htm?jl=1010070552725",
-    "location": "Remote - Southeast U.S.",
-    "notes": "Strong territory fit for Apollo Beach, FL location.",
-    "description": "Senior Account Executive, Cybersecurity, SLED (Southeast)\nOpenText\nRemote - Southeast U.S.\n\nWe are looking for a strategic SLED Account Executive in the Southeast on the OpenText Cybersecurity Public Sector Team. In this role, you will be responsible for driving revenue growth and expanding our presence within State, Local Government, and Education (SLED) accounts. You will develop strong relationships with key stakeholders, understand the unique challenges in the SLED space, and offer tailored solutions that align with their missions and business goals. You will be representing key pillars within Application Security, Data Security and Data Privacy, Security Operations and Identity & Access Management.\n\nKey Responsibilities:\n- Drive revenue growth across SLED accounts in the Southeast region\n- Develop and manage strategic territory and account plans aligned to public sector buying cycles\n- Build executive relationships across IT, security, procurement, and agency leadership\n- Sell across OpenText Cybersecurity portfolio (AppSec, Data Security, SecOps, IAM)\n- Lead complex multi-stakeholder sales cycles including RFP responses and competitive displacements\n- Forecast pipeline accurately and partner with channel and pre-sales teams\n- Travel within territory as needed for customer meetings and events\n\nRequirements:\n- 7+ years of enterprise technology sales experience\n- Experience selling AppSec, Data Security, SecOps, and/or Identity Management to SLED clients preferred\n- Proven track record of meeting or exceeding quota in SLED segment\n- Familiarity with state cooperative purchasing vehicles and RFP processes\n- Excellent executive presence and communication skills\n- Bachelor's degree or equivalent experience\n\nCompensation: Base $117,530 - $193,085 depending on candidate education, experience, skills, location, and internal equity; commission added on top.",
-    "requirementsMet": [
-      "7+ years enterprise technology sales — 25+ years across Adobe, DocuSign, Salesforce, Oracle, BDNA, Macromedia.",
-      "SLED quota track record — Dedicated public sector roles at Adobe and Salesforce; Director of State & Local Government at BDNA.",
-      "State cooperative purchasing vehicles and RFP processes — Extensive familiarity with NASPO, GSA, SEWP, state-level cooperative purchasing.",
-      "Executive presence and complex multi-stakeholder selling — Career-long strength engaging C-suite agency leadership and program owners.",
-      "Bachelor's degree — BA Economics, University of Maryland.",
-      "Southeast territory fit — Knute is based in Apollo Beach, FL, ideal for Southeast SLED coverage.",
-      "Channel and pre-sales partnership — Standard cross-functional collaboration across enterprise sales career."
-    ],
-    "requirementsNotMet": [
-      "AppSec / Data Security / SecOps / IAM domain expertise — Cybersecurity is not Knute's core domain. Compliance and risk-framing experience is adjacent, but specific OpenText product family selling would require ramp.",
-      "Cybersecurity competitive landscape (Microsoft, CrowdStrike, Splunk, Okta) — Would need ramp on category-specific competitive positioning."
-    ],
-    "companyOverview": "OpenText is a global enterprise information management company headquartered in Waterloo, Ontario, with deep public sector relationships across federal, state, and local agencies. Its Cybersecurity portfolio (built largely on the acquired Micro Focus assets including Fortify, ArcSight, NetIQ, and Voltage) covers application security, data security, security operations (SIEM), and identity and access management. OpenText holds extensive government certifications and contracting vehicles.",
-    "companyRevenue": "~$5.8B (FY2025, NASDAQ/TSX: OTEX)",
-    "companyEmployees": "~22,000",
-    "companyWebsite": "https://www.opentext.com",
-    "companyLinkedin": "https://www.linkedin.com/company/opentext",
-    "companyOwnership": "Public — NASDAQ: OTEX, TSX: OTEX"
-  },
-  {
     "id": 100,
     "company": "Dataminr",
     "jobTitle": "Senior Account Executive, SLED - South East",
