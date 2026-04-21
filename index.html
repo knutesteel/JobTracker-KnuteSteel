@@ -138,32 +138,71 @@ function parseJobDescription(rawText, url) {
   const lower = text.toLowerCase();
 
   // ── Extract Job Title ──
-  const titlePatterns = [
-    /^(.+?)(?:\n|$)/,  // first line is often the title
-  ];
   let jobTitle = "";
-  // Try common heading patterns
-  const titleMatch = text.match(/(?:^|\n)([A-Z][A-Za-z\s,&\-–—/()]+(?:Executive|Manager|Director|Engineer|Sales|Lead|Specialist|Analyst|Representative|Consultant|Advisor|Strategist|Associate|Coordinator)[A-Za-z\s,&\-–—/()]*?)(?:\n|$)/);
-  if (titleMatch) {
+  const titleKeywords = "Executive|Manager|Director|Engineer|Sales|Lead|Specialist|Analyst|Representative|Consultant|Advisor|Strategist|Associate|Coordinator|Developer|Architect|VP|President|Officer|Head of|Principal|Senior|Account|Business Development";
+
+  // 1. Try standalone heading lines containing role keywords
+  const titleRegex = new RegExp("(?:^|\\n)\\s*([A-Z][A-Za-z\\s,&\\-\\u2013\\u2014/(). ]+(?:" + titleKeywords + ")[A-Za-z\\s,&\\-\\u2013\\u2014/()]*?)\\s*(?:\\n|$)");
+  const titleMatch = text.match(titleRegex);
+  if (titleMatch && titleMatch[1].trim().length < 100) {
     jobTitle = titleMatch[1].trim();
-  } else {
-    // Fallback: first non-empty line
-    const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
-    jobTitle = lines[0] || "Position";
-    // Clean up if too long
-    if (jobTitle.length > 80) jobTitle = jobTitle.substring(0, 80);
   }
+
+  // 2. Try "The Senior Account Executive is..." pattern (title embedded in sentence)
+  if (!jobTitle) {
+    const roleInSentence = new RegExp("(?:^|\\n)\\s*((?:The\\s+)?(?:Senior|Junior|Principal|Lead|Staff|Mid[- ]?Level)?\\s*[A-Za-z\\s]+(?:" + titleKeywords + ")(?:\\s*[\\-,/&]\\s*[A-Za-z\\s]+)?)(?=\\s+(?:is|will|shall|reports|position|role|responsible))", "i");
+    const roleMatch = text.match(roleInSentence);
+    if (roleMatch) {
+      jobTitle = roleMatch[1].trim().replace(/^The\s+/i, "");
+    }
+  }
+
+  // 3. Try labeled patterns: "Role:", "Position:", "Job Title:"
+  if (!jobTitle) {
+    const labeledTitle = text.match(/(?:role|position|job\s*title|title)\s*[:\-\u2013]\s*(.+?)(?:\n|$)/i);
+    if (labeledTitle) jobTitle = labeledTitle[1].trim();
+  }
+
+  // 4. Fallback: first non-empty line that isn't a URL or long paragraph
+  if (!jobTitle) {
+    const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+    for (const line of lines) {
+      if (line.startsWith("http")) continue;
+      if (line.length > 80) continue;
+      jobTitle = line;
+      break;
+    }
+    if (!jobTitle) jobTitle = "Position";
+  }
+  jobTitle = jobTitle.replace(/[.,:;]+$/, "").trim();
+  if (jobTitle.length > 100) jobTitle = jobTitle.substring(0, 100);
 
   // ── Extract Company ──
   let company = "";
   const companyPatterns = [
-    /(?:company|employer|organization|about)\s*[:\-–]\s*(.+?)(?:\n|$)/i,
+    /(?:company|employer|organization)\s*[:\-–]\s*(.+?)(?:\n|$)/i,
     /(?:^|\n)(?:at|@)\s+(.+?)(?:\n|$)/i,
     /(?:^|\n)(.+?)\s+is\s+(?:seeking|hiring|looking|searching)/i,
+    /(?:about)\s+(.+?)(?:\n|$)/i,
+    /(?:join|work\s+(?:at|for|with))\s+(.+?)(?:\s+(?:to|and|as|where|in)\b|[,!.\n])/i,
   ];
   for (const p of companyPatterns) {
     const m = text.match(p);
-    if (m) { company = m[1].trim(); break; }
+    if (m) {
+      const candidate = m[1].trim();
+      // Reject if it looks like a description, not a name
+      if (candidate.length < 60 && !candidate.match(/^(the role|us|this|our|a |an )/i)) {
+        company = candidate;
+        break;
+      }
+    }
+  }
+  // Try "CompanyName is <verb>..." pattern at start of text (e.g. "Optum Insight is improving...")
+  if (!company) {
+    const openingMatch = text.match(/^([A-Z][A-Za-z0-9\s.&\-']+?)\s+is\s+(?:a |an |the |improving|dedicated|committed|focused|building|leading|transforming|helping|creating|delivering|driving|revolutionizing|redefining|empowering|enabling)/i);
+    if (openingMatch && openingMatch[1].trim().length < 50) {
+      company = openingMatch[1].trim();
+    }
   }
   // Try URL-based extraction
   if (!company && url) {
@@ -181,11 +220,12 @@ function parseJobDescription(rawText, url) {
     } catch(e) {}
   }
   if (!company) {
-    // Look for company name in first few lines
-    const lines = text.split("\n").slice(0, 5);
+    // Look for company name in first few lines (skip URLs and long lines)
+    const lines = text.split("\n").slice(0, 8);
     for (const line of lines) {
-      if (line.trim() && line.trim() !== jobTitle && line.trim().length < 60 && !line.match(/^(about|overview|description|responsibilities|requirements|location|salary)/i)) {
-        company = line.trim();
+      const trimmed = line.trim();
+      if (trimmed && trimmed !== jobTitle && trimmed.length < 50 && !trimmed.startsWith("http") && !trimmed.match(/^(about|overview|description|responsibilities|requirements|location|salary|the |a |an )/i)) {
+        company = trimmed;
         break;
       }
     }
@@ -426,18 +466,44 @@ function scoreFit(description, requirements, locationInfo) {
 
 function generateCompanyOverview(company, description) {
   const lower = description.toLowerCase();
-  // Try to extract "About" section from description
-  const aboutMatch = description.match(/(?:about\s+(?:the\s+company|us|\w+))[:\s]*\n?([\s\S]{50,500}?)(?:\n\s*(?:about the role|responsibilities|requirements|qualifications|what|key|the role|$))/i);
-  if (aboutMatch) return aboutMatch[1].trim();
+  // Try to extract "About" section from description — multiple patterns
+  const aboutPatterns = [
+    /(?:about\s+(?:the\s+company|us|[\w.]+))[:\s]*\n?([\s\S]{50,500}?)(?:\n\s*(?:about the role|responsibilities|requirements|qualifications|what|key|the role|position|job |$))/i,
+    /(?:who\s+we\s+are|our\s+company|company\s+overview|company\s+description)[:\s]*\n?([\s\S]{50,500}?)(?:\n\s*(?:about|responsibilities|requirements|qualifications|what|key|the role|position|$))/i,
+  ];
+  for (const p of aboutPatterns) {
+    const m = description.match(p);
+    if (m) return m[1].trim();
+  }
+
+  // Try to use the opening paragraph if it describes the company (e.g. "Optum Insight is improving...")
+  const companyLower = company.toLowerCase();
+  const lines = description.split("\n").filter(l => l.trim());
+  if (lines.length > 0) {
+    // Collect opening paragraph(s) that mention the company
+    let openingText = "";
+    for (const line of lines.slice(0, 5)) {
+      const trimmed = line.trim();
+      if (trimmed.toLowerCase().includes(companyLower) || (openingText && trimmed.length > 30 && !trimmed.match(/^(the |a |an |senior|junior|mid|about the role|responsibilities|requirements|qualifications)/i))) {
+        openingText += (openingText ? " " : "") + trimmed;
+        if (openingText.length > 100) break;
+      } else if (openingText) break;
+    }
+    if (openingText.length > 50) return openingText.substring(0, 500);
+  }
 
   // Build from context clues
   let overview = `${company} is `;
-  if (lower.includes("saas") || lower.includes("software")) overview += "a software company ";
+  if (lower.includes("health") || lower.includes("healthcare") || lower.includes("medical")) overview += "a healthcare technology company ";
+  else if (lower.includes("fintech") || lower.includes("financial")) overview += "a financial technology company ";
+  else if (lower.includes("saas") || lower.includes("software")) overview += "a software company ";
   else if (lower.includes("ai") || lower.includes("artificial intelligence")) overview += "an AI technology company ";
+  else if (lower.includes("cybersecurity") || lower.includes("security")) overview += "a cybersecurity company ";
   else overview += "a technology company ";
 
   if (lower.includes("government") || lower.includes("public sector")) overview += "serving government and public sector organizations. ";
   else if (lower.includes("enterprise")) overview += "serving enterprise customers. ";
+  else if (lower.includes("healthcare") || lower.includes("health")) overview += "serving the healthcare industry. ";
   else overview += "in the technology sector. ";
 
   overview += "Additional company details can be researched via their website and LinkedIn profile.";
@@ -1856,6 +1922,14 @@ function openJobDetailWindow(job) {
       </div>
       ${reqNotMetHtml ? `<div style="margin-bottom:18px">${reqNotMetHtml}</div>` : ""}
       ${companyHtml}
+      <div style="margin-bottom:18px">
+        <h4 style="margin:0 0 8px;font-size:14px;color:#3182ce">🤖 AI Research Questions</h4>
+        <p style="margin:0 0 8px;font-size:12px;color:#718096">Enter questions for further AI analysis and research about this role or company.</p>
+        <textarea id="aiQuestionsField" style="width:100%;min-height:100px;padding:12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.6;color:#4a5568;resize:vertical;font-family:inherit;outline:none" placeholder="e.g., What is Optum's market position in healthcare analytics? What recent acquisitions have they made?">${esc(job.aiQuestions || "")}</textarea>
+        <div style="display:flex;justify-content:flex-end;margin-top:6px">
+          <button onclick="saveField('aiQuestions', document.getElementById('aiQuestionsField').value); this.textContent='✅ Saved'; setTimeout(function(){document.querySelector('#aiQuestionsField').nextElementSibling.querySelector('button').textContent='💾 Save Questions'},1500)" style="background:#3182ce;border:none;color:#fff;font-size:12px;font-weight:600;cursor:pointer;padding:6px 14px;border-radius:6px">💾 Save Questions</button>
+        </div>
+      </div>
       <div>
         <h4 style="margin:0 0 8px;font-size:14px;color:#4a5568">📝 Notes</h4>
         <div style="padding:12px;min-height:60px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;white-space:pre-wrap">${esc(job.notes) || "<em style='color:#a0aec0'>No notes yet — edit on dashboard</em>"}</div>
