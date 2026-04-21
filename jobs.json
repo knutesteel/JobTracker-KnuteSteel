@@ -964,41 +964,6 @@
     "companyOwnership": "Public — NYSE: NOW"
   },
   {
-    "id": 61,
-    "company": "Equifax",
-    "jobTitle": "Government Solutions Account Executive",
-    "salary": "$130,000 - $160,000 base + ~40% incentive (~$182K-$224K total)",
-    "fitScore": 82,
-    "status": "New",
-    "dateAdded": "2026-04-15",
-    "dateApplied": "",
-    "url": "https://careers.equifax.com/en/jobs/j00174318/government-solutions-account-executive",
-    "location": "Tallahassee, FL (Remote-eligible within FL)",
-    "notes": "[Link: Company careers page] Florida-based territory. Equifax has active openings across multiple SE cities including Tallahassee, Atlanta, Nashville, Richmond. Tallahassee is ~4 hours from Apollo Beach. Strong alignment with state government sales background.",
-    "description": "Government Solutions Account Executive\nEquifax Workforce Solutions\nTallahassee, FL (Remote-eligible) — Full-time\n\nAbout Equifax Workforce Solutions\nEquifax Workforce Solutions is the leading provider of employment and income verification, identity verification, fraud prevention, and government benefits eligibility data for state and federal government agencies. We help government agencies administer benefit programs efficiently and compliantly, prevent fraud, and improve service delivery to citizens.\n\nAbout the Role\nThe Government Solutions Account Executive is responsible for developing and expanding Equifax's presence with state government agencies. You will serve as a trusted advisor to government clients, helping them leverage Equifax's data and analytics solutions for eligibility verification, identity and fraud prevention, and workforce data analytics.\n\nKey Responsibilities\n- Provides services assigned to State Government accounts and identifies, qualifies, and closes new opportunities by designing and executing plans for existing or potential prospects\n- Develops and executes long-range planning and account penetration strategies to grow accounts\n- Utilizes enterprise solution selling strategies and integrates demand-generation sales approaches in all client-facing interactions\n- Exhibits executive presence to establish valuable relationships with client decision makers and directly leads negotiation of all client agreements\n- Monitors competition by gathering current marketplace information on pricing, products, new products, delivery schedules, and marketing techniques\n- Recommends changes in products, service, and policy with respect to client requirements and competitive landscape\n- Keeps management informed by submitting activity and results reports, and monthly and annual territory analyses\n- Continuous internal interaction with finance, legal, fulfillment, and product teams\n\nRequired Qualifications\n- Bachelor's degree\n- 7+ years of field sales experience, including at least 2 years in state agencies\n- Proven track record of meeting/exceeding sales quota in a growth organization\n- Proven track record of executing capture strategies and winning competitive pursuits in excess of $10M+\n- Strong experience in government procurement and writing winning competitive proposals\n- Strong business acumen and demonstrated understanding of aligning product/service offerings to customer mission and business requirements\n- Ability to travel up to 20%\n\nPreferred Qualifications\n- Experience in the Credit Agency space, leveraging assets related to eligibility verifications, identity and fraud, and credit data\n- Former director/deputy director/assistant secretary in Medicaid, SNAP, or other government benefit programs\n- Experience selling to agencies like SSA, HHS, CMS\n\nCompensation: $130,000 - $160,000 base salary + ~40% incentive compensation program",
-    "requirementsMet": [
-      "7+ years field sales including state agencies — 25+ years of enterprise technology sales with extensive state and local government account management including BDNA (Director, State & Local Government), Salesforce Public Sector, and Adobe Public Sector.",
-      "Track record of $10M+ competitive wins — Career-long experience closing large government deals across multi-year procurement cycles with significant contract value.",
-      "Government procurement and proposal writing — Deep experience navigating state, local, and federal procurement processes, RFP responses, and competitive proposal development throughout career.",
-      "Executive presence and decision-maker relationships — 25+ years of C-level and government executive engagement including state agency leadership, IT directors, and procurement officials.",
-      "Bachelor's degree — BA Economics from University of Maryland.",
-      "Florida territory alignment — Based in Apollo Beach, FL; Tallahassee territory is within Florida, consistent with geographic presence. Strong Florida government network likely.",
-      "Solution selling and account penetration — Core strength; known for developing and executing long-range account strategies and identifying expansion opportunities within government agencies.",
-      "Cross-functional collaboration — Extensive experience coordinating with legal, finance, and product teams on complex government agreements throughout career."
-    ],
-    "requirementsNotMet": [
-      "Credit Agency / eligibility verification domain — No direct experience with credit data, income verification, employment verification, or benefits eligibility data solutions. Background is in document management, AI analytics, CRM, and digital signatures. Equifax's core government value prop (Medicaid/SNAP eligibility verification) would require domain ramp.",
-      "Compensation below target — Total comp of $182K-$224K is slightly below Knute's $200K+ OTE target, though the top of the range ($224K) is near target.",
-      "Identity/fraud/credit data preferred — Preferred experience with Equifax's credit and identity data ecosystem not held; TrackLight.ai's investigative analytics provides some adjacent context."
-    ],
-    "companyOverview": "Equifax is a global data, analytics, and technology company that provides insights powering decisions to move people forward in their financial journey. Founded in 1899, Equifax has grown into a leading provider of data-driven insights for businesses and government agencies. Their Workforce Solutions division specifically serves government agencies with employment verification, income verification, identity fraud detection, and benefits eligibility solutions. Equifax operates in 24 countries and is a Fortune 500 company.",
-    "companyRevenue": "$5.3B (FY2024, NYSE: EFX)",
-    "companyEmployees": "15,000+ employees globally",
-    "companyWebsite": "https://www.equifax.com",
-    "companyLinkedin": "https://www.linkedin.com/company/equifax/",
-    "companyOwnership": "Public — NYSE: EFX (Fortune 500)"
-  },
-  {
     "id": 68,
     "company": "New Relic",
     "jobTitle": "Senior Account Executive - Public Sector (SLED)",
