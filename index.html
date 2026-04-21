@@ -150,7 +150,7 @@ function parseJobDescription(rawText, url) {
 
   // 2. Try "The Senior Account Executive is/will/responsible..." pattern (title embedded in sentence)
   if (!jobTitle) {
-    const roleInSentence = text.match(/(?:^|\n)\s*(?:The\s+|As\s+(?:a|the)\s+)?((?:Senior|Junior|Principal|Lead|Staff|Sr\.?\s+|Jr\.?\s+)?(?:[A-Z][a-z]+\s+){0,3}(?:Executive|Manager|Director|Engineer|Lead|Specialist|Analyst|Representative|Consultant|Coordinator|Architect|Officer|Advisor)(?:\s*[\-,/&(]\s*[A-Za-z\s]+[)]?)?)(?=\s+(?:is|will|shall|reports|position|role|responsible|you|this))/i);
+    const roleInSentence = text.match(/(?:^|\n)\s*(?:The\s+|As\s+(?:a|the)\s+)?((?:Senior|Junior|Principal|Lead|Staff|Sr\.?\s+|Jr\.?\s+)?(?:[A-Z][a-z]+\s+){0,3}(?:Executive|Manager|Director|Engineer|Lead|Specialist|Analyst|Representative|Consultant|Coordinator|Architect|Officer|Advisor)(?:\s*[\-,/&(]\s*[A-Za-z\s.]+[)]?)?)(?=\s+(?:is|will|shall|reports|position|role|responsible|you|this))/i);
     if (roleInSentence && roleInSentence[1].trim().length < 80) {
       jobTitle = roleInSentence[1].trim();
     }
@@ -258,7 +258,7 @@ function parseJobDescription(rawText, url) {
     const kMatch = text.match(/(\d{2,3})\s*k\s*[-–—]\s*(\d{2,3})\s*k/i);
     if (kMatch) salary = `$${kMatch[1]}K - $${kMatch[2]}K`;
   }
-  if (!salary) salary = "Not disclosed";
+  if (!salary) salary = "Unknown";
 
   // ── Extract Location ──
   let location = "";
@@ -269,7 +269,7 @@ function parseJobDescription(rawText, url) {
     const stateMatch = text.match(/(?:^|\s)((?:[A-Z][a-z]+(?:\s[A-Z][a-z]+)*),\s*[A-Z]{2})(?:\s|$|\n|,)/);
     if (stateMatch) location = location ? `${location} • ${stateMatch[1]}` : stateMatch[1];
   }
-  if (!location) location = "See posting";
+  if (!location) location = "Unknown";
 
   // ── Extract Territory / Geography ──
   let territory = "";
@@ -306,7 +306,7 @@ function parseJobDescription(rawText, url) {
       }
     }
   }
-  if (!territory) territory = "See posting";
+  if (!territory) territory = "Unknown";
 
   // ── Extract Requirements ──
   const reqSection = text.match(/(?:requirements|qualifications|you may be a good fit|ideal background|what we.re looking for|what you.ll need|minimum qualifications|who you are)[:\s]*\n([\s\S]*?)(?:\n\s*(?:benefits|compensation|salary|about|preferred|nice to have|bonus|how to apply|equal|our|the company|responsibilities|$))/i);
@@ -2015,8 +2015,8 @@ function runAnalysisOnText(rawText) {
     requirementsNotMet: fit.requirementsNotMet,
     companyOverview: compOverview
   };
-  if (parsed.salary && parsed.salary !== "Not disclosed") updates.salary = parsed.salary;
-  if (parsed.location && parsed.location !== "See posting") updates.location = parsed.location;
+  if (parsed.salary && parsed.salary !== "Unknown") updates.salary = parsed.salary;
+  if (parsed.location && parsed.location !== "Unknown") updates.location = parsed.location;
   document.getElementById("reanalyzeBtn").textContent = "\\u23F3 Saving...";
   ghSave(updates).then(function() {
     alert("Analysis updated and saved! Fit score: " + fit.fitScore + "/100\\nRefresh the dashboard to see changes.");
@@ -2086,12 +2086,12 @@ function parseJobForReanalysis(rawText, url) {
   var salaryMatch = text.match(/\\$[\\d,]+(?:\\s*[\\-\\u2013\\u2014]\\s*\\$[\\d,]+)?(?:\\s*(?:k|K|USD|OTE|per year|annually|base|total|\\/yr))?/);
   if (salaryMatch) { salary = salaryMatch[0]; var idx2 = text.indexOf(salaryMatch[0]); var surr = text.substring(Math.max(0,idx2-30),Math.min(text.length,idx2+salaryMatch[0].length+40)); if(surr.toLowerCase().includes("ote")) salary+=" OTE"; else if(surr.toLowerCase().includes("base")) salary+=" base"; }
   if (!salary) { var kM = text.match(/(\\d{2,3})\\s*k\\s*[\\-\\u2013\\u2014]\\s*(\\d{2,3})\\s*k/i); if(kM) salary = "$"+kM[1]+"K - $"+kM[2]+"K"; }
-  if (!salary) salary = "Not disclosed";
+  if (!salary) salary = "Unknown";
   var location2 = "";
   var locM = text.match(/(?:location|based in|located in|work location)\\s*[:\\-\\u2013]?\\s*(.+?)(?:\\n|$)/i);
   if (locM) location2 = locM[1].trim();
   if (!location2 && lower.includes("remote")) location2 = "Remote";
-  if (!location2) location2 = "See posting";
+  if (!location2) location2 = "Unknown";
   var reqSection = text.match(/(?:requirements|qualifications|you may be a good fit|ideal background|what we.re looking for|what you.ll need|minimum qualifications|who you are)[:\\s]*\\n([\\s\\S]*?)(?:\\n\\s*(?:benefits|compensation|salary|about|preferred|nice to have|bonus|how to apply|equal|our|the company|responsibilities|$))/i);
   var reqText2 = reqSection ? reqSection[1] : "";
   var requirements = [];
