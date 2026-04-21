@@ -1063,39 +1063,6 @@
     "companyOwnership": "Public — NYSE: PATH"
   },
   {
-    "id": 98,
-    "company": "DataRobot",
-    "jobTitle": "Lead Account Executive - Federal",
-    "salary": "Competitive base + commission (estimated OTE $260K-$320K based on market data)",
-    "fitScore": 86,
-    "status": "New",
-    "dateAdded": "2026-04-20",
-    "dateApplied": "",
-    "url": "https://datarobot.wd1.myworkdayjobs.com/datarobot_external_careers/job/new-york-us---remote/lead-account-executive---federal_r-102627",
-    "location": "Remote - United States",
-    "notes": "",
-    "description": "Lead Account Executive - Federal\nDataRobot\nRemote - United States\n\nDataRobot is looking for a driven, focused, and high-impact Enterprise Sales Executive with a strong understanding of Big Data Analytics products or enterprise-wide software technologies and value-driven sales. The Lead Account Executive role involves building and driving territory/account sales plans to meet and exceed sales goals through value selling, working closely with Customer Facing Data Scientists to demonstrate business value through technical proof of value sessions, and delivering presentations/demonstrations highlighting the benefits of DataRobot.\n\nResponsibilities:\n- Build and drive territory/account sales plans to meet and exceed sales goals through value selling\n- Work closely with Customer Facing Data Scientists to demonstrate business value through technical proof of value sessions\n- Deliver presentations and demonstrations highlighting the benefits of DataRobot to Federal Civilian agencies\n- Win new logos and expand large Enterprise Accounts within Federal\n- Manage complex sales cycles with multiple stakeholders across federal agencies\n- Maintain accurate forecasts and pipeline using CRM\n\nRequirements:\n- BA/BS degree\n- Demonstrated ability to sell enterprise software and exceed quotas\n- Experience selling analytics, data, databases, predictive modeling, or business intelligence software\n- Experience selling emerging technologies and winning new logos while building territories and expanding large Enterprise Accounts\n- Training in solution/value selling methodologies\n- Proven track record of consistent overachievement of the sales quota\n- Minimum 5 years of experience in federal sales, with a proven track record of success in selling technology solutions to Federal Civilian agencies\n\nBenefits: Medical, Dental & Vision Insurance, Flexible Time Off Program, Paid Holidays, Paid Parental Leave, Global Employee Assistance Program (EAP) and more.",
-    "requirementsMet": [
-      "Demonstrated ability to sell enterprise software and exceed quotas — 25+ years of enterprise technology sales with consistent quota over-attainment at Adobe, DocuSign, Salesforce, and Oracle.",
-      "Experience selling analytics, data, predictive modeling, or BI software — BDNA technology asset analytics + TrackLight.ai AI investigative analytics platform = directly relevant data/analytics sales experience.",
-      "Selling emerging technologies and winning new logos — Co-founder of TrackLight.ai (frontier AI) plus history of bringing new offerings to market at Adobe Sign, DocuSign, Macromedia.",
-      "Solution/value selling methodologies — Executive Communication & ROI Alignment is a listed core capability.",
-      "Bachelor's degree — BA Economics from University of Maryland.",
-      "Public sector / government sales — Strong SLED background; Federal exposure through Adobe, DocuSign, and via TrackLight.ai government investigative use cases.",
-      "Working with technical specialists / data scientists — Experience partnering with sales engineers and technical experts across enterprise sales career."
-    ],
-    "requirementsNotMet": [
-      "Minimum 5 years dedicated Federal Civilian agency sales — Knute's deeper public sector strength is in SLED rather than Federal Civilian; Federal track record is meaningful but not as deep as the role implies.",
-      "Big Data Analytics / ML platform deep domain — BDNA and TrackLight.ai are adjacent but not pure ML/MLOps; would require ramp on DataRobot's specific automated ML positioning."
-    ],
-    "companyOverview": "DataRobot is a leading enterprise AI platform that automates the end-to-end machine learning lifecycle, enabling organizations to build, deploy, and govern predictive and generative AI models at scale. The company has aggressively expanded into the federal government market, securing contracts with civilian, defense, and intelligence agencies, and offers FedRAMP-authorized solutions tailored to public sector mission needs.",
-    "companyRevenue": "~$300M ARR (estimated, privately held, 2025)",
-    "companyEmployees": "~900",
-    "companyWebsite": "https://www.datarobot.com",
-    "companyLinkedin": "https://www.linkedin.com/company/datarobot",
-    "companyOwnership": "Private — backed by NEA, Sapphire Ventures, Tiger Global, Meritech Capital"
-  },
-  {
     "id": 99,
     "company": "OpenText",
     "jobTitle": "Senior Account Executive, Cybersecurity, SLED (Southeast)",
