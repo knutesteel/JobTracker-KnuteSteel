@@ -991,38 +991,6 @@
     "companyOwnership": "Private — backed by Fidelity, Morgan Stanley, Reverence Capital, IVP, Eldridge"
   },
   {
-    "id": 101,
-    "company": "Motive",
-    "jobTitle": "Account Executive, Public Sector (SLED)",
-    "salary": "Not disclosed (estimated OTE $200K-$260K based on market for similar roles)",
-    "fitScore": 74,
-    "status": "New",
-    "dateAdded": "2026-04-20",
-    "dateApplied": "",
-    "url": "https://www.linkedin.com/jobs/view/account-executive-public-sector-sled-at-motive-4339976655",
-    "location": "Remote - United States",
-    "notes": "Domain (fleet/IoT/telematics) is adjacent but not core; SLED motion and seller profile align well.",
-    "description": "Account Executive, Public Sector (SLED)\nMotive\nRemote - United States\n\nAs an Enterprise Account Executive, Public Sector at Motive, you are responsible for developing and closing business with Motive's largest State, Local, and Education prospects. As one of the first Account Executives focused on the Public Sector market, you will lead the charge, selling the value of Motive's products and the business outcomes that can be achieved in partnership with Motive.\n\nKey Responsibilities:\n- Establish, develop and grow new business relationships with influential contacts within lighthouse Public Sector accounts\n- Identify, partner and develop account plans for Motive's Public Sector prospects\n- Harness key Executive relationships to ensure RFP wins and grow contractual-based business\n- Lead complex public sector sales cycles from prospecting through close\n- Partner cross-functionally with sales engineering, customer success, and channel teams\n- Maintain accurate pipeline and forecast in CRM\n\nRequired Qualities:\n- Entrepreneurial, thoughtfully aggressive seller who can articulate the value Motive brings to the Public Sector market\n- Receptive to feedback, willingness to learn, strong technical aptitude, and high attention to detail\n- Win-as-a-team mentality\n- Proven enterprise SaaS sales track record\n- Experience selling into State, Local, and Education accounts and navigating cooperative purchasing vehicles\n\nAbout Motive: Motive serves nearly 100,000 customers - from Fortune 500 enterprises to small businesses - across transportation and logistics, construction, energy, field service, manufacturing, agriculture, food and beverage, retail, and the public sector.",
-    "requirementsMet": [
-      "Enterprise SaaS sales — 25+ years across Adobe, DocuSign, Salesforce, Oracle.",
-      "State, Local, Education sales experience — Dedicated public sector roles at Adobe, Salesforce, BDNA (Director SLG).",
-      "Cooperative purchasing vehicle navigation — NASPO, GSA, SEWP, state contracts.",
-      "Entrepreneurial new-segment building — Co-founder of TrackLight.ai; built BDNA's public sector practice from scratch.",
-      "Executive relationships — Career-long strength engaging C-level and senior agency leadership.",
-      "Cross-functional partnership — Standard across enterprise sales career."
-    ],
-    "requirementsNotMet": [
-      "Fleet management / telematics / IoT domain — Knute's career background is in software and AI/data, not telematics or physical fleet operations; would require domain ramp.",
-      "Public Safety / DOT / fleet-heavy SLED buying centers — Less natural fit than CIO / digital transformation buyers Knute has covered to date."
-    ],
-    "companyOverview": "Motive (formerly KeepTruckin) is a leading AI-powered Integrated Operations Platform serving nearly 100,000 customers across transportation, logistics, construction, energy, field service, manufacturing, agriculture, retail, and public sector. The platform combines fleet management, safety, asset tracking, spend management, and workforce management. Motive recently appointed Meg Whitman to its Board and has been expanding aggressively into the SLED segment, where its safety, fleet, and IoT solutions support municipalities, transit agencies, and state DOTs.",
-    "companyRevenue": "~$500M ARR (estimated, privately held, 2025)",
-    "companyEmployees": "~3,500",
-    "companyWebsite": "https://gomotive.com",
-    "companyLinkedin": "https://www.linkedin.com/company/gomotive",
-    "companyOwnership": "Private — backed by Insight Partners, Kleiner Perkins, IVP, GV, Scale Venture Partners"
-  },
-  {
     "id": 102,
     "company": "SentinelOne",
     "jobTitle": "Enterprise Account Executive - SLED",
