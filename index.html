@@ -220,6 +220,43 @@ function parseJobDescription(rawText, url) {
   }
   if (!location) location = "See posting";
 
+  // ── Extract Territory / Geography ──
+  let territory = "";
+  const US_STATES = {"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"California","CO":"Colorado","CT":"Connecticut","DE":"Delaware","FL":"Florida","GA":"Georgia","HI":"Hawaii","ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine","MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana","NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina","ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia","WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","DC":"District of Columbia"};
+  const terrPatterns = [
+    /(?:territory|region|geography|coverage|market)\s*[:\-–]\s*(.+?)(?:\n|$)/i,
+    /(?:covering|responsible for|manage|managing)\s+(?:the\s+)?(.+?(?:region|territory|market|states?|area|coast|southeast|northeast|midwest|west|central|south|north|east))(?:\s|,|\.|$)/i,
+  ];
+  for (const p of terrPatterns) {
+    const m = text.match(p);
+    if (m) { territory = m[1].trim(); break; }
+  }
+  if (!territory) {
+    // Check for regional indicators
+    if (/\b(?:southeast|south\s*east|SE\s+region)\b/i.test(text)) territory = "Southeast";
+    else if (/\b(?:northeast|north\s*east|NE\s+region)\b/i.test(text)) territory = "Northeast";
+    else if (/\b(?:midwest|mid\s*west|central)\b/i.test(text)) territory = "Midwest";
+    else if (/\b(?:west\s*coast|pacific|western)\b/i.test(text)) territory = "West";
+    else if (/\b(?:east\s*coast|eastern|atlantic)\b/i.test(text)) territory = "East Coast";
+    else if (/\bnational\b/i.test(text)) territory = "National";
+  }
+  if (!territory) {
+    // Derive from location
+    const locLower = location.toLowerCase();
+    if (locLower.includes("remote")) territory = "Remote";
+    else if (locLower.includes("fl") || locLower.includes("florida")) territory = "Florida";
+    else {
+      // Try to find state from location string
+      for (const [abbr, name] of Object.entries(US_STATES)) {
+        if (locLower.includes(name.toLowerCase()) || new RegExp("\\b" + abbr + "\\b").test(location)) {
+          territory = name;
+          break;
+        }
+      }
+    }
+  }
+  if (!territory) territory = "See posting";
+
   // ── Extract Requirements ──
   const reqSection = text.match(/(?:requirements|qualifications|you may be a good fit|ideal background|what we.re looking for|what you.ll need|minimum qualifications|who you are)[:\s]*\n([\s\S]*?)(?:\n\s*(?:benefits|compensation|salary|about|preferred|nice to have|bonus|how to apply|equal|our|the company|responsibilities|$))/i);
   const reqText = reqSection ? reqSection[1] : "";
@@ -232,12 +269,13 @@ function parseJobDescription(rawText, url) {
     }
   }
 
-  return { jobTitle, company, salary, location, description: text, requirements };
+  return { jobTitle, company, salary, location, territory, description: text, requirements };
 }
 
-function scoreFit(description, requirements) {
+function scoreFit(description, requirements, locationInfo) {
   const lower = (description + " " + requirements.join(" ")).toLowerCase();
   const resumeText = (RESUME.summary + " " + RESUME.capabilities.join(" ") + " " + RESUME.experience.map(e => e.role + " " + e.company).join(" ")).toLowerCase();
+  const loc = (locationInfo || "").toLowerCase();
 
   let totalWeight = 0;
   let matchedWeight = 0;
@@ -308,6 +346,23 @@ function scoreFit(description, requirements) {
     },
   ];
 
+  // ── Geography fit check ──
+  const geoWeight = 10;
+  totalWeight += geoWeight;
+  const isFloridaFit = loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach") || loc.includes("st. petersburg") || loc.includes("orlando") || loc.includes("jacksonville") || loc.includes("miami") || loc.includes("nationwide") || loc.includes("national") || loc.includes("see posting") || loc === "";
+  const isOtherStateRequired = !isFloridaFit && (lower.includes("must be located") || lower.includes("required to be") || lower.includes("on-site") || lower.includes("in-office") || lower.includes("hybrid"));
+  if (isFloridaFit) {
+    matchedWeight += geoWeight;
+    if (loc.includes("remote")) met.push("Geography — Remote position, accessible from candidate's base in Apollo Beach, FL.");
+    else if (loc.includes("florida") || loc.includes(" fl")) met.push("Geography — Florida-based role aligns with candidate's location in Apollo Beach, FL.");
+    else met.push("Geography — No restrictive location requirement identified.");
+  } else if (isOtherStateRequired) {
+    notMet.push("Geography — Role appears to require presence in a location outside Florida. Candidate is based in Apollo Beach, FL.");
+  } else {
+    matchedWeight += Math.round(geoWeight * 0.5);
+    notMet.push("Geography — Role location (" + (locationInfo || "unspecified") + ") may not align with candidate's base in Apollo Beach, FL. Verify remote eligibility.");
+  }
+
   // Also check for domain-specific terms that might NOT match
   const domainGaps = [
     { pattern: /public safety|law enforcement|cad|rms|dispatch|corrections/i, weight: 10,
@@ -319,8 +374,13 @@ function scoreFit(description, requirements) {
       notMetMsg: () => "eDiscovery/legal technology domain — No direct eDiscovery or legal technology experience, though enterprise compliance experience is adjacent."
     },
     { pattern: /relocation|hybrid|in.office|on.?site/i, weight: 5,
-      test: () => false,
-      notMetMsg: () => "Location/hybrid requirement — Candidate is based in Apollo Beach, FL. Role may require relocation or regular office presence."
+      test: () => {
+        // Florida-based roles or remote are a fit
+        if (loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach") || loc.includes("st. petersburg") || loc.includes("orlando") || loc.includes("jacksonville") || loc.includes("miami")) return true;
+        return false;
+      },
+      metMsg: () => "Location/hybrid requirement — Role is accessible from candidate's base in Apollo Beach, FL.",
+      notMetMsg: () => "Location/hybrid requirement — Candidate is based in Apollo Beach, FL. Role may require relocation or regular office presence in another state."
     },
     { pattern: /aws|gcp|azure|cloud provider/i, weight: 5,
       test: () => resumeText.includes("cloud"),
@@ -386,7 +446,7 @@ function generateCompanyOverview(company, description) {
 
 function processJobText(rawText, url) {
   const parsed = parseJobDescription(rawText, url);
-  const fit = scoreFit(parsed.description, parsed.requirements);
+  const fit = scoreFit(parsed.description, parsed.requirements, parsed.location + " " + parsed.territory);
   const companyOverview = generateCompanyOverview(parsed.company, parsed.description);
 
   // Extract source domain from URL
@@ -417,6 +477,7 @@ function processJobText(rawText, url) {
     url: url || "",
     source: source,
     location: parsed.location,
+    territory: parsed.territory,
     notes: "",
     rawText: rawText,
     description: parsed.description,
@@ -1102,6 +1163,7 @@ function JobRow({ job, onSelect, onUpdate }) {
         </div>
       </td>
       <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{job.salary || "—"}</td>
+      <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{job.territory || job.location || "—"}</td>
       <td style={{ padding: "10px 12px", textAlign: "center" }}>
         <FitBadge score={job.fitScore} />
       </td>
@@ -1221,6 +1283,7 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
             <SortHeader label="Company" field="company" {...{ sortField, sortDir, onSort }} width={colWidths.company} onResize={handleResize} />
             <SortHeader label="Job Title" field="jobTitle" {...{ sortField, sortDir, onSort }} width={colWidths.jobTitle} onResize={handleResize} />
             <SortHeader label="Salary" field="salary" {...{ sortField, sortDir, onSort }} width={colWidths.salary} onResize={handleResize} />
+            <SortHeader label="Territory" field="territory" {...{ sortField, sortDir, onSort }} width={colWidths.territory} onResize={handleResize} />
             <SortHeader label="Fit" field="fitScore" {...{ sortField, sortDir, onSort }} style={{ textAlign: "center" }} width={colWidths.fitScore} onResize={handleResize} />
             <SortHeader label="Status" field="status" {...{ sortField, sortDir, onSort }} width={colWidths.status} onResize={handleResize} />
             <SortHeader label="Date Added" field="dateAdded" {...{ sortField, sortDir, onSort }} width={colWidths.dateAdded} onResize={handleResize} />
@@ -1237,7 +1300,7 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
                 style={{ cursor: "pointer", userSelect: "none" }}
               >
                 <td
-                  colSpan={9}
+                  colSpan={10}
                   style={{
                     padding: "10px 12px", fontWeight: 700, fontSize: 13,
                     color: STATUS_CONFIG[status]?.color || COLORS.gray700,
@@ -1855,7 +1918,7 @@ function saveField(field, value) {
 }
 function runAnalysisOnText(rawText) {
   var parsed = parseJobForReanalysis(rawText, JOB.url);
-  var fit = scoreFitForReanalysis(parsed.description, parsed.requirements);
+  var fit = scoreFitForReanalysis(parsed.description, parsed.requirements, parsed.location + " " + (JOB.territory || ""));
   var compOverview = generateOverviewForReanalysis(JOB.company, parsed.description);
   var updates = {
     description: parsed.description,
@@ -1948,9 +2011,10 @@ function parseJobForReanalysis(rawText, url) {
   reqText2.split("\\n").forEach(function(line) { var cl = line.replace(/^[\\s\\-\\u2022*\\u00b7\\u25aa]+/,"").trim(); if(cl.length>15 && cl.length<300) requirements.push(cl); });
   return { jobTitle: jobTitle, salary: salary, location: location2, description: text, requirements: requirements };
 }
-function scoreFitForReanalysis(description, requirements) {
+function scoreFitForReanalysis(description, requirements, locationInfo) {
   var lower = (description + " " + requirements.join(" ")).toLowerCase();
   var resumeText = (RESUME_DATA.summary + " " + RESUME_DATA.capabilities.join(" ") + " " + RESUME_DATA.experience.map(function(e){return e.role+" "+e.company}).join(" ")).toLowerCase();
+  var loc = (locationInfo || "").toLowerCase();
   var totalWeight = 0, matchedWeight = 0, met = [], notMet = [];
   var checks = [
     {p:/(\d+)\+?\s*years?\s+(?:of\s+)?(?:enterprise\s+)?(?:sales|selling)/i,w:15,t:function(){return true},mM:function(m){return m[0]+" \\u2014 Candidate has 25+ years of enterprise technology sales."},nM:function(m){return m[0]+" \\u2014 Review experience duration."}},
@@ -1972,6 +2036,15 @@ function scoreFitForReanalysis(description, requirements) {
       else { notMet.push(ck.nM(lower.match(ck.p))); }
     }
   });
+  // Geography fit check
+  var geoW = 10;
+  totalWeight += geoW;
+  var isFlFit = loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach") || loc.includes("nationwide") || loc.includes("national") || loc.includes("see posting") || loc === "";
+  var isOtherReq = !isFlFit && (lower.includes("must be located") || lower.includes("required to be") || lower.includes("on-site") || lower.includes("in-office") || lower.includes("hybrid"));
+  if (isFlFit) { matchedWeight += geoW; met.push("Geography \\u2014 Location aligns with candidate base in Apollo Beach, FL."); }
+  else if (isOtherReq) { notMet.push("Geography \\u2014 Role requires presence outside Florida. Candidate based in Apollo Beach, FL."); }
+  else { matchedWeight += Math.round(geoW * 0.5); notMet.push("Geography \\u2014 Location (" + (locationInfo||"unspecified") + ") may not align. Verify remote eligibility."); }
+
   var kwMatches = 0;
   RESUME_DATA.keywords.forEach(function(kw) { if (lower.includes(kw.toLowerCase())) kwMatches++; });
   var kwScore = (kwMatches / RESUME_DATA.keywords.length) * 30;
