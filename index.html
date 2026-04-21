@@ -1823,8 +1823,30 @@ function ghSave(updates) {
   });
 }
 function changeStatus(newStatus) {
+  if (newStatus === "Discarded") {
+    if (!confirm("This will permanently delete this job. Continue?")) {
+      document.getElementById("statusSelect").value = JOB.status;
+      return;
+    }
+    ghDeleteJob().then(function() { window.close(); }).catch(function(e) { alert("Delete failed: " + e.message); });
+    return;
+  }
   JOB.status = newStatus;
   ghSave({ status: newStatus }).then(function() { window.close(); }).catch(function(e) { alert("Save failed: " + e.message); });
+}
+function ghDeleteJob() {
+  return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
+    headers: { "Authorization": "token " + GH_TOKEN }
+  }).then(function(r) { return r.json(); }).then(function(meta) {
+    var jobs = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\\n/g, "")))));
+    var filtered = jobs.filter(function(j) { return j.id !== JOB.id; });
+    var content = btoa(unescape(encodeURIComponent(JSON.stringify(filtered, null, 2))));
+    return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
+      method: "PUT",
+      headers: { "Authorization": "token " + GH_TOKEN, "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "Delete job " + JOB.id, content: content, sha: meta.sha })
+    });
+  });
 }
 function saveField(field, value) {
   JOB[field] = value;
@@ -2073,7 +2095,12 @@ function App() {
   );
 
   const updateJob = useCallback((id, updates) => {
-    setJobs((prev) => prev.map((j) => (j.id === id ? { ...j, ...updates } : j)));
+    if (updates.status === "Discarded") {
+      if (!confirm("This will permanently delete this job. Continue?")) return;
+      setJobs((prev) => prev.filter((j) => j.id !== id));
+    } else {
+      setJobs((prev) => prev.map((j) => (j.id === id ? { ...j, ...updates } : j)));
+    }
   }, []);
 
   const addJob = useCallback((job) => setJobs((prev) => [job, ...prev]), []);
