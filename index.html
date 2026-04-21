@@ -139,43 +139,53 @@ function parseJobDescription(rawText, url) {
 
   // ── Extract Job Title ──
   let jobTitle = "";
-  const titleKeywords = "Executive|Manager|Director|Engineer|Sales|Lead|Specialist|Analyst|Representative|Consultant|Advisor|Strategist|Associate|Coordinator|Developer|Architect|VP|President|Officer|Head of|Principal|Senior|Account|Business Development";
+  const roleTitleKw = "Account Executive|Sales Executive|Account Manager|Account Director|Sales Director|Sales Manager|Business Development|Sales Engineer|Sales Representative|Solution Architect|Solution Consultant|Solutions Engineer|Product Manager|Program Manager|Project Manager|Engineering Manager|Software Engineer|Data Engineer|Data Analyst|Data Scientist|Marketing Manager|Customer Success|Enterprise Account|Strategic Account|Regional Director|Regional Manager|Territory Manager|Client Executive|Client Director|Relationship Manager";
+  const roleSuffixKw = "Executive|Manager|Director|Engineer|Lead|Specialist|Analyst|Representative|Consultant|Advisor|Strategist|Coordinator|Developer|Architect|Officer";
 
-  // 1. Try standalone heading lines containing role keywords
-  const titleRegex = new RegExp("(?:^|\\n)\\s*([A-Z][A-Za-z\\s,&\\-\\u2013\\u2014/(). ]+(?:" + titleKeywords + ")[A-Za-z\\s,&\\-\\u2013\\u2014/()]*?)\\s*(?:\\n|$)");
-  const titleMatch = text.match(titleRegex);
-  if (titleMatch && titleMatch[1].trim().length < 100) {
-    jobTitle = titleMatch[1].trim();
+  // 1. Try labeled patterns: "Role:", "Position:", "Job Title:"
+  const labeledTitle = text.match(/(?:role|position|job\s*title|title)\s*[:\-\u2013]\s*(.+?)(?:\n|$)/i);
+  if (labeledTitle && labeledTitle[1].trim().length < 80) {
+    jobTitle = labeledTitle[1].trim();
   }
 
-  // 2. Try "The Senior Account Executive is..." pattern (title embedded in sentence)
+  // 2. Try "The Senior Account Executive is/will/responsible..." pattern (title embedded in sentence)
   if (!jobTitle) {
-    const roleInSentence = new RegExp("(?:^|\\n)\\s*((?:The\\s+)?(?:Senior|Junior|Principal|Lead|Staff|Mid[- ]?Level)?\\s*[A-Za-z\\s]+(?:" + titleKeywords + ")(?:\\s*[\\-,/&]\\s*[A-Za-z\\s]+)?)(?=\\s+(?:is|will|shall|reports|position|role|responsible))", "i");
-    const roleMatch = text.match(roleInSentence);
-    if (roleMatch) {
-      jobTitle = roleMatch[1].trim().replace(/^The\s+/i, "");
+    const roleInSentence = text.match(/(?:^|\n)\s*(?:The\s+|As\s+(?:a|the)\s+)?((?:Senior|Junior|Principal|Lead|Staff|Sr\.?\s+|Jr\.?\s+)?(?:[A-Z][a-z]+\s+){0,3}(?:Executive|Manager|Director|Engineer|Lead|Specialist|Analyst|Representative|Consultant|Coordinator|Architect|Officer|Advisor)(?:\s*[\-,/&(]\s*[A-Za-z\s]+[)]?)?)(?=\s+(?:is|will|shall|reports|position|role|responsible|you|this))/i);
+    if (roleInSentence && roleInSentence[1].trim().length < 80) {
+      jobTitle = roleInSentence[1].trim();
     }
   }
 
-  // 3. Try labeled patterns: "Role:", "Position:", "Job Title:"
+  // 3. Try short standalone heading lines (< 60 chars) containing role keywords — NOT sentences with verbs
   if (!jobTitle) {
-    const labeledTitle = text.match(/(?:role|position|job\s*title|title)\s*[:\-\u2013]\s*(.+?)(?:\n|$)/i);
-    if (labeledTitle) jobTitle = labeledTitle[1].trim();
+    const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+    const roleTitleRegex = new RegExp("(?:" + roleTitleKw + "|(?:Senior|Junior|Principal|Lead|Staff)\\s+\\w+\\s+(?:" + roleSuffixKw + "))", "i");
+    for (const line of lines) {
+      if (line.length > 60) continue;
+      if (line.startsWith("http")) continue;
+      // Skip lines that look like sentences/bullets (contain common verbs)
+      if (/\b(is|are|was|were|will|shall|should|can|could|must|have|has|had|do|does|did|act|lead|oversee|partner|ensure|identify|represent|maintain|manage|drive|build|develop|create|deliver)\b/i.test(line)) continue;
+      if (roleTitleRegex.test(line)) {
+        jobTitle = line.replace(/[.,:;]+$/, "").trim();
+        break;
+      }
+    }
   }
 
-  // 4. Fallback: first non-empty line that isn't a URL or long paragraph
+  // 4. Fallback: first non-empty short line that isn't a URL
   if (!jobTitle) {
     const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
     for (const line of lines) {
       if (line.startsWith("http")) continue;
-      if (line.length > 80) continue;
+      if (line.length > 60) continue;
+      if (/\b(is|are|will|shall|should|can|must|have|has|do|does)\b/i.test(line)) continue;
       jobTitle = line;
       break;
     }
     if (!jobTitle) jobTitle = "Position";
   }
-  jobTitle = jobTitle.replace(/[.,:;]+$/, "").trim();
-  if (jobTitle.length > 100) jobTitle = jobTitle.substring(0, 100);
+  jobTitle = jobTitle.replace(/[.,:;]+$/, "").replace(/^The\s+/i, "").trim();
+  if (jobTitle.length > 80) jobTitle = jobTitle.substring(0, 80);
 
   // ── Extract Company ──
   let company = "";
@@ -198,9 +208,10 @@ function parseJobDescription(rawText, url) {
     }
   }
   // Try "CompanyName is <verb>..." pattern at start of text (e.g. "Optum Insight is improving...")
+  // Be strict: company name should be 1-4 words before "is", no commas (those indicate a run-on)
   if (!company) {
-    const openingMatch = text.match(/^([A-Z][A-Za-z0-9\s.&\-']+?)\s+is\s+(?:a |an |the |improving|dedicated|committed|focused|building|leading|transforming|helping|creating|delivering|driving|revolutionizing|redefining|empowering|enabling)/i);
-    if (openingMatch && openingMatch[1].trim().length < 50) {
+    const openingMatch = text.match(/^([A-Z][A-Za-z0-9]+(?:\s[A-Z][A-Za-z0-9.&\-']+){0,3})\s+is\s+(?:a |an |the |improving|dedicated|committed|focused|building|leading|transforming|helping|creating|delivering|driving|revolutionizing|redefining|empowering|enabling)/);
+    if (openingMatch && openingMatch[1].trim().length < 40 && !openingMatch[1].includes(",")) {
       company = openingMatch[1].trim();
     }
   }
@@ -387,45 +398,47 @@ function scoreFit(description, requirements, locationInfo) {
   ];
 
   // ── Geography fit check ──
+  // Only check first 100 chars of loc to avoid garbage from bad parsing
   const geoWeight = 10;
   totalWeight += geoWeight;
-  const isFloridaFit = loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach") || loc.includes("st. petersburg") || loc.includes("orlando") || loc.includes("jacksonville") || loc.includes("miami") || loc.includes("nationwide") || loc.includes("national") || loc.includes("see posting") || loc === "";
-  const isOtherStateRequired = !isFloridaFit && (lower.includes("must be located") || lower.includes("required to be") || lower.includes("on-site") || lower.includes("in-office") || lower.includes("hybrid"));
+  const locClean = loc.substring(0, 100);
+  const isFloridaFit = locClean.includes("florida") || locClean.includes(" fl") || locClean.includes("remote") || locClean.includes("tampa") || locClean.includes("apollo beach") || locClean.includes("st. petersburg") || locClean.includes("orlando") || locClean.includes("jacksonville") || locClean.includes("miami") || locClean.includes("nationwide") || locClean.includes("national") || locClean.includes("see posting") || locClean === "";
+  const isOtherStateRequired = !isFloridaFit && (lower.includes("must be located") || lower.includes("relocation required") || /\b(?:on-site|in-office)\s+(?:required|only|mandatory)\b/i.test(lower));
   if (isFloridaFit) {
     matchedWeight += geoWeight;
-    if (loc.includes("remote")) met.push("Geography — Remote position, accessible from candidate's base in Apollo Beach, FL.");
-    else if (loc.includes("florida") || loc.includes(" fl")) met.push("Geography — Florida-based role aligns with candidate's location in Apollo Beach, FL.");
+    if (locClean.includes("remote")) met.push("Geography — Remote position, accessible from candidate's base in Apollo Beach, FL.");
+    else if (locClean.includes("florida") || locClean.includes(" fl")) met.push("Geography — Florida-based role aligns with candidate's location in Apollo Beach, FL.");
     else met.push("Geography — No restrictive location requirement identified.");
   } else if (isOtherStateRequired) {
     notMet.push("Geography — Role appears to require presence in a location outside Florida. Candidate is based in Apollo Beach, FL.");
   } else {
     matchedWeight += Math.round(geoWeight * 0.5);
-    notMet.push("Geography — Role location (" + (locationInfo || "unspecified") + ") may not align with candidate's base in Apollo Beach, FL. Verify remote eligibility.");
+    notMet.push("Geography — Role location may not align with candidate's base in Apollo Beach, FL. Verify remote eligibility.");
   }
 
   // Also check for domain-specific terms that might NOT match
+  // IMPORTANT: Use word boundaries (\b) to avoid substring matches (e.g. "cad" in "Medicaid")
   const domainGaps = [
-    { pattern: /public safety|law enforcement|cad|rms|dispatch|corrections/i, weight: 10,
-      test: () => false, // Not in resume
-      notMetMsg: () => "Public safety software domain (CAD, RMS, Dispatch, law enforcement) — No direct public safety or law enforcement technology experience. Background is in enterprise platforms and AI analytics."
+    { pattern: /\b(?:public safety|law enforcement)\b|\bCAD\b|\bRMS\b|\bdispatch\b|\bcorrections\b/i, weight: 10,
+      test: () => false,
+      notMetMsg: () => "Public safety software domain (CAD, RMS, Dispatch, law enforcement) — No direct public safety or law enforcement technology experience."
     },
-    { pattern: /ediscovery|legal tech|legal hold|governance/i, weight: 8,
+    { pattern: /\b(?:ediscovery|e-discovery|legal tech|legal hold)\b/i, weight: 8,
       test: () => false,
       notMetMsg: () => "eDiscovery/legal technology domain — No direct eDiscovery or legal technology experience, though enterprise compliance experience is adjacent."
     },
-    { pattern: /relocation|hybrid|in.office|on.?site/i, weight: 5,
+    { pattern: /\b(?:relocation required|must relocate|in.office required|on.?site required)\b/i, weight: 5,
       test: () => {
-        // Florida-based roles or remote are a fit
-        if (loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach") || loc.includes("st. petersburg") || loc.includes("orlando") || loc.includes("jacksonville") || loc.includes("miami")) return true;
+        if (loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach")) return true;
         return false;
       },
-      metMsg: () => "Location/hybrid requirement — Role is accessible from candidate's base in Apollo Beach, FL.",
-      notMetMsg: () => "Location/hybrid requirement — Candidate is based in Apollo Beach, FL. Role may require relocation or regular office presence in another state."
+      metMsg: () => "Location requirement — Role is accessible from candidate's base in Apollo Beach, FL.",
+      notMetMsg: () => "Location requirement — Candidate is based in Apollo Beach, FL. Role may require relocation or regular office presence in another state."
     },
-    { pattern: /aws|gcp|azure|cloud provider/i, weight: 5,
+    { pattern: /\b(?:AWS|GCP|Azure)\b/i, weight: 5,
       test: () => resumeText.includes("cloud"),
       metMsg: () => "Cloud provider experience — Familiarity with cloud platforms through enterprise SaaS sales career.",
-      notMetMsg: () => "Cloud service provider coordination (AWS, GCP, Azure) — No explicit cloud provider partnership experience, though learnable given technical sales background."
+      notMetMsg: () => "Cloud service provider coordination (AWS, GCP, Azure) — No explicit cloud provider partnership experience."
     },
   ];
 
