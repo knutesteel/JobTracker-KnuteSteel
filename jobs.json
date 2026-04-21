@@ -1034,40 +1034,6 @@
     "companyOwnership": "Public — NYSE: NEWR (Francisco Partners took majority stake in 2024)"
   },
   {
-    "id": 75,
-    "company": "Chainguard",
-    "jobTitle": "Regional Director, Public Sector Sales (DoW/Defense)",
-    "salary": "$350,000 - $450,000 OTE (estimated)",
-    "fitScore": 79,
-    "status": "New",
-    "dateAdded": "2026-04-17",
-    "dateApplied": "",
-    "url": "https://remoteok.com/remote-jobs/remote-regional-director-public-sector-sales-dow-chainguard-1129388",
-    "location": "Remote — United States (DC metro preferred)",
-    "notes": "Director-level role focused on Department of War (formerly DoD) / defense customers. Complements the existing SLED Chainguard AE posting (id 46). More federal/defense-weighted than Knute's historical SLED strength, but Oracle Federal and Adobe Fed civilian background provide a credible base. Very high comp band.",
-    "description": "Regional Director, Public Sector Sales (DoW/Defense) - Chainguard\n\nKey Responsibilities:\n- Establish presence within Federal (Air Force, Army, Navy, Space Force) customer accounts as a founding part of the Public Sector team\n- Manage a team of Public Sector Account Executives\n- Evangelize Secure Software Supply Chains\n- Build relationships with key decision makers in DoW\n\nRequired Qualifications:\n- Proven track record in Software SaaS subscription sales\n- Quota overachievement evidence required\n- Strong Federal customer references\n- US Department of War (DOW) knowledge base\n\nCompany: Chainguard provides the secure foundation for software development and deployment through guarded open source software, built from source and updated continuously\n\nLocation: Washington DC / Remote",
-    "requirementsMet": [
-      "Federal civilian experience — Oracle, Adobe, and DocuSign federal civilian wins give credible base for federal motion.",
-      "Large-deal execution — Multiple seven-figure federal ELAs closed across Adobe and Oracle; comfortable with eight-figure deal construction.",
-      "Executive presence — 25+ years engaging C-suite government leaders.",
-      "Partner ecosystem — Deloitte Federal, Accenture Federal, Carahsoft, and cloud provider relationships.",
-      "AI / software supply chain positioning — TrackLight.ai investigative analytics aligns with security-data narrative; credible voice on emerging federal AI/cyber use cases.",
-      "GTM leadership potential — Co-founder/GTM role at TrackLight.ai demonstrates player-coach orientation."
-    ],
-    "requirementsNotMet": [
-      "Dedicated DoW / defense selling depth — Historical federal motion was civilian-weighted; lighter direct DoW program office experience than ideal.",
-      "Security clearance — No active clearance on file; clearable but ramp time required.",
-      "Prior line-management at scale — Recent roles have been individual contributor; formal AE team leadership experience is lighter than the JD asks.",
-      "Container / DevSecOps / supply-chain cybersecurity product depth — Not a native domain; would require dedicated ramp on Chainguard Images, SLSA, SBOM, and build-system security concepts."
-    ],
-    "companyOverview": "Chainguard is the secure-by-default foundation for the software supply chain. Its Chainguard Images are minimal, continuously-updated, zero-CVE container images trusted by many of the world's largest enterprises and regulated government customers. The platform extends across build, sign, and runtime enforcement to secure modern software delivery end-to-end. Chainguard has rapidly expanded its public-sector business, with multi-year contracts across federal civilian and defense.",
-    "companyRevenue": "$100M+ ARR (2025 estimate)",
-    "companyEmployees": "~500",
-    "companyWebsite": "https://www.chainguard.dev",
-    "companyLinkedin": "https://www.linkedin.com/company/chainguard",
-    "companyOwnership": "Private — Venture-backed (Sequoia, IVP, Spark Capital, Mantis, Amplify, Kleiner Perkins)"
-  },
-  {
     "id": 86,
     "company": "UiPath",
     "jobTitle": "Public Sector Sales Executive",
