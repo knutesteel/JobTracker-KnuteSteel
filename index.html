@@ -777,9 +777,10 @@ const STATUS_CONFIG = {
   New: { color: "#dd6b20", bg: "#fff7ed", icon: "🆕" },
   Discarded: { color: "#a0aec0", bg: "#f7fafc", icon: "🗑️" },
   Expired: { color: "#718096", bg: "#edf2f7", icon: "⏰" },
+  "Not Selected": { color: "#a0aec0", bg: "#f7fafc", icon: "🚫" },
 };
 
-const STATUS_ORDER = ["Offers", "Interviewing", "Applied", "Kept", "New", "Discarded", "Expired"];
+const STATUS_ORDER = ["Offers", "Interviewing", "Applied", "Kept", "New", "Discarded", "Expired", "Not Selected"];
 
 // ─── Helpers ───
 function getFitColor(score) {
@@ -1906,6 +1907,7 @@ function openJobDetailWindow(job) {
           <option value="New" style="color:#2d3748">🆕 New</option>
           <option value="Discarded" style="color:#2d3748">🗑️ Discarded</option>
           <option value="Expired" style="color:#2d3748">⏰ Expired</option>
+          <option value="Not Selected" style="color:#2d3748">🚫 Not Selected</option>
         </select>
         <button onclick="downloadDocx()" style="background:#38a169;border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;padding:8px 16px;border-radius:6px">📄 Generate Resume & Cover Letter (.docx)</button>
         <button id="reanalyzeBtn" onclick="reanalyze()" style="background:#3182ce;border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;padding:8px 16px;border-radius:6px">🔄 Analyze Again</button>
