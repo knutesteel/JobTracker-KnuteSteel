@@ -1185,7 +1185,7 @@ function JobRow({ job, onSelect, onUpdate }) {
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
       <td style={{ padding: "10px 12px", fontWeight: 500, maxWidth: 180 }}>
-        <span style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+        <span style={{ display: "block", wordBreak: "break-word", whiteSpace: "normal" }}>
           {job.company}
         </span>
         {job.url && (
@@ -1222,8 +1222,8 @@ function JobRow({ job, onSelect, onUpdate }) {
           </a>
         </div>
       </td>
-      <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{job.salary || "—"}</td>
-      <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{job.territory || job.location || "—"}</td>
+      <td style={{ padding: "10px 12px", fontSize: 13, wordBreak: "break-word" }}>{job.salary || "—"}</td>
+      <td style={{ padding: "10px 12px", fontSize: 13, wordBreak: "break-word" }}>{job.territory || job.location || "—"}</td>
       <td style={{ padding: "10px 12px", textAlign: "center" }}>
         <FitBadge score={job.fitScore} />
       </td>
@@ -1244,8 +1244,8 @@ function JobRow({ job, onSelect, onUpdate }) {
           ))}
         </select>
       </td>
-      <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>{formatDate(job.dateAdded)}</td>
-      <td style={{ padding: "10px 12px", fontSize: 13, whiteSpace: "nowrap" }}>
+      <td style={{ padding: "10px 12px", fontSize: 13, wordBreak: "break-word" }}>{formatDate(job.dateAdded)}</td>
+      <td style={{ padding: "10px 12px", fontSize: 13, wordBreak: "break-word" }}>
         {editingApplied ? (
           <input
             type="date" value={appliedVal}
@@ -1278,14 +1278,14 @@ function JobRow({ job, onSelect, onUpdate }) {
         ) : (
           <span
             onClick={() => setEditingNotes(true)}
-            style={{ cursor: "pointer", color: job.notes ? COLORS.gray700 : COLORS.gray400, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block", maxWidth: 150 }}
+            style={{ cursor: "pointer", color: job.notes ? COLORS.gray700 : COLORS.gray400, wordBreak: "break-word", whiteSpace: "normal", display: "block" }}
             title={job.notes || "Click to add notes"}
           >
             {job.notes || "Add notes..."}
           </span>
         )}
       </td>
-      <td style={{ padding: "10px 12px", textAlign: "center", whiteSpace: "nowrap" }}>
+      <td style={{ padding: "10px 12px", textAlign: "center" }}>
         <div style={{ display: "flex", gap: 6, justifyContent: "center", alignItems: "center" }}>
           <select
             value={job.status}
