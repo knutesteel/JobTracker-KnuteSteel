@@ -1870,7 +1870,7 @@ function openJobDetailWindow(job) {
       <h2 style="margin:0;font-size:22px;font-weight:700"><input id="editTitle" value="${esc(job.jobTitle)}" onchange="saveField('jobTitle',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:22px;font-weight:700;width:100%;padding:0 0 2px;outline:none;font-family:inherit" /></h2>
       <div style="font-size:14px;opacity:0.9;margin-top:4px"><input id="editCompany" value="${esc(job.company)}" onchange="saveField('company',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:14px;opacity:0.9;padding:0 0 2px;outline:none;font-family:inherit" />${job.location ? ` • ${esc(job.location)}` : ""}</div>
       <div style="font-size:16px;font-weight:600;color:#e8a838;margin-top:6px">${esc(job.salary)}</div>
-      ${job.url ? `<a href="${esc(job.url)}" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;word-break:break-all;display:inline-block;margin-top:4px">🔗 View Original Posting</a>` : ""}
+      <div id="urlArea" style="margin-top:4px">${job.url ? `<a href="${esc(job.url)}" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;word-break:break-all;display:inline-block">🔗 View Original Posting</a>` : `<input id="urlInput" placeholder="Paste job posting URL here..." style="background:transparent;border:1px dashed rgba(255,255,255,0.4);color:#90cdf4;font-size:12px;padding:4px 8px;border-radius:4px;width:100%;outline:none;font-family:inherit" onkeydown="if(event.key==='Enter'){saveUrlField(this.value)}" /><button onclick="saveUrlField(document.getElementById('urlInput').value)" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;padding:3px 10px;border-radius:4px;cursor:pointer;margin-top:4px">Save URL</button>`}</div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
       <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.6;text-align:right">
@@ -1984,6 +1984,14 @@ function saveField(field, value) {
   JOB[field] = value;
   var upd = {}; upd[field] = value;
   ghSave(upd).catch(function(e) { console.warn("Save failed:", e); });
+}
+function saveUrlField(url) {
+  if (!url || !url.trim()) return;
+  url = url.trim();
+  if (!/^https?:\\/\\//.test(url)) url = "https://" + url;
+  saveField("url", url);
+  var area = document.getElementById("urlArea");
+  if (area) area.innerHTML = '<a href="' + url.replace(/"/g,"&quot;") + '" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;word-break:break-all;display:inline-block">🔗 View Original Posting</a>';
 }
 function runAnalysisOnText(rawText) {
   var parsed = parseJobForReanalysis(rawText, JOB.url);
