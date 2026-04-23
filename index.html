@@ -1927,7 +1927,10 @@ function openJobDetailWindow(job) {
       </div>
       <div>
         <h4 style="margin:0 0 8px;font-size:14px;color:#4a5568">📝 Notes</h4>
-        <div style="padding:12px;min-height:60px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;white-space:pre-wrap">${esc(job.notes) || "<em style='color:#a0aec0'>No notes yet — edit on dashboard</em>"}</div>
+        <textarea id="notesField" style="width:100%;min-height:80px;padding:12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;resize:vertical;font-family:inherit;box-sizing:border-box;outline:none" placeholder="Add notes...">${esc(job.notes || "")}</textarea>
+        <div style="margin-top:6px">
+          <button onclick="saveField('notes', document.getElementById('notesField').value); this.textContent='✅ Saved'; var btn=this; setTimeout(function(){btn.textContent='💾 Save Notes'},1500)" style="background:#3182ce;border:none;color:#fff;font-size:12px;font-weight:600;cursor:pointer;padding:6px 14px;border-radius:6px">💾 Save Notes</button>
+        </div>
       </div>
     </div>
   </div>
