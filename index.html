@@ -1174,9 +1174,7 @@ function SortHeader({ label, field, sortField, sortDir, onSort, style: s, width,
 // ─── Job Row ───
 function JobRow({ job, onSelect, onUpdate }) {
   const [editingApplied, setEditingApplied] = useState(false);
-  const [editingNotes, setEditingNotes] = useState(false);
   const [appliedVal, setAppliedVal] = useState(job.dateApplied || "");
-  const [notesVal, setNotesVal] = useState(job.notes || "");
 
   return (
     <tr
@@ -1265,26 +1263,6 @@ function JobRow({ job, onSelect, onUpdate }) {
           </span>
         )}
       </td>
-      <td style={{ padding: "10px 12px", fontSize: 13, maxWidth: 150 }}>
-        {editingNotes ? (
-          <input
-            value={notesVal}
-            onChange={(e) => setNotesVal(e.target.value)}
-            onBlur={() => { onUpdate(job.id, { notes: notesVal }); setEditingNotes(false); }}
-            onKeyDown={(e) => { if (e.key === "Enter") { onUpdate(job.id, { notes: notesVal }); setEditingNotes(false); } }}
-            autoFocus placeholder="Add notes..."
-            style={{ width: "100%", padding: "4px 6px", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, fontSize: 13 }}
-          />
-        ) : (
-          <span
-            onClick={() => setEditingNotes(true)}
-            style={{ cursor: "pointer", color: job.notes ? COLORS.gray700 : COLORS.gray400, wordBreak: "break-word", whiteSpace: "normal", display: "block" }}
-            title={job.notes || "Click to add notes"}
-          >
-            {job.notes || "Add notes..."}
-          </span>
-        )}
-      </td>
       <td style={{ padding: "10px 12px", textAlign: "center" }}>
         <div style={{ display: "flex", gap: 6, justifyContent: "center", alignItems: "center" }}>
           <select
@@ -1348,7 +1326,6 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
             <SortHeader label="Status" field="status" {...{ sortField, sortDir, onSort }} width={colWidths.status} onResize={handleResize} />
             <SortHeader label="Date Added" field="dateAdded" {...{ sortField, sortDir, onSort }} width={colWidths.dateAdded} onResize={handleResize} />
             <SortHeader label="Date Applied" field="dateApplied" {...{ sortField, sortDir, onSort }} width={colWidths.dateApplied} onResize={handleResize} />
-            <th style={{ padding: "10px 12px", fontSize: 12, fontWeight: 600, color: COLORS.gray500, borderBottom: `2px solid ${COLORS.gray200}`, background: COLORS.gray50, textAlign: "left", position: "relative", width: colWidths.notes || "auto", minWidth: 50 }}>Notes</th>
             <th style={{ padding: "10px 12px", fontSize: 12, fontWeight: 600, color: COLORS.gray500, borderBottom: `2px solid ${COLORS.gray200}`, background: COLORS.gray50, textAlign: "center" }}>Actions</th>
           </tr>
         </thead>
@@ -1360,7 +1337,7 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
                 style={{ cursor: "pointer", userSelect: "none" }}
               >
                 <td
-                  colSpan={10}
+                  colSpan={9}
                   style={{
                     padding: "10px 12px", fontWeight: 700, fontSize: 13,
                     color: STATUS_CONFIG[status]?.color || COLORS.gray700,
