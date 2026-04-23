@@ -210,7 +210,7 @@ function parseJobDescription(rawText, url) {
   // Try "CompanyName is <verb>..." pattern at start of text (e.g. "Optum Insight is improving...")
   // Be strict: company name should be 1-4 words before "is", no commas (those indicate a run-on)
   if (!company) {
-    const openingMatch = text.match(/^([A-Z][A-Za-z0-9]+(?:\s[A-Z][A-Za-z0-9.&\-']+){0,3})\s+is\s+(?:a |an |the |improving|dedicated|committed|focused|building|leading|transforming|helping|creating|delivering|driving|revolutionizing|redefining|empowering|enabling)/);
+    const openingMatch = text.match(/^([A-Z][A-Za-z0-9]+(?:\s[A-Z][A-Za-z0-9.&\-']+){0,3})\s+is\s+(?:a |an |the |improving|dedicated|committed|focused|building|leading|transforming|helping|creating|delivering|driving|revolutionizing|redefining|empowering|enabling|pioneering|developing|providing|offering|powering|making|changing|shaping|solving|tackling|disrupting|accelerating|scaling|unlocking|advancing|simplifying|reimagining|reinventing|connecting|serving|one of|at the)/);
     if (openingMatch && openingMatch[1].trim().length < 40 && !openingMatch[1].includes(",")) {
       company = openingMatch[1].trim();
     }
@@ -245,14 +245,19 @@ function parseJobDescription(rawText, url) {
 
   // ── Extract Salary ──
   let salary = "";
+  // Match salary ranges like $120,000 - $180,000 or $120K - $180K; ignore small amounts like $65 (revenue figures)
   const salaryMatch = text.match(/\$[\d,]+(?:\s*[-–—]\s*\$[\d,]+)?(?:\s*(?:k|K|USD|OTE|per year|annually|base|total|\/yr))?/);
   if (salaryMatch) {
-    salary = salaryMatch[0];
-    // Grab surrounding context for OTE etc.
-    const idx = text.indexOf(salaryMatch[0]);
-    const surrounding = text.substring(Math.max(0, idx - 30), Math.min(text.length, idx + salaryMatch[0].length + 40));
-    if (surrounding.toLowerCase().includes("ote")) salary += " OTE";
-    else if (surrounding.toLowerCase().includes("base")) salary += " base";
+    const rawNum = parseInt(salaryMatch[0].replace(/[$,]/g, ""), 10);
+    const hasK = /k/i.test(salaryMatch[0]);
+    // Only accept as salary if >= $10,000 or uses K notation (e.g. $120K)
+    if (rawNum >= 10000 || hasK) {
+      salary = salaryMatch[0];
+      const idx = text.indexOf(salaryMatch[0]);
+      const surrounding = text.substring(Math.max(0, idx - 30), Math.min(text.length, idx + salaryMatch[0].length + 40));
+      if (surrounding.toLowerCase().includes("ote")) salary += " OTE";
+      else if (surrounding.toLowerCase().includes("base")) salary += " base";
+    }
   }
   if (!salary) {
     const kMatch = text.match(/(\d{2,3})\s*k\s*[-–—]\s*(\d{2,3})\s*k/i);
@@ -269,7 +274,7 @@ function parseJobDescription(rawText, url) {
     const stateMatch = text.match(/(?:^|\s)((?:[A-Z][a-z]+(?:\s[A-Z][a-z]+)*),\s*[A-Z]{2})(?:\s|$|\n|,)/);
     if (stateMatch) location = location ? `${location} • ${stateMatch[1]}` : stateMatch[1];
   }
-  if (!location) location = "Unknown";
+  if (!location) location = "Not Stated";
 
   // ── Extract Territory / Geography ──
   let territory = "";
@@ -306,7 +311,7 @@ function parseJobDescription(rawText, url) {
       }
     }
   }
-  if (!territory) territory = "Unknown";
+  if (!territory) territory = "Not Stated";
 
   // ── Extract Requirements ──
   const reqSection = text.match(/(?:requirements|qualifications|you may be a good fit|ideal background|what we.re looking for|what you.ll need|minimum qualifications|who you are)[:\s]*\n([\s\S]*?)(?:\n\s*(?:benefits|compensation|salary|about|preferred|nice to have|bonus|how to apply|equal|our|the company|responsibilities|$))/i);
@@ -402,7 +407,7 @@ function scoreFit(description, requirements, locationInfo) {
   const geoWeight = 10;
   totalWeight += geoWeight;
   const locClean = loc.substring(0, 100);
-  const isFloridaFit = locClean.includes("florida") || locClean.includes(" fl") || locClean.includes("remote") || locClean.includes("tampa") || locClean.includes("apollo beach") || locClean.includes("st. petersburg") || locClean.includes("orlando") || locClean.includes("jacksonville") || locClean.includes("miami") || locClean.includes("nationwide") || locClean.includes("national") || locClean.includes("see posting") || locClean === "";
+  const isFloridaFit = locClean.includes("florida") || locClean.includes(" fl") || locClean.includes("remote") || locClean.includes("tampa") || locClean.includes("apollo beach") || locClean.includes("st. petersburg") || locClean.includes("orlando") || locClean.includes("jacksonville") || locClean.includes("miami") || locClean.includes("nationwide") || locClean.includes("national") || locClean.includes("see posting") || locClean.includes("not stated") || locClean.includes("unknown") || locClean === "";
   const isOtherStateRequired = !isFloridaFit && (lower.includes("must be located") || lower.includes("relocation required") || /\b(?:on-site|in-office)\s+(?:required|only|mandatory)\b/i.test(lower));
   if (isFloridaFit) {
     matchedWeight += geoWeight;
@@ -416,33 +421,7 @@ function scoreFit(description, requirements, locationInfo) {
     notMet.push("Geography — Role location may not align with candidate's base in Apollo Beach, FL. Verify remote eligibility.");
   }
 
-  // Also check for domain-specific terms that might NOT match
-  // IMPORTANT: Use word boundaries (\b) to avoid substring matches (e.g. "cad" in "Medicaid")
-  const domainGaps = [
-    { pattern: /\b(?:public safety|law enforcement)\b|\bCAD\b|\bRMS\b|\bdispatch\b|\bcorrections\b/i, weight: 10,
-      test: () => false,
-      notMetMsg: () => "Public safety software domain (CAD, RMS, Dispatch, law enforcement) — No direct public safety or law enforcement technology experience."
-    },
-    { pattern: /\b(?:ediscovery|e-discovery|legal tech|legal hold)\b/i, weight: 8,
-      test: () => false,
-      notMetMsg: () => "eDiscovery/legal technology domain — No direct eDiscovery or legal technology experience, though enterprise compliance experience is adjacent."
-    },
-    { pattern: /\b(?:relocation required|must relocate|in.office required|on.?site required)\b/i, weight: 5,
-      test: () => {
-        if (loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach")) return true;
-        return false;
-      },
-      metMsg: () => "Location requirement — Role is accessible from candidate's base in Apollo Beach, FL.",
-      notMetMsg: () => "Location requirement — Candidate is based in Apollo Beach, FL. Role may require relocation or regular office presence in another state."
-    },
-    { pattern: /\b(?:AWS|GCP|Azure)\b/i, weight: 5,
-      test: () => resumeText.includes("cloud"),
-      metMsg: () => "Cloud provider experience — Familiarity with cloud platforms through enterprise SaaS sales career.",
-      notMetMsg: () => "Cloud service provider coordination (AWS, GCP, Azure) — No explicit cloud provider partnership experience."
-    },
-  ];
-
-  const allChecks = [...checks, ...domainGaps];
+  const allChecks = checks;
 
   for (const check of allChecks) {
     if (check.pattern.test(lower)) {
@@ -2086,14 +2065,14 @@ function parseJobForReanalysis(rawText, url) {
   if (jobTitle.length > 80) jobTitle = jobTitle.substring(0, 80);
   var salary = "";
   var salaryMatch = text.match(/\\$[\\d,]+(?:\\s*[\\-\\u2013\\u2014]\\s*\\$[\\d,]+)?(?:\\s*(?:k|K|USD|OTE|per year|annually|base|total|\\/yr))?/);
-  if (salaryMatch) { salary = salaryMatch[0]; var idx2 = text.indexOf(salaryMatch[0]); var surr = text.substring(Math.max(0,idx2-30),Math.min(text.length,idx2+salaryMatch[0].length+40)); if(surr.toLowerCase().includes("ote")) salary+=" OTE"; else if(surr.toLowerCase().includes("base")) salary+=" base"; }
+  if (salaryMatch) { var rawNum = parseInt(salaryMatch[0].replace(/[$,]/g,""),10); var hasK = /k/i.test(salaryMatch[0]); if (rawNum >= 10000 || hasK) { salary = salaryMatch[0]; var idx2 = text.indexOf(salaryMatch[0]); var surr = text.substring(Math.max(0,idx2-30),Math.min(text.length,idx2+salaryMatch[0].length+40)); if(surr.toLowerCase().includes("ote")) salary+=" OTE"; else if(surr.toLowerCase().includes("base")) salary+=" base"; } }
   if (!salary) { var kM = text.match(/(\\d{2,3})\\s*k\\s*[\\-\\u2013\\u2014]\\s*(\\d{2,3})\\s*k/i); if(kM) salary = "$"+kM[1]+"K - $"+kM[2]+"K"; }
   if (!salary) salary = "Unknown";
   var location2 = "";
   var locM = text.match(/(?:location|based in|located in|work location)\\s*[:\\-\\u2013]?\\s*(.+?)(?:\\n|$)/i);
   if (locM) location2 = locM[1].trim();
   if (!location2 && lower.includes("remote")) location2 = "Remote";
-  if (!location2) location2 = "Unknown";
+  if (!location2) location2 = "Not Stated";
   var reqSection = text.match(/(?:requirements|qualifications|you may be a good fit|ideal background|what we.re looking for|what you.ll need|minimum qualifications|who you are)[:\\s]*\\n([\\s\\S]*?)(?:\\n\\s*(?:benefits|compensation|salary|about|preferred|nice to have|bonus|how to apply|equal|our|the company|responsibilities|$))/i);
   var reqText2 = reqSection ? reqSection[1] : "";
   var requirements = [];
@@ -2128,7 +2107,7 @@ function scoreFitForReanalysis(description, requirements, locationInfo) {
   // Geography fit check
   var geoW = 10;
   totalWeight += geoW;
-  var isFlFit = loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach") || loc.includes("nationwide") || loc.includes("national") || loc.includes("see posting") || loc === "";
+  var isFlFit = loc.includes("florida") || loc.includes(" fl") || loc.includes("remote") || loc.includes("tampa") || loc.includes("apollo beach") || loc.includes("nationwide") || loc.includes("national") || loc.includes("see posting") || loc.includes("not stated") || loc.includes("unknown") || loc === "";
   var isOtherReq = !isFlFit && (lower.includes("must be located") || lower.includes("required to be") || lower.includes("on-site") || lower.includes("in-office") || lower.includes("hybrid"));
   if (isFlFit) { matchedWeight += geoW; met.push("Geography \\u2014 Location aligns with candidate base in Apollo Beach, FL."); }
   else if (isOtherReq) { notMet.push("Geography \\u2014 Role requires presence outside Florida. Candidate based in Apollo Beach, FL."); }
