@@ -518,38 +518,6 @@
     "companyOwnership": "Public — NYSE: TYL (S&P 500)"
   },
   {
-    "id": 21,
-    "company": "Wowza",
-    "jobTitle": "Enterprise Sales Executive - Federal & SLED",
-    "salary": "$125,000 - $250,000 OTE (uncapped commissions)",
-    "fitScore": 67,
-    "status": "Kept",
-    "dateAdded": "2026-04-10",
-    "dateApplied": "",
-    "url": "https://www.linkedin.com/jobs/view/4390888092/",
-    "location": "United States (Remote)",
-    "notes": "68 applicants. Actively reviewing. Easy Apply.",
-    "description": "Enterprise Sales Executive - Federal & SLED at Wowza Media Systems\n\nPosition Location: Denver, CO\nSalary Range: $120K - $180K (Employer provided)\n\nRole Overview:\nThe Enterprise Sales Executive will manage the sales cycle for Wowza's video streaming solutions in Federal and SLED markets, focusing on building relationships, navigating procurement processes, and achieving sales targets.\n\nKey Responsibilities:\n- Manage the complete sales cycle for Wowza video streaming solutions in Federal and SLED markets\n- Build relationships with government agencies and educational institutions\n- Navigate complex government procurement processes\n- Achieve sales targets and revenue goals\n- Focus on building long-term partnerships with public sector organizations\n\nThe position appears on multiple job boards including Built In, Glassdoor, and LinkedIn. The role is based in Denver, CO with opportunity for remote work arrangements.",
-    "requirementsMet": [
-      "5+ years enterprise sales — 25+ years of enterprise software sales far exceeds requirement.",
-      "Technology solutions to government — Extensive experience selling technology solutions to government agencies.",
-      "Liaison between customers and technical teams — Proven ability to bridge customer and technical team needs across all roles.",
-      "Government procurement knowledge — Deep experience with government procurement and contracting.",
-      "Consultative selling — Core strength; known for consultative, value-driven sales approach."
-    ],
-    "requirementsNotMet": [
-      "Video streaming/media technology domain — No background in video streaming, broadcast technology, media infrastructure, or streaming platforms.",
-      "Federal sales experience — While strong in SLED sales, specific federal government procurement and contracting experience not highlighted.",
-      "Transportation/law enforcement/public safety software — No background in emergency services, law enforcement, or public safety software vertical."
-    ],
-    "companyOverview": "Wowza is a global leader in video streaming software, providing live and on-demand streaming solutions for over 15 years. The company has powered 35,000+ video implementations globally across media, enterprise, government, aerospace, healthcare, and more. Wowza is SOC 2 compliant and offers both cloud and on-premises streaming solutions.",
-    "companyRevenue": "Not disclosed (estimated $40-80M)",
-    "companyEmployees": "178 (per LinkedIn)",
-    "companyWebsite": "https://www.wowza.com",
-    "companyLinkedin": "https://www.linkedin.com/company/wowza/",
-    "companyOwnership": "Private"
-  },
-  {
     "id": 22,
     "company": "Unstructured",
     "jobTitle": "Strategic Account Executive - SLED",
@@ -646,6 +614,39 @@
     "companyWebsite": "https://www.box.com",
     "companyLinkedin": "https://www.linkedin.com/company/box/",
     "companyOwnership": "Public — NYSE: BOX"
+  },
+  {
+    "id": 28,
+    "company": "ClearGov",
+    "jobTitle": "Enterprise Account Executive (USA)",
+    "salary": "$200K-$260K OTE",
+    "fitScore": 85,
+    "status": "Kept",
+    "dateAdded": "2026-04-10",
+    "dateApplied": "",
+    "url": "https://www.linkedin.com/jobs/view/4357494697/",
+    "location": "United States (Remote)",
+    "notes": "33 applicants. 1 month ago. Actively reviewing. Local government budgeting/transparency SaaS.",
+    "description": "Enterprise Account Executive (USA) at ClearGov\n\nJob Overview:\nClearGov is looking for an Enterprise Account Executive with a passion for learning, a kind heart, a positive attitude, and a great sense of humor to join their team. You will take full ownership of the end-to-end sales cycle for large government entities, leading complex, long-cycle evaluations from initial discovery through contract execution.\n\nKey Responsibilities:\n- Act as the lead strategist for your territory\n- Partner closely with Sales Engineering, Marketing, Customer Success, and Product to coordinate resources\n- Deliver compelling vision sessions and product demonstrations\n- Position ClearGov as the trusted partner for budgeting & planning, financial disclosure and reporting, and transparency\n- Manage complex sales processes with multiple stakeholders\n- Guide prospects toward unified decision-making\n\nRequired Qualifications:\n- 5+ years of experience in enterprise software sales\n- Proven history of managing long-cycle, high-value deals\n- Demonstrated ability to take control of a complex sales process and guide multiple stakeholders toward a unified decision\n- Experience navigating the formal RFP process\n- Ability to negotiate complex contracts within the public sector\n\nAbout ClearGov:\nClearGov® is the leading provider of Budget Cycle Management software, focused on helping local governments and their department heads streamline the annual budgeting process by automating workflow, increasing collaboration, and centralizing data.\n\nMore information available at ClearGov's careers page or LinkedIn job listings.",
+    "requirementsMet": [
+      "Enterprise SaaS 25+ years",
+      "Government/local government sales expertise",
+      "Full-cycle sales",
+      "Consultative selling",
+      "CRM proficiency",
+      "Budget/financial solution alignment",
+      "Territory management"
+    ],
+    "requirementsNotMet": [
+      "Budgeting/financial software domain specifics are new",
+      "Small company (startup) dynamics"
+    ],
+    "companyOverview": "ClearGov is a leading SaaS platform for local government budgeting, capital planning, and financial transparency. Helps municipalities and school districts communicate budgets to constituents.",
+    "companyRevenue": "Not disclosed (Series A/B stage)",
+    "companyEmployees": "~50 (estimated per LinkedIn)",
+    "companyWebsite": "https://www.cleargov.com",
+    "companyLinkedin": "https://www.linkedin.com/company/cleargov/",
+    "companyOwnership": "Private — VC-backed"
   },
   {
     "id": 29,
