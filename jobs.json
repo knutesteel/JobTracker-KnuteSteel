@@ -845,40 +845,6 @@
     "companyOwnership": "Public — NYSE: PATH"
   },
   {
-    "id": 100,
-    "company": "Dataminr",
-    "jobTitle": "Senior Account Executive, SLED - South East",
-    "salary": "$255,200 - $375,000 OTE",
-    "fitScore": 87,
-    "status": "Kept",
-    "dateAdded": "2026-04-20",
-    "dateApplied": "",
-    "url": "https://jobs.glynncapital.com/companies/dataminr/jobs/71086592-senior-account-executive-sled-south-east",
-    "location": "Remote - South East U.S.",
-    "notes": "Excellent territory + comp alignment. AI-driven real-time intelligence has direct relevance to TrackLight.ai positioning.",
-    "description": "Senior Account Executive, SLED - South East\nDataminr\nRemote - South East U.S.\n\nWe are seeking a Senior Account Executive in Cybersecurity & Corporate Security, within our SLED team. In this position you will spearhead the sale of cybersecurity and corporate security products to State and Local Government accounts in the South East region. As a senior member of our SLED sales team, you will be responsible for net-new logo acquisition, expansion within named accounts, and partnering with channel to drive coverage across your territory.\n\nResponsibilities:\n- Sell Dataminr Pulse and related real-time AI / event detection products to State and Local Government agencies\n- Build and execute a territory plan against named accounts in the South East\n- Drive new logo acquisition through multi-channel prospecting (cold calling, LinkedIn outreach, channel partner engagement, networking, in-person events)\n- Build executive relationships with senior cyber and physical security buyers within state and local agencies\n- Manage complex enterprise sales cycles with $500K+ average ACV\n- Partner closely with marketing, sales engineering, customer success, and channel teams\n- Forecast pipeline accurately\n\nRequirements:\n- Minimum 7 years full sales cycle experience selling enterprise cybersecurity technology solutions in a fast-paced, competitive market to SLED clients\n- Hunter mentality with proven track record of net-new logo acquisition\n- Multi-channel prospecting expertise (cold calling, channel, LinkedIn, networking)\n- Established relationships with senior cyber buyers within SLED preferred\n- Strong forecasting and CRM hygiene\n- Bachelor's degree or equivalent experience\n\nCompensation: $255,200 - $375,000 OTE.",
-    "requirementsMet": [
-      "Enterprise sales 7+ years — 25+ years enterprise sales across Adobe, DocuSign, Salesforce, Oracle.",
-      "SLED sales experience — Director, State & Local Government at BDNA; dedicated public sector roles at Adobe and Salesforce.",
-      "Net-new logo acquisition — Track record of opening new agencies and expanding accounts; co-founder of TrackLight.ai brings hunter discipline.",
-      "Complex enterprise sales cycles with $500K+ ACV — Routinely managed deals in $1M-$5M+ range across career.",
-      "Multi-channel prospecting and channel partnership — Built partner ecosystems at BDNA and Adobe; comfortable with channel-led motion.",
-      "Bachelor's degree — BA Economics, University of Maryland.",
-      "South East territory fit — Apollo Beach, FL is ideal coverage location.",
-      "AI/intelligence platform relevance — TrackLight.ai (AI for investigations) is a directly adjacent thesis to Dataminr's real-time AI event detection."
-    ],
-    "requirementsNotMet": [
-      "Specific cybersecurity domain expertise — Knute's background is broader enterprise software; would need ramp on threat intelligence and physical/cyber convergence positioning.",
-      "Established relationships with senior SLED cyber buyers — Knute's SLED relationships skew toward CIO/IT and program owners rather than CISO/SOC; some network rebuild required."
-    ],
-    "companyOverview": "Dataminr is a leading real-time AI platform that detects the earliest signals of high-impact events from publicly available data across the open, deep, and dark web. Its flagship Dataminr Pulse product is used by Fortune 500 corporations, news organizations, and over 700 public sector customers including federal, state, and local agencies for cybersecurity, physical security, supply chain risk, and crisis response. Headquartered in New York with offices globally; widely regarded as a category leader in real-time event detection.",
-    "companyRevenue": "~$300M+ ARR (estimated, privately held, 2025)",
-    "companyEmployees": "~900",
-    "companyWebsite": "https://www.dataminr.com",
-    "companyLinkedin": "https://www.linkedin.com/company/dataminr",
-    "companyOwnership": "Private — backed by Fidelity, Morgan Stanley, Reverence Capital, IVP, Eldridge"
-  },
-  {
     "id": 102,
     "company": "SentinelOne",
     "jobTitle": "Enterprise Account Executive - SLED",
