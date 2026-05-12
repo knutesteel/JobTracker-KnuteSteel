@@ -1180,6 +1180,18 @@ function JobRow({ job, onSelect, onUpdate }) {
   const [appliedVal, setAppliedVal] = useState(job.dateApplied || "");
   const [editingCompany, setEditingCompany] = useState(false);
   const [companyVal, setCompanyVal] = useState(job.company || "");
+  const [editingFit, setEditingFit] = useState(false);
+  const [fitVal, setFitVal] = useState(String(job.fitScore || 0));
+
+  const commitFit = () => {
+    const n = parseInt(fitVal, 10);
+    if (!isNaN(n) && n >= 0 && n <= 100 && n !== job.fitScore) {
+      onUpdate(job.id, { fitScore: n });
+    } else {
+      setFitVal(String(job.fitScore || 0));
+    }
+    setEditingFit(false);
+  };
 
   const commitCompany = () => {
     const trimmed = (companyVal || "").trim();
@@ -1257,7 +1269,26 @@ function JobRow({ job, onSelect, onUpdate }) {
       <td style={{ padding: "10px 12px", fontSize: 13, wordBreak: "break-word" }}>{job.salary || "—"}</td>
       <td style={{ padding: "10px 12px", fontSize: 13, wordBreak: "break-word" }}>{job.territory || job.location || "—"}</td>
       <td style={{ padding: "10px 12px", textAlign: "center" }}>
-        <FitBadge score={job.fitScore} />
+        {editingFit ? (
+          <input
+            type="number"
+            min="0"
+            max="100"
+            value={fitVal}
+            onChange={(e) => setFitVal(e.target.value)}
+            onBlur={commitFit}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") commitFit();
+              else if (e.key === "Escape") { setFitVal(String(job.fitScore || 0)); setEditingFit(false); }
+            }}
+            autoFocus
+            style={{ width: 60, padding: "4px 6px", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, fontSize: 14, textAlign: "center", fontWeight: 600 }}
+          />
+        ) : (
+          <div onClick={() => { setFitVal(String(job.fitScore || 0)); setEditingFit(true); }} title="Click to edit fit score" style={{ cursor: "pointer", display: "inline-block" }}>
+            <FitBadge score={job.fitScore} />
+          </div>
+        )}
       </td>
       <td style={{ padding: "10px 12px" }}>
         <select
@@ -1297,31 +1328,12 @@ function JobRow({ job, onSelect, onUpdate }) {
           </span>
         )}
       </td>
-      <td style={{ padding: "10px 12px", textAlign: "center" }}>
-        <div style={{ display: "flex", gap: 6, justifyContent: "center", alignItems: "center" }}>
-          <select
-            value={job.status}
-            onChange={(e) => onUpdate(job.id, { status: e.target.value })}
-            style={{
-              padding: "4px 8px", borderRadius: 6, fontSize: 12, fontWeight: 600,
-              border: `1px solid ${STATUS_CONFIG[job.status]?.color || COLORS.gray300}30`,
-              color: STATUS_CONFIG[job.status]?.color || COLORS.gray700,
-              background: STATUS_CONFIG[job.status]?.bg || COLORS.white,
-              cursor: "pointer", outline: "none",
-            }}
-          >
-            {STATUS_ORDER.map(s => (
-              <option key={s} value={s}>{STATUS_CONFIG[s]?.icon} {s}</option>
-            ))}
-          </select>
-        </div>
-      </td>
     </tr>
   );
 }
 
 // ─── Job Table ───
-function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }) {
+function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort, groupByStatus = true }) {
   const [collapsedGroups, setCollapsedGroups] = useState(() => {
     const initial = {};
     STATUS_ORDER.forEach(s => { initial[s] = s !== "New"; });
@@ -1337,15 +1349,16 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
     setCollapsedGroups(prev => ({ ...prev, [status]: !prev[status] }));
   };
 
+  const sortedFlat = useMemo(() => _.orderBy(jobs, [sortField], [sortDir]), [jobs, sortField, sortDir]);
+
   const grouped = useMemo(() => {
-    const sorted = _.orderBy(jobs, [sortField], [sortDir]);
     const groups = {};
     STATUS_ORDER.forEach((s) => {
-      const items = sorted.filter((j) => j.status === s);
+      const items = sortedFlat.filter((j) => j.status === s);
       if (items.length > 0) groups[s] = items;
     });
     return groups;
-  }, [jobs, sortField, sortDir]);
+  }, [sortedFlat]);
 
   return (
     <div style={{ overflowX: "auto" }}>
@@ -1360,18 +1373,17 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
             <SortHeader label="Status" field="status" {...{ sortField, sortDir, onSort }} width={colWidths.status} onResize={handleResize} />
             <SortHeader label="Date Added" field="dateAdded" {...{ sortField, sortDir, onSort }} width={colWidths.dateAdded} onResize={handleResize} />
             <SortHeader label="Date Applied" field="dateApplied" {...{ sortField, sortDir, onSort }} width={colWidths.dateApplied} onResize={handleResize} />
-            <th style={{ padding: "10px 12px", fontSize: 12, fontWeight: 600, color: COLORS.gray500, borderBottom: `2px solid ${COLORS.gray200}`, background: COLORS.gray50, textAlign: "center" }}>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {Object.entries(grouped).map(([status, items]) => (
+          {groupByStatus ? Object.entries(grouped).map(([status, items]) => (
             <React.Fragment key={status}>
               <tr
                 onClick={() => toggleGroup(status)}
                 style={{ cursor: "pointer", userSelect: "none" }}
               >
                 <td
-                  colSpan={9}
+                  colSpan={8}
                   style={{
                     padding: "10px 12px", fontWeight: 700, fontSize: 13,
                     color: STATUS_CONFIG[status]?.color || COLORS.gray700,
@@ -1387,6 +1399,8 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort }
                 <JobRow key={job.id} job={job} onSelect={onSelectJob} onUpdate={onUpdateJob} />
               ))}
             </React.Fragment>
+          )) : sortedFlat.map((job) => (
+            <JobRow key={job.id} job={job} onSelect={onSelectJob} onUpdate={onUpdateJob} />
           ))}
         </tbody>
       </table>
@@ -1916,7 +1930,7 @@ function openJobDetailWindow(job) {
     <!-- Right Pane -->
     <div style="padding:24px;overflow-y:auto;max-height:85vh;background:#f7fafc">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
-        <div style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;background:${fitColor}">${job.fitScore}</div>
+        <div title="Click number to edit" style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;background:${fitColor}"><input type="number" min="0" max="100" value="${job.fitScore}" onchange="saveField('fitScore', parseInt(this.value, 10) || 0)" style="width:42px;background:transparent;border:none;color:#fff;font-weight:700;font-size:16px;text-align:center;outline:none;font-family:inherit" /></div>
         <div>
           <div style="font-weight:700;font-size:16px;color:#2d3748">Job Fit Analysis</div>
           <div style="font-size:13px;color:#718096">Based on resume match • ${fitLabel}</div>
@@ -2234,8 +2248,9 @@ function App() {
   const [resumePreview, setResumePreview] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
-  const [sortField, setSortField] = useState("dateAdded");
-  const [sortDir, setSortDir] = useState("desc");
+  const [sortField, setSortField] = useState("company");
+  const [sortDir, setSortDir] = useState("asc");
+  const [groupByStatus, setGroupByStatus] = useState(true);
 
   // Load jobs from GitHub on mount
   React.useEffect(() => {
@@ -2387,6 +2402,18 @@ function App() {
               </button>
             ))}
           </div>
+          <button
+            onClick={() => setGroupByStatus((v) => !v)}
+            title={groupByStatus ? "Switch to a single flat list" : "Group rows by status"}
+            style={{
+              padding: "8px 14px", borderRadius: 6, border: `1px solid ${COLORS.gray200}`, fontSize: 13, fontWeight: 500, cursor: "pointer",
+              background: groupByStatus ? COLORS.white : COLORS.primary,
+              color: groupByStatus ? COLORS.gray600 : COLORS.white,
+              transition: "all 0.2s",
+            }}
+          >
+            {groupByStatus ? "🗂 Grouped" : "📋 Ungrouped"}
+          </button>
         </div>
 
         {/* URL Input */}
@@ -2394,7 +2421,7 @@ function App() {
 
         {/* Job Table */}
         <div style={{ background: COLORS.white, borderRadius: 12, boxShadow: "0 1px 3px rgba(0,0,0,0.06)", overflow: "hidden" }}>
-          <JobTable jobs={filteredJobs} onSelectJob={openJobDetailWindow} onUpdateJob={updateJob} sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+          <JobTable jobs={filteredJobs} onSelectJob={openJobDetailWindow} onUpdateJob={updateJob} sortField={sortField} sortDir={sortDir} onSort={handleSort} groupByStatus={groupByStatus} />
           {filteredJobs.length === 0 && (
             <div style={{ padding: 40, textAlign: "center", color: COLORS.gray400 }}>
               <div style={{ fontSize: 40, marginBottom: 8 }}>📭</div>
