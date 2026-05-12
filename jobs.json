@@ -751,36 +751,6 @@
     "companyOwnership": "Private — Automattic valued at ~$7.5B"
   },
   {
-    "id": 50,
-    "company": "SentiLink",
-    "jobTitle": "Enterprise Account Executive",
-    "salary": "$220,000 - $300,000 OTE (estimated)",
-    "fitScore": 85,
-    "status": "Kept",
-    "dateAdded": "2026-04-14",
-    "dateApplied": "",
-    "url": "https://himalayas.app/companies/sentilink/jobs/enterprise-account-executive",
-    "location": "Remote — United States",
-    "notes": "Identity fraud detection using ML. Synthetic fraud prevention. Strong alignment with TrackLight.ai fraud/investigation experience.",
-    "description": "Enterprise Account Executive\n\nCompany: SentiLink\nLocation: United States only\nSalary: 250k-280k USD\nJob Type: Full Time\nExperience Level: Mid-level, Senior\nPosted: Mar 08, 2026\nApply Before: May 07, 2026\n\nAbout SentiLink:\nSentiLink is a fast-growing company that provides innovative identity and risk solutions. At SentiLink, we are at the forefront of combating identity fraud through groundbreaking technology and deep industry expertise. Founded in 2017 by Naftali Harris and Maxwell Blumenfeld, who previously engineered the risk and fraud systems at Affirm, SentiLink was born out of a direct understanding of the evolving challenges in identity verification.\n\nRequirements:\n- 5+ years successful experience in sales and business development\n- Track record of successfully employing a top down sales motion for complex technical products\n- Experience selling into financial services and big tech\n- Familiarity with identity verification or other fraud detection solutions (or a strong willingness to learn the basics)\n\nBenefits:\n- Employer paid group health insurance for you and your dependents\n- 401(k) plan with employer match (or equivalent for non US-based roles)\n- Flexible paid time off\n- Regular company-wide in-person events\n- Home office stipend",
-    "requirementsMet": [
-      "5+ years sales experience — 25+ years of enterprise sales.",
-      "Top-down sales motion for complex technical products — Proven across career selling to executive buyers.",
-      "Understanding of fraud prevention — TrackLight.ai co-founder experience in AI-driven fraud detection and investigative analytics.",
-      "Consultative enterprise sales — Core strength throughout career."
-    ],
-    "requirementsNotMet": [
-      "Financial services sales experience — Background is primarily public sector/government, not financial institutions. However, fraud/risk domain overlap is strong.",
-      "FinTech-specific domain knowledge — Would need to learn the financial services buyer landscape."
-    ],
-    "companyOverview": "SentiLink is a leading identity verification and fraud detection company that utilizes machine learning and human expertise to prevent synthetic fraud, identity theft, and emerging fraud vectors. The company serves financial institutions and is expanding into government and public sector applications.",
-    "companyRevenue": "$50M+ ARR (Estimated)",
-    "companyEmployees": "150+ employees",
-    "companyWebsite": "https://www.sentilink.com",
-    "companyLinkedin": "https://www.linkedin.com/company/sentilink/",
-    "companyOwnership": "Private — Series B, backed by Andreessen Horowitz"
-  },
-  {
     "id": 68,
     "company": "New Relic",
     "jobTitle": "Senior Account Executive - Public Sector (SLED)",
