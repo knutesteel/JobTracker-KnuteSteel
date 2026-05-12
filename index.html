@@ -1178,6 +1178,19 @@ function SortHeader({ label, field, sortField, sortDir, onSort, style: s, width,
 function JobRow({ job, onSelect, onUpdate }) {
   const [editingApplied, setEditingApplied] = useState(false);
   const [appliedVal, setAppliedVal] = useState(job.dateApplied || "");
+  const [editingCompany, setEditingCompany] = useState(false);
+  const [companyVal, setCompanyVal] = useState(job.company || "");
+
+  const commitCompany = () => {
+    const trimmed = (companyVal || "").trim();
+    if (trimmed && trimmed !== job.company) {
+      onUpdate(job.id, { company: trimmed });
+    } else {
+      // Reset to current value if blank or unchanged
+      setCompanyVal(job.company || "");
+    }
+    setEditingCompany(false);
+  };
 
   return (
     <tr
@@ -1186,9 +1199,31 @@ function JobRow({ job, onSelect, onUpdate }) {
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
       <td style={{ padding: "10px 12px", fontWeight: 500, maxWidth: 180 }}>
-        <span style={{ display: "block", wordBreak: "break-word", whiteSpace: "normal" }}>
-          {job.company}
-        </span>
+        {editingCompany ? (
+          <input
+            type="text"
+            value={companyVal}
+            onChange={(e) => setCompanyVal(e.target.value)}
+            onBlur={commitCompany}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") commitCompany();
+              else if (e.key === "Escape") { setCompanyVal(job.company || ""); setEditingCompany(false); }
+            }}
+            autoFocus
+            style={{
+              width: "100%", padding: "4px 6px", border: `1px solid ${COLORS.gray300}`,
+              borderRadius: 4, fontSize: 13, fontWeight: 500, boxSizing: "border-box",
+            }}
+          />
+        ) : (
+          <span
+            onClick={() => { setCompanyVal(job.company || ""); setEditingCompany(true); }}
+            title="Click to edit company name"
+            style={{ display: "block", wordBreak: "break-word", whiteSpace: "normal", cursor: "pointer" }}
+          >
+            {job.company}
+          </span>
+        )}
         {job.url && (
           <span style={{ display: "block", fontSize: 11, color: COLORS.gray400, fontWeight: 400, marginTop: 2 }}>
             Source: {job.source || getSourceFromUrl(job.url)}
@@ -2232,7 +2267,26 @@ function App() {
       if (!confirm("This will permanently delete this job. Continue?")) return;
       setJobs((prev) => prev.filter((j) => j.id !== id));
     } else {
-      setJobs((prev) => prev.map((j) => (j.id === id ? { ...j, ...updates } : j)));
+      setJobs((prev) => prev.map((j) => {
+        if (j.id !== id) return j;
+        const merged = { ...j, ...updates };
+        // Auto-populate dateApplied when status is changed to Applied (submitted)
+        // Only set it if a new value wasn't explicitly provided in this update
+        // and the job doesn't already have a dateApplied value.
+        if (
+          updates.status === "Applied" &&
+          j.status !== "Applied" &&
+          updates.dateApplied === undefined &&
+          !j.dateApplied
+        ) {
+          const today = new Date();
+          const yyyy = today.getFullYear();
+          const mm = String(today.getMonth() + 1).padStart(2, "0");
+          const dd = String(today.getDate()).padStart(2, "0");
+          merged.dateApplied = `${yyyy}-${mm}-${dd}`;
+        }
+        return merged;
+      }));
     }
   }, []);
 
@@ -2318,53 +2372,4 @@ function App() {
           <div style={{ position: "relative", flex: 1, minWidth: 200 }}>
             <span style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", fontSize: 16, color: COLORS.gray400 }}>🔍</span>
             <input
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search company or title..."
-              style={{ width: "100%", padding: "10px 12px 10px 38px", border: `1px solid ${COLORS.gray200}`, borderRadius: 8, fontSize: 14, outline: "none", background: COLORS.white, boxSizing: "border-box" }}
-            />
-          </div>
-          <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
-            {["All", ...STATUS_ORDER].map((s) => (
-              <button
-                key={s}
-                onClick={() => setFilterStatus(s)}
-                style={{
-                  padding: "8px 14px", borderRadius: 6, border: "none", fontSize: 13, fontWeight: 500, cursor: "pointer",
-                  background: filterStatus === s ? COLORS.primary : COLORS.white,
-                  color: filterStatus === s ? COLORS.white : COLORS.gray600,
-                  transition: "all 0.2s",
-                }}
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* URL Input */}
-        <AddJobInput onAddJob={addJob} />
-
-        {/* Job Table */}
-        <div style={{ background: COLORS.white, borderRadius: 12, boxShadow: "0 1px 3px rgba(0,0,0,0.06)", overflow: "hidden" }}>
-          <JobTable jobs={filteredJobs} onSelectJob={openJobDetailWindow} onUpdateJob={updateJob} sortField={sortField} sortDir={sortDir} onSort={handleSort} />
-          {filteredJobs.length === 0 && (
-            <div style={{ padding: 40, textAlign: "center", color: COLORS.gray400 }}>
-              <div style={{ fontSize: 40, marginBottom: 8 }}>📭</div>
-              <div>No jobs match your current filters.</div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {resumePreview && <ResumePreview job={resumePreview} onClose={() => setResumePreview(null)} />}
-    </div>
-  );
-}
-
-    // Mount the app
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(React.createElement(App));
-  </script>
-</body>
-</html>
+              valu
