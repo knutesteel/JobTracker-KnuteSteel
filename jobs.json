@@ -4300,41 +4300,6 @@
     "companyOwnership": "Public — NYSE: GTLB"
   },
   {
-    "id": 1778713069755,
-    "company": "Pure Storage",
-    "jobTitle": "Account Executive, SLED (Albany/Northeast)",
-    "salary": "Not disclosed (Pure Storage SLED AE est $250,000 - $310,000 OTE)",
-    "fitScore": 70,
-    "status": "New",
-    "dateAdded": "2026-05-14",
-    "dateApplied": "",
-    "url": "https://job-boards.greenhouse.io/purestorage/jobs/7867264",
-    "source": "Greenhouse / Web Search",
-    "location": "Remote — Albany, NY territory",
-    "territory": "Northeast SLED",
-    "notes": "Discovered via scheduled evening search 2026-05-13. NEW Pure Storage role distinct from existing entry (Texas territory). Albany/Upstate New York SLED territory. Storage/infrastructure domain is not Knute's native SaaS/AI territory but SLED sales fluency is strong. Territory is less ideal for Knute (Apollo Beach, FL) though role is remote.",
-    "rawText": "Account Executive, SLED (Albany)\nPure Storage — Remote, Albany NY Territory\n\nAbout Pure Storage\nPure Storage (NYSE: PSTG) enables organizations to take stock of their data in the most efficient, modern, and responsive way possible. Pure Storage's cloud-agnostic, always-on, always-modern solutions serve more than 11,000 customers worldwide.\n\nWhat You'll Do\n- Drive new customer acquisition and expand existing customer relationships across Albany/Upstate NY SLED territory\n- Navigate complex procurement landscapes including RFIs, RFPs, and contract negotiations\n- Develop and execute territory strategy targeting state agencies, county government, municipalities, school districts, and universities\n- Work with federal system integrators and channel partners on joint SLED opportunities\n\nWhat You'll Need\n- Proven track record of success in SLED sales with demonstrated ability to meet or exceed sales targets\n- In-depth knowledge of SLED procurement process including RFIs, RFPs, and contract negotiations\n- Knowledge of working with Federal system integrators\n- Challenger Mindset with thought leadership and creativity in prospecting",
-    "description": "Account Executive, SLED (Albany)\nPure Storage — Remote, Albany NY Territory\n\nDrive sales of Pure Storage all-flash data storage solutions to state agencies, local government, school districts, and higher education in the Albany/Upstate NY territory. Requires proven SLED sales track record, deep knowledge of government procurement (RFIs, RFPs, contract negotiations), and experience working with federal system integrators.",
-    "requirementsMet": [
-      "SLED procurement expertise — Deep SLED background including BDNA (Director, State & Local Government), Salesforce Public Sector, and Adobe Public Sector; extensive RFP/contract vehicle experience.",
-      "Proven quota achievement — Demonstrated across 25+ years of enterprise technology sales.",
-      "Complex multi-stakeholder government deals — Career-long experience managing government deals involving IT, procurement, legal, and executive decision-makers.",
-      "Federal SI and channel partner knowledge — Experience working with government SIs and channel partners throughout career.",
-      "Consultative selling — Core strength; translating technical capabilities into business outcomes."
-    ],
-    "requirementsNotMet": [
-      "Data storage/infrastructure domain — No background in all-flash storage, storage arrays, or data infrastructure platforms. Significant domain ramp required.",
-      "Albany/Northeast territory — Knute is in Apollo Beach, FL. Albany/Upstate NY territory may require regional travel and relationships with Upstate NY state agencies.",
-      "Pure Storage product ecosystem — Unfamiliar with FlashArray, FlashBlade, Portworx or competitive positioning vs. NetApp, Dell EMC, HPE."
-    ],
-    "companyOverview": "Pure Storage pioneered all-flash data storage, enabling organizations to manage data across on-premises and multi-cloud environments with industry-leading performance and simplicity. Founded 2009; serves more than 11,000 customers worldwide including over half the Fortune 500. Aggressively expanding in the SLED market with modern data infrastructure offerings for state agencies, local government, and universities.",
-    "companyRevenue": "$3.2B (FY2026, NYSE: PSTG)",
-    "companyEmployees": "~6,000",
-    "companyWebsite": "https://www.purestorage.com",
-    "companyLinkedin": "https://www.linkedin.com/company/pure-storage/",
-    "companyOwnership": "Public — NYSE: PSTG"
-  },
-  {
     "id": 1778713069756,
     "company": "Posit Software",
     "jobTitle": "Account Executive, Public Sector",
