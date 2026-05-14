@@ -4730,43 +4730,6 @@
     "companyOwnership": "Public — NASDAQ: CSCO (Cisco)"
   },
   {
-    "id": 1778713069763,
-    "company": "Neo4j",
-    "jobTitle": "Sr. Enterprise Account Executive (Southeast)",
-    "salary": "$240,000 - $320,000 OTE (base + commission; stock options also available)",
-    "fitScore": 63,
-    "status": "New",
-    "dateAdded": "2026-05-14",
-    "dateApplied": "",
-    "url": "https://www.linkedin.com/jobs/view/4365347032/",
-    "source": "LinkedIn",
-    "location": "Remote — Southeast US (Charleston, SC listed)",
-    "territory": "Enterprise Commercial — Southeast",
-    "notes": "User-submitted 2026-05-14. Graph database and AI knowledge platform. OTE $240K-$320K. Southeast remote is geographic match. Role is commercial enterprise (not government/SLED focused) — somewhat outside Knute's primary domain. Requires deep knowledge of data warehousing, BI, data science, AI/ML. Graph database technology is specialized. 7+ years enterprise software required (Knute exceeds significantly).",
-    "rawText": "Sr. Enterprise Account Executive (Southeast)\nNeo4j — Remote, Southeast US\n\nNeo4j is the graph intelligence platform that transforms data into knowledge to power the next generation of intelligent applications and AI systems. It includes enterprise-ready knowledge graphs for accurate, explainable, and governed AI; trusted by 84 of the Fortune 100 and supported by the world's largest graph community.\n\nAbout the Role:\nWe are seeking a driven, high-energy individual who is passionate about new business acquisition and enterprise sales. As a Senior Enterprise Account Executive, you will be responsible for executing a strategic sales plan within your assigned territory, focusing on revenue growth and new customer acquisition.\n\nKey Responsibilities:\n- Develop and execute a strategic territory plan targeting key organizations to build a robust pipeline\n- Become an expert in our product offerings and industry solutions\n- Lead complex sales cycles with a solution-based approach, employing strategic selling strategies\n- Manage the full sales process from prospecting to closing, securing new logos and expanding within existing accounts\n- Develop strong partnerships with public cloud providers (AWS, Google, Microsoft Azure)\n\nWhat You Bring:\n- 7+ years of proven success in enterprise software sales with consistent track record of exceeding targets\n- Demonstrated experience managing complex sales processes within enterprise markets such as Data Warehousing, Business Intelligence, Data Science, AI/ML\n- Deep understanding of commercial open-source business models, including selling on-premise and cloud & SaaS hybrid solutions\n- Familiarity with sales methodologies such as MEDDIC, SPIN, or Challenger Sales\n- Experience collaborating with cross-functional teams including Pre-Sales, Marketing, Customer Success\n\nAnnual On Target Earnings Range: $240,000 — $320,000 USD",
-    "description": "Sr. Enterprise Account Executive (Southeast) — Neo4j, Remote Southeast US. Sells graph database and AI knowledge platform to enterprise commercial accounts. OTE $240K-$320K. 7+ years enterprise software required. Data science/AI/ML domain knowledge preferred. Commercial enterprise focus (not SLED).",
-    "requirementsMet": [
-      "7+ years enterprise software sales — Knute has 25+ years of progressive enterprise software sales",
-      "Complex sales cycles with multiple stakeholders — Extensive experience managing multi-stakeholder enterprise deals",
-      "Southeast remote territory — Apollo Beach FL is ideal Southeast location",
-      "Sales methodology fluency — MEDDIC, SPIN, Challenger methodologies familiar from career",
-      "Cloud/SaaS hybrid selling — Experience with both on-premise and cloud deployments across career",
-      "New logo acquisition — Consistent hunter background across enterprise roles"
-    ],
-    "requirementsNotMet": [
-      "Graph database / Neo4j domain expertise — Graph technology is highly specialized; Knute's background is in enterprise documents, digital signatures, and AI analytics platforms, not database technology",
-      "Data Warehousing / BI / Data Science / AI/ML enterprise sales focus — Commercial analytics market differs from government/SLED where Knute has built deep expertise",
-      "Open source commercial model experience — Neo4j uses a community/enterprise open source model that requires specific selling motion knowledge",
-      "Commercial enterprise focus — This role targets Fortune 1000 commercial accounts, while Knute's strongest domain is public sector / SLED"
-    ],
-    "companyOverview": "Neo4j is the creator of the world's leading graph database and graph intelligence platform. Trusted by 84 of the Fortune 100 and used by organizations across financial services, healthcare, government, and technology, Neo4j enables organizations to discover hidden connections in data and power intelligent AI systems. The company has committed $100M to accelerate its role in generative AI and agentic systems, positioning Neo4j as the default knowledge graph layer for enterprise AI. Backed by Goldman Sachs, One Peak, Creandum, and others. ~1,000 employees.",
-    "companyRevenue": "Not disclosed (private; estimated $100M+ ARR)",
-    "companyEmployees": "~1,000",
-    "companyWebsite": "https://www.neo4j.com",
-    "companyLinkedin": "https://www.linkedin.com/company/neo4j/",
-    "companyOwnership": "Private — Backed by Goldman Sachs, One Peak Partners, Creandum"
-  },
-  {
     "id": 1778713069764,
     "company": "Pegasystems",
     "jobTitle": "Client Executive - Public Sector",
