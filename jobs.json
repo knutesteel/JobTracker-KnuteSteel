@@ -4526,41 +4526,6 @@
     "companyOwnership": "Public — NYSE: GTLB"
   },
   {
-    "id": 1778713069754,
-    "company": "GitLab",
-    "jobTitle": "Public Sector Strategic Account Executive - DoD",
-    "salary": "Not disclosed (GitLab AMER Enterprise AE est $220,000 - $280,000 OTE)",
-    "fitScore": 66,
-    "status": "New",
-    "dateAdded": "2026-05-14",
-    "dateApplied": "",
-    "url": "https://job-boards.greenhouse.io/gitlab/jobs/8330017002",
-    "source": "Greenhouse / Web Search",
-    "location": "Remote — United States",
-    "territory": "Department of Defense",
-    "notes": "Discovered via scheduled evening search 2026-05-13. NEW GitLab DoD role — distinct from all existing GitLab entries. DoD selling involves defense-specific procurement (DFARS, DIBNet), clearance comfort, and defense agency relationships (Army, Navy, Air Force, DISA, CYBERCOM). Knute's background is primarily civilian-facing. DevSecOps domain requires significant ramp. Lower priority than the Federal Civilian counterpart (id 233).",
-    "rawText": "Public Sector Strategic Account Executive - DoD\nGitLab — Remote, United States\n\nAbout GitLab\nGitLab is the most comprehensive AI-powered DevSecOps platform, used by more than 30 million registered users and 50% of the Fortune 100.\n\nAbout the Role\nHelp Department of Defense agencies modernize how they build, secure, and operate software using GitLab's AI-powered DevSecOps platform.\n\nResponsibilities\n- Build and execute strategic account plans aligning GitLab's platform with DoD modernization initiatives\n- Navigate complex defense procurement and contracting processes\n- Develop multi-year technology roadmaps with CIOs and technical leaders\n- Act as primary point of contact and trusted advisor for strategic DoD prospects\n- Partner with defense system integrators, primes, and resellers\n\nRequirements\n- Experience selling technology solutions to Department of Defense agencies\n- Knowledge of software development lifecycle including CI/CD automation and secure development practices\n- Understanding of DoD compliance requirements and acquisition vehicles (DFARS, DIBNet, IL4/IL5)\n- Consultative sales approach\n- Security clearance or willingness to obtain may be required for some accounts",
-    "description": "Public Sector Strategic Account Executive - DoD\nGitLab — Remote, United States\n\nHelp DoD agencies modernize how they build, secure, and operate software using GitLab's AI-powered DevSecOps platform. Requires experience selling to Department of Defense agencies, knowledge of DoD compliance and acquisition vehicles (DFARS, DIBNet, IL4/IL5), and consultative approach positioning technology as mission enabler. Security clearance may be required.",
-    "requirementsMet": [
-      "Enterprise technology sales experience — 25+ years across Adobe, DocuSign, Salesforce, Oracle, BDNA.",
-      "Complex government procurement — Strong background in government procurement, long-cycle deals, multi-stakeholder environments.",
-      "Consultative selling — Core strength throughout career; mission-focused value articulation.",
-      "AI/modernization narrative — TrackLight.ai (AI for government investigations) provides credible AI-for-government positioning."
-    ],
-    "requirementsNotMet": [
-      "DoD-specific agency relationships — Primary government relationships are civilian-facing (BDNA State/Local, Adobe Public Sector, Salesforce Public Sector). Less depth with DoD/defense agency buyers (DISA, CYBERCOM, AFWERX, PEOs).",
-      "Defense procurement vehicles (DFARS, DIBNet, IL4/IL5/IL6) — Defense-specific acquisition mechanics at the edge of demonstrated experience.",
-      "DevSecOps/CI-CD domain knowledge — No background in software development lifecycle or CI/CD automation tools. Significant domain ramp required.",
-      "Security clearance — No active clearance; DoD accounts may require classified access."
-    ],
-    "companyOverview": "GitLab is the most comprehensive AI-powered DevSecOps platform. GitLab's DoD practice focuses on helping military branches, defense agencies, and commands modernize software development, secure code pipelines, and operate at the speed of relevance. GitLab's IL4/IL5 authorized offerings are purpose-built for classified DoD environments.",
-    "companyRevenue": "$748M (FY2026 estimate; NYSE: GTLB)",
-    "companyEmployees": "~8,000 (remote-first, global)",
-    "companyWebsite": "https://www.gitlab.com",
-    "companyLinkedin": "https://www.linkedin.com/company/gitlab-com/",
-    "companyOwnership": "Public — NYSE: GTLB"
-  },
-  {
     "id": 1778713069755,
     "company": "Pure Storage",
     "jobTitle": "Account Executive, SLED (Albany/Northeast)",
