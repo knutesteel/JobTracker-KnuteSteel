@@ -1175,6 +1175,82 @@ function SortHeader({ label, field, sortField, sortDir, onSort, style: s, width,
 }
 
 // ─── Job Row ───
+// ─── Resume / Cover Letter file link control ───
+function DocField({ icon, labelText, job, field, onUpdate }) {
+  const [editing, setEditing] = useState(false);
+  const [val, setVal] = useState(job[field] || "");
+  const current = job[field] || "";
+
+  const pickFile = () => {
+    const inp = document.createElement("input");
+    inp.type = "file";
+    inp.onchange = (e) => {
+      const f = e.target.files && e.target.files[0];
+      if (f) onUpdate(job.id, { [field]: f.name });
+    };
+    inp.click();
+  };
+
+  const commit = () => {
+    const t = (val || "").trim();
+    if (t !== current) onUpdate(job.id, { [field]: t });
+    setEditing(false);
+  };
+
+  const isPath = /[\\/]/.test(current) || /^[A-Za-z]:/.test(current);
+  const shortName = current ? current.split(/[\\/]/).pop() : "";
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 3 }}>
+      <button
+        onClick={pickFile}
+        title={"Choose " + labelText + " file from your computer"}
+        style={{ background: "none", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, cursor: "pointer", padding: "1px 4px", fontSize: 11, lineHeight: 1.3, flexShrink: 0 }}
+      >
+        {icon}
+      </button>
+      {editing ? (
+        <input
+          type="text"
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
+          onBlur={commit}
+          onKeyDown={(e) => { if (e.key === "Enter") commit(); else if (e.key === "Escape") { setVal(current); setEditing(false); } }}
+          autoFocus
+          placeholder="paste full path…"
+          style={{ width: 130, padding: "2px 4px", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, fontSize: 11 }}
+        />
+      ) : current ? (
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 3, minWidth: 0 }}>
+          {isPath ? (
+            <a
+              href={"file:///" + current.replace(/\\/g, "/").replace(/^\/+/, "")}
+              title={current}
+              style={{ color: COLORS.info, fontSize: 11, textDecoration: "underline", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 100 }}
+            >
+              {shortName}
+            </a>
+          ) : (
+            <span
+              onClick={() => { setVal(current); setEditing(true); }}
+              title={"Click to edit / paste full path — " + current}
+              style={{ cursor: "pointer", fontSize: 11, color: COLORS.gray700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 100 }}
+            >
+              {current}
+            </span>
+          )}
+          <span onClick={() => { setVal(current); setEditing(true); }} title="Edit path" style={{ cursor: "pointer", fontSize: 10, color: COLORS.gray400, flexShrink: 0 }}>✏️</span>
+          <span onClick={() => onUpdate(job.id, { [field]: "" })} title="Clear" style={{ cursor: "pointer", fontSize: 10, color: COLORS.gray400, flexShrink: 0 }}>✕</span>
+        </span>
+      ) : (
+        <span onClick={pickFile} style={{ cursor: "pointer", fontSize: 11, color: COLORS.gray400 }}>
+          {labelText}
+        </span>
+      )}
+    </div>
+  );
+}
+
 function JobRow({ job, onSelect, onUpdate }) {
   const [editingApplied, setEditingApplied] = useState(false);
   const [appliedVal, setAppliedVal] = useState(job.dateApplied || "");
@@ -1328,6 +1404,10 @@ function JobRow({ job, onSelect, onUpdate }) {
           </span>
         )}
       </td>
+      <td style={{ padding: "10px 12px", fontSize: 12 }}>
+        <DocField icon="📄" labelText="Resume" job={job} field="resumeFile" onUpdate={onUpdate} />
+        <DocField icon="✉️" labelText="Cover letter" job={job} field="coverLetterFile" onUpdate={onUpdate} />
+      </td>
     </tr>
   );
 }
@@ -1373,6 +1453,7 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort, 
             <SortHeader label="Status" field="status" {...{ sortField, sortDir, onSort }} width={colWidths.status} onResize={handleResize} />
             <SortHeader label="Date Added" field="dateAdded" {...{ sortField, sortDir, onSort }} width={colWidths.dateAdded} onResize={handleResize} />
             <SortHeader label="Date Applied" field="dateApplied" {...{ sortField, sortDir, onSort }} width={colWidths.dateApplied} onResize={handleResize} />
+            <th style={{ padding: "10px 12px", fontSize: 12, fontWeight: 600, color: COLORS.gray500, borderBottom: `2px solid ${COLORS.gray200}`, background: COLORS.gray50, textAlign: "left" }}>Docs</th>
           </tr>
         </thead>
         <tbody>
@@ -1383,7 +1464,7 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort, 
                 style={{ cursor: "pointer", userSelect: "none" }}
               >
                 <td
-                  colSpan={8}
+                  colSpan={9}
                   style={{
                     padding: "10px 12px", fontWeight: 700, fontSize: 13,
                     color: STATUS_CONFIG[status]?.color || COLORS.gray700,
@@ -1950,6 +2031,20 @@ function openJobDetailWindow(job) {
           <button onclick="saveField('aiQuestions', document.getElementById('aiQuestionsField').value); this.textContent='✅ Saved'; setTimeout(function(){document.querySelector('#aiQuestionsField').nextElementSibling.querySelector('button').textContent='💾 Save Questions'},1500)" style="background:#3182ce;border:none;color:#fff;font-size:12px;font-weight:600;cursor:pointer;padding:6px 14px;border-radius:6px">💾 Save Questions</button>
         </div>
       </div>
+      <div style="margin-bottom:18px">
+        <h4 style="margin:0 0 8px;font-size:14px;color:#4a5568">📎 Application Documents</h4>
+        <p style="margin:0 0 8px;font-size:12px;color:#718096">Link your tailored resume and cover letter for this job. Only the file path/name is stored — the files themselves are not uploaded.</p>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="font-size:12px;color:#4a5568;width:96px;flex-shrink:0">📄 Resume</span>
+          <input id="resumeFileField" type="text" value="${esc(job.resumeFile || "")}" placeholder="No file linked" onchange="saveField('resumeFile', this.value)" style="flex:1;min-width:0;padding:6px 8px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;color:#4a5568;outline:none;font-family:inherit" />
+          <button onclick="pickDocFile('resumeFileField','resumeFile')" style="background:#3182ce;border:none;color:#fff;font-size:12px;font-weight:600;cursor:pointer;padding:6px 12px;border-radius:6px;flex-shrink:0">📁 Choose</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="font-size:12px;color:#4a5568;width:96px;flex-shrink:0">✉️ Cover Letter</span>
+          <input id="coverFileField" type="text" value="${esc(job.coverLetterFile || "")}" placeholder="No file linked" onchange="saveField('coverLetterFile', this.value)" style="flex:1;min-width:0;padding:6px 8px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:12px;color:#4a5568;outline:none;font-family:inherit" />
+          <button onclick="pickDocFile('coverFileField','coverLetterFile')" style="background:#3182ce;border:none;color:#fff;font-size:12px;font-weight:600;cursor:pointer;padding:6px 12px;border-radius:6px;flex-shrink:0">📁 Choose</button>
+        </div>
+      </div>
       <div>
         <h4 style="margin:0 0 8px;font-size:14px;color:#4a5568">📝 Notes</h4>
         <textarea id="notesField" style="width:100%;min-height:80px;padding:12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;resize:vertical;font-family:inherit;box-sizing:border-box;outline:none" placeholder="Add notes...">${esc(job.notes || "")}</textarea>
@@ -2008,6 +2103,19 @@ function saveField(field, value) {
   JOB[field] = value;
   var upd = {}; upd[field] = value;
   ghSave(upd).catch(function(e) { console.warn("Save failed:", e); });
+}
+function pickDocFile(inputId, field) {
+  var inp = document.createElement("input");
+  inp.type = "file";
+  inp.onchange = function(e) {
+    var f = e.target.files && e.target.files[0];
+    if (f) {
+      var el = document.getElementById(inputId);
+      if (el) el.value = f.name;
+      saveField(field, f.name);
+    }
+  };
+  inp.click();
 }
 function saveUrlField(url) {
   if (!url || !url.trim()) return;
