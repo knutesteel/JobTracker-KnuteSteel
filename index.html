@@ -2078,10 +2078,7 @@ function ghSave(updates) {
   });
 }
 function changeStatus(newStatus) {
-  if (newStatus === "Discarded") {
-    ghDeleteJob().then(function() { window.close(); }).catch(function(e) { alert("Delete failed: " + e.message); });
-    return;
-  }
+  // Discarded is now a soft-delete: save the status like any other change.
   JOB.status = newStatus;
   ghSave({ status: newStatus }).then(function() { window.close(); }).catch(function(e) { alert("Save failed: " + e.message); });
 }
@@ -2378,9 +2375,8 @@ function App() {
   );
 
   const updateJob = useCallback((id, updates) => {
-    if (updates.status === "Discarded") {
-      setJobs((prev) => prev.filter((j) => j.id !== id));
-    } else {
+    {
+      // Discarded is now a soft-delete: persist the status, keep the record.
       setJobs((prev) => prev.map((j) => {
         if (j.id !== id) return j;
         const merged = { ...j, ...updates };
