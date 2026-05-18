@@ -5519,5 +5519,73 @@
     "companyWebsite": "https://www.gitlab.com",
     "companyLinkedin": "https://www.linkedin.com/company/gitlab-com",
     "companyOwnership": "Public (NASDAQ: GTLB)"
+  },
+  {
+    "id": 1779138893743,
+    "company": "Chainguard",
+    "jobTitle": "Public Sector Account Executive (SLED)",
+    "salary": "$350,000 OTE (50/50 split)",
+    "fitScore": 70,
+    "status": "New",
+    "dateAdded": "2026-05-18",
+    "dateApplied": "",
+    "url": "https://job-boards.greenhouse.io/chainguard",
+    "source": "Greenhouse / Remotive",
+    "location": "Remote, United States",
+    "territory": "SLED (State, Local, Education)",
+    "notes": "Chainguard builds secure container images, specializing in low/zero CVE images for FedRAMP, NIST 800-53, PCI-DSS, SOC2, CIS compliance. $350K OTE is at top of market. Founding public sector team. Vertical is DevSecOps/container security — different from Knute's AI/data background. However, FedRAMP/NIST/compliance procurement experience and enterprise deal size ($1M+) aligns. 8+ years enterprise sales required. Not in tracker previously. Active open role as of May 2026.",
+    "rawText": "Chainguard is looking for highly motivated Public Sector Account Executives who have strong SLED knowledge and experience building relationships with key decision makers. As a founding part of the Public Sector team, you will play a key role in establishing a presence within State, Local Government, and Education accounts. Responsibilities include: defining and executing account plans, driving adoption of Chainguard Images to new customers, evangelizing value proposition and ROI, positioning as a trusted advisor. Requirements: 8+ years of enterprise sales experience, willingness to travel (25%), proven track record in SaaS subscription sales. Compensation: $350,000 OTE (50/50 split). Benefits: stock options, flexible remote-first culture, $400/month coworking stipend, bi-annual destination summits.",
+    "requirementsMet": [
+      "8+ years enterprise sales experience",
+      "SaaS subscription sales background",
+      "Public sector / SLED domain knowledge",
+      "FedRAMP/NIST/compliance familiarity",
+      "Large enterprise deal experience ($1M+)",
+      "Remote work eligibility"
+    ],
+    "requirementsNotMet": [
+      "DevSecOps / container security vertical (different from AI/data/process intelligence background)",
+      "Software supply chain security domain expertise"
+    ],
+    "companyOverview": "Chainguard is a cybersecurity company specializing in secure software supply chain solutions, building hardened, minimal container images with low-to-zero CVEs updated daily. Their products help organizations meet FedRAMP, NIST 800-53, PCI-DSS, SOC2, and CIS benchmark requirements — making them a natural fit for compliance-heavy government environments. Founded in 2021, Chainguard has grown rapidly with backing from prominent investors including Sequoia Capital and Spark Capital.",
+    "companyRevenue": "~$50-100M ARR (estimated, private company)",
+    "companyEmployees": "~300-500 (estimated)",
+    "companyWebsite": "https://www.chainguard.dev",
+    "companyLinkedin": "https://www.linkedin.com/company/chainguard/",
+    "companyOwnership": "Private (Sequoia, Spark Capital-backed)"
+  },
+  {
+    "id": 1779138893744,
+    "company": "Chainguard",
+    "jobTitle": "Public Sector Account Executive (Army)",
+    "salary": "$350,000 OTE (50/50 split)",
+    "fitScore": 68,
+    "status": "New",
+    "dateAdded": "2026-05-18",
+    "dateApplied": "",
+    "url": "https://job-boards.greenhouse.io/chainguard/jobs/4589840006",
+    "source": "Greenhouse",
+    "location": "Remote, United States",
+    "territory": "Federal DoD - Army",
+    "notes": "DoD/Army-specific AE role at Chainguard. Requires deep knowledge of Army programs, procurement, and relationships. Knute's background is primarily SLED/civilian government, not military DoD — slightly lower fit than SLED variant. However comp ($350K OTE) is exceptional and federal public sector skills overlap. Active role as of May 2026.",
+    "rawText": "Chainguard is hiring a Public Sector Account Executive focused on the U.S. Army segment. Responsibilities include defining and executing account plans for Army segment of accounts, driving adoption of Chainguard Images to new customers within Army accounts, evangelizing the value proposition and ROI to prospects, positioning as trusted advisor within government programs. Compensation: $350,000 OTE (50/50 split). Requirements: 8+ years enterprise sales experience, willingness to travel (25%), entrepreneurial mindset. Bonus: startup experience, domain expertise in cloud platforms, DevOps tooling, and SDLC. FedRAMP compliance, NIST 800-53 knowledge highly valued.",
+    "requirementsMet": [
+      "8+ years enterprise sales",
+      "Government procurement knowledge",
+      "FedRAMP/FISMA/NIST compliance expertise",
+      "Enterprise deal cycles ($1M-$5M)",
+      "Remote eligibility"
+    ],
+    "requirementsNotMet": [
+      "Army-specific procurement channels (ITES-3S, PEO-EIS etc.) — not Knute's primary domain",
+      "DevSecOps/container security vertical expertise",
+      "DoD security clearance (may be preferred)"
+    ],
+    "companyOverview": "Chainguard is a cybersecurity company specializing in secure software supply chain solutions, building hardened, minimal container images with low-to-zero CVEs updated daily. Their products help organizations meet FedRAMP, NIST 800-53, PCI-DSS, SOC2, and CIS benchmark requirements — making them a natural fit for compliance-heavy government environments. Founded in 2021, Chainguard has grown rapidly with backing from prominent investors including Sequoia Capital and Spark Capital.",
+    "companyRevenue": "~$50-100M ARR (estimated, private company)",
+    "companyEmployees": "~300-500 (estimated)",
+    "companyWebsite": "https://www.chainguard.dev",
+    "companyLinkedin": "https://www.linkedin.com/company/chainguard/",
+    "companyOwnership": "Private (Sequoia, Spark Capital-backed)"
   }
 ]
