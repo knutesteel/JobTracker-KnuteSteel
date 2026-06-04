@@ -580,24 +580,34 @@ function showSaveStatus(msg, color) {
 
 // Load jobs from jobs.json in the repo via GitHub API (no CDN cache)
 async function loadJobsFromGitHub() {
+  // Strategy: get SHA from Contents API metadata, get content from raw.githubusercontent.com.
+  // This handles files >1MB (Contents API GET returns empty content for those).
   try {
-    const apiResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+    // Fetch SHA from metadata (works for any file size)
+    const metaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
       headers: { "Authorization": `token ${GITHUB_TOKEN}` }
     });
-    if (!apiResp.ok) throw new Error("API HTTP " + apiResp.status);
-    const meta = await apiResp.json();
-    _githubSha = meta.sha;
-    const content = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
-    const jobs = JSON.parse(content);
-    return jobs;
+    if (metaResp.ok) {
+      try { const meta = await metaResp.json(); _githubSha = meta.sha; } catch(_) {}
+    }
+    // Fetch actual content via raw URL (no size limit)
+    const rawResp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}`);
+    if (!rawResp.ok) throw new Error("raw HTTP " + rawResp.status);
+    return await rawResp.json();
   } catch (e) {
-    console.warn("Failed to load from GitHub API, trying raw fallback:", e);
+    console.warn("Failed to load via raw URL, trying Contents API content fallback:", e);
     try {
-      const resp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}`);
-      if (!resp.ok) throw new Error("HTTP " + resp.status);
-      return await resp.json();
+      const apiResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+        headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+      });
+      if (!apiResp.ok) throw new Error("API HTTP " + apiResp.status);
+      const meta = await apiResp.json();
+      _githubSha = meta.sha;
+      if (!meta.content) throw new Error("Empty content (file likely >1MB; raw fallback also failed)");
+      const content = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
+      return JSON.parse(content);
     } catch (e2) {
-      console.warn("Raw fallback also failed, using INITIAL_JOBS:", e2);
+      console.warn("Contents API fallback failed too, using INITIAL_JOBS:", e2);
       return INITIAL_JOBS.map((job) => ({ ...job }));
     }
   }
@@ -609,84 +619,117 @@ function persistJobs(jobs) {
   _saveTimer = setTimeout(() => saveJobsToGitHub(jobs), 1500);
 }
 
+// Safely parse an error response body: try JSON, fall back to plain text,
+// fall back to status code. Never throws — returns a short human-readable string.
+async function _safeErrorBody(resp) {
+  try {
+    const ct = (resp.headers.get("content-type") || "").toLowerCase();
+    if (ct.includes("application/json")) {
+      const j = await resp.json();
+      return j.message || j.error || JSON.stringify(j).slice(0, 200);
+    }
+    const t = await resp.text();
+    return (t || "").slice(0, 200) || ("HTTP " + resp.status);
+  } catch (_) {
+    return "HTTP " + resp.status;
+  }
+}
+
+function _sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function _ghContentsGetSha() {
+  const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+    headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+  });
+  if (!r.ok) return null;
+  try { const m = await r.json(); return m.sha || null; } catch(_) { return null; }
+}
+
+async function _ghContentsPut(body) {
+  return fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+    method: "PUT",
+    headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
+
 async function saveJobsToGitHub(jobs) {
   if (!GITHUB_TOKEN) { console.warn("No GitHub token"); return; }
   showSaveStatus("💾 Saving...", "#3182ce");
-  try {
-    // Get current SHA if we don't have it
-    if (!_githubSha) {
-      const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-        headers: { "Authorization": `token ${GITHUB_TOKEN}` }
-      });
-      if (shaResp.ok) {
-        const meta = await shaResp.json();
-        _githubSha = meta.sha;
+  // Minified JSON to keep payload small and reliable across GitHub's edge
+  const payload = JSON.stringify(jobs);
+  const content = btoa(unescape(encodeURIComponent(payload)));
+  const maxAttempts = 4;
+  let lastErr = "";
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      if (!_githubSha) _githubSha = await _ghContentsGetSha();
+      const body = { message: "Update jobs data", content: content, sha: _githubSha };
+      let resp = await _ghContentsPut(body);
+      // SHA conflict — refetch and retry once within this attempt
+      if (resp.status === 409 || resp.status === 422) {
+        console.warn("SHA conflict; refetching and retrying...");
+        _githubSha = await _ghContentsGetSha();
+        if (_githubSha) {
+          body.sha = _githubSha;
+          resp = await _ghContentsPut(body);
+        }
       }
-    }
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(jobs, null, 2))));
-    const body = {
-      message: "Update jobs data",
-      content: content,
-      sha: _githubSha,
-    };
-    let resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-      method: "PUT",
-      headers: {
-        "Authorization": `token ${GITHUB_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    if (resp.status === 409 || (resp.status === 422 && !resp.ok)) {
-      // SHA conflict — refetch current SHA and retry once
-      console.warn("SHA conflict, refetching and retrying...");
-      const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-        headers: { "Authorization": `token ${GITHUB_TOKEN}` }
-      });
-      if (shaResp.ok) {
-        const meta = await shaResp.json();
-        _githubSha = meta.sha;
-        body.sha = _githubSha;
-        resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-          method: "PUT",
-          headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
+      if (resp.ok) {
+        try {
+          const result = await resp.json();
+          _githubSha = (result && result.content && result.content.sha) || _githubSha;
+        } catch (_) { /* shape changes are fine; we just lose the new SHA */ }
+        showSaveStatus("✅ Saved", "#38a169");
+        return;
       }
+      // Non-OK response — figure out whether it's worth retrying
+      lastErr = await _safeErrorBody(resp);
+      const transient = resp.status === 0 || resp.status === 429 || resp.status >= 500;
+      if (!transient || attempt === maxAttempts) {
+        throw new Error("HTTP " + resp.status + ": " + lastErr);
+      }
+      // Backoff: 600ms, 1.5s, 3.5s
+      await _sleep(400 + 600 * attempt + Math.floor(Math.random() * 300));
+    } catch (e) {
+      // Network/parse errors are also retried within the loop
+      lastErr = (e && e.message) || String(e);
+      const transient = /network|failed to fetch|load failed|ECONN|timeout/i.test(lastErr);
+      if (!transient || attempt === maxAttempts) {
+        console.error("GitHub save failed:", e);
+        showSaveStatus("❌ Save failed: " + lastErr.slice(0, 120), "#e53e3e");
+        return;
+      }
+      await _sleep(400 + 600 * attempt + Math.floor(Math.random() * 300));
     }
-    if (!resp.ok) {
-      const err = await resp.json();
-      throw new Error(err.message || "API error " + resp.status);
-    }
-    const result = await resp.json();
-    _githubSha = result.content.sha;
-    showSaveStatus("✅ Saved", "#38a169");
-  } catch (e) {
-    console.error("GitHub save failed:", e);
-    showSaveStatus("❌ Save failed: " + e.message, "#e53e3e");
   }
+  showSaveStatus("❌ Save failed: " + (lastErr || "unknown"), "#e53e3e");
 }
 
 // Save a single job update via GitHub API (used by detail page)
 async function saveJobUpdate(jobId, updates) {
   try {
-    // Fetch current data
-    const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+    // Use the raw fallback for content (works even when files exceed 1MB Contents API limit)
+    const rawResp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}`);
+    if (!rawResp.ok) throw new Error("Failed to fetch current data");
+    const jobs = await rawResp.json();
+    // Get current SHA from Contents API metadata (works even for >1MB files; only content is gated)
+    const metaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
       headers: { "Authorization": `token ${GITHUB_TOKEN}` }
     });
-    if (!resp.ok) throw new Error("Failed to fetch current data");
-    const meta = await resp.json();
-    const jobs = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\n/g, "")))));
+    if (!metaResp.ok) throw new Error("Failed to fetch SHA");
+    let sha;
+    try { const meta = await metaResp.json(); sha = meta.sha; } catch(_) { throw new Error("Bad SHA response"); }
     // Apply updates
     const updated = jobs.map(j => j.id === jobId ? { ...j, ...updates } : j);
-    // Save back
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(updated, null, 2))));
+    // Save back (minified for smaller payload)
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(updated))));
     const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
       method: "PUT",
       headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "Update job " + jobId, content, sha: meta.sha }),
+      body: JSON.stringify({ message: "Update job " + jobId, content, sha }),
     });
-    if (!putResp.ok) throw new Error("Save failed");
+    if (!putResp.ok) throw new Error("Save failed (HTTP " + putResp.status + ")");
     return true;
   } catch(e) { console.error("saveJobUpdate failed:", e); return false; }
 }
@@ -2083,18 +2126,22 @@ function changeStatus(newStatus) {
   ghSave({ status: newStatus }).then(function() { window.close(); }).catch(function(e) { alert("Save failed: " + e.message); });
 }
 function ghDeleteJob() {
-  return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
-    headers: { "Authorization": "token " + GH_TOKEN }
-  }).then(function(r) { return r.json(); }).then(function(meta) {
-    var jobs = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\\n/g, "")))));
-    var filtered = jobs.filter(function(j) { return j.id !== JOB.id; });
-    var content = btoa(unescape(encodeURIComponent(JSON.stringify(filtered, null, 2))));
-    return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
-      method: "PUT",
-      headers: { "Authorization": "token " + GH_TOKEN, "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "Delete job " + JOB.id, content: content, sha: meta.sha })
+  // Use raw URL for content (handles >1MB files), Contents API for SHA + PUT
+  return fetch("https://raw.githubusercontent.com/" + GH_REPO + "/main/" + GH_FILE + "?cb=" + Date.now())
+    .then(function(r) { if (!r.ok) throw new Error("fetch failed"); return r.json(); })
+    .then(function(jobs) {
+      return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
+        headers: { "Authorization": "token " + GH_TOKEN }
+      }).then(function(m) { return m.json(); }).then(function(meta) {
+        var filtered = jobs.filter(function(j) { return j.id !== JOB.id; });
+        var content = btoa(unescape(encodeURIComponent(JSON.stringify(filtered))));
+        return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
+          method: "PUT",
+          headers: { "Authorization": "token " + GH_TOKEN, "Content-Type": "application/json" },
+          body: JSON.stringify({ message: "Delete job " + JOB.id, content: content, sha: meta.sha })
+        });
+      });
     });
-  });
 }
 function saveField(field, value) {
   JOB[field] = value;
