@@ -1294,6 +1294,46 @@ function DocField({ icon, labelText, job, field, onUpdate }) {
   );
 }
 
+// ─── Interview notes — second-row textarea shown under Interviewing-status jobs ───
+function InterviewNotesField({ job, onUpdate }) {
+  const [value, setValue] = useState(job.interviewNotes || "");
+  const [savedLabel, setSavedLabel] = useState("");
+
+  const commit = () => {
+    if (value !== (job.interviewNotes || "")) {
+      onUpdate(job.id, { interviewNotes: value });
+      setSavedLabel("✅ Saved");
+      setTimeout(() => setSavedLabel(""), 1500);
+    }
+  };
+
+  return (
+    <div style={{ padding: "8px 14px 12px 28px", background: "#fffbeb", borderTop: `1px dashed ${COLORS.gray200}` }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+        <span style={{ fontSize: 12, fontWeight: 700, color: STATUS_CONFIG["Interviewing"]?.color || COLORS.gray700, letterSpacing: 0.3 }}>
+          🎯 Interview Notes
+        </span>
+        <span style={{ fontSize: 11, color: COLORS.gray500 }}>
+          {savedLabel || "Click outside the box to save"}
+        </span>
+      </div>
+      <textarea
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={commit}
+        placeholder="Prep notes, interviewer names, takeaways, follow-ups, next steps..."
+        style={{
+          width: "100%", minHeight: 70, padding: "8px 10px",
+          background: COLORS.white,
+          border: `1px solid ${COLORS.gray300}`,
+          borderRadius: 6, fontSize: 13, lineHeight: 1.5, color: COLORS.gray700,
+          fontFamily: "inherit", resize: "vertical", outline: "none", boxSizing: "border-box",
+        }}
+      />
+    </div>
+  );
+}
+
 function JobRow({ job, onSelect, onUpdate }) {
   const [editingApplied, setEditingApplied] = useState(false);
   const [appliedVal, setAppliedVal] = useState(job.dateApplied || "");
@@ -1323,7 +1363,8 @@ function JobRow({ job, onSelect, onUpdate }) {
   };
 
   return (
-    <tr
+    <React.Fragment>
+      <tr
       style={{ borderBottom: `1px solid ${COLORS.gray100}`, transition: "background 0.15s" }}
       onMouseEnter={(e) => (e.currentTarget.style.background = COLORS.gray50)}
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
@@ -1452,6 +1493,14 @@ function JobRow({ job, onSelect, onUpdate }) {
         <DocField icon="✉️" labelText="Cover letter" job={job} field="coverLetterFile" onUpdate={onUpdate} />
       </td>
     </tr>
+      {job.status === "Interviewing" && (
+        <tr style={{ background: "#fffbeb", borderBottom: `1px solid ${COLORS.gray100}` }}>
+          <td colSpan={9} style={{ padding: 0 }}>
+            <InterviewNotesField job={job} onUpdate={onUpdate} />
+          </td>
+        </tr>
+      )}
+    </React.Fragment>
   );
 }
 
