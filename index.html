@@ -1507,6 +1507,7 @@ function JobRow({ job, onSelect, onUpdate }) {
 // ─── Job Table ───
 function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort, groupByStatus = true }) {
   const [collapsedGroups, setCollapsedGroups] = useState(() => {
+    try { const saved = localStorage.getItem("jt_collapsed"); if (saved) return JSON.parse(saved); } catch {}
     const initial = {};
     STATUS_ORDER.forEach(s => { initial[s] = s !== "New"; });
     return initial;
@@ -1518,7 +1519,11 @@ function JobTable({ jobs, onSelectJob, onUpdateJob, sortField, sortDir, onSort, 
   }, []);
 
   const toggleGroup = (status) => {
-    setCollapsedGroups(prev => ({ ...prev, [status]: !prev[status] }));
+    setCollapsedGroups(prev => {
+      const next = { ...prev, [status]: !prev[status] };
+      try { localStorage.setItem("jt_collapsed", JSON.stringify(next)); } catch {}
+      return next;
+    });
   };
 
   const sortedFlat = useMemo(() => _.orderBy(jobs, [sortField], [sortDir]), [jobs, sortField, sortDir]);
@@ -2139,10 +2144,7 @@ function openJobDetailWindow(job) {
       </div>
       <div>
         <h4 style="margin:0 0 8px;font-size:14px;color:#4a5568">📝 Notes</h4>
-        <textarea id="notesField" style="width:100%;min-height:80px;padding:12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;resize:vertical;font-family:inherit;box-sizing:border-box;outline:none" placeholder="Add notes...">${esc(job.notes || "")}</textarea>
-        <div style="margin-top:6px">
-          <button onclick="saveField('notes', document.getElementById('notesField').value); this.textContent='✅ Saved'; var btn=this; setTimeout(function(){btn.textContent='💾 Save Notes'},1500)" style="background:#3182ce;border:none;color:#fff;font-size:12px;font-weight:600;cursor:pointer;padding:6px 14px;border-radius:6px">💾 Save Notes</button>
-        </div>
+        <textarea id="notesField" onblur="saveField('notes', this.value)" style="width:100%;min-height:80px;padding:12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;resize:vertical;font-family:inherit;box-sizing:border-box;outline:none" placeholder="Add notes...">${esc(job.notes || "")}</textarea>
       </div>
     </div>
   </div>
@@ -2470,9 +2472,9 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [resumePreview, setResumePreview] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState("All");
-  const [sortField, setSortField] = useState("company");
-  const [sortDir, setSortDir] = useState("asc");
+  const [filterStatus, setFilterStatus] = useState(() => { try { return localStorage.getItem("jt_filter") || "All"; } catch { return "All"; } });
+  const [sortField, setSortField] = useState(() => { try { return localStorage.getItem("jt_sort_field") || "company"; } catch { return "company"; } });
+  const [sortDir, setSortDir] = useState(() => { try { return localStorage.getItem("jt_sort_dir") || "asc"; } catch { return "asc"; } });
   const [groupByStatus, setGroupByStatus] = useState(true);
 
   // Load jobs from GitHub on mount
@@ -2490,11 +2492,12 @@ function App() {
 
   const handleSort = useCallback(
     (field) => {
-      if (sortField === field) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-      else { setSortField(field); setSortDir("asc"); }
+      if (sortField === field) setSortDir((d) => { const nd = d === "asc" ? "desc" : "asc"; try { localStorage.setItem("jt_sort_dir", nd); } catch {} return nd; });
+      else { setSortField(field); setSortDir("asc"); try { localStorage.setItem("jt_sort_field", field); localStorage.setItem("jt_sort_dir", "asc"); } catch {} }
     },
     [sortField]
   );
+  React.useEffect(() => { try { localStorage.setItem("jt_filter", filterStatus); } catch {} }, [filterStatus]);
 
   const updateJob = useCallback((id, updates) => {
     {
