@@ -1341,6 +1341,8 @@ function JobRow({ job, onSelect, onUpdate }) {
   const [companyVal, setCompanyVal] = useState(job.company || "");
   const [editingFit, setEditingFit] = useState(false);
   const [fitVal, setFitVal] = useState(String(job.fitScore || 0));
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [titleVal, setTitleVal] = useState(job.jobTitle || "");
 
   const commitFit = () => {
     const n = parseInt(fitVal, 10);
@@ -1360,6 +1362,16 @@ function JobRow({ job, onSelect, onUpdate }) {
       setCompanyVal(job.company || "");
     }
     setEditingCompany(false);
+  };
+
+  const commitTitle = () => {
+    const trimmed = (titleVal || "").trim();
+    if (trimmed && trimmed !== job.jobTitle) {
+      onUpdate(job.id, { jobTitle: trimmed });
+    } else {
+      setTitleVal(job.jobTitle || "");
+    }
+    setEditingTitle(false);
   };
 
   return (
@@ -1400,18 +1412,38 @@ function JobRow({ job, onSelect, onUpdate }) {
       </td>
       <td style={{ padding: "10px 12px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          {job.url ? (
+          {editingTitle ? (
+            <input
+              type="text"
+              value={titleVal}
+              onChange={(e) => setTitleVal(e.target.value)}
+              onBlur={commitTitle}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") commitTitle();
+                else if (e.key === "Escape") { setTitleVal(job.jobTitle || ""); setEditingTitle(false); }
+              }}
+              autoFocus
+              style={{ flex: 1, padding: "4px 6px", border: `1px solid ${COLORS.gray300}`, borderRadius: 4, fontSize: 13, fontWeight: 500, boxSizing: "border-box" }}
+            />
+          ) : job.url ? (
             <a
               href={job.url}
               target="_blank"
               rel="noopener noreferrer"
+              onDoubleClick={(e) => { e.preventDefault(); setTitleVal(job.jobTitle || ""); setEditingTitle(true); }}
               style={{ color: COLORS.info, fontWeight: 500, textDecoration: "underline", cursor: "pointer", flex: 1 }}
-              title="Open job posting in new tab"
+              title="Open posting; double-click to edit title"
             >
               {job.jobTitle}
             </a>
           ) : (
-            <span style={{ color: COLORS.gray700, fontWeight: 500, flex: 1 }}>{job.jobTitle}</span>
+            <span
+              onClick={() => { setTitleVal(job.jobTitle || ""); setEditingTitle(true); }}
+              title="Click to edit job title"
+              style={{ color: COLORS.gray700, fontWeight: 500, flex: 1, cursor: "pointer" }}
+            >
+              {job.jobTitle}
+            </span>
           )}
           <a
             href="#"
@@ -2144,7 +2176,8 @@ function openJobDetailWindow(job) {
       </div>
       <div>
         <h4 style="margin:0 0 8px;font-size:14px;color:#4a5568">📝 Notes</h4>
-        <textarea id="notesField" onblur="saveField('notes', this.value)" style="width:100%;min-height:80px;padding:12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;resize:vertical;font-family:inherit;box-sizing:border-box;outline:none" placeholder="Add notes...">${esc(job.notes || "")}</textarea>
+        <textarea id="notesField" onblur="var v=this.value;saveField('notes',v);var s=document.getElementById('notesSavedInd');if(s){s.style.display='inline';setTimeout(function(){s.style.display='none';},2000);}" style="width:100%;min-height:80px;padding:12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;line-height:1.5;color:#4a5568;resize:vertical;font-family:inherit;box-sizing:border-box;outline:none" placeholder="Add notes...">${esc(job.notes || "")}</textarea>
+        <div style="margin-top:4px;min-height:18px"><span id="notesSavedInd" style="font-size:11px;color:#38a169;display:none">✅ Saved</span></div>
       </div>
     </div>
   </div>
