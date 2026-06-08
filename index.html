@@ -2107,18 +2107,44 @@ var GH_TOKEN = "${GITHUB_TOKEN}";
 var GH_FILE = "${JOBS_FILE_PATH}";
 document.getElementById("statusSelect").value = JOB.status;
 function ghSave(updates) {
-  return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
-    headers: { "Authorization": "token " + GH_TOKEN }
-  }).then(function(r) { return r.json(); }).then(function(meta) {
-    var jobs = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\\n/g, "")))));
+  // Robust version: pulls content from raw URL (no 1MB limit), gets SHA from Contents API,
+  // retries once on SHA conflict, minifies payload, throws meaningful errors.
+  function _putOnce(jobs, sha, attempt) {
     var updated = jobs.map(function(j) { return j.id === JOB.id ? Object.assign({}, j, updates) : j; });
-    var content = btoa(unescape(encodeURIComponent(JSON.stringify(updated, null, 2))));
+    var content = btoa(unescape(encodeURIComponent(JSON.stringify(updated))));
     return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
       method: "PUT",
       headers: { "Authorization": "token " + GH_TOKEN, "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "Update job " + JOB.id, content: content, sha: meta.sha })
+      body: JSON.stringify({ message: "Update job " + JOB.id, content: content, sha: sha })
+    }).then(function(putResp) {
+      if (putResp.ok) return putResp;
+      if ((putResp.status === 409 || putResp.status === 422) && (attempt || 0) === 0) {
+        return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
+          headers: { "Authorization": "token " + GH_TOKEN }
+        }).then(function(m) { return m.json(); }).then(function(meta) {
+          return _putOnce(jobs, meta.sha, 1);
+        });
+      }
+      return putResp.text().then(function(text) {
+        var msg = "HTTP " + putResp.status;
+        try { var j = JSON.parse(text); if (j && j.message) msg += " " + j.message; } catch(_) { if (text) msg += " " + text.slice(0,160); }
+        throw new Error(msg);
+      });
     });
-  });
+  }
+  return fetch("https://raw.githubusercontent.com/" + GH_REPO + "/main/" + GH_FILE + "?cb=" + Date.now())
+    .then(function(r) { if (!r.ok) throw new Error("Failed to load current data (HTTP " + r.status + ")"); return r.json(); })
+    .then(function(jobs) {
+      return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
+        headers: { "Authorization": "token " + GH_TOKEN }
+      }).then(function(m) {
+        if (!m.ok) throw new Error("Failed to get SHA (HTTP " + m.status + ")");
+        return m.json();
+      }).then(function(meta) {
+        if (!meta || !meta.sha) throw new Error("No SHA in response");
+        return _putOnce(jobs, meta.sha, 0);
+      });
+    });
 }
 function changeStatus(newStatus) {
   // Discarded is now a soft-delete: save the status like any other change.
