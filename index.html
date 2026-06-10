@@ -580,40 +580,137 @@ function showSaveStatus(msg, color) {
 
 // Load jobs from jobs.json in the repo via GitHub API (no CDN cache)
 async function loadJobsFromGitHub() {
-  // Strategy: get SHA from Contents API metadata, get content from raw.githubusercontent.com.
-  // This handles files >1MB (Contents API GET returns empty content for those).
+  // Contents API first (strongly consistent, no CDN cache). Raw URL fallback
+  // only if the file is too large to inline through the Contents API.
   try {
-    // Fetch SHA from metadata (works for any file size)
-    const metaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-      headers: { "Authorization": `Bearer ${GITHUB_TOKEN}` }
-    });
-    if (metaResp.ok) {
-      try { const meta = await metaResp.json(); _githubSha = meta.sha; } catch(_) {}
-    }
-    // Fetch actual content via raw URL (no size limit)
-    const rawResp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}`);
-    if (!rawResp.ok) throw new Error("raw HTTP " + rawResp.status);
-    return await rawResp.json();
+    const { jobs, sha } = await _ghReadJobsAndSha();
+    _githubSha = sha;
+    return jobs;
   } catch (e) {
-    console.warn("Failed to load via raw URL, trying Contents API content fallback:", e);
+    console.warn("Contents API load failed, falling back to raw URL:", e);
     try {
-      const apiResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-        headers: { "Authorization": `Bearer ${GITHUB_TOKEN}` }
-      });
-      if (!apiResp.ok) throw new Error("API HTTP " + apiResp.status);
-      const meta = await apiResp.json();
-      _githubSha = meta.sha;
-      if (!meta.content) throw new Error("Empty content (file likely >1MB; raw fallback also failed)");
-      const content = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
-      return JSON.parse(content);
+      const rawResp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}_${Math.random()}`, { cache: "no-store" });
+      if (!rawResp.ok) throw new Error("raw HTTP " + rawResp.status);
+      return await rawResp.json();
     } catch (e2) {
-      console.warn("Contents API fallback failed too, using INITIAL_JOBS:", e2);
+      console.warn("Raw fallback failed too, using INITIAL_JOBS:", e2);
       return INITIAL_JOBS.map((job) => ({ ...job }));
     }
   }
 }
 
 // Save jobs to jobs.json in the repo via GitHub API (debounced)
+// ─── Strongly-consistent reader: fetch latest jobs + SHA from Contents API ───
+// raw.githubusercontent.com caches with a multi-minute TTL and IGNORES query
+// strings for cache keys, so reading from raw can return stale content. The
+// Contents API doesn't have that problem and returns both SHA and content in a
+// single request.
+async function _ghReadJobsAndSha() {
+  const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}?cb=${Date.now()}_${Math.random()}`, {
+    headers: { "Authorization": `Bearer ${GITHUB_TOKEN}`, "Accept": "application/vnd.github+json" },
+    cache: "no-store",
+  });
+  if (!resp.ok) throw new Error("contents API HTTP " + resp.status);
+  const meta = await resp.json();
+  if (!meta.sha) throw new Error("missing SHA in response");
+  if (!meta.content) {
+    // File too large for Contents API to inline content; fall back to raw URL.
+    // We accept the cache risk here only because we already have a fresh SHA.
+    const rawResp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}_${Math.random()}`, { cache: "no-store" });
+    if (!rawResp.ok) throw new Error("raw fallback HTTP " + rawResp.status);
+    return { jobs: await rawResp.json(), sha: meta.sha };
+  }
+  const decoded = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
+  return { jobs: JSON.parse(decoded), sha: meta.sha };
+}
+
+// ─── Per-record GitHub writes (race-safe) ───
+// Fetches FRESH jobs from GitHub, applies the update to one record, writes
+// back. SHA-conflict retry handles concurrent saves from multiple tabs/devices.
+async function _ghSaveSingleJob(jobId, updates) {
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const { jobs, sha } = await _ghReadJobsAndSha();
+      let found = false;
+      const updated = jobs.map(j => { if (j.id !== jobId) return j; found = true; return { ...j, ...updates }; });
+      if (!found) { console.warn("Job " + jobId + " not in remote; aborting save"); return false; }
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(updated))));
+      const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+        method: "PUT",
+        headers: { "Authorization": `Bearer ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "Update job " + jobId, content, sha }),
+        cache: "no-store",
+      });
+      if (putResp.ok) {
+        try { const r = await putResp.json(); _githubSha = (r && r.content && r.content.sha) || _githubSha; } catch(_){}
+        return true;
+      }
+      if ((putResp.status === 409 || putResp.status === 422) && attempt < maxAttempts) {
+        await new Promise(r => setTimeout(r, 250 + 350 * attempt));
+        continue;
+      }
+      const text = await putResp.text();
+      let msg = "HTTP " + putResp.status;
+      try { const j = JSON.parse(text); if (j && j.message) msg += ": " + j.message; } catch(_) { if (text) msg += ": " + text.slice(0,160); }
+      throw new Error(msg);
+    } catch (e) {
+      if (attempt === maxAttempts) { console.error("_ghSaveSingleJob failed:", e); return e.message || false; }
+      await new Promise(r => setTimeout(r, 250 + 350 * attempt));
+    }
+  }
+  return false;
+}
+
+async function _ghAddJob(newJob) {
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const { jobs, sha } = await _ghReadJobsAndSha();
+      if (jobs.some(j => j.id === newJob.id)) return true;
+      const updated = [newJob, ...jobs];
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(updated))));
+      const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
+        method: "PUT",
+        headers: { "Authorization": `Bearer ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "Add job " + (newJob.company || newJob.id), content, sha }),
+        cache: "no-store",
+      });
+      if (putResp.ok) return true;
+      if ((putResp.status === 409 || putResp.status === 422) && attempt < maxAttempts) {
+        await new Promise(r => setTimeout(r, 250 + 350 * attempt));
+        continue;
+      }
+      const text = await putResp.text();
+      let msg = "HTTP " + putResp.status;
+      try { const j = JSON.parse(text); if (j && j.message) msg += ": " + j.message; } catch(_) { if (text) msg += ": " + text.slice(0,160); }
+      throw new Error(msg);
+    } catch (e) {
+      if (attempt === maxAttempts) { console.error("_ghAddJob failed:", e); return false; }
+      await new Promise(r => setTimeout(r, 250 + 350 * attempt));
+    }
+  }
+  return false;
+}
+
+// Debounced accumulator: rapid edits to the same record coalesce into one save.
+const _pendingJobUpdates = new Map(); // jobId -> accumulated updates
+const _jobSaveTimers = new Map();     // jobId -> debounce timer
+function scheduleSingleSave(jobId, updates) {
+  const existing = _pendingJobUpdates.get(jobId) || {};
+  _pendingJobUpdates.set(jobId, { ...existing, ...updates });
+  if (_jobSaveTimers.has(jobId)) clearTimeout(_jobSaveTimers.get(jobId));
+  _jobSaveTimers.set(jobId, setTimeout(async () => {
+    const merged = _pendingJobUpdates.get(jobId);
+    _pendingJobUpdates.delete(jobId);
+    _jobSaveTimers.delete(jobId);
+    showSaveStatus("💾 Saving...", "#3182ce");
+    const ok = await _ghSaveSingleJob(jobId, merged);
+    if (ok === true) showSaveStatus("✅ Saved", "#38a169");
+    else showSaveStatus("❌ Save failed — " + (typeof ok === "string" ? ok : "try again"), "#e53e3e");
+  }, 600));
+}
+
 function persistJobs(jobs) {
   if (_saveTimer) clearTimeout(_saveTimer);
   _saveTimer = setTimeout(() => saveJobsToGitHub(jobs), 1500);
@@ -2477,12 +2574,16 @@ function App() {
     loadJobsFromGitHub().then((loaded) => { setJobs(loaded); setLoading(false); });
   }, []);
 
-  // Auto-persist whenever jobs change (skip initial load, only save user changes)
+  // Array-wide autosave is DISABLED. It caused a race where the dashboard's
+  // whole-array writes silently clobbered per-record writes (e.g. detail-page
+  // saves, status changes that read fresh GitHub state). All persistence now
+  // goes through scheduleSingleSave / _ghAddJob, which read fresh, write one
+  // record, and retry on SHA conflict.
   const _initialLoadDone = React.useRef(false);
   React.useEffect(() => {
-    if (loading) return; // still loading
-    if (!_initialLoadDone.current) { _initialLoadDone.current = true; return; } // skip first render after load
-    if (jobs.length > 0) persistJobs(jobs);
+    if (loading) return;
+    if (!_initialLoadDone.current) { _initialLoadDone.current = true; return; }
+    // Intentionally not calling persistJobs(jobs).
   }, [jobs, loading]);
 
   const handleSort = useCallback(
