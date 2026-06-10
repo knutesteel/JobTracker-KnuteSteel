@@ -2250,22 +2250,37 @@ var GH_TOKEN = "${GITHUB_TOKEN}";
 var GH_FILE = "${JOBS_FILE_PATH}";
 document.getElementById("statusSelect").value = JOB.status;
 function ghSave(updates) {
-  // Robust version: pulls content from raw URL (no 1MB limit), gets SHA from Contents API,
-  // retries once on SHA conflict, minifies payload, throws meaningful errors.
+  // Reads fresh state from Contents API (raw.githubusercontent.com caches with
+  // a multi-minute TTL and would silently return STALE content — when the
+  // record we are trying to update is newer than the cached snapshot, the map
+  // below would not find it, the unchanged stale array would be written back,
+  // and the just-added record would be silently DELETED). We also guard
+  // against id-not-found and refuse to write if our id isn't in the response.
   function _putOnce(jobs, sha, attempt) {
-    var updated = jobs.map(function(j) { return j.id === JOB.id ? Object.assign({}, j, updates) : j; });
+    var found = false;
+    var updated = jobs.map(function(j) {
+      if (j.id !== JOB.id) return j;
+      found = true;
+      return Object.assign({}, j, updates);
+    });
+    if (!found) {
+      return Promise.reject(new Error(
+        "Record " + JOB.id + " not found in remote (stale read?). Aborting save to avoid deleting your data."
+      ));
+    }
     var content = btoa(unescape(encodeURIComponent(JSON.stringify(updated))));
     return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
       method: "PUT",
       headers: { "Authorization": "Bearer " + GH_TOKEN, "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "Update job " + JOB.id, content: content, sha: sha })
+      body: JSON.stringify({ message: "Update job " + JOB.id, content: content, sha: sha }),
+      cache: "no-store"
     }).then(function(putResp) {
       if (putResp.ok) return putResp;
-      if ((putResp.status === 409 || putResp.status === 422) && (attempt || 0) === 0) {
-        return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
-          headers: { "Authorization": "Bearer " + GH_TOKEN }
-        }).then(function(m) { return m.json(); }).then(function(meta) {
-          return _putOnce(jobs, meta.sha, 1);
+      if ((putResp.status === 409 || putResp.status === 422) && (attempt || 0) < 2) {
+        // SHA conflict — re-read fresh state and retry (use Contents API again
+        // to stay strongly consistent under concurrent writers)
+        return _ghContentsRead().then(function(state) {
+          return _putOnce(state.jobs, state.sha, (attempt || 0) + 1);
         });
       }
       return putResp.text().then(function(text) {
@@ -2275,19 +2290,47 @@ function ghSave(updates) {
       });
     });
   }
-  return fetch("https://raw.githubusercontent.com/" + GH_REPO + "/main/" + GH_FILE + "?cb=" + Date.now())
-    .then(function(r) { if (!r.ok) throw new Error("Failed to load current data (HTTP " + r.status + ")"); return r.json(); })
-    .then(function(jobs) {
-      return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
-        headers: { "Authorization": "Bearer " + GH_TOKEN }
-      }).then(function(m) {
-        if (!m.ok) throw new Error("Failed to get SHA (HTTP " + m.status + ")");
-        return m.json();
-      }).then(function(meta) {
-        if (!meta || !meta.sha) throw new Error("No SHA in response");
-        return _putOnce(jobs, meta.sha, 0);
-      });
+
+  function _ghContentsRead() {
+    // Single call returns SHA + content (base64) atomically.
+    return fetch(
+      "https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE +
+      "?cb=" + Date.now() + "_" + Math.random(),
+      {
+        headers: {
+          "Authorization": "Bearer " + GH_TOKEN,
+          "Accept": "application/vnd.github+json"
+        },
+        cache: "no-store"
+      }
+    ).then(function(r) {
+      if (!r.ok) throw new Error("Contents API HTTP " + r.status);
+      return r.json();
+    }).then(function(meta) {
+      if (!meta || !meta.sha) throw new Error("missing SHA");
+      if (!meta.content) {
+        // File too large to inline — fall back to raw, but the SHA we got is
+        // still authoritative. The raw read may be slightly stale but the
+        // id-not-found guard above will catch genuine staleness.
+        return fetch(
+          "https://raw.githubusercontent.com/" + GH_REPO + "/main/" + GH_FILE +
+          "?cb=" + Date.now() + "_" + Math.random(),
+          { cache: "no-store" }
+        ).then(function(r) {
+          if (!r.ok) throw new Error("raw fallback HTTP " + r.status);
+          return r.json();
+        }).then(function(jobs) {
+          return { jobs: jobs, sha: meta.sha };
+        });
+      }
+      var decoded = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
+      return { jobs: JSON.parse(decoded), sha: meta.sha };
     });
+  }
+
+  return _ghContentsRead().then(function(state) {
+    return _putOnce(state.jobs, state.sha, 0);
+  });
 }
 function changeStatus(newStatus) {
   // Discarded is now a soft-delete: save the status like any other change.
