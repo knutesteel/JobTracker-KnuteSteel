@@ -2494,29 +2494,41 @@ function App() {
   );
 
   const updateJob = useCallback((id, updates) => {
-    {
-      // Discarded is now a soft-delete: persist the status, keep the record.
-      setJobs((prev) => prev.map((j) => {
-        if (j.id !== id) return j;
-        const merged = { ...j, ...updates };
-        if (
-          updates.status === "Applied" &&
-          j.status !== "Applied" &&
-          updates.dateApplied === undefined &&
-          !j.dateApplied
-        ) {
-          const today = new Date();
-          const yyyy = today.getFullYear();
-          const mm = String(today.getMonth() + 1).padStart(2, "0");
-          const dd = String(today.getDate()).padStart(2, "0");
-          merged.dateApplied = yyyy + "-" + mm + "-" + dd;
-        }
-        return merged;
-      }));
-    }
+    // Apply the same auto-populate-dateApplied logic to both local state and the
+    // per-record save payload so what gets persisted to GitHub matches the UI.
+    let effective = updates;
+    setJobs((prev) => prev.map((j) => {
+      if (j.id !== id) return j;
+      const merged = { ...j, ...updates };
+      if (
+        updates.status === "Applied" &&
+        j.status !== "Applied" &&
+        updates.dateApplied === undefined &&
+        !j.dateApplied
+      ) {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, "0");
+        const dd = String(today.getDate()).padStart(2, "0");
+        merged.dateApplied = yyyy + "-" + mm + "-" + dd;
+        effective = { ...updates, dateApplied: merged.dateApplied };
+      }
+      return merged;
+    }));
+    // Per-record save — fetches fresh, updates this one record, writes back.
+    // Debounced 600ms so rapid edits to the same record coalesce.
+    scheduleSingleSave(id, effective);
   }, []);
 
-  const addJob = useCallback((job) => setJobs((prev) => [job, ...prev]), []);
+  const addJob = useCallback((job) => {
+    setJobs((prev) => [job, ...prev]);
+    // Persist new entry via per-record GitHub write (race-safe, fetches fresh,
+    // prepends, writes back). Shows save status to user.
+    showSaveStatus("💾 Saving...", "#3182ce");
+    _ghAddJob(job).then((ok) => {
+      showSaveStatus(ok ? "✅ Saved" : "❌ Save failed — try again", ok ? "#38a169" : "#e53e3e");
+    });
+  }, []);
 
   const filteredJobs = useMemo(() => {
     let result = jobs;
