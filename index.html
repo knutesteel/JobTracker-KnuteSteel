@@ -2358,7 +2358,33 @@ function ghDeleteJob() {
 function saveField(field, value) {
   JOB[field] = value;
   var upd = {}; upd[field] = value;
-  ghSave(upd).catch(function(e) { console.warn("Save failed:", e); });
+  _showDetailToast("\u{1F4BE} Saving " + field + "...", "#3182ce");
+  ghSave(upd).then(function() {
+    _showDetailToast("\u2705 Saved", "#38a169");
+  }).catch(function(e) {
+    console.warn("Save failed:", e);
+    _showDetailToast("\u274C Save failed: " + (e.message || e), "#e53e3e", 6000);
+    alert("Save failed for '" + field + "': " + (e.message || e) + "\n\nYour change was NOT persisted to GitHub. Refresh the dashboard to see the actual saved state.");
+  });
+}
+
+// Tiny toast in the bottom-right of the detail page, mirroring the dashboard's
+// showSaveStatus so per-field saves give clear feedback.
+var _detailToastEl = null;
+function _showDetailToast(msg, color, ttl) {
+  if (!_detailToastEl) {
+    _detailToastEl = document.createElement("div");
+    _detailToastEl.style.cssText = "position:fixed;bottom:16px;right:16px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;z-index:9999;transition:opacity 0.3s;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#fff";
+    document.body.appendChild(_detailToastEl);
+  }
+  _detailToastEl.textContent = msg;
+  _detailToastEl.style.background = color || "#1e3a5f";
+  _detailToastEl.style.opacity = "1";
+  if (msg.indexOf("\u2705") === 0 || msg.indexOf("✅") === 0) {
+    setTimeout(function(){ _detailToastEl.style.opacity = "0"; }, ttl || 2000);
+  } else if (msg.indexOf("\u274C") === 0 || msg.indexOf("❌") === 0) {
+    setTimeout(function(){ _detailToastEl.style.opacity = "0"; }, ttl || 6000);
+  }
 }
 function pickDocFile(inputId, field) {
   var inp = document.createElement("input");
