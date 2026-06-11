@@ -2364,7 +2364,7 @@ function saveField(field, value) {
   }).catch(function(e) {
     console.warn("Save failed:", e);
     _showDetailToast("\u274C Save failed: " + (e.message || e), "#e53e3e", 6000);
-    alert("Save failed for '" + field + "': " + (e.message || e) + "\n\nYour change was NOT persisted to GitHub. Refresh the dashboard to see the actual saved state.");
+    alert("Save failed for '" + field + "': " + (e.message || e) + "\\n\\nYour change was NOT persisted to GitHub. Refresh the dashboard to see the actual saved state.");
   });
 }
 
