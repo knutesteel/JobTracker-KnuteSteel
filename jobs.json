@@ -4625,5 +4625,40 @@
     "companyWebsite": "https://www.gordian.com",
     "companyLinkedin": "https://www.linkedin.com/company/gordian",
     "companyOwnership": "Public (subsidiary of Fortive Corporation, NYSE: FTV)"
+  },
+  {
+    "id": 1781255481839,
+    "company": "Omnissa",
+    "jobTitle": "Strategic Account Executive - SLED",
+    "salary": "OTE $280,000-$400,000 (commission-eligible)",
+    "fitScore": 82,
+    "status": "New",
+    "dateAdded": "2026-06-12",
+    "dateApplied": "",
+    "url": "https://omnissa.wd501.myworkdayjobs.com/Omnissa_External_Career_Site/job/USA-MO/Strategic-Account-Executive---SLED_R-101092",
+    "source": "WebSearch / Built In (req R-101092, posted ~2026-06-10)",
+    "location": "Remote USA (5 locations listed; req anchored USA-MO)",
+    "territory": "AMER SLED - assigned regions, expanding sales org",
+    "notes": "Posted 2 days ago, 'apply early' expansion hiring. Top-of-market disclosed OTE ($280K-$400K). Note: a different Omnissa Strategic AE - Southeast (commercial) role was previously discarded; this is the SLED-specific req with disclosed comp. Travel 50-60%. EUC/VDI knowledge 'a plus', not required. Not eligible for immigration sponsorship (N/A).",
+    "rawText": "We are Omnissa!\n\nOmnissa is shaping the future of End User Computing. Our innovative solutions, including Workspace ONE and Horizon, empower organizations to deliver seamless, secure digital workspaces. We're proud to serve a broad base of numerous healthcare customers, helping them power secure, scalable digital work environments.\n\nAs a recently independent company backed by KKR, we're in high-growth mode—scaling rapidly and building for the future.\n\nAbout This Role\nOmnissa is expanding our AMER SLED (State, Local, and Higher Education) sales organization and we encourage you to apply early to get your resume in front of the right people.\n\nAs a SLED Account Executive, you will serve as a trusted advisor to the nation's largest state agencies, local government organizations, and educational institutions—helping them modernize operations, improve service delivery, and securely support their workforce. You'll align Omnissa's industry-leading SaaS solutions to the most pressing challenges facing public-sector leaders while driving growth, retention, and long-term partnership success in your territory.\n\nWhy Join Omnissa?\n- Be part of a world-class sales organization backed by private equity and positioned for aggressive growth.\n- Represent products consistently recognized as leaders in the Gartner Magic Quadrant.\n- Join one of the fastest-growing segments in enterprise technology.\n\nWith a strong foundation and an ambitious vision, Omnissa offers a rare chance to accelerate your career while shaping the future of digital work.\n\nWhat You'll do:\n- Manage complex, high-value accounts within the SLED segment.\n- Develop and influence C-level relationships, becoming a trusted advisor to executive stakeholders.\n- Represent Omnissa's full SaaS portfolio—including Workspace ONE and Horizon—using a consultative, value-driven sales approach.\n- Identify and close new business, expand existing accounts, and drive long-term customer success and satisfaction.\n- Showcase expert negotiation and closing skills to win complex, high-value deals.\n- Demonstrate strategic account planning and pipeline management, maintaining a clear, data-driven view of forecasts in Salesforce (SFDC).\n- Collaborate cross-functionally with Pre-Sales, Customer Success, Professional Services, Marketing, and Partner teams to deliver exceptional outcomes.\n- Stay ahead of End User Computing (EUC) trends and competitive landscape to position innovative solutions.\n- Participate in industry events, customer meetings, and regional activities to expand influence and market presence.\n\nWhat will you bring to Omnissa?\n- 5-10 years of successful SaaS enterprise field sales experience, with deep experience selling to large SLED customers.\n- Expertise in developing strategic relationships with C-level decision makers at SLED customers and navigating complex enterprise sales cycles.\n- Skilled in territory planning, forecasting, and pipeline management with rigor and precision.\n- Consistent track-record of quota over-achievement and top performance.\n- Proven success in upselling, cross-selling, and maximizing customer lifetime value.\n- Strong communication skills with exceptional storytelling and presentation abilities.\n- Experience with Salesforce and modern sales tools.\n- Knowledge of EUC, VDI, UEM, or DaaS solutions is a plus.\n- A proactive, growth-oriented mindset with a passion for innovation and problem-solving.\n\nLocation: Remote USA\nTravel: 50-60% for in-person customer engagements across assigned regions\nEducation: Bachelor's degree or equivalent combination of education and relevant professional experience.\n\nThis role is eligible for commission and the typical On-Target Earnings (OTE) range is USD $280,000 - $400,000 a year. Actual compensation offer may vary from posted hiring range based upon geographic location, work experience, education, skill level, or other relevant factors. In addition to competitive compensation, Omnissa offers a variety of benefits such as employee ownership, health insurance, 401k with matching contributions, disability insurance, paid-time off, growth opportunities, and more.\n\nThis job requisition is not eligible for employment-based immigration sponsorship by Omnissa.",
+    "description": "Strategic SLED Account Executive selling Omnissa's Workspace ONE and Horizon SaaS portfolio (End User Computing) to large state agencies, local governments, and higher-ed institutions across AMER. New-business + expansion hybrid with C-level consultative motion; KKR-backed high-growth spinout from VMware.",
+    "requirementsMet": [
+      "5-10 yrs SaaS enterprise field sales with deep SLED experience (Adobe, DocuSign, TrackLight, GovMotion - 20+ yrs)",
+      "C-level SLED relationship development and complex enterprise sales cycles ($1M-$5M+ deals)",
+      "Territory planning, forecasting, pipeline rigor (Salesforce); quota over-achievement track record",
+      "Upsell/cross-sell and customer-lifetime-value motion (Adobe/DocuSign account growth background)",
+      "Public-sector procurement fluency (GSA, NASPO, cooperative contracts) - differentiator vs. typical applicants"
+    ],
+    "requirementsNotMet": [
+      "EUC/VDI/UEM/DaaS product knowledge listed as 'a plus' - no direct background in end-user-computing stack",
+      "Travel 50-60% is at the high end of preference",
+      "AI/data-platform relevance is modest (EUC infrastructure, not an AI-native platform)"
+    ],
+    "companyOverview": "Omnissa is the former VMware End-User Computing division, spun out as an independent company in 2024 when KKR acquired the business for ~$4B. Its Workspace ONE (unified endpoint management) and Horizon (virtual desktop/app delivery) platforms secure digital workspaces for roughly 26,000 customers worldwide, with strong footprints in healthcare and the public sector. Now in aggressive growth mode, it is expanding its AMER SLED sales organization to capture government workforce-modernization and security spend.",
+    "companyRevenue": "~$1.5B ARR (estimated; private)",
+    "companyEmployees": "~4,000 (estimated)",
+    "companyWebsite": "https://www.omnissa.com",
+    "companyLinkedin": "https://www.linkedin.com/company/omnissa",
+    "companyOwnership": "Private (KKR-backed, carve-out from VMware/Broadcom 2024)"
   }
 ]
