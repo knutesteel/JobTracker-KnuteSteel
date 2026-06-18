@@ -5444,5 +5444,73 @@
     "companyWebsite": "https://mattermost.com",
     "companyLinkedin": "https://www.linkedin.com/company/mattermost/",
     "companyOwnership": "Private (VC-backed; Battery Ventures, Redpoint)"
+  },
+  {
+    "id": 1781773973134,
+    "company": "Sectigo",
+    "jobTitle": "Enterprise Sales Account Executive, SLED (North East)",
+    "salary": "$200K-$240K OTE (50/50 base/commission per posting)",
+    "fitScore": 72,
+    "status": "New",
+    "dateAdded": "2026-06-18",
+    "dateApplied": "",
+    "url": "https://jobs.smartrecruiters.com/Sectigo/3743990013384201-enterprise-sales-account-executive-sled-north-east-",
+    "source": "SmartRecruiters / Sectigo careers",
+    "location": "Remote (North East - ideally Baltimore/DC, Philadelphia, NYC, or Boston)",
+    "territory": "SLED - North East",
+    "notes": "MODERATE FIT - Cybersecurity (digital certificates / PKI) SLED role with strong OTE band ($200-240K, 50/50). Channel-driven via VARs - matches Knute's partner ecosystem experience. Drawback: territory preference is North East (Knute is in FL), but role is listed remote so worth a conversation. No clearance required. Watch for a potential Southeast region opening - Sectigo has Midwest and West Coast variants of the same role indicating territory expansion. Recommend networking through cybersecurity channels.",
+    "rawText": "Enterprise Sales Account Executive, SLED (North East) at Sectigo. Remote. The Enterprise Sales Account Executive, SLED achieves assigned sales quotas and contributes to overall sales strategies within a major geographic area. Full cycle sales role: develop a pipeline of opportunities throughout the assigned territory, identify and manage opportunities, close deals. Work closely with Value Added Resellers (VARs) as part of Sectigo's channel-driven sales strategy. Ideally residing in the greater Baltimore/DC, Philadelphia, New York, or Boston area. Target compensation package between USD 200,000 and 240,000, 50/50 split between base salary and commissions. Requirements: minimum 3+ years quota-carrying enterprise sales with proven track record of exceeding quotas; minimum 2+ years selling cybersecurity solutions; current or prior managing SLED accounts, relationships, and new business strongly preferred.",
+    "description": "Quota-carrying SLED enterprise AE for Sectigo (digital certificates/PKI/cybersecurity), full cycle channel-led sales through VARs in North East territory.",
+    "requirementsMet": [
+      "Quota-carrying enterprise sales track record (Adobe, DocuSign, Oracle, BDNA)",
+      "SLED account management experience (TrackLight, GovMotion)",
+      "Channel / VAR ecosystem experience",
+      "Remote-friendly",
+      "OTE matches $200K+ target"
+    ],
+    "requirementsNotMet": [
+      "2+ years selling cybersecurity solutions specifically (transferable but not direct match)",
+      "Geographic preference is North East (Knute is FL-based - may need to negotiate)"
+    ],
+    "companyOverview": "Sectigo is a global cybersecurity company headquartered in Scottsdale, AZ providing digital identity solutions including SSL/TLS certificates, DevOps, IoT, and enterprise-grade PKI management. The company serves over 700,000 customers worldwide including governments, enterprises, and financial institutions, and is one of the largest commercial Certificate Authorities (CA). Sectigo's CertManager platform automates certificate lifecycle management for hybrid and multi-cloud environments.",
+    "companyRevenue": "~$200M-$300M estimated annual revenue",
+    "companyEmployees": "~700",
+    "companyWebsite": "https://www.sectigo.com",
+    "companyLinkedin": "https://www.linkedin.com/company/sectigo/",
+    "companyOwnership": "Private (acquired by GI Partners in 2024 from Clearlake Capital)"
+  },
+  {
+    "id": 1781773973135,
+    "company": "Writer",
+    "jobTitle": "Strategic Account Executive (East)",
+    "salary": "$280K-$380K OTE estimated (per industry comps for $1.9B AI startup strategic AE roles)",
+    "fitScore": 76,
+    "status": "New",
+    "dateAdded": "2026-06-18",
+    "dateApplied": "",
+    "url": "https://www.welcometothejungle.com/en/companies/writer/jobs/strategic-account-executive_fr_gdp2iwlp",
+    "source": "Welcome to the Jungle / Writer careers",
+    "location": "Remote (US East)",
+    "territory": "Strategic Enterprise - US East (Fortune 500 / 8K+ FTE)",
+    "notes": "STRONG AI ALIGNMENT - Writer is a generative AI platform valued at $1.9B (Premji Invest, Radical, ICONIQ Growth). Role targets enterprise (8K+ FTE) Fortune 500 strategic accounts in US East. Strong fit for Knute's enterprise SaaS + Adobe/DocuSign-style big-ticket sales playbook. Not specifically public sector, but AI-native and Knute's GTM / AI experience at TrackLight transfers. Comp band likely competitive ($280K+ OTE estimate based on peer companies). Apply if open to broader enterprise vs strictly public sector.",
+    "rawText": "Strategic Account Executive (East) at Writer. Fully remote, US East. Writer is the full-stack generative AI platform delivering transformative ROI for the world's leading enterprises. Empower global enterprises (8,000+ FTE employees) to transform their operations through Writer's cutting-edge AI agent platform. Key responsibilities: prospect and qualify new strategic opportunities in target verticals and target account lists; partner cross-functionally to refine value propositions and co-create tailored solutions for strategic clients; guide executive-level discussions and negotiations; own a book of business with accountability for long-term impact; collaborate with product and customer success teams to ensure smooth deployments. Writer is valued at $1.9B, backed by Premji Invest, Radical Ventures, and ICONIQ Growth, founded in 2020 with office hubs in San Francisco, New York City, Austin, Chicago, and London.",
+    "description": "Strategic AE selling Writer's enterprise generative AI platform into Fortune 500 / 8K+ FTE accounts across the US East with executive-level cycle ownership.",
+    "requirementsMet": [
+      "Enterprise strategic account experience (Adobe, DocuSign, Oracle)",
+      "AI / data platform GTM experience (TrackLight)",
+      "Executive-level negotiation & complex deal cycles",
+      "Remote US East fits FL location",
+      "Big-ticket / Fortune 500 selling background"
+    ],
+    "requirementsNotMet": [
+      "Not explicitly public sector (Knute's strongest specialty) - role is broad enterprise",
+      "Generative AI platform sales experience specifically (TrackLight transfers)"
+    ],
+    "companyOverview": "Writer is a San Francisco-based full-stack generative AI platform for enterprises, founded in 2020 by May Habib and Waseem AlShikh. The platform offers Palmyra LLMs, AI agents, and a no-code Writer Studio for enterprise builders. Customers include Accenture, Vanguard, L'Oreal, Salesforce, Uber, Spotify, and other Fortune 500 firms. Writer is positioned as a competitor to OpenAI and Anthropic on enterprise-grade compliance, security, and customizability.",
+    "companyRevenue": "Est. ~$100M ARR (per private market reports, 2025); $1.9B valuation",
+    "companyEmployees": "~400",
+    "companyWebsite": "https://writer.com",
+    "companyLinkedin": "https://www.linkedin.com/company/getwriter/",
+    "companyOwnership": "Private (Premji Invest, Radical Ventures, ICONIQ Growth, Insight Partners)"
   }
 ]
