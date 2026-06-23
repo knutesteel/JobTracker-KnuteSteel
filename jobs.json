@@ -5651,5 +5651,106 @@
     "companyWebsite": "https://qureos.com",
     "companyLinkedin": "https://www.linkedin.com/company/qureos/",
     "companyOwnership": "Private (early-stage VC-backed)"
+  },
+  {
+    "id": 1782638400001,
+    "company": "SentiLink",
+    "jobTitle": "Account Executive, SLED (East)",
+    "salary": "$220K-$280K OTE estimated (identity-fraud SaaS, top-tier comp)",
+    "fitScore": 92,
+    "status": "New",
+    "dateAdded": "2026-06-23",
+    "dateApplied": "",
+    "url": "https://jobs.ashbyhq.com/sentilink/f9771025-e6fe-404d-b954-858a8997a286",
+    "source": "SentiLink careers (Ashby) / Why Not Remote",
+    "location": "Remote, US (East coverage)",
+    "territory": "Public Sector SLED - East",
+    "notes": "DIRECT FIT with Knute's identity-verification / fraud-detection narrative (Sumsub Applied, Socure Interviewing). SentiLink is a top-tier identity & fraud SaaS backed by a16z, Craft Ventures, NYCA, Max Levchin. East territory = aligns with Apollo Beach FL. Identity fraud is a major SLED/govt pain point (UI fraud, benefits fraud, motor-vehicle fraud). Knute's TrackLight investigative analytics + GovMotion advisory work plus prior identity-vertical pursuits make this a tight match. 90+ HIGH MATCH ALERT.",
+    "rawText": "SLED Account Executive at SentiLink. Remote, US. SentiLink is building the future of identity verification in the United States, replacing a clunky, ineffective, and expensive status quo with solutions that are 10x faster, smarter, and more accurate. Backed by Craft Ventures, Andreessen Horowitz, NYCA, and Max Levchin. Responsibilities: As a SLED Account Executive, sell SentiLink solutions to State Agencies, Local Government, and Higher Education by helping them solve fraud and identity problems and developing long-term relationships. Requirements: 5+ years of successful experience in sales and business development; track record of successfully employing top-down sales motion for complex technical products; experience selling into State Government, Local Government, and Higher Education.",
+    "description": "Quota-carrying SLED AE responsible for selling SentiLink's identity verification and fraud-prevention platform to state agencies, local governments, and higher-ed institutions across the East. Full-cycle ownership of complex multi-stakeholder SaaS deals into procurement-driven public-sector buyers.",
+    "requirementsMet": [
+      "Enterprise / strategic AE seniority",
+      "Public sector SLED selling expertise (GovMotion, TrackLight)",
+      "Identity & fraud vertical narrative (Sumsub, Socure pursuits)",
+      "Complex technical-product, top-down sales motion",
+      "Remote-first / East coverage aligns with Apollo Beach FL",
+      "AI/data platform fluency (TrackLight investigative analytics)"
+    ],
+    "requirementsNotMet": [
+      "No specific gaps identified"
+    ],
+    "companyOverview": "SentiLink is a leading identity-verification and synthetic-fraud-detection platform used by 600+ US banks, credit unions, fintechs and increasingly state agencies. Its proprietary risk-signal models detect synthetic identities, first-party fraud, and ID theft at point of application. The company has been expanding aggressively into the SLED market where benefits fraud, motor-vehicle fraud, and unemployment-insurance fraud have created urgent demand for modern identity-risk infrastructure.",
+    "companyRevenue": "Est. $80M-$120M ARR (private; not disclosed)",
+    "companyEmployees": "~250-300",
+    "companyWebsite": "https://www.sentilink.com",
+    "companyLinkedin": "https://www.linkedin.com/company/sentilink/",
+    "companyOwnership": "Private (Series B+; Andreessen Horowitz, Craft Ventures, NYCA, Max Levchin)"
+  },
+  {
+    "id": 1782638400002,
+    "company": "Lucid Software",
+    "jobTitle": "NA Public Sector Account Executive, State & Local",
+    "salary": "$180K-$240K OTE estimated (mid-market SaaS public sector)",
+    "fitScore": 78,
+    "status": "New",
+    "dateAdded": "2026-06-23",
+    "dateApplied": "",
+    "url": "https://job-boards.greenhouse.io/lucidsoftware/jobs/5143625004",
+    "source": "Lucid Software careers (Greenhouse)",
+    "location": "Remote, US (hybrid-friendly)",
+    "territory": "Public Sector - State & Local",
+    "notes": "Lucid (Lucidchart / Lucidspark) is a profitable SaaS visual-collaboration platform with growing state-and-local footprint. Less AI-heavy than ideal but solid public-sector SaaS rep role at a mature company with established procurement vehicles. Remote + state/local territory fits geography. Mid-tier deal sizes vs. Knute's $1M-$5M+ track record may be a slight downshift, but multi-year ELA expansions are common.",
+    "rawText": "NA Public Sector Account Executive, State & Local at Lucid Software. Remote. Responsibilities: identify and close business in assigned territory (state & local accounts), build a territory plan with focus on expansion and growth, foster strong relationships across target accounts, handle complex negotiations, consult with large strategic customers, mentor development reps, travel 1-3 weeks per quarter as needed. Requirements: 4+ years of sales experience (as an Account Executive, Account Manager, or similar role), preferably in SaaS/software; 2+ years of experience selling into government accounts (preferably state & local); proven track record of exceeding sales quotas.",
+    "description": "Quota-carrying State & Local public-sector AE owning a regional book of business, expanding existing Lucid customers and landing new logos across government agencies and higher-ed institutions.",
+    "requirementsMet": [
+      "Enterprise SaaS AE experience well above 4+ year minimum",
+      "State & Local government selling experience (GovMotion advisory)",
+      "Territory planning and complex multi-stakeholder negotiations",
+      "Remote-friendly aligns with Apollo Beach FL"
+    ],
+    "requirementsNotMet": [
+      "Less AI / data-platform focus than Knute's recent narrative",
+      "Mid-market deal sizes likely below Knute's $1M-$5M+ ceiling",
+      "Mentoring SDRs is hands-on / IC blend"
+    ],
+    "companyOverview": "Lucid Software is the leader in visual collaboration, helping teams see and build the future with products including Lucidchart, Lucidspark, and Lucidscale. Trusted by millions of users worldwide, including 99% of the Fortune 500, Lucid has expanded into the public sector with FedRAMP-aligned offerings and growing state & local deployments for process modernization and digital transformation.",
+    "companyRevenue": "Est. $300M+ ARR (private; profitable)",
+    "companyEmployees": "~1,200",
+    "companyWebsite": "https://lucid.co",
+    "companyLinkedin": "https://www.linkedin.com/company/lucidsoftware/",
+    "companyOwnership": "Private (Meritech, Spectrum Equity, ICONIQ Capital backed)"
+  },
+  {
+    "id": 1782638400003,
+    "company": "MariaDB",
+    "jobTitle": "Account Executive (Public Sector)",
+    "salary": "$80K-$150K base + commissions; ~$200K-$280K OTE estimated",
+    "fitScore": 76,
+    "status": "New",
+    "dateAdded": "2026-06-23",
+    "dateApplied": "",
+    "url": "https://job-boards.greenhouse.io/mariadbplc/jobs/4693583101",
+    "source": "MariaDB careers (Greenhouse)",
+    "location": "Remote (DC/VA/MD preferred)",
+    "territory": "Federal Civilian, DoD, Intelligence, and SLED",
+    "notes": "Open-source / cloud database platform with strong federal traction. Role spans Federal + SLED which is a positive multi-vector territory. Posted location preference is DC/VA/MD which is a partial mismatch for Apollo Beach FL, though MariaDB has hired federal AEs remote across the country before. Data-platform alignment is strong (relevant to TrackLight / Adobe / Oracle narrative). Worth applying given Knute's Oracle background and open-source data fluency.",
+    "rawText": "Account Executive (Public Sector) at MariaDB plc. Remote in Washington DC, Virginia or Maryland. Annual base salary range $80K-$150K plus commissions. Lead the development of large/strategic Federal, government agencies, or public institution opportunities. Build and nurture accounts, drive demand generation and influence broad adoption of MariaDB open source/cloud database solutions across DOD, Intelligence, Federal Civilian, and SLED markets.",
+    "description": "Quota-carrying public-sector AE owning Federal Civilian, DoD, Intelligence Community, and SLED pipeline for MariaDB's open-source and cloud database platforms.",
+    "requirementsMet": [
+      "Enterprise AE with public-sector procurement expertise",
+      "Database / data-platform sales fluency (Oracle background)",
+      "Federal + SLED multi-vector territory experience",
+      "Government procurement (GSA, NASPO, SEWP) familiarity"
+    ],
+    "requirementsNotMet": [
+      "Posted location preference DC/VA/MD vs. Knute's Apollo Beach FL",
+      "Mentions of DoD/Intel may favor cleared candidates (though clearance is not stated as required)"
+    ],
+    "companyOverview": "MariaDB is one of the world's most widely-deployed open-source relational databases, used by 75%+ of the Fortune 500 and increasingly by federal and SLED agencies as a cost-effective Oracle alternative. The company offers MariaDB Server, MariaDB Enterprise, and the MariaDB Cloud (SkySQL) DBaaS, with FedRAMP authorization in progress and existing deployments across major federal civilian agencies.",
+    "companyRevenue": "Est. $60M-$80M (private; taken private by K1 Investment Management in 2024)",
+    "companyEmployees": "~350",
+    "companyWebsite": "https://mariadb.com",
+    "companyLinkedin": "https://www.linkedin.com/company/mariadb/",
+    "companyOwnership": "Private (K1 Investment Management)"
   }
 ]
