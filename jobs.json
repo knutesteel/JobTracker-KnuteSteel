@@ -6128,5 +6128,73 @@
     "companyWebsite": "https://www.zscaler.com",
     "companyLinkedin": "https://www.linkedin.com/company/zscaler",
     "companyOwnership": "Public (NASDAQ: ZS)"
+  },
+  {
+    "id": 1782378750418,
+    "company": "Insight",
+    "jobTitle": "Solution Executive - Public Sector (East)",
+    "salary": "Not disclosed (estimated $180K-$250K OTE; base + uncapped commission)",
+    "fitScore": 74,
+    "status": "New",
+    "dateAdded": "2026-06-25",
+    "dateApplied": "",
+    "url": "https://careers.insight.com/careers/job/171836994512-solution-executive-public-sector-east--remote-united-states",
+    "source": "Insight Careers",
+    "location": "Remote - United States (East)",
+    "territory": "US SLED - East",
+    "notes": "Solid SLED solutions / services sales role at a Fortune 500 integrator. Lower direct AI/data platform alignment but strong public sector procurement match. Worth a measured apply.",
+    "rawText": "Insight Public Sector is looking for a SLED Services/Solutions Executive to be a driving force in establishing our full portfolio solution delivery while driving sales in six key areas. You'll partner with the delivery team to increase revenue and uncover new opportunities for clients, and leverage your industry and technical knowledge to build relationships and identify new solution sales opportunities. Responsibilities: Identify, develop, and close solution sales opportunities. Increase revenue by expanding clients' purchasing into new solutions categories. Drive business development and pre-sales initiatives. Achieve sales and profit goals through vendor partner teaming, onsite client engagements, and implementation support. Qualifications: MBA or Master's Degree and 8-10+ years of technical sales experience; Public Sector (State, Local, and Education) solution sales experience; Certifications in sales and partner management; Complex sales training and negotiation skills; Excellent communication, customer service, and interpersonal skills.",
+    "description": "Insight Public Sector hiring a Solution Executive to drive SLED full-portfolio solution sales across six key practice areas. Remote within the United States with focus on East-region SLED accounts. Mix of new business development, expansion within existing accounts, vendor partner teaming, and on-site client engagements.",
+    "requirementsMet": [
+      "'Public Sector (SLED) solution sales experience' — Direct match to Knute's SLED motion across Adobe, BDNA, and DocuSign.",
+      "'8-10+ years technical sales experience' — Knute exceeds with 20+ years enterprise tech sales.",
+      "'Vendor partner teaming and pre-sales initiatives' — Knute's GovMotion advisory work is partner-ecosystem-centric.",
+      "'Complex sales training and negotiation skills' — MEDDPICC practitioner with $1M+ ACV deal history.",
+      "'Remote US, east-region focus' — Knute is Apollo Beach, FL — strong geo fit."
+    ],
+    "requirementsNotMet": [
+      "MBA or Master's Degree listed as a requirement — Knute does not have a Master's; usually negotiable for senior reps with proven track record but worth flagging.",
+      "Reseller/services model is broader than Knute's recent AI-platform direct sales focus — narrative would need to bridge from TrackLight/GovMotion back into multi-vendor solutions selling."
+    ],
+    "companyOverview": "Insight Enterprises (NASDAQ: NSIT) is a Fortune 500 global IT solutions integrator serving commercial and public sector clients with hardware, software, cloud, data, AI, and managed services. The Insight Public Sector arm holds SLED/Federal procurement vehicles and partners across Microsoft, AWS, Google Cloud, Cisco, Dell, and most leading enterprise vendors.",
+    "companyRevenue": "~$8.7B annual revenue (FY2024)",
+    "companyEmployees": "~13,000",
+    "companyWebsite": "https://www.insight.com",
+    "companyLinkedin": "https://www.linkedin.com/company/insight/",
+    "companyOwnership": "Public — NASDAQ: NSIT"
+  },
+  {
+    "id": 1782378750419,
+    "company": "Lightspeed Systems",
+    "jobTitle": "Strategic Account Executive (K-12 SLED, Remote)",
+    "salary": "Not disclosed (estimated $170K-$220K OTE based on Strategic AE EdTech benchmarks)",
+    "fitScore": 62,
+    "status": "New",
+    "dateAdded": "2026-06-25",
+    "dateApplied": "",
+    "url": "https://job-boards.greenhouse.io/lightspeedsystems/jobs/7664480003",
+    "source": "Lightspeed Systems Careers",
+    "location": "Remote - United States",
+    "territory": "US K-12 SLED",
+    "notes": "K-12 EdTech focus — solid SLED procurement match but narrower vertical than Knute's typical state/local/federal sweet spot. Public sector compliance experience translates; AI/data platform fit is lower.",
+    "rawText": "Lightspeed Systems is seeking a seasoned Strategic Account Executive to drive new business growth across an assigned K-12 territory. You will own your territory end-to-end—developing strategy, building executive relationships, and closing high-impact deals that advance student safety and effective technology use across school systems. Responsibilities: Own and execute a territory strategy to drive net-new revenue within assigned K-12 school districts; Identify, pursue, and close complex, multi-stakeholder opportunities with district-level decision makers; Lead full-cycle sales efforts from prospecting and discovery through negotiation and close; Conduct deep discovery to understand district challenges, priorities, and compliance requirements. Required Qualifications: Excellent executive-level communication, presentation, and negotiation abilities; High degree of autonomy, ownership, and accountability for results; Proficiency with CRM systems (Salesforce preferred) and modern sales enablement tools; Experience navigating public-sector procurement processes; 5+ years of B2B sales experience in EdTech or SaaS; Experience selling into K-12 school districts or public sector organizations.",
+    "description": "Lightspeed Systems is hiring a Strategic Account Executive to own a K-12 SLED territory end-to-end. Focus is on net-new revenue within district-level accounts, navigating complex multi-stakeholder deals, and serving student-safety and ed-tech compliance use cases. Remote US.",
+    "requirementsMet": [
+      "'5+ years B2B SaaS sales' — Knute has 20+ years enterprise SaaS experience.",
+      "'Public-sector procurement navigation' — Direct match across Knute's SLED motions.",
+      "'Salesforce CRM + sales enablement proficiency' — Former Salesforce employee and active practitioner.",
+      "'Executive-level relationship building, multi-stakeholder closing' — Standard at Adobe/DocuSign/Oracle public sector.",
+      "'Compliance-aware sales conversations' — FedRAMP/FISMA/NIST fluency at TrackLight + GovMotion."
+    ],
+    "requirementsNotMet": [
+      "K-12 EdTech vertical specifically — Knute's SLED background skews to state/local/federal agencies rather than school districts.",
+      "Student-safety / classroom-tech product domain — would need product ramp; less differentiated for Knute's AI/data platform thesis."
+    ],
+    "companyOverview": "Lightspeed Systems is a privately held K-12 EdTech provider (25+ years in market) delivering classroom management, student-safety monitoring, web filtering, mobile device management, and analytics across more than 28,000 schools globally. Sells primarily into U.S. and international K-12 districts.",
+    "companyRevenue": "Not publicly disclosed (estimated $50M-$100M)",
+    "companyEmployees": "~250 (estimated)",
+    "companyWebsite": "https://www.lightspeedsystems.com",
+    "companyLinkedin": "https://www.linkedin.com/company/lightspeed-systems/",
+    "companyOwnership": "Private"
   }
 ]
