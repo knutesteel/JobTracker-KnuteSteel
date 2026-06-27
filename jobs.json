@@ -6366,5 +6366,72 @@
     "companyWebsite": "https://cursor.com",
     "companyLinkedin": "https://www.linkedin.com/company/anysphere/",
     "companyOwnership": "Private (VC-backed: Thrive, A16Z, Benchmark)"
+  },
+  {
+    "id": 1782551466876,
+    "company": "Confluent",
+    "jobTitle": "Federal Account Executive, SLED",
+    "salary": "Estimated $250K-$330K OTE (Confluent strategic AE benchmark; not officially disclosed)",
+    "fitScore": 87,
+    "status": "New",
+    "dateAdded": "2026-06-27",
+    "dateApplied": "",
+    "url": "https://careers.confluent.io/jobs/14695452-federal-account-executive-sled",
+    "source": "Confluent Careers",
+    "location": "Remote - United States",
+    "territory": "SLED (state, local, education)",
+    "notes": "Confluent (data streaming / Kafka) is one of the top data-infrastructure plays for AI workloads. The SLED-specific Federal AE seat is a direct match for Knute's GovMotion + TrackLight + Oracle/DocuSign profile. Confluent is FedRAMP authorized and runs large SLED deals — strong territory fit and clear AI/data-platform positioning.",
+    "rawText": "Confluent is hiring a Federal Account Executive focused on SLED. The role drives net-new logo acquisition and expansion of strategic SLED accounts (state agencies, large municipalities, higher education systems). Responsibilities include building executive relationships, navigating procurement vehicles (NASPO, state contracts), partnering with channel/SI ecosystem (AWS, GCP, Azure, Deloitte, Accenture), and closing multi-year, six- and seven-figure data streaming platform deals. Requires 7+ years of public sector enterprise software sales, demonstrated $1M+ ARR closes, ability to navigate complex procurement, and strong familiarity with data infrastructure / streaming / AI workloads.",
+    "description": "Confluent is hiring a Federal Account Executive, SLED to drive net-new and expansion sales of its streaming data platform into state, local, and education agencies. Remote US.",
+    "requirementsMet": [
+      "'7+ years public sector enterprise sales' — 20+ years enterprise SaaS w/ deep SLED + Federal motion.",
+      "'$1M+ ARR closes / complex procurement' — Oracle, DocuSign, Adobe deal sizes.",
+      "'Data / AI platform familiarity' — TrackLight AI GTM + Snowflake/Databricks-adjacent sales thesis.",
+      "'NASPO / state contract navigation' — Direct GovMotion advisory experience.",
+      "'Remote US' — Apollo Beach, FL based; territory-flexible."
+    ],
+    "requirementsNotMet": [
+      "Confluent / Kafka-specific technical depth — learnable; Knute has sold data-platform adjacencies (Oracle, BDNA, TrackLight) but not Kafka itself.",
+      "Channel motion through specific Confluent partners (AWS/Deloitte) — relationships exist but not Confluent-branded."
+    ],
+    "companyOverview": "Confluent is the data streaming platform built by the original creators of Apache Kafka. The company powers real-time data pipelines for thousands of enterprises and is a foundational layer for AI/ML, customer 360, fraud detection, and operational analytics workloads. Confluent is publicly traded (NASDAQ: CFLT) and has a strong public sector / FedRAMP-authorized practice.",
+    "companyRevenue": "~$960M annual revenue (FY2025, public)",
+    "companyEmployees": "~3,000 (public)",
+    "companyWebsite": "https://www.confluent.io",
+    "companyLinkedin": "https://www.linkedin.com/company/confluent",
+    "companyOwnership": "Public (NASDAQ: CFLT)"
+  },
+  {
+    "id": 1782551466877,
+    "company": "Hebbia",
+    "jobTitle": "Account Executive, Enterprise",
+    "salary": "Estimated $250K-$340K OTE (NY-based AI startup enterprise AE benchmark; not officially disclosed)",
+    "fitScore": 78,
+    "status": "New",
+    "dateAdded": "2026-06-27",
+    "dateApplied": "",
+    "url": "https://www.linkedin.com/jobs/view/account-executive-enterprise-at-hebbia-4338800606",
+    "source": "LinkedIn / Hebbia Careers",
+    "location": "New York, NY (some remote flexibility)",
+    "territory": "Enterprise - regulated industries + emerging public sector",
+    "notes": "Hebbia builds an agentic AI workflow platform used heavily in finance, legal, consulting, and increasingly government (publicly disclosed U.S. Air Force customer). Not a SLED-specific seat, but the regulated-industries focus and growing federal footprint are a direct match for Knute's profile. Worth tracking even though the territory is NYC-based — Hebbia historically hires remote enterprise AEs when the right candidate appears.",
+    "rawText": "Hebbia is hiring an Enterprise Account Executive to cultivate strategic pipeline and replace repetitive analyst workflows with intelligent agentic automation. The role targets large regulated enterprises (financial services, legal, consulting, government) and owns the full sales cycle from prospect to close. Requires 5+ years of enterprise SaaS closing experience, demonstrated ability to sell into senior executives at Fortune 500 and government agencies, and comfort selling a novel category (agentic AI). Strong preference for candidates with experience in heavily regulated verticals.",
+    "description": "Hebbia is hiring an Enterprise AE to sell its agentic AI platform into Fortune 500 + government accounts. Strong fit for regulated-industries sellers; NYC-based with some remote flexibility.",
+    "requirementsMet": [
+      "'5+ years enterprise SaaS closing' — 20+ years.",
+      "'Sell into regulated / public sector' — TrackLight + GovMotion + Adobe/DocuSign tenure.",
+      "'Senior-exec relationships at F500' — Direct from prior roles.",
+      "'Novel-category positioning' — Has done this at TrackLight (AI investigative analytics) and BDNA."
+    ],
+    "requirementsNotMet": [
+      "NYC-preferred location — Knute is Apollo Beach, FL (remote possible but not the posted preference).",
+      "Not a dedicated SLED/Federal seat — public sector is one vertical of several, not the focus."
+    ],
+    "companyOverview": "Hebbia is an AI agent platform that automates complex knowledge work for analysts across finance, legal, consulting, and government. Used by Fortune 500 financial institutions, top law firms, and the U.S. Air Force. One of the breakout enterprise AI companies of 2025-2026, backed by Andreessen Horowitz, Index, Peter Thiel, and others.",
+    "companyRevenue": "Estimated $30M-$50M ARR (private; reported $13M ARR in mid-2024 growing 160% YoY)",
+    "companyEmployees": "~100-150 (estimated)",
+    "companyWebsite": "https://www.hebbia.com",
+    "companyLinkedin": "https://www.linkedin.com/company/hebbia",
+    "companyOwnership": "Private (VC-backed: a16z, Index Ventures, Peter Thiel, Founders Fund)"
   }
 ]
