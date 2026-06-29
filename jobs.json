@@ -6573,5 +6573,107 @@
     "companyWebsite": "https://www.f5.com",
     "companyLinkedin": "https://www.linkedin.com/company/f5",
     "companyOwnership": "Public (NASDAQ: FFIV)"
+  },
+  {
+    "id": 1782724339962,
+    "company": "Boomi",
+    "jobTitle": "Regional Sales Director, Enterprise (SLED, Remote)",
+    "salary": "$380K - $450K OTE (inclusive of commission)",
+    "fitScore": 88,
+    "status": "New",
+    "dateAdded": "2026-06-29",
+    "dateApplied": "",
+    "url": "https://www.glassdoor.com/job-listing/regional-sales-director-enterprise-sled-remote-boomi-JV_KO0,46_KE47,52.htm?jl=1009959926221",
+    "source": "Boomi / Glassdoor",
+    "location": "Remote (US)",
+    "territory": "SLED (national)",
+    "notes": "Strong comp ($380-450K OTE). Leadership role over team of SLED AMs. Data integration / iPaaS platform — adjacent to Knute's AI/data platform GTM background.",
+    "rawText": "Regional Sales Director, Enterprise (SLED, remote)\n\nBoomi is seeking an Enterprise Regional Sales Director to drive growth and inspire excellence in our fast-growing sales organization. You'll lead a team of talented Account Managers and SLED focused Account Managers, shaping strategies that deliver measurable results.\n\nThe On Target Earnings (OTE) for this role are $380K - $450K (inclusive of commission). Base compensation is determined by various factors including geographic location and the candidate's knowledge, skills, and experience.\n\nThis role is fully remote, and candidates located anywhere in the US will be considered.\n\nKey Qualifications:\n- Recent experience focused on SLED (State, Local, and Education) accounts\n- Strong understanding of the Cloud Data Management / Integration market with a proven track record of management and strategic selling\n- 2+ years of experience leading a team with enterprise and tactical business objectives\n- Earlier career history of exceeding quota with experience closing multi-million dollar, multi-year deals\n- Building/managing senior teams in a SaaS or hybrid business",
+    "description": "Boomi seeks a Regional Sales Director to lead Enterprise SLED Account Managers. Fully remote US. Cloud data integration / iPaaS leader. $380-450K OTE.",
+    "requirementsMet": [
+      "SLED focus — Knute's strategic SLED experience at Adobe, Salesforce, BDNA, TrackLight, GovMotion.",
+      "Cloud data management/integration market — TrackLight (AI data platform) + DocuSign + Adobe data products.",
+      "2+ years leading teams — GovMotion Founder/CEO, TrackLight GTM Lead.",
+      "Multi-million/multi-year deals — $1M-$5M+ deal cycle experience.",
+      "Fully remote — Apollo Beach, FL works."
+    ],
+    "requirementsNotMet": [
+      "Direct iPaaS / Boomi-specific product knowledge — Knute is platform-agnostic on integration; would ramp.",
+      "Recent player-coach experience in pure data integration could be a stretch vs. AI/analytics focus."
+    ],
+    "companyOverview": "Boomi is a leading provider of integration platform-as-a-service (iPaaS) solutions, helping organizations connect applications, data, and people across hybrid IT environments. Originally part of Dell Technologies, Boomi became independent in 2021 after being acquired by Francisco Partners and TPG.",
+    "companyRevenue": "$500M+ ARR (estimated, private)",
+    "companyEmployees": "~2,000",
+    "companyWebsite": "https://boomi.com",
+    "companyLinkedin": "https://www.linkedin.com/company/boomi",
+    "companyOwnership": "Private (Francisco Partners & TPG)"
+  },
+  {
+    "id": 1782724339963,
+    "company": "Semperis",
+    "jobTitle": "Regional Sales Director SLED, Southeast",
+    "salary": "~$280K median total comp (RepVue/Glassdoor)",
+    "fitScore": 86,
+    "status": "New",
+    "dateAdded": "2026-06-29",
+    "dateApplied": "",
+    "url": "https://builtin.com/job/regional-director-sled-southeast/6706307",
+    "source": "Semperis / Built In",
+    "location": "Florida (Remote/Hybrid)",
+    "territory": "SLED Southeast",
+    "notes": "Florida-based SLED role. Identity threat detection & response (ITDR) - cybersecurity/identity focus. Florida-based candidate required - excellent location fit for Knute (Apollo Beach FL).",
+    "rawText": "Regional Sales Director SLED, Southeast\n\nSemperis is looking for an experienced, Florida-based SLED Regional Sales Director to join our team. This is an Individual Contributor Sales Role.\n\nResponsibilities:\n- Take Semperis' product capabilities and value to net new SLED (State & Local Government, K-12 and Higher Education) clients\n- Connect our solutions to solve customer business needs\n- Help partners and clients minimize the threat landscape\n- Sell security solutions to SLED clients, building relationships, and exceeding sales quotas through strategic solutions selling\n\nRequired Qualifications:\n- 10+ years of solution selling experience with significant experience selling software security and/or infrastructure security products to corporate enterprises\n- Results-driven with history of exceeding quota\n- Customer focused, technologically savvy, innovative at building relationships\n- Build champions, executive level contacts, work a campaign from start to finish\n\nWork Arrangement:\nCandidates who reside within 45 miles of one of Semperis' offices will follow a hybrid work model. Florida-based candidates expected.",
+    "description": "Semperis SLED Regional Sales Director - Florida-based. Identity threat detection & recovery for hybrid AD environments. Strategic SLED hunter role.",
+    "requirementsMet": [
+      "10+ years solution selling — Knute has 25+ years enterprise tech sales.",
+      "Florida-based — Apollo Beach, FL.",
+      "SLED experience — extensive SLED at Adobe, Salesforce, TrackLight, GovMotion.",
+      "Executive-level relationships — established C-suite contacts in SLED.",
+      "Quota over-attainment — consistent record."
+    ],
+    "requirementsNotMet": [
+      "Direct identity/AD security selling experience — Knute's background is broader AI/data/SaaS; would ramp on ITDR product.",
+      "Network/infrastructure security product depth — adjacent but not core."
+    ],
+    "companyOverview": "Semperis is an identity threat detection and response (ITDR) leader, protecting hybrid Active Directory and Entra ID environments. Patented technology protects 50M+ identities. Recognized as one of America's Fastest-Growing Cybersecurity Companies by Inc. 5000.",
+    "companyRevenue": "~$100M ARR (private, estimated)",
+    "companyEmployees": "~600",
+    "companyWebsite": "https://www.semperis.com",
+    "companyLinkedin": "https://www.linkedin.com/company/semperis",
+    "companyOwnership": "Private (Insight Partners-backed)"
+  },
+  {
+    "id": 1782724339964,
+    "company": "AppGate",
+    "jobTitle": "Regional Sales Director, SLED (Remote)",
+    "salary": "$150K-$200K base + commission (Est. $300K-$400K OTE)",
+    "fitScore": 80,
+    "status": "New",
+    "dateAdded": "2026-06-29",
+    "dateApplied": "",
+    "url": "https://www.remoterocketship.com/us/company/appgate/jobs/regional-sales-director-sled-united-states-remote/",
+    "source": "AppGate / Remote Rocketship",
+    "location": "Remote (US)",
+    "territory": "SLED (regional)",
+    "notes": "Zero Trust Network Access / cybersecurity. FedRAMP-relevant. Remote.",
+    "rawText": "Regional Sales Director – SLED at AppGate\n\nThis role is chartered with driving a cohesive sales strategy across the State/Local Government and Higher Education (SLED) market and building a stronger vision, strategy, and the business processes needed for success.\n\nKey Responsibilities:\n- Sales execution of short and long term pipeline within the region\n- New prospect identification, engagement of 'C Suite' executives\n- Development of existing executive relationships to further revenue opportunities\n- Creation and execution of short and long term sales pipeline to capture new and existing opportunities within SLED accounts\n- Identifying relevant new business opportunities, ecosystems, partnerships and markets\n- Driving 'go-to-market' plans\n\nRequired Qualifications:\n- Minimum 7 years selling SaaS/Security solutions to State agencies\n- Experience in network performance and security, 'how the Internet works', corporate networking and SD-WAN\n- Industry concepts such as Zero Trust and SASE\n- Deep understanding of procurement processes within State/Local governments\n- Strong programmatic approach to being successful in this unique market segment",
+    "description": "AppGate Regional Sales Director SLED - Remote. Zero Trust Network Access (ZTNA) cybersecurity. Identity-based, adaptive access policies with AI-powered application discovery for enterprises and government agencies.",
+    "requirementsMet": [
+      "7+ years SaaS/security solutions selling to state agencies — 25+ years enterprise sales.",
+      "Deep SLED procurement knowledge — GSA, NASPO, SEWP expertise.",
+      "Programmatic SLED approach — GovMotion advisory work.",
+      "Executive-level engagement — established C-suite relationships.",
+      "Remote — Apollo Beach, FL works."
+    ],
+    "requirementsNotMet": [
+      "ZTNA/SASE/SD-WAN technical depth — adjacent network security focus, not core to Knute's AI/data platform background.",
+      "Direct cybersecurity SaaS sales — TrackLight is investigative analytics, not pure cybersecurity."
+    ],
+    "companyOverview": "AppGate is a global cybersecurity company delivering high-performance Zero Trust Network Access (ZTNA) solutions for enterprises and government agencies. The platform enforces identity-based, adaptive access policies using real-time risk scoring, AI-powered application discovery, and a direct-routed architecture.",
+    "companyRevenue": "~$50M-$100M (private, estimated)",
+    "companyEmployees": "~300",
+    "companyWebsite": "https://www.appgate.com",
+    "companyLinkedin": "https://www.linkedin.com/company/appgate",
+    "companyOwnership": "Private"
   }
 ]
