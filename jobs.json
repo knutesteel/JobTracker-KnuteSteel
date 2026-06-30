@@ -6675,5 +6675,74 @@
     "companyWebsite": "https://www.appgate.com",
     "companyLinkedin": "https://www.linkedin.com/company/appgate",
     "companyOwnership": "Private"
+  },
+  {
+    "id": 1782810740001,
+    "company": "Skopenow",
+    "jobTitle": "SLED Account Executive (Law Enforcement)",
+    "salary": "Est. $180K-$220K OTE (50/50 split based on $700K+ quota structure)",
+    "fitScore": 92,
+    "status": "New",
+    "dateAdded": "2026-06-30",
+    "dateApplied": "",
+    "url": "https://www.linkedin.com/jobs/view/sled-account-executive-at-skopenow-3520060347",
+    "source": "Skopenow / LinkedIn",
+    "location": "Remote (US)",
+    "territory": "SLED / Law Enforcement",
+    "notes": "STRONG MATCH: OSINT/investigative analytics platform sold into law enforcement and SLED -- exactly the TrackLight wheelhouse. Sky-high overlap with Knute's experience selling AI-driven investigative analytics into government.",
+    "rawText": "SLED Account Executive at Skopenow\n\nSkopenow is an analytical open source search engine for discovering fraud and evaluating risk. Our integrative platform identifies, collects, and analyzes public information on people and businesses by scouring millions of sources and data points. Founded in 2016 and headquartered in New York City, Skopenow is a high-growth, venture-backed technology company.\n\nWe are seeking an eager and results-oriented Law Enforcement (SLED) Account Executive with an entrepreneurial spirit and hunter attitude. As an Account Executive, you will act as an internal quarterback, building on key partners and resources to drive deals through the customer engagement process.\n\nKey Responsibilities:\n- Drive net-new logo acquisition and expansion within SLED/Law Enforcement territory\n- Own the full sales cycle from prospecting to close, including procurement navigation\n- Build executive relationships with chiefs, sheriffs, state IT leaders, and procurement officers\n- Develop untapped territories while nurturing existing accounts\n- Forecast accurately and manage pipeline in CRM\n\nRequirements:\n- Demonstrated experience holding quotas within a SLED territory\n- B2B SaaS experience (required)\n- Proven ability to close $700K+ quotas across SLED accounts\n- Strong understanding of state/local government and law enforcement procurement\n- Hunter mentality with disciplined activity-based selling",
+    "description": "Skopenow SLED Account Executive -- Remote US. Sell Skopenow's OSINT-based investigative analytics platform to state, local government, and law enforcement agencies. Full-cycle hunter role with $700K+ quota across SLED accounts.",
+    "requirementsMet": [
+      "SLED quota experience -- 25+ years selling enterprise tech into public sector (Adobe, DocuSign, Salesforce, Oracle).",
+      "B2B SaaS sales -- entire career in enterprise software/SaaS sales motions.",
+      "$700K+ quota -- consistently carried $2M-$5M+ quotas with $1M-$5M deal cycles.",
+      "Government procurement mastery -- GSA, NASPO, SEWP, state procurement -- direct overlap with GovMotion advisory.",
+      "Investigative analytics domain -- TrackLight Strategic AE GTM Lead is literally AI-driven investigative analytics for government, the closest analog in market.",
+      "Hunter + executive engagement -- proven C-suite relationships and pipeline-building motion."
+    ],
+    "requirementsNotMet": [
+      "Pure OSINT platform experience -- TrackLight is adjacent (investigative analytics) but not OSINT-specific; quick ramp expected."
+    ],
+    "companyOverview": "Skopenow is a venture-backed OSINT and threat intelligence platform that powers investigations for over 1,500 customers, including 20% of the Fortune 500 plus federal, state, and local law enforcement agencies. Founded 2016 in NYC, Skopenow scours public data sources to build investigative dossiers, helping investigators map digital footprints, social media activity, and risk signals for fraud, due diligence, and law enforcement use cases.",
+    "companyRevenue": "~$25M-$50M ARR (private, estimated)",
+    "companyEmployees": "~120-150",
+    "companyWebsite": "https://www.skopenow.com",
+    "companyLinkedin": "https://www.linkedin.com/company/skopenow",
+    "companyOwnership": "Private (venture-backed, Techstars portfolio)"
+  },
+  {
+    "id": 1782810740002,
+    "company": "Skopenow",
+    "jobTitle": "Federal Account Executive",
+    "salary": "Est. $200K-$260K OTE ($1M+ quota structure)",
+    "fitScore": 90,
+    "status": "New",
+    "dateAdded": "2026-06-30",
+    "dateApplied": "",
+    "url": "https://jobs.techstars.com/companies/skopenow/jobs/39586674-federal-account-executive",
+    "source": "Skopenow / Techstars Job Board",
+    "location": "Remote (US)",
+    "territory": "Federal Civilian / DoD-adjacent",
+    "notes": "STRONG MATCH: Federal-vertical sales of OSINT/investigative analytics -- TrackLight + GovMotion DNA. $1M+ quota expectation aligns with Knute's $200K+ OTE target.",
+    "rawText": "Federal Account Executive at Skopenow\n\nSkopenow is a leading provider of comprehensive threat intelligence and OSINT solutions. Our investigative products are used by over 1,500 customers, including 20% of the Fortune 500 as well as numerous government and law enforcement agencies.\n\nWe are seeking a driven and experienced Account Executive to spearhead our efforts in prospecting and engaging with the federal government. The ideal candidate will be a seasoned SaaS Account Executive with a keen understanding of OSINT tools and technology, capable of driving the full sales cycle from initial outreach to deal closure.\n\nKey Responsibilities:\n- Develop and execute a strategic federal sales plan targeting key civilian and defense-adjacent agencies\n- Own end-to-end sales cycles including prospecting, discovery, demos, procurement, and close\n- Navigate federal procurement vehicles (GSA, SEWP, NASPO ValuePoint where applicable)\n- Build relationships with mission owners, contracting officers, and integrator partners\n- Maintain pipeline rigor and accurate forecasting\n\nRequirements:\n- Proven track record closing 6-7 figure deals in a Federal SaaS sales role\n- Strong understanding of government procurement processes and contracting vehicles\n- Held $1M+ quotas focused within the Federal vertical\n- Experience with end-to-end sales motion, from prospecting to closing complex deals\n- Excellent executive presence and ability to articulate ROI to federal mission stakeholders",
+    "description": "Skopenow Federal Account Executive -- Remote US. Build Skopenow's Federal vertical from a hunter seat, selling OSINT/investigative analytics into civilian agencies. $1M+ quota, full-cycle ownership including procurement vehicle navigation.",
+    "requirementsMet": [
+      "6-7 figure federal SaaS deals -- $1M-$5M+ public sector deal cycles closed across Adobe, DocuSign, Oracle, Salesforce, BDNA.",
+      "Government procurement -- GSA, SEWP, NASPO ValuePoint expertise from GovMotion + 25-year public sector career.",
+      "$1M+ Federal quota -- exceeds Knute's historical quota carry.",
+      "End-to-end sales motion -- consistent track record running complex multi-stakeholder federal deals.",
+      "Investigative analytics DNA -- TrackLight Strategic AE GTM Lead role is the closest market analog to Skopenow.",
+      "Executive ROI articulation -- proven C-suite and mission-owner engagement."
+    ],
+    "requirementsNotMet": [
+      "Pure OSINT platform experience -- TrackLight is adjacent; quick ramp expected.",
+      "Existing federal SI/contractor partner relationships -- would need to refresh / re-activate."
+    ],
+    "companyOverview": "Skopenow is a venture-backed OSINT and threat intelligence platform that powers investigations for over 1,500 customers including federal agencies, 20% of the Fortune 500, and law enforcement bodies. Founded 2016 in NYC, the platform aggregates and analyzes open-source data to enable fraud investigations, threat assessments, due diligence, and law enforcement workflows.",
+    "companyRevenue": "~$25M-$50M ARR (private, estimated)",
+    "companyEmployees": "~120-150",
+    "companyWebsite": "https://www.skopenow.com",
+    "companyLinkedin": "https://www.linkedin.com/company/skopenow",
+    "companyOwnership": "Private (venture-backed, Techstars portfolio)"
   }
 ]
