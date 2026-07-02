@@ -6947,5 +6947,73 @@
     "companyWebsite": "https://zencity.io",
     "companyLinkedin": "https://www.linkedin.com/company/zencity",
     "companyOwnership": "Private (Series C, TLV Partners, Vertex Ventures)"
+  },
+  {
+    "id": 1782983583952,
+    "company": "Kong",
+    "jobTitle": "Enterprise Account Executive, Federal",
+    "salary": "Est. $250K-$300K OTE (median comp reported ~$254K; 50/50 base/variable)",
+    "fitScore": 87,
+    "status": "New",
+    "dateAdded": "2026-07-02",
+    "dateApplied": "",
+    "url": "https://jobs.ashbyhq.com/kong",
+    "source": "Kong / Ashby",
+    "location": "Remote (US)",
+    "territory": "US Federal (DoD, Intelligence Community, Civilian)",
+    "notes": "Kong is an open-source API + AI Gateway leader (private, ~$1.4B valuation, ~800 employees). Founding member of the US Public Sector team hunting new federal logos with a focus on secure API/AI infrastructure. Excludes clearance requirement in posting text but IC accounts sometimes prefer cleared reps. Fit is strong on AI infrastructure, enterprise sales motion, and 10+ years exp requirement. Ding: federal-only (Knute's core is SLED + emerging federal, not deep DoD/IC).",
+    "rawText": "Kong is looking for an experienced and mission-driven Federal Account Executive to join our growing U.S. Public Sector team. You'll be responsible for landing new agencies, expanding existing relationships, and helping government customers securely modernize their mission systems with Kong's API and AI Gateway solutions. Ideal for a sales professional with deep experience in the U.S. Federal market who thrives in complex, dynamic environments and understands the unique challenges of the Department of Defense (DoD), Intelligence Community, and Civilian agencies. Requirements: 10+ years selling enterprise software with a strong network in the government / public sector, demonstrated success selling to senior-level executives, comfort navigating GSA/SEWP/NASPO and long federal sales cycles.",
+    "description": "Kong Federal Account Executive -- remote US. Own net-new agency acquisition + expansion for Kong's API/AI Gateway across DoD, IC, and civilian agencies. Selling into agency CIO/CTO/CISO and mission-owner personas. Reports into growing Federal team.",
+    "requirementsMet": [
+      "10+ years enterprise software sales in public sector",
+      "Government procurement (GSA/NASPO/SEWP) fluency",
+      "Complex, multi-stakeholder enterprise sales cycles",
+      "AI / data platform storyline (AI Gateway)",
+      "Strategic account planning + executive engagement"
+    ],
+    "requirementsNotMet": [
+      "Deep pre-existing DoD/IC agency relationships (Knute's public sector network is stronger in SLED and civilian federal)",
+      "Prior API management / API Gateway category selling experience"
+    ],
+    "companyOverview": "Kong Inc. is the leading open source, cloud-native API platform provider, with the Kong Konnect service connectivity platform and Kong AI Gateway used by enterprises and governments to build, secure, and manage APIs, microservices, and AI workloads at scale. The company is HQ'd in San Francisco with a large global remote workforce and is expanding aggressively into US Federal after its FedRAMP-in-progress push.",
+    "companyRevenue": "Est. $200M+ ARR (private; last valuation ~$1.4B in 2021 Series D)",
+    "companyEmployees": "~800 (estimated)",
+    "companyWebsite": "https://konghq.com",
+    "companyLinkedin": "https://www.linkedin.com/company/kong-inc/",
+    "companyOwnership": "Private (Tiger Global, Andreessen Horowitz, Index, CRV, GV)"
+  },
+  {
+    "id": 1782983583953,
+    "company": "CivilGrid",
+    "jobTitle": "Account Executive - Government (US East)",
+    "salary": "$150K-$175K base / $300K-$350K OTE + early-stage equity",
+    "fitScore": 84,
+    "status": "New",
+    "dateAdded": "2026-07-02",
+    "dateApplied": "",
+    "url": "https://jobs.ashbyhq.com/civilgrid/11b15865-01a2-43a3-80e6-1665be97bde9",
+    "source": "CivilGrid / Ashby",
+    "location": "Remote-friendly, US East (default is in-person collaboration when it matters)",
+    "territory": "US East public sector -- state DOTs, municipalities, county public works, public infrastructure agencies",
+    "notes": "CivilGrid is a Series A infrastructure-tech startup tackling a $4.7T US infrastructure market. Territory alignment (US East) and comp ($300K+ OTE) are strong. Not an AI-first product but heavy on public sector data + workflow, which aligns with Knute's SLED + procurement expertise. Ding: not fully remote (defaults to in-person 'where it matters'), and early-stage (equity-heavy).",
+    "rawText": "CivilGrid is seeking a highly motivated and outcomes-driven Account Executive to own and grow CivilGrid's presence across US East public sector accounts. The ideal candidate has a proven track record of enterprise sales success within government -- specifically state DOTs, municipalities, county public works departments, and public infrastructure agencies. Base salary range: $150,000-$175,000; 50/50 base to commission split; total OTE $300,000-$350,000. Comp includes meaningful early-stage equity, comprehensive benefits, and the opportunity to shape a category-defining company. Company defaults to in-person collaboration where it matters and remote-friendly flexibility otherwise.",
+    "description": "CivilGrid AE, Government (US East) -- own state DOT, municipal, and county public works accounts across the East. Full-cycle enterprise sales; report into growing GTM team at Series A infrastructure software startup.",
+    "requirementsMet": [
+      "Enterprise SLED sales background (state + local)",
+      "Public sector procurement fluency",
+      "Complex enterprise deal cycles",
+      "Southeast / East territory alignment (Apollo Beach FL)",
+      "Comp target well above $200K OTE"
+    ],
+    "requirementsNotMet": [
+      "Prior infrastructure / civil-engineering vertical selling (Knute's SLED experience is broader)",
+      "Preference for fully remote (this role has an in-person collaboration expectation)"
+    ],
+    "companyOverview": "CivilGrid is a venture-backed Series A startup building a unified data + workflow platform for the US civil infrastructure market -- helping state DOTs, municipalities, and public works agencies coordinate underground utility, permitting, and project data. It is going after a $4.7T infrastructure market that has been underserved by software for decades and is scaling its GTM team on the East coast.",
+    "companyRevenue": "Undisclosed (Series A, early revenue; estimated <$10M ARR)",
+    "companyEmployees": "~50-100 (estimated)",
+    "companyWebsite": "https://www.civilgrid.com",
+    "companyLinkedin": "https://www.linkedin.com/company/civilgrid/",
+    "companyOwnership": "Private (Series A VC-backed)"
   }
 ]
