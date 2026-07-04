@@ -7154,5 +7154,138 @@
     "companyWebsite": "https://govwell.com",
     "companyLinkedin": "https://www.linkedin.com/company/govwell",
     "companyOwnership": "Private (Series A, Insight Partners-led)"
+  },
+  {
+    "id": 1783156293000,
+    "company": "Trellix",
+    "jobTitle": "SLED & Healthcare Account Executive",
+    "salary": "Base $135K-$160K, OTE $175K-$320K",
+    "fitScore": 82,
+    "status": "New",
+    "dateAdded": "2026-07-04",
+    "dateApplied": "",
+    "url": "https://careers.trellix.com/jobs/sled-healthcare-account-executive/",
+    "location": "Remote - US (NY territory)",
+    "source": "Trellix careers page / RepVue salary data",
+    "territory": "SLED + Healthcare (New York-anchored, remote-eligible)",
+    "description": "Trellix (Symphony Technology Group merger of McAfee Enterprise + FireEye) SLED & Healthcare AE role. Own quota selling Trellix XDR, endpoint security, and threat intel to State/Local/Education agencies and healthcare systems. 7+ years enterprise cybersecurity sales into public sector required.",
+    "rawText": "Trellix - SLED & Healthcare Account Executive. Trellix is looking for an experienced quota-carrying Account Executive to sell its extended detection and response (XDR) platform and portfolio into State, Local, Education, and Healthcare accounts. Base pay range $135,000-$160,000 with OTE $175,000-$320,000 depending on territory and experience. Requires 7+ years of enterprise cybersecurity/SaaS sales experience with a strong record targeting US Public Sector accounts, MEDDPICC/Force Management proficiency, and existing relationships with SLED CISOs and healthcare CISOs.",
+    "notes": "Cybersecurity vs. Knute's core AI/data platform focus (secondary fit), but SLED sales motion is a direct match. OTE ceiling $320K is strong. Verify the specific territory before applying -- listing appears NY-anchored though role reports as remote. Related Trellix Federal AE role at trellix.com REQUIRES TS clearance -- excluded per feedback rules.",
+    "requirementsMet": [
+      "7+ years enterprise sales to Public Sector",
+      "SLED sales motion & relationships",
+      "$200K+ OTE target",
+      "Remote-eligible"
+    ],
+    "requirementsNotMet": [
+      "Territory anchor may be NY not Southeast (verify)",
+      "Cybersecurity XDR product not Knute's deepest specialty (AI/data platforms stronger)"
+    ],
+    "companyOverview": "Trellix is an extended detection and response (XDR) cybersecurity vendor formed from the 2022 merger of McAfee Enterprise and FireEye by Symphony Technology Group. Trellix serves ~40,000 enterprise and government customers with endpoint, email, network, cloud, and data security products, with a strong federal and SLED footprint.",
+    "companyRevenue": "Est. $1.9B (private; STG-owned)",
+    "companyEmployees": "~3,400 (est.)",
+    "companyWebsite": "https://www.trellix.com",
+    "companyLinkedin": "https://www.linkedin.com/company/trellix",
+    "companyOwnership": "Private - Symphony Technology Group portfolio"
+  },
+  {
+    "id": 1783156293001,
+    "company": "MongoDB",
+    "jobTitle": "Public Sector Enterprise Account Executive, Growth",
+    "salary": "Est. $145K-$165K base, $260K-$310K OTE",
+    "fitScore": 80,
+    "status": "New",
+    "dateAdded": "2026-07-04",
+    "dateApplied": "",
+    "url": "https://www.mongodb.com/careers/jobs/6635817",
+    "location": "Remote - US",
+    "source": "MongoDB careers page / AlleyCorp job board",
+    "territory": "US Public Sector - Growth accounts",
+    "description": "MongoDB Public Sector Enterprise AE (Growth segment) drives new business acquisition in state, local, and federal civilian agencies. Proactively identifies and qualifies pipeline, prospects into CTOs and IT/engineering leaders, and partners with Solution Architects to close consumption-based deals for MongoDB Atlas.",
+    "rawText": "MongoDB - Public Sector Enterprise Account Executive, Growth. Drive new business acquisition and expansion within US public sector accounts. Responsibilities include proactively identifying and qualifying sales pipelines, strategically prospecting into CTOs and engineering/IT leaders, building strong relationships for growth opportunities, and partnering with Solution Architects and Professional Services on complex consumption-based deals. Requires 5-10 years of enterprise SaaS/database sales experience with a track record of quota over-attainment; prior public sector selling preferred.",
+    "notes": "Solid AI/data platform employer. MongoDB is FedRAMP-authorized (Moderate) and StateRAMP progressing -- aligns with Knute's compliance background. 'Growth' segment typically means net-new SMB/mid-market public sector accounts (below top enterprise). Confirm OTE vs. $148K base figure from remoteleaf listing.",
+    "requirementsMet": [
+      "5-10 years enterprise SaaS sales",
+      "Data platform / AI relevance",
+      "Public sector focus",
+      "Remote"
+    ],
+    "requirementsNotMet": [
+      "Base $145K may put OTE at $250K -- borderline vs target",
+      "MongoDB territory assignment TBD -- confirm Southeast coverage"
+    ],
+    "companyOverview": "MongoDB is a public developer data platform company (NASDAQ: MDB). MongoDB Atlas is the cloud-native document database powering AI, analytics, and modern applications for 50,000+ customers globally. MongoDB has an active public sector business with FedRAMP Moderate authorization and a growing Atlas for Government offering.",
+    "companyRevenue": "$2.0B FY2025 (public)",
+    "companyEmployees": "~5,500",
+    "companyWebsite": "https://www.mongodb.com",
+    "companyLinkedin": "https://www.linkedin.com/company/mongodb-inc",
+    "companyOwnership": "Public (NASDAQ: MDB)"
+  },
+  {
+    "id": 1783156293002,
+    "company": "Medallia",
+    "jobTitle": "Sales Director, SLED (Remote East Coast)",
+    "salary": "Est. $180K-$220K base, $360K-$440K OTE",
+    "fitScore": 88,
+    "status": "New",
+    "dateAdded": "2026-07-04",
+    "dateApplied": "",
+    "url": "https://jobs.medallia.com/job/sales-director-sled-remote-east-coast/87292912-3b62-46c7-bc24-bfdb4b7c0c35",
+    "location": "Remote - US East Coast",
+    "source": "Medallia careers portal",
+    "territory": "US East Coast State, Local, Education",
+    "description": "Medallia Sales Director for SLED East Coast. Primarily targets new business opportunities in assigned State, Local, and Education accounts. Owns full sales cycle, leverages Medallia's Experience Cloud (feedback management, digital experience analytics with AI) for citizen experience use cases. 5+ years enterprise SaaS field sales to SLED required.",
+    "rawText": "Medallia is hiring a Sales Director, SLED (Remote East Coast). Primarily target new business opportunities within assigned State, Local, and Education accounts in the East Coast geographic territory. 5+ years of field sales experience in Enterprise software/SaaS. Proven track record selling into State, Local, and Education agencies. Ability to manage complex, multi-stakeholder sales cycles and build C-level relationships. Medallia's AI-powered Experience Cloud helps government agencies improve citizen and employee experiences.",
+    "notes": "Strong Southeast US fit (East Coast). Medallia has an established public sector practice with StateRAMP progression. Individual contributor 'Director' title (per job description language) rather than people leader -- confirm during screen. Experience management is adjacent to Knute's AI/analytics focus.",
+    "requirementsMet": [
+      "5+ years enterprise SaaS to SLED",
+      "East Coast / Southeast US territory",
+      "AI-adjacent experience platform",
+      "Remote",
+      "Comp target $200K+ OTE (well over)"
+    ],
+    "requirementsNotMet": [
+      "Experience management (CX/EX) not core to Knute's data/AI platform track record -- learning curve",
+      "Confirm East Coast territory covers FL"
+    ],
+    "companyOverview": "Medallia is a leading customer and employee experience management platform. Acquired by Thoma Bravo in 2021 for $6.4B, Medallia serves 1,000+ enterprise and government customers with AI-powered experience analytics. Public sector team supports state, local, and federal agencies improving citizen experience and digital services.",
+    "companyRevenue": "Est. $700M+ (private post-Thoma Bravo)",
+    "companyEmployees": "~2,200",
+    "companyWebsite": "https://www.medallia.com",
+    "companyLinkedin": "https://www.linkedin.com/company/medallia-inc-",
+    "companyOwnership": "Private - Thoma Bravo portfolio"
+  },
+  {
+    "id": 1783156293003,
+    "company": "Chainguard",
+    "jobTitle": "Regional Director, Public Sector Sales - SLED",
+    "salary": "Est. $200K-$240K base, $400K-$480K OTE",
+    "fitScore": 78,
+    "status": "New",
+    "dateAdded": "2026-07-04",
+    "dateApplied": "",
+    "url": "https://www.chainguard.dev/careers",
+    "location": "Remote - US",
+    "source": "RepVue / Chainguard careers",
+    "territory": "US SLED",
+    "description": "Chainguard Regional Director for Public Sector Sales - SLED. Builds and manages a team of SLED AEs selling Chainguard's zero-CVE container/OSS security platform into state and local government and higher education. Requires proven SaaS subscription sales track record and public sector sales management experience.",
+    "rawText": "Chainguard - Regional Director, Public Sector Sales - SLED. Proven track record in Software SaaS subscription sales and quota overachievement. Experience recruiting, hiring, and developing high-performing SLED Account Executives. Understanding of SLED procurement vehicles (NASPO ValuePoint, GSA, state cooperatives). Chainguard secures the software supply chain with zero-CVE container images and hardened open-source distributions used across defense, federal civilian, and enterprise.",
+    "notes": "Chainguard has strong federal traction (DoD, IC) and expanding SLED practice. People-management role -- step up from Knute's current IC track but aligned with his GTM Lead / Founder background. Note: Chainguard SLED AE role was previously discarded (2026-05-18) -- this is a different, senior role. Confirm before applying whether hiring team is the same.",
+    "requirementsMet": [
+      "SaaS sales leadership track record",
+      "Public sector GTM building",
+      "FedRAMP/compliance context",
+      "Comp target well exceeded"
+    ],
+    "requirementsNotMet": [
+      "Team management vs. IC bias -- previous Chainguard SLED IC role was discarded",
+      "Container/OSS security not Knute's deepest domain (AI/data stronger)"
+    ],
+    "companyOverview": "Chainguard is the software supply chain security company delivering zero-CVE container images, hardened OSS distributions, and Chainguard Enforce policy management. Founded 2021 by former Google/Chainguard engineers, valued at $3.5B (July 2024 Series C). Growing federal (DoD, DHS, IC) and SLED practice with FedRAMP progression.",
+    "companyRevenue": "Est. $70M+ ARR (private)",
+    "companyEmployees": "~500 (est.)",
+    "companyWebsite": "https://www.chainguard.dev",
+    "companyLinkedin": "https://www.linkedin.com/company/chainguard",
+    "companyOwnership": "Private (Series C, Sequoia/Kleiner/IVP/Amplify)"
   }
 ]
