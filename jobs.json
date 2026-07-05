@@ -7287,5 +7287,74 @@
     "companyWebsite": "https://www.chainguard.dev",
     "companyLinkedin": "https://www.linkedin.com/company/chainguard",
     "companyOwnership": "Private (Series C, Sequoia/Kleiner/IVP/Amplify)"
+  },
+  {
+    "id": 1783820000001,
+    "company": "Datadog",
+    "jobTitle": "Director, Enterprise Sales (SLED)",
+    "salary": "Base $190K-$200K, OTE est. $380K-$400K",
+    "fitScore": 85,
+    "status": "New",
+    "dateAdded": "2026-07-05",
+    "dateApplied": "",
+    "url": "https://careers.datadoghq.com/detail/6752773/",
+    "location": "Remote - US (hybrid)",
+    "source": "careers.datadoghq.com / web search",
+    "territory": "SLED (US East, with team spanning national)",
+    "description": "Datadog Director, Enterprise Sales (SLED) leads a team of Enterprise SLED Sales Executives responsible for new and expansion bookings across State, Local, and Education agencies. Owns annual SLED bookings quota with monthly/quarterly targets. Datadog continues to formalize its Public Sector segment as it enters bigger markets, so this role is a builder role with hiring/ramp responsibility. Sells Datadog's observability, security, and AI-driven monitoring platform to CIO/CTO/CISO buyers in SLED. Reports to VP-level Public Sector leadership.",
+    "rawText": "Director, Enterprise Sales (SLED) - Datadog. As a Director, Enterprise Sales (SLED), you'll provide strategy, mentorship, and guidance for a team of SLED Sales Executives responsible for driving new business through the full sales cycle. This is an established opportunity within the State, Local, and Education team, as Datadog continues to enter into bigger markets and formalize support for the Public Sector segments. Responsibilities include: manage, hire, train, and ramp a team of Enterprise SLED Sales Executives responsible for new and expansion bookings; achieve annual SLED bookings quota with monthly/quarterly targets; develop and manage Enterprise SLED Sales Executives on productivity metrics such as deal size, win rate, and forecast accuracy; coach sales executives through building executive relationships with Public Sector accounts; work collaboratively with Marketing, Product, and Success to build targeted messaging and collateral. Requirements: 5+ years of overall Public Sector Sales experience working with SLED Agencies; confidence in managing complex sales processes with multiple stakeholders; knowledge of selling to C-level executives in the IT space; experience in setting quotas and managing people against those quotas; ability to travel up to 70% of the time. Compensation: Reasonably estimated yearly salary is $190,000 - $200,000 USD, plus competitive equity and variable compensation.",
+    "notes": "Management role rather than pure IC seller -- worth applying because Knute's founder/GTM background at GovMotion and TrackLight positions him well to build a SLED team. Note 70% travel expectation. Datadog culture is 'hybrid' so likely a semi-remote setup with in-person team meetings. Different from the Datadog Strategic AE (SLED) role already tracked (Not Selected 2026-05-12); this is the manager over that role.",
+    "requirementsMet": [
+      "5+ years Public Sector / SLED sales experience",
+      "C-level executive selling",
+      "Complex sales process management",
+      "Team leadership / GTM builder background",
+      "$200K+ OTE target"
+    ],
+    "requirementsNotMet": [
+      "Up to 70% travel may exceed preference",
+      "Hybrid workplace (not fully remote)",
+      "Prior people-management at scale not core to recent IC roles"
+    ],
+    "companyOverview": "Datadog is a monitoring and security platform for cloud applications used by companies of all sizes across industries. Its SaaS platform integrates and automates infrastructure monitoring, application performance monitoring, log management, real user monitoring, and security. Datadog has been aggressively formalizing its Public Sector segment, is FedRAMP High authorized, and has increasing traction in SLED. Publicly traded (NASDAQ: DDOG).",
+    "companyRevenue": "$2.68B (FY2024, est.)",
+    "companyEmployees": "~7,500 (est.)",
+    "companyWebsite": "https://www.datadoghq.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/datadog/",
+    "companyOwnership": "Public (NASDAQ: DDOG)"
+  },
+  {
+    "id": 1783820000002,
+    "company": "Confluent",
+    "jobTitle": "Public Sector Account Executive, SLED",
+    "salary": "Base $131K-$154K, OTE est. $262K-$308K",
+    "fitScore": 84,
+    "status": "New",
+    "dateAdded": "2026-07-05",
+    "dateApplied": "",
+    "url": "https://careers.confluent.io/jobs/public-sector-account-executive-sled",
+    "location": "Remote - US",
+    "source": "careers.confluent.io / remoterocketship listing",
+    "territory": "SLED (US, remote)",
+    "description": "Confluent Public Sector Account Executive, SLED is responsible for selling Confluent's data streaming platform (built on Apache Kafka) into State, Local, and Education agencies. Full-cycle sales role focused on growing consumption within accounts and territory, developing executive relationships, and closing complex enterprise agreements. Confluent is a strong AI/data platform play as its streaming layer underpins many real-time AI and analytics deployments in the public sector.",
+    "rawText": "Public Sector Account Executive, SLED - Confluent. The Public Sector Account Executive is responsible for selling Confluent solutions to the SLED segment. Use prospecting, sales, negotiation, and leadership skills to effectively sell Confluent offerings to leading agencies. Become an in-depth expert/SME of Confluent offerings and product suites. Develop a deep understanding of customers' strategies and business goals. Requirements: 8+ years of experience in quota-carrying sales roles in a competitive market with a focus on growing consumption within accounts/territory; prior experience in Big Data, Consumption, Cloud, SaaS, Open Source, or Enterprise IT Solutions. Compensation: annual estimated salary $131,400 - $154,395, plus competitive equity package and eligible for additional commission and/or bonus pay. Remote-eligible.",
+    "notes": "Distinct from the Confluent Federal Account Executive, SLED role tracked 2026-06-27 -- this is the pure SLED public sector role. Streaming data platform positioning fits Knute's Databricks/Snowflake-adjacent AI-data narrative. Verify posting is still open; one search result flagged it as possibly closed. Move quickly if applying.",
+    "requirementsMet": [
+      "8+ years quota-carrying enterprise sales",
+      "SLED public sector experience",
+      "Cloud/SaaS/data platform selling",
+      "Consumption/land-and-expand motion",
+      "Fully remote"
+    ],
+    "requirementsNotMet": [
+      "Base salary at lower end of Knute's target ceiling",
+      "Consumption/Kafka-specific SME depth is new territory"
+    ],
+    "companyOverview": "Confluent is the data streaming platform pioneered by the original creators of Apache Kafka. It provides a cloud-native streaming platform (Confluent Cloud) plus a self-managed enterprise offering that helps organizations set data in motion for real-time analytics, AI/ML, and event-driven applications. Confluent has significant public sector adoption and holds FedRAMP authorizations. Publicly traded (NASDAQ: CFLT).",
+    "companyRevenue": "$964M (FY2024)",
+    "companyEmployees": "~3,000",
+    "companyWebsite": "https://www.confluent.io/",
+    "companyLinkedin": "https://www.linkedin.com/company/confluent/",
+    "companyOwnership": "Public (NASDAQ: CFLT)"
   }
 ]
