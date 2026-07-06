@@ -7356,5 +7356,110 @@
     "companyWebsite": "https://www.confluent.io/",
     "companyLinkedin": "https://www.linkedin.com/company/confluent/",
     "companyOwnership": "Public (NASDAQ: CFLT)"
+  },
+  {
+    "id": 1783906000001,
+    "company": "OpenAI",
+    "jobTitle": "Account Director, Federal Civilian",
+    "salary": "Base $178.2K-$301.5K, OTE est. $350K-$500K + equity",
+    "fitScore": 82,
+    "status": "New",
+    "dateAdded": "2026-07-06",
+    "dateApplied": "",
+    "url": "https://openai.com/careers/account-director-federal-civilian-washington-dc/",
+    "location": "Washington, DC (hybrid 3 days/week)",
+    "source": "openai.com/careers",
+    "territory": "Federal Civilian agencies",
+    "description": "OpenAI's Federal Civilian Account Director manages a focused portfolio of key federal civilian agencies. Owns the full federal account plan, leads customers through AI adoption from pilot to enterprise deployment, and drives federal consumption revenue targets. Sits within OpenAI for Government -- a fast-growing GTM org building relationships with federal civilian departments (GSA, VA, HHS, USDA, Treasury, State, etc.). Partners with Solutions, Support, Marketing, and Partnerships to package ChatGPT Enterprise/Gov, API, and Codex offerings to federal buyers.",
+    "rawText": "Account Director, Federal Civilian - OpenAI. About the Team: OpenAI for Government is a fast-growing organization dedicated to helping government customers understand the transformative impact that highly capable AI models can bring to their agencies and missions. Our team is comprised of Sales, Solutions, Support, Marketing, and Partnership professionals -- all focused on empowering the government with the most powerful AI capabilities available. About the Role: We are seeking an Account Director to focus on our federal civilian customers. In this role, you will manage a focused set of key federal accounts, developing and executing comprehensive federal account plans and leading federal customers through their AI adoption journey. You will oversee federal consumption revenue targets across your accounts. Responsibilities: Lead full-cycle federal sales motions from pipeline generation through negotiation and close; act as strategic advisor to federal CxOs; navigate FedRAMP/authorization pathways with partners; collaborate with product/engineering on complex mission requirements. Location: Washington, DC (hybrid 3 days/week in office). Compensation: $178,200 - $301,500 + equity + benefits.",
+    "notes": "Strong company + AI thesis match. Location is DC hybrid (3 days/week), not remote -- significant lifestyle change from Apollo Beach FL. Partner ecosystem experience at Adobe/DocuSign/BDNA and TrackLight applies. Note OpenAI is aggressively poaching senior GTM talent from Salesforce/Snowflake/Palantir per recent press.",
+    "requirementsMet": [
+      "Enterprise/strategic sales experience with federal buyers",
+      "AI/frontier tech GTM leadership",
+      "Complex, multi-stakeholder $1M-$5M+ deal cycles",
+      "Partner ecosystem and channel motion familiarity",
+      "$200K+ OTE alignment"
+    ],
+    "requirementsNotMet": [
+      "DC-based hybrid role -- not remote/Southeast",
+      "Deep active federal civilian rolodex may be shallower than DC-based sellers",
+      "3 days/week in office relocation ask"
+    ],
+    "companyOverview": "OpenAI is the leading AI research and product company behind ChatGPT, GPT-4/5, Codex, and enterprise offerings including ChatGPT Enterprise and ChatGPT Gov. OpenAI for Government has expanded aggressively in 2025-2026, launching FedRAMP High authorized offerings, striking partnerships with Palantir/Anthropic on federal deployments, and building a dedicated federal sales bench in Washington DC.",
+    "companyRevenue": "~$13B+ ARR (est. 2026)",
+    "companyEmployees": "~4,000+ (est.)",
+    "companyWebsite": "https://openai.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/openai/",
+    "companyOwnership": "Private (Microsoft strategic investor)"
+  },
+  {
+    "id": 1783906000002,
+    "company": "OpenAI",
+    "jobTitle": "Account Director, Government Scale",
+    "salary": "Base $178.2K-$301.5K, OTE est. $350K-$500K + equity",
+    "fitScore": 85,
+    "status": "New",
+    "dateAdded": "2026-07-06",
+    "dateApplied": "",
+    "url": "https://openai.com/careers/account-director-government-scale-washington-dc/",
+    "location": "Washington, DC or San Francisco (hybrid 3 days/week)",
+    "source": "openai.com/careers",
+    "territory": "Federal + State/Local mid-sized agencies (Scale segment)",
+    "description": "Full-cycle sales role covering a portfolio of smaller and mid-sized federal, state, and local government customers -- the 'Scale' segment. Serves as first point of contact for new government logos, manages the sales cycle end-to-end, and helps grow customer footprint from pilot to production. Sits within OpenAI for Government; cross-covers civilian, defense-adjacent, and SLED accounts that fall below the Named/Strategic threshold. Relocation assistance offered.",
+    "rawText": "Account Director, Government Scale - OpenAI. About the Team: OpenAI for Government helps government customers unlock the transformative impact of highly capable AI. About the Role: This is a full-cycle sales role for federal, state, and local government customers. You will serve as a first point of contact for government organizations and manage a portfolio of smaller and mid-sized agencies. You will run the full cycle -- prospecting, qualification, negotiation, and close -- and help government customers move from initial pilot to enterprise deployment. Responsibilities: identify and open new government accounts across federal civilian and SLED; drive pipeline, forecast, and deal execution; partner with Solutions Engineering, Legal, and Partnerships on procurement pathways (FedRAMP, StateRAMP, GSA schedules, cooperative contracts). Requirements: enterprise SaaS or AI sales experience with government buyers; ability to run high-velocity, multi-account cycles; comfort in a builder environment. Location: Washington DC or San Francisco (hybrid 3 days/week). Compensation: $178,200 - $301,500 + equity. Relocation assistance offered.",
+    "notes": "Highest-fit OpenAI role for Knute among the current openings: cross-covers federal AND SLED (matches dual profile), Scale segment favors builders vs. named-account maintainers, and relocation assistance is offered. Still hybrid DC/SF -- location is the primary drawback vs. Apollo Beach FL.",
+    "requirementsMet": [
+      "Full-cycle enterprise sales across federal + SLED",
+      "AI/frontier platform GTM alignment",
+      "Builder/founder mentality (GovMotion, TrackLight GTM Lead)",
+      "Government procurement vehicle familiarity (GSA, cooperative contracts)",
+      "$200K+ OTE, equity upside"
+    ],
+    "requirementsNotMet": [
+      "DC or SF hybrid -- not remote/Southeast",
+      "High-velocity Scale motion may skew younger/less strategic than Knute's recent $1M-$5M cycles",
+      "Relocation ask"
+    ],
+    "companyOverview": "OpenAI is the leading AI research and product company behind ChatGPT, GPT-4/5, Codex, and enterprise offerings including ChatGPT Enterprise and ChatGPT Gov. OpenAI for Government has expanded aggressively in 2025-2026, launching FedRAMP High authorized offerings, striking partnerships with Palantir/Anthropic on federal deployments, and building a dedicated federal sales bench in Washington DC.",
+    "companyRevenue": "~$13B+ ARR (est. 2026)",
+    "companyEmployees": "~4,000+ (est.)",
+    "companyWebsite": "https://openai.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/openai/",
+    "companyOwnership": "Private (Microsoft strategic investor)"
+  },
+  {
+    "id": 1783906000003,
+    "company": "OpenAI",
+    "jobTitle": "Account Director, Federal Partnerships",
+    "salary": "Base $178.2K-$301.5K, OTE est. $350K-$500K + equity",
+    "fitScore": 84,
+    "status": "New",
+    "dateAdded": "2026-07-06",
+    "dateApplied": "",
+    "url": "https://openai.com/careers/account-director-federal-partnerships-washington-dc/",
+    "location": "Washington, DC (hybrid 3 days/week)",
+    "source": "openai.com/careers",
+    "territory": "Federal partner ecosystem (SIs, resellers, prime contractors)",
+    "description": "Partner-led federal sales role. Manages a focused set of key federal partner accounts (SIs, primes, resellers, hyperscalers with federal practices), leads them through joint AI adoption and go-to-market, and owns partner-sourced federal consumption revenue. Sits within OpenAI for Government's Partnerships arm. Ideal for someone who has built federal channel motions before and understands how to align partner incentives against agency pursuits.",
+    "rawText": "Account Director, Federal Partnerships - OpenAI. About the Team: OpenAI for Government is expanding its partner ecosystem to accelerate federal AI adoption. About the Role: We are seeking an Account Director to manage a focused set of key federal partners. In this role, you will manage a focused set of key federal accounts, leading federal customers through their AI adoption journey and overseeing federal consumption revenue targets. Responsibilities: build joint GTM plans with SIs, primes, and resellers serving the federal market; land co-sell opportunities against named agency pursuits; drive partner enablement on ChatGPT Enterprise/Gov and API; navigate FedRAMP/StateRAMP authorization pathways with partners. Requirements: experience building federal channel/partner sales motions; enterprise sales credibility with federal buyers and SI leaders; understanding of federal procurement vehicles and prime/sub economics. Location: Washington DC (hybrid 3 days/week). Compensation: $178,200 - $301,500 + equity. Relocation assistance offered.",
+    "notes": "Partner ecosystem role aligns tightly with Knute's GovMotion advisory work and prior BDNA/Adobe partner GTM. This is arguably the closest job-description overlap of the three OpenAI federal roles. Still DC hybrid.",
+    "requirementsMet": [
+      "Federal partner/channel GTM experience (GovMotion, BDNA)",
+      "Enterprise sales credibility with government buyers",
+      "AI/frontier tech advocacy",
+      "Complex procurement vehicle experience (GSA, NASPO, SEWP)",
+      "$200K+ OTE + equity"
+    ],
+    "requirementsNotMet": [
+      "DC-based hybrid -- not remote/Southeast",
+      "Deep federal SI executive rolodex is DC-native strength",
+      "3 days/week in office"
+    ],
+    "companyOverview": "OpenAI is the leading AI research and product company behind ChatGPT, GPT-4/5, Codex, and enterprise offerings including ChatGPT Enterprise and ChatGPT Gov. OpenAI for Government has expanded aggressively in 2025-2026, launching FedRAMP High authorized offerings, striking partnerships with Palantir/Anthropic on federal deployments, and building a dedicated federal sales bench in Washington DC.",
+    "companyRevenue": "~$13B+ ARR (est. 2026)",
+    "companyEmployees": "~4,000+ (est.)",
+    "companyWebsite": "https://openai.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/openai/",
+    "companyOwnership": "Private (Microsoft strategic investor)"
   }
 ]
