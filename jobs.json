@@ -7461,5 +7461,108 @@
     "companyWebsite": "https://openai.com/",
     "companyLinkedin": "https://www.linkedin.com/company/openai/",
     "companyOwnership": "Private (Microsoft strategic investor)"
+  },
+  {
+    "id": 1783992000001,
+    "company": "NICE",
+    "jobTitle": "Regional Vice President, SLED East",
+    "salary": "OTE est. $300K-$400K (base + variable + equity)",
+    "fitScore": 78,
+    "status": "New",
+    "dateAdded": "2026-07-07",
+    "dateApplied": "",
+    "url": "https://www.ziprecruiter.com/c/NICE/Job/Regional-Vice-President-SLED-East",
+    "location": "Remote, US (East region)",
+    "source": "ziprecruiter/nice careers",
+    "territory": "SLED East (State, Local, Education accounts)",
+    "description": "Regional VP overseeing bookings, revenue, and operations for a team of ~5 SLED East Account Executives. Responsible for new logo acquisition, quota attainment, and coaching a hunting-focused AE bench. Owns pipeline hygiene, forecast accuracy, executive sponsor engagement, and CX SaaS/CCaaS/AI sales strategy across state agencies, local government, and higher-ed customers.",
+    "rawText": "Regional Vice President - SLED East - NICE. A NiCE Regional Vice President of SLED East (State, Local and Education accounts) presides over the booking, revenue and operations of a team of 5 account executives focused on hunting and acquiring new logos. Responsibilities include managing a team of quota-carrying AEs, driving new business SLED bookings across NICE's CXone (CCaaS), digital, WFM, and AI-powered customer engagement portfolio; forecasting; talent development; strategic account planning; and partnering with channel and marketing. Requires 10+ years enterprise SaaS/CCaaS sales leadership, prior SLED sales management, and remote leadership experience.",
+    "notes": "NEW company to tracker. NICE (NASDAQ:NICE) is a public CCaaS/CX AI leader with strong FedRAMP-adjacent SLED presence. RVP level aligns with Knute's leadership arc post-TrackLight/GovMotion. Verify that this role is not the same as the older 'RVP SLED East (Remote, OR)' listing -- ZipRecruiter shows Remote/OR posting but the location is remote across US. Attractive for a player-coach who wants to lead a bench rather than carry an individual quota.",
+    "requirementsMet": [
+      "10+ years enterprise SaaS sales leadership",
+      "SLED go-to-market strategy and execution",
+      "Executive-level relationship building with state/local CxOs",
+      "AI/CX platform positioning familiarity via TrackLight",
+      "$200K+ OTE alignment"
+    ],
+    "requirementsNotMet": [
+      "Direct RVP-level people management of a distributed AE team (Knute has led GTM but formal RVP-of-AEs is thinner)",
+      "CCaaS-specific portfolio experience (contact-center/WFM) is adjacent, not core"
+    ],
+    "companyOverview": "NICE Ltd. (NASDAQ: NICE) is a global leader in customer experience AI, CCaaS (CXone), workforce engagement, and financial-crime & compliance software. NICE Public Sector serves federal, state, local, and education customers with digital citizen engagement, contact center, fraud, and analytics platforms. FY2025 revenue ~$2.7B; deeply invested in generative AI for customer experience (CXone Mpower).",
+    "companyRevenue": "~$2.9B (2026 est.)",
+    "companyEmployees": "~9,000",
+    "companyWebsite": "https://www.nice.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/nice-systems/",
+    "companyOwnership": "Public (NASDAQ: NICE)"
+  },
+  {
+    "id": 1783992000002,
+    "company": "NTT DATA",
+    "jobTitle": "Launch Managing Director - Public Sector GTM Lead (US Remote)",
+    "salary": "Base $200K-$280K, OTE est. $350K-$500K + LTI",
+    "fitScore": 74,
+    "status": "New",
+    "dateAdded": "2026-07-07",
+    "dateApplied": "",
+    "url": "https://careers-inc.nttdata.com/job/Plano-Managing-Director-Public-Sector-GTM-Lead-(Remote)-TX/1268611500/",
+    "location": "Remote, US (Plano, TX HQ)",
+    "source": "nttdata careers / LinkedIn",
+    "territory": "US Public Sector (SLED + Federal)",
+    "description": "Managing Director leading Launch by NTT DATA's public sector go-to-market. Owns client relationship management, revenue growth, and pipeline expansion across SLED and Federal accounts. Sets industry-specific GTM strategy, coaches an account team, drives strategic partnerships (Salesforce, ServiceNow, AWS, Google, Microsoft), and represents Launch/NTT DATA at industry forums.",
+    "rawText": "Launch Managing Director - Public Sector GTM Lead - NTT DATA. Own client relationships and increase revenue while having deep expertise in SLED (State, Local, Education) products and services. Lead go-to-market strategy for Launch by NTT DATA within the public sector vertical; grow strategic partnerships; build and lead a high-performing team; drive digital transformation, data/AI, and Salesforce/ServiceNow-based solutioning for government customers. Requires 15+ years of consulting and/or public sector services sales experience, executive presence, and P&L accountability.",
+    "notes": "NEW company to tracker. NTT DATA is a global IT services giant; Launch is their innovation-focused digital consultancy. MD-level P&L role -- heavier consulting/services flavor than pure SaaS, but aligns with Knute's advisory/GTM strengths at GovMotion. Watch for services-vs-SaaS quota structure and travel expectations.",
+    "requirementsMet": [
+      "15+ years public sector GTM experience",
+      "Strategic partner ecosystem building (Salesforce/ServiceNow/AWS)",
+      "Executive stakeholder management with government CIO/CDO",
+      "Remote US role",
+      "$200K+ OTE alignment"
+    ],
+    "requirementsNotMet": [
+      "Deep IT services consulting (SI) background -- Knute is more SaaS/product-led",
+      "P&L ownership at MD scale is a stretch vs. quota-carrying AE roles",
+      "Heavy travel expectation typical of consulting MD roles"
+    ],
+    "companyOverview": "NTT DATA is a top-tier global IT services and consulting firm (part of NTT Group). NTT DATA Services generates roughly $30B+ in annual revenue with a large US federal and SLED practice. Launch by NTT DATA is the firm's product-engineering and digital-innovation practice, focused on cloud, AI/data, and platform transformation for enterprise and public sector clients.",
+    "companyRevenue": "~$30B (NTT DATA global, est.)",
+    "companyEmployees": "~190,000 (global)",
+    "companyWebsite": "https://www.nttdata.com/global/en/",
+    "companyLinkedin": "https://www.linkedin.com/company/ntt-data-services/",
+    "companyOwnership": "Subsidiary of NTT Corporation (public, TYO:9432)"
+  },
+  {
+    "id": 1783992000003,
+    "company": "Motive",
+    "jobTitle": "Account Executive, Enterprise - Southeast",
+    "salary": "Base ~$120K-$150K, OTE est. $240K-$300K + equity",
+    "fitScore": 68,
+    "status": "New",
+    "dateAdded": "2026-07-07",
+    "dateApplied": "",
+    "url": "https://job-boards.greenhouse.io/gomotive/jobs/7812312002",
+    "location": "Remote, US Southeast (FL/GA/AL/MS/AR/LA)",
+    "source": "greenhouse / gomotive",
+    "territory": "Southeast enterprise (private-sector heavy; some public agency/fleet accounts)",
+    "description": "Enterprise AE covering the US Southeast, selling Motive's AI-driven fleet/physical operations platform to large enterprise customers (>1,000 vehicles/assets or >$500M revenue). Owns full cycle -- prospecting, discovery, executive engagement, technical eval, procurement, close -- and land-and-expand into multi-year enterprise agreements.",
+    "rawText": "Account Executive, Enterprise - Southeast - Motive. This role is open to candidates in Georgia, Florida, Alabama, Mississippi, Arkansas and Louisiana, and is based remotely. Motive serves more than 100,000 customers across industries including the public sector, and the platform is combined with industry leading AI to give complete visibility and control across fleet, equipment, and operations. Requires 4+ years of SaaS or industry-relevant Enterprise field sales experience, six-figure quota history, and success closing $500K+ ACV deals. Base salary + uncapped commission + equity + benefits.",
+    "notes": "Southeast-based remote is ideal for Apollo Beach, FL. Motive has a public sector team (Motive AE-SLED role is separately listed and previously in tracker as Expired). This Enterprise-Southeast role is commercial-facing, not public sector, so less of a strategic bulls-eye but strong geographic + AI-platform fit. Compensation slightly below preferred $200K+ OTE floor at base but total OTE meets bar.",
+    "requirementsMet": [
+      "Enterprise SaaS field sales background",
+      "Southeast US territory (Apollo Beach, FL native)",
+      "AI-powered platform selling motion",
+      "Complex, multi-stakeholder deal cycles"
+    ],
+    "requirementsNotMet": [
+      "Not public sector -- deviates from Knute's SLED/Federal focus",
+      "Fleet/physical operations vertical is adjacent, not core",
+      "Base salary at lower end of Knute's target"
+    ],
+    "companyOverview": "Motive (formerly KeepTruckin) is a $1B+ ARR AI-powered operations platform for physical industries -- fleet management, dashcams, ELD/HOS compliance, equipment monitoring, and spend management. Serves 100,000+ customers including public agencies and Fortune 500 fleets. Backed by IVP, Insight, Kleiner Perkins; valued at ~$2.9B in last funding round.",
+    "companyRevenue": "~$1B+ ARR (est.)",
+    "companyEmployees": "~4,000",
+    "companyWebsite": "https://gomotive.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/gomotive/",
+    "companyOwnership": "Private (VC-backed; IVP, Insight, Kleiner Perkins)"
   }
 ]
