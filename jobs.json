@@ -7564,5 +7564,77 @@
     "companyWebsite": "https://gomotive.com/",
     "companyLinkedin": "https://www.linkedin.com/company/gomotive/",
     "companyOwnership": "Private (VC-backed; IVP, Insight, Kleiner Perkins)"
+  },
+  {
+    "id": 1783992000101,
+    "company": "Burwood Group",
+    "jobTitle": "Account Executive, Google Public Sector and Higher Education",
+    "salary": "OTE $200K-$270K+ (uncapped)",
+    "fitScore": 74,
+    "status": "New",
+    "dateAdded": "2026-07-08",
+    "dateApplied": "",
+    "url": "https://jobs.smartrecruiters.com/BurwoodGroupInc/744000129595810-account-executive-google-public-sector-and-higher-education-",
+    "location": "Remote, US (HQ Chicago/Oak Brook, IL)",
+    "source": "Built In Chicago / SmartRecruiters",
+    "territory": "US Higher Education + State/Local Public Sector (partner-led / co-sell with Google)",
+    "description": "Senior Account Executive at Burwood Group (a Sikich company) driving revenue in Google Public Sector and Higher Education markets through partner-led and co-sell motions. Owns executive-level relationships, strategic account planning, QBRs, joint GTM strategy with Google + ISVs/OEMs, and full deal cycle from engagement through close.",
+    "rawText": "Account Executive, Google Public Sector and Higher Education - Burwood Group. Posted 15 Days Ago. Remote, hiring in Chicago, IL, USA. OTE $200K-$270K+, senior level. Burwood Group is a technology consulting firm founded 1997, HQ Oak Brook IL, joined Sikich in 2026 (2,000-person professional services firm). The Account Executive serves as the face of Burwood for customers, partners, and community. Drives revenue growth through partner-led and co-sell motions with strong emphasis on Google Higher Education and Public Sector markets. Develops executive-level relationships, leads strategic account planning, collaborates with internal teams and technology partners. Owns: strategic account planning within partner-led and co-sell environments; executive-level customer engagement and trusted advisor development; Quarterly/Periodic Business Reviews driving measurable outcomes; joint GTM strategy with Google and ecosystem partners (ISVs, OEMs, distributors); partner enablement and relationship building across the Google ecosystem; sales strategy and deal execution from engagement through close; industry event/community engagement; identification and pursuit of growth opportunities within Higher Ed and Public Sector; collaboration with technical/delivery/leadership teams. Requires: 5-10 years successful sales experience in tech consulting, cloud services, managed services, or IT solutions; demonstrated success selling complex tech solutions into Higher Ed, State and Local Government, or other Public Sector organizations; experience driving revenue through partner-led and co-sell motions, preferably within the Google ecosystem; strong understanding of Google Cloud Platform (GCP), Google Workspace, AI solutions, and digital transformation initiatives; ability to engage executive stakeholders on business outcomes, modernization strategies, and technology roadmaps; experience developing strategic account plans, managing complex opportunities, and navigating multi-stakeholder buying cycles. OTE $200,000-$270,000+ based on experience and location, uncapped commission for high performers.",
+    "notes": "Consulting/reseller model (Burwood + Google) rather than direct SaaS AE — different revenue mechanics but strong Public Sector + Higher Ed alignment. GCP + AI solutions focus is relevant to Knute's AI-platform GTM background. OTE floor meets $200K target. Sikich parent adds enterprise scale. Uncapped commission is a plus. Consider: Knute's TrackLight/GovMotion background is direct-SaaS oriented; adjusting to a consulting partner-led motion is a shift.",
+    "requirementsMet": [
+      "5-10+ years enterprise tech sales (Knute has 20+)",
+      "Public Sector + Higher Ed selling experience",
+      "Executive-level VP/C-suite relationship management",
+      "Complex multi-stakeholder buying cycles",
+      "Remote-eligible, no geographic conflict with Apollo Beach FL",
+      "OTE meets $200K+ target"
+    ],
+    "requirementsNotMet": [
+      "Google Cloud Platform / Workspace-specific ecosystem experience (Knute's AI/data background is broader, not GCP-native)",
+      "Partner-led / co-sell motion is different from direct SaaS AE Knute has run",
+      "Consulting services P&L (base + services quota) vs pure SaaS ARR"
+    ],
+    "companyOverview": "Burwood Group is a US-based technology consulting firm founded in 1997, headquartered in Oak Brook, Illinois. It joined Sikich in 2026, becoming part of a 2,000-person professional services organization operating across North America, EMEA, and APAC. Burwood delivers cloud services, managed services, and IT solutions with a strong Google Cloud partnership focused on Higher Education and State/Local Government verticals. The firm emphasizes advisory-led delivery and long-term client relationships in regulated industries.",
+    "companyRevenue": "Sikich (parent) ~$400M+ (est.); Burwood not separately reported",
+    "companyEmployees": "~500 (Burwood) / ~2,000 (Sikich total)",
+    "companyWebsite": "https://www.burwood.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/burwood-group-inc/",
+    "companyOwnership": "Private (subsidiary of Sikich, private professional services firm)"
+  },
+  {
+    "id": 1783992000102,
+    "company": "Redis",
+    "jobTitle": "Account Executive, SLED",
+    "salary": "Base $150K-$165K, OTE est. $280K-$330K + equity",
+    "fitScore": 76,
+    "status": "New",
+    "dateAdded": "2026-07-08",
+    "dateApplied": "",
+    "url": "https://redis.io/careers/jobs/account-executive-sled/",
+    "location": "Remote, US",
+    "source": "Redis Careers / Ashby",
+    "territory": "US SLED (State, Local, Higher Education)",
+    "description": "Regional Account Executive selling Redis Enterprise (in-memory data platform, real-time data, vector search for AI/RAG) to State, Local, and Higher Education agencies. Reports to Regional Sales Director. Owns end-to-end account planning, consultative selling, pipeline management, and executive relationship building to exceed quota.",
+    "rawText": "Account Executive - SLED - Redis. Remote US. Redis Account Executive - SLED position. The ideal candidate represents the entire range of Redis products and services to assigned customers while leading the customer account planning cycle. This Regional Account Executive position reports to the Regional Sales Director. Redis hires for this and similar roles on an ongoing basis, so applications will be collected and kept on file as needs arise. Responsibilities: sell Redis Enterprise, manage a sales pipeline, build client relationships, and exceed quota targets while employing a consultative sales approach. Redis is the leading real-time data platform, powering vector search, RAG, caching, session store, and messaging for enterprises and public agencies deploying AI applications. Estimated gross base annual salary range $150,000-$165,000 in NY, CA, WA, CO, RI (may vary by location, qualifications, experience, competencies). Total compensation package may include 401(k), unlimited time off, learning and development opportunities, comprehensive health and wellness benefits, discretionary bonuses, stock options, commuter benefits, or a commission plan.",
+    "notes": "Strong AI/data platform relevance — Redis has become a core piece of RAG and vector-search infrastructure for AI workloads. SLED-specific role fits Knute's SLED-heavy target list. Base $150K-$165K puts OTE at approximately $280K-$330K (Redis SLED AE plans typically pay 1:1 to slightly below base commission). 'Ongoing' hiring means the role is evergreen and may take longer to activate; recommend applying + also engaging Redis SLED leadership on LinkedIn. Redis Enterprise is a proven enterprise SaaS with FedRAMP-adjacent workloads (many state agencies use it) — a natural fit for Knute's TrackLight/AI-platform background.",
+    "requirementsMet": [
+      "SLED-specific territory (core Knute target segment)",
+      "AI/data infrastructure product (vector search, RAG, real-time data)",
+      "Enterprise SaaS sales background",
+      "Consultative, executive-level selling",
+      "Remote US, no location conflict",
+      "OTE meets $200K+ floor"
+    ],
+    "requirementsNotMet": [
+      "Redis-specific/database ecosystem experience (Knute's background is AI apps + investigative analytics, not DB infra)",
+      "Territory scope not specified (could be region-specific or evergreen national)",
+      "'Ongoing' posting means uncertain timing — not a specific req backfill"
+    ],
+    "companyOverview": "Redis is the leading real-time data platform, providing in-memory caching, streaming, messaging, and vector search capabilities that power AI applications, RAG pipelines, session stores, and high-throughput transactional workloads. Widely deployed across Fortune 500, hyperscalers, and government agencies. Recently rebranded from Redis Labs, headquartered in Mountain View, CA with a global remote-first workforce. Redis Enterprise (paid) and open-source Redis together serve nearly every major cloud provider and thousands of enterprise customers.",
+    "companyRevenue": "~$300M+ ARR (est.)",
+    "companyEmployees": "~1,000+",
+    "companyWebsite": "https://redis.io/",
+    "companyLinkedin": "https://www.linkedin.com/company/redisinc/",
+    "companyOwnership": "Private (VC-backed; investors include Goldman Sachs, Bain Capital Ventures, TCV, Viola Ventures)"
   }
 ]
