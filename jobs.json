@@ -7636,5 +7636,109 @@
     "companyWebsite": "https://redis.io/",
     "companyLinkedin": "https://www.linkedin.com/company/redisinc/",
     "companyOwnership": "Private (VC-backed; investors include Goldman Sachs, Bain Capital Ventures, TCV, Viola Ventures)"
+  },
+  {
+    "id": 1783588312830,
+    "company": "Horizon3.ai",
+    "jobTitle": "Enterprise Account Executive, Florida",
+    "salary": "Base est. $150K-$170K, OTE est. $290K-$340K + equity",
+    "fitScore": 78,
+    "status": "New",
+    "dateAdded": "2026-07-09",
+    "dateApplied": "",
+    "url": "https://jobs.ashbyhq.com/horizon3ai",
+    "location": "Remote, Florida",
+    "source": "Horizon3.ai Careers / Ashby",
+    "territory": "Florida (Enterprise, SLED + Commercial)",
+    "description": "Enterprise Account Executive covering the Florida territory for Horizon3.ai's NodeZero autonomous pentesting platform. Full-cycle sales role — prospect and acquire net-new enterprise accounts, build and monetize channel/MSSP partner relationships, run POV (Proof-of-Value) engagements, and manage the sales process from qualification through negotiation and close. Includes access to Florida SLED accounts (school districts, city/county governments, state agencies) as part of the enterprise book.",
+    "rawText": "Enterprise Account Executive, Florida - Horizon3.ai. Remote, Florida-based. Drive sales growth and expand the customer base in the cybersecurity technology sector, with a focus on acquiring new accounts, building strong customer relationships, and ensuring customer satisfaction and retention. Minimum 5 years of successful sales experience in cybersecurity technology. Pre-existing connections with key resellers in the region required. Establish and monetize Channel Partner relationships. Manage full sales process including qualification, proof of value, forecasting, negotiation, and deal closure.",
+    "notes": "Perfect location match — Knute is in Apollo Beach, FL and this role is Florida-territory. Cybersecurity/offensive security is adjacent to Knute's compliance/regulated-industries background (FedRAMP/NIST). Horizon3 sells to SLED via channel; DoD footprint growing. Downside: not core AI/data platform play and Horizon3 leans partner-led rather than direct enterprise strategic. Could be a strong option if Knute wants to stay Florida-based with cybersecurity flavor.",
+    "requirementsMet": [
+      "Florida-based territory (Knute lives in Apollo Beach, FL)",
+      "Enterprise full-cycle sales (Knute has 15+ years of $1M-$5M deal cycles)",
+      "Regulated-industries fluency (FedRAMP, NIST, compliance frameworks)",
+      "Channel partner ecosystem experience",
+      "Remote-first role"
+    ],
+    "requirementsNotMet": [
+      "Cybersecurity/pentesting product-specific expertise (Knute is AI/data/analytics-focused, not offensive security)",
+      "Pre-existing reseller relationships in FL cybersecurity channel",
+      "Not strictly public-sector (mixed territory)"
+    ],
+    "companyOverview": "Horizon3.ai is a cybersecurity company that built NodeZero, an autonomous pentesting platform that continuously discovers exploitable attack paths across enterprise environments. Founded by former U.S. Special Operations Command and NSA operators, the company sells primarily to enterprises and government agencies looking to proactively verify their security posture. Strong momentum in SLED and federal markets driven by the shift from compliance-based to outcome-based security testing.",
+    "companyRevenue": "~$60M-$80M ARR (est.)",
+    "companyEmployees": "~250-350",
+    "companyWebsite": "https://horizon3.ai/",
+    "companyLinkedin": "https://www.linkedin.com/company/horizon3ai/",
+    "companyOwnership": "Private (VC-backed; investors include SignalFire, NightDragon, 9Yards Capital, Craft Ventures)"
+  },
+  {
+    "id": 1783588312831,
+    "company": "Ramp",
+    "jobTitle": "Account Executive | SLED",
+    "salary": "Base est. $130K-$150K, OTE est. $260K-$310K + equity",
+    "fitScore": 74,
+    "status": "New",
+    "dateAdded": "2026-07-09",
+    "dateApplied": "",
+    "url": "https://jobs.ashbyhq.com/ramp",
+    "location": "New York, NY (hybrid) or Remote considered",
+    "source": "Ramp Careers / Ashby",
+    "territory": "US SLED (State, Local, Higher Education)",
+    "description": "Account Executive dedicated to Ramp's growing government go-to-market. Own SLED sales strategy — build and refine winning value propositions, close deals with state/local agencies and universities, drive product adoption and expansion. Collaborate closely with product and product-marketing teams to shape SLED-specific messaging. Help establish foundational processes for scaling a focused government sales team. Ramp is layering AI-driven finance operations (spend controls, AP automation, agentic finance workflows) on top of a modern fintech platform.",
+    "rawText": "Account Executive | SLED - Ramp. New York, NY. Design and execute Ramp's government go-to-market (GTM) and sales strategy; develop winning sales strategies that focus on compelling value propositions; test and refine value propositions and sales strategies based on learnings and feedback. Close deals with SLED agencies and drive product adoption within those organizations; collaborate closely with product and product marketing teams to ensure value propositions are articulated at the right time to the right audience; establish foundational practices and processes for growing a focused government sales team. Proven experience in sales with a track record of closing deals within the SLED space; strategic thinker with a systems mindset; able to synthesize market insights, assess competition, and design scalable strategies for new verticals; experience in a fast-paced SaaS or GTM environment is a plus.",
+    "notes": "SLED sales at a rocketship fintech ($50B+ valuation as of 2025). Ramp's SLED motion is nascent — this is a builder role, which aligns with Knute's GovMotion background (early-stage GTM advisory). AI angle is present but weaker than pure AI-platform plays (Databricks, OpenAI, Anthropic). NYC HQ may push toward hybrid, but Ramp has been hiring remote SLED reps.",
+    "requirementsMet": [
+      "SLED sales experience (core Knute territory)",
+      "Early-stage GTM building (aligns with GovMotion + TrackLight founder/early-stage work)",
+      "Strategic account executive at high-growth SaaS",
+      "Public sector procurement fluency"
+    ],
+    "requirementsNotMet": [
+      "Fintech/expense-management domain expertise (Knute is AI/data/analytics, not finance)",
+      "NYC-preferred location (Knute is FL — remote flexibility unclear)",
+      "Not an AI-native platform (Ramp is AI-enabled but core product is fintech)"
+    ],
+    "companyOverview": "Ramp is a leading corporate spend management and finance automation platform, combining corporate cards, expense management, AP automation, procurement, and travel into one AI-first finance operating system. Ramp has been aggressively expanding into government and public sector as agencies modernize P-card and expense workflows. The company is one of the fastest-growing fintechs in the US.",
+    "companyRevenue": "~$700M ARR (est. 2025)",
+    "companyEmployees": "~1,500+",
+    "companyWebsite": "https://ramp.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/ramp/",
+    "companyOwnership": "Private (VC-backed; investors include Founders Fund, Stripe, Sequoia, General Catalyst, Thrive Capital; last valued at ~$16B)"
+  },
+  {
+    "id": 1783588312832,
+    "company": "SmartPM",
+    "jobTitle": "Account Executive, Public Sector",
+    "salary": "Base est. $130K-$150K, OTE est. $240K-$280K + equity",
+    "fitScore": 82,
+    "status": "New",
+    "dateAdded": "2026-07-09",
+    "dateApplied": "",
+    "url": "https://smartpm.com/careers/account-executive-public-sector",
+    "location": "Atlanta, GA / Remote (Southeast US preferred)",
+    "source": "SmartPM Careers",
+    "territory": "US Public Sector (Federal + State DOTs / infrastructure agencies)",
+    "description": "Account Executive dedicated to bringing SmartPM's FedRAMP High Authorized construction schedule analytics platform to government agencies overseeing complex infrastructure and capital projects. Research public sector market, identify opportunities within DOTs, FHWA, GSA, DoD infrastructure programs, and federal civilian agencies. Design high-touch strategic sales approaches, prepare and lead RFP responses and government paperwork, position SmartPM as go-to solution for construction schedule intelligence. Full sales cycle ownership.",
+    "rawText": "Account Executive - Public Sector - SmartPM. SmartPM is transforming how construction projects are managed through data-driven schedule analytics. Now FedRAMP High Authorized, SmartPM for Government empowers agencies to oversee project performance and safeguard public investments in a secure, compliant environment. SmartPM is an Automated Project Controls platform specializing in CPM schedule analytics for DOTs, FHWA, and federal infrastructure agencies. As Account Executive, you'll research the public sector market, identify opportunities within government agencies, and design strategic, high-touch sales approaches to position SmartPM as the go-to solution for construction schedule intelligence. Prepare and review complex government paperwork including RFPs, ensuring compliance and competitiveness. Headquartered in Atlanta, GA with 89 total employees.",
+    "notes": "Strong fit: (1) FedRAMP High is a core Knute compliance credential, (2) Public sector focused, (3) Southeast US company (Atlanta HQ) — geographically compatible with Apollo Beach, FL, (4) Data-driven analytics platform (schedule analytics = data platform play, not construction domain expertise required). Downside: construction/infrastructure vertical is new for Knute; smaller company (~89 employees) means less structured deal machinery — but that could align with GovMotion/TrackLight founder experience. Deal sizes typically $100K-$500K range — lower than Knute's $1M-$5M sweet spot but government CPM analytics can scale into multi-year multi-state contracts.",
+    "requirementsMet": [
+      "Public sector go-to-market focus (Knute's core specialty)",
+      "FedRAMP compliance-driven sales (Knute's regulated-industries background)",
+      "Federal + SLED procurement fluency (GSA, RFPs)",
+      "Southeast US HQ (Atlanta) — location compatible",
+      "Data/analytics platform positioning"
+    ],
+    "requirementsNotMet": [
+      "Construction/CPM domain expertise (Knute is AI/data/analytics, not AEC)",
+      "Deal sizes may be smaller than Knute's typical range",
+      "Smaller company scale (~89 people vs. Knute's usual enterprise-vendor setting)"
+    ],
+    "companyOverview": "SmartPM Technologies is an Atlanta-based construction analytics company that automates project controls and CPM (Critical Path Method) schedule intelligence for infrastructure and capital projects. Their platform ingests raw schedule data and produces objective performance metrics used by owners, GCs, and government agencies. FedRAMP High authorization (2025) unlocked federal DOT, FHWA, GSA, and DoD infrastructure programs — driving accelerated public sector expansion.",
+    "companyRevenue": "~$20M-$30M ARR (est.)",
+    "companyEmployees": "~89",
+    "companyWebsite": "https://smartpm.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/smartpm-technologies/",
+    "companyOwnership": "Private (VC-backed; investors include Resurgens Technology Partners)"
   }
 ]
