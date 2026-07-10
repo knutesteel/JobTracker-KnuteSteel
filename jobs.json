@@ -7843,5 +7843,134 @@
     "companyWebsite": "https://www.okta.com/",
     "companyLinkedin": "https://www.linkedin.com/company/okta-inc-/",
     "companyOwnership": "Public (NASDAQ: OKTA)"
+  },
+  {
+    "id": 1782811200001,
+    "company": "Fieldguide",
+    "jobTitle": "Public Sector Sales Lead - AI Audit Platform (Remote)",
+    "salary": "$220K-$300K OTE (estimated)",
+    "fitScore": 87,
+    "status": "New",
+    "dateAdded": "2026-07-10",
+    "dateApplied": "",
+    "url": "https://www.fieldguide.io/careers",
+    "source": "WebSearch",
+    "location": "Remote (US)",
+    "territory": "Federal, then SLED",
+    "notes": "Bessemer-backed AI-native audit platform. Building out public sector motion — early hire opportunity. Selling Internal Audit AI into government audit organizations (IG offices, state auditors). Strong AI + public sector alignment.",
+    "rawText": "Fieldguide is hiring a Public Sector sales leader to own the full sales cycle and build the public sector territory (federal, then state/local/higher ed), selling an Internal Audit AI platform into government audit organizations. Fieldguide is an AI-native platform for professional services firms and audit organizations.",
+    "description": "Own the full sales cycle and build public sector territory (federal, then state/local/higher ed), selling Fieldguide's Internal Audit AI platform into government audit organizations.",
+    "requirementsMet": [
+      "AI platform sales — TrackLight AI experience directly translates",
+      "Public sector expertise — Deep SLED and Federal background",
+      "GTM builder — GovMotion founder profile matches early-hire territory-build mandate",
+      "Remote — Fully remote role"
+    ],
+    "requirementsNotMet": [
+      "Audit domain — No specific IG/audit selling background, but general public sector procurement translates"
+    ],
+    "companyOverview": "Fieldguide is an AI-native platform for professional services firms and audit organizations, backed by Bessemer Venture Partners. Building the intelligence layer for audit and advisory work with LLM-native workflows.",
+    "companyRevenue": "Estimated $30M-$50M ARR (Series B-C stage)",
+    "companyEmployees": "150-250 (estimated)",
+    "companyWebsite": "https://www.fieldguide.io",
+    "companyLinkedin": "https://www.linkedin.com/company/fieldguideai",
+    "companyOwnership": "Private, VC-backed (Bessemer, others)"
+  },
+  {
+    "id": 1782811200002,
+    "company": "Dell Technologies",
+    "jobTitle": "Mission Executive - State & Local Government (Strategic Programs Office)",
+    "salary": "$250K-$350K OTE (estimated)",
+    "fitScore": 84,
+    "status": "New",
+    "dateAdded": "2026-07-10",
+    "dateApplied": "",
+    "url": "https://jobs.dell.com/en/search-jobs/Mission%20Executive%20State%20Local",
+    "source": "WebSearch",
+    "location": "Remote (US)",
+    "territory": "SLG - multi-state",
+    "notes": "Executive-level SLG advisory role in Strategic Programs Office. Justice, Public Safety, Cyber, Smart Government, Critical Infrastructure. Data platforms/analytics/AI supporting SLG decision-making preferred.",
+    "rawText": "Dell Technologies' Strategic Programs Office is seeking a Mission Executive focused on State & Local Government (SLG) to help SLG customers achieve their missions through scalable technology solutions, providing executive-level leadership across critical state and local missions including Justice, Public Safety, Cyber and Smart Government, and Critical Infrastructure. Strong track record working in or with public sector technology environments required.",
+    "description": "Provide executive-level leadership across critical state and local missions including Justice, Public Safety, Cyber and Smart Government, and Critical Infrastructure. Serve as trusted advisor to SLG customers on scalable technology solutions including data platforms, analytics, and AI.",
+    "requirementsMet": [
+      "SLG executive presence — Long-tenured public sector career fits senior advisory role",
+      "Justice/Public Safety alignment — TrackLight investigative analytics directly relevant",
+      "Data/AI platforms — TrackLight and prior Adobe/Salesforce/DocuSign experience",
+      "Remote — Fully remote"
+    ],
+    "requirementsNotMet": [
+      "Dell hardware/infrastructure background — Not core to profile, may need positioning"
+    ],
+    "companyOverview": "Dell Technologies is a global technology company providing servers, storage, networking, PCs, and services to enterprise and government customers. Strategic Programs Office houses cross-BU sales executives focused on mission outcomes.",
+    "companyRevenue": "$95B+ (FY2026)",
+    "companyEmployees": "108,000+",
+    "companyWebsite": "https://www.dell.com",
+    "companyLinkedin": "https://www.linkedin.com/company/delltechnologies",
+    "companyOwnership": "Public (NYSE: DELL)"
+  },
+  {
+    "id": 1782811200003,
+    "company": "Absolute Security (Absolute Software)",
+    "jobTitle": "Enterprise Account Executive - Southeast Growth (Remote)",
+    "salary": "$220K-$280K OTE (estimated)",
+    "fitScore": 78,
+    "status": "New",
+    "dateAdded": "2026-07-10",
+    "dateApplied": "",
+    "url": "https://www.absolute.com/company/careers/",
+    "source": "WebSearch (Lensa)",
+    "location": "Remote (Southeast US)",
+    "territory": "Southeast enterprise growth",
+    "notes": "Endpoint resilience / cyber compliance platform. Named 20-40 enterprise accounts, cross-sell/upsell + new logo. Regulated industries (healthcare, financial services, energy, education). Not purely public sector but strong regulated/compliance angle.",
+    "rawText": "Own a named geographic territory (Southeast), manage a focused set of 20-40 enterprise accounts, with primary goals of renewing those relationships and expanding them through cross-sell and upsell, while also generating new pipeline and leading complex enterprise sales cycles. Experience selling into regulated industries (healthcare, financial services, energy, education) is a key requirement.",
+    "description": "Enterprise AE for Southeast Growth territory. Named 20-40 accounts across regulated industries. Full-cycle enterprise sales.",
+    "requirementsMet": [
+      "Southeast geography — Apollo Beach FL fits territory",
+      "Enterprise sales cycles — Multi-decade enterprise selling career",
+      "Regulated industries — Public sector and compliance selling directly relevant",
+      "Remote"
+    ],
+    "requirementsNotMet": [
+      "Endpoint/cyber-specific product experience — Less direct match than AI/data roles"
+    ],
+    "companyOverview": "Absolute Security (formerly Absolute Software) delivers cyber resilience for endpoints with a firmware-embedded platform. Serves regulated industries and public sector.",
+    "companyRevenue": "$240M ARR (private, prior to Crosspoint acquisition)",
+    "companyEmployees": "~700",
+    "companyWebsite": "https://www.absolute.com",
+    "companyLinkedin": "https://www.linkedin.com/company/absolutesoftware",
+    "companyOwnership": "Private (Crosspoint Capital, acquired 2023)"
+  },
+  {
+    "id": 1782811200004,
+    "company": "Cisco (Splunk)",
+    "jobTitle": "Account Executive - Splunk - Higher Ed MidAtlantic (Remote)",
+    "salary": "$198K-$333.8K OTE",
+    "fitScore": 72,
+    "status": "New",
+    "dateAdded": "2026-07-10",
+    "dateApplied": "",
+    "url": "https://careers.cisco.com/global/en/job/CISCISGLOBAL2014922EXTERNALENGLOBAL/Account-Executive-Splunk-Higher-ED-MidAtlantic",
+    "source": "WebSearch",
+    "location": "Remote (PA/OH/DE/NJ)",
+    "territory": "Higher Ed MidAtlantic",
+    "notes": "Posted 2026-07-06. Splunk SLED/Higher Ed sales under Cisco umbrella. Compensation strong. Geography is MidAtlantic (not Southeast) — territory limitation. Application window closes 2026-08-15.",
+    "rawText": "Cisco is hiring an Account Executive for Splunk Higher Ed MidAtlantic. Remote from PA, OH, DE, or NJ. Drive revenue growth calling on large SLED (Higher Ed) accounts. Starting salary range $198,000 - $333,800 OTE. Application window closes 08/15/2026.",
+    "description": "Individual contributor Account Executive selling Splunk data platform into Higher Ed SLED accounts in the MidAtlantic region.",
+    "requirementsMet": [
+      "SLED/Higher Ed experience — Strong public sector background",
+      "Data platform selling — Splunk aligns with data/analytics focus",
+      "Enterprise sales cycles",
+      "Comp target — $198K-$333K exceeds $200K OTE minimum"
+    ],
+    "requirementsNotMet": [
+      "Geography — MidAtlantic residency preferred (PA/OH/DE/NJ), not Southeast — may need territory conversation",
+      "Cisco corporate motion — Larger org, less startup DNA"
+    ],
+    "companyOverview": "Cisco is a global networking and technology leader. Splunk (acquired 2024, $28B) provides data platform for security, observability, and IT operations. Higher Ed team sells into universities and research institutions.",
+    "companyRevenue": "$54B (Cisco FY2025)",
+    "companyEmployees": "90,000+",
+    "companyWebsite": "https://www.cisco.com",
+    "companyLinkedin": "https://www.linkedin.com/company/cisco",
+    "companyOwnership": "Public (NASDAQ: CSCO)"
   }
 ]
