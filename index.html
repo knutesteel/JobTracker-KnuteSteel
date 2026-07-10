@@ -2162,10 +2162,10 @@ function openJobDetailWindow(job) {
   <div style="padding:8px 28px 0"><a href="https://knutesteel.github.io/JobTracker-KnuteSteel/" style="color:#3182ce;font-size:13px;text-decoration:none;font-weight:600">← Return to Dashboard</a></div>
   <div style="background:#1e3a5f;color:#fff;padding:20px 28px;border-radius:12px 12px 0 0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px;margin-top:8px">
     <div style="flex:1;min-width:280px">
-      <h2 style="margin:0;font-size:22px;font-weight:700"><input id="editTitle" value="${esc(job.jobTitle)}" onchange="saveField('jobTitle',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:22px;font-weight:700;width:100%;padding:0 0 2px;outline:none;font-family:inherit" /></h2>
-      <div style="font-size:14px;opacity:0.9;margin-top:4px"><input id="editCompany" value="${esc(job.company)}" onchange="saveField('company',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:14px;opacity:0.9;padding:0 0 2px;outline:none;font-family:inherit" />${job.location ? ` • ${esc(job.location)}` : ""}</div>
+      <h2 style="margin:0;font-size:22px;font-weight:700"><input id="editTitle" value="${esc(job.jobTitle)}" oninput="_debouncedSave('jobTitle',this.value)" onblur="_flushSave('jobTitle',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:22px;font-weight:700;width:100%;padding:0 0 2px;outline:none;font-family:inherit" /></h2>
+      <div style="font-size:14px;opacity:0.9;margin-top:4px"><input id="editCompany" value="${esc(job.company)}" oninput="_debouncedSave('company',this.value)" onblur="_flushSave('company',this.value)" style="background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.4);color:#fff;font-size:14px;opacity:0.9;padding:0 0 2px;outline:none;font-family:inherit" />${job.location ? ` • ${esc(job.location)}` : ""}</div>
       <div style="font-size:16px;font-weight:600;color:#e8a838;margin-top:6px">${esc(job.salary)}</div>
-      <div id="urlArea" style="margin-top:4px">${job.url ? `<a href="${esc(job.url)}" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;word-break:break-all;display:inline-block">🔗 View Original Posting</a>` : `<input id="urlInput" placeholder="Paste job posting URL here..." style="background:transparent;border:1px dashed rgba(255,255,255,0.4);color:#90cdf4;font-size:12px;padding:4px 8px;border-radius:4px;width:100%;outline:none;font-family:inherit" onkeydown="if(event.key==='Enter'){saveUrlField(this.value)}" /><button onclick="saveUrlField(document.getElementById('urlInput').value)" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;padding:3px 10px;border-radius:4px;cursor:pointer;margin-top:4px">Save URL</button>`}</div>
+      <div id="urlArea" style="margin-top:4px;display:flex;gap:6px;align-items:center;flex-wrap:wrap"><input id="urlInput" value="${esc(job.url || "")}" placeholder="Paste job posting URL..." style="background:transparent;border:1px dashed rgba(255,255,255,0.4);color:#90cdf4;font-size:12px;padding:4px 8px;border-radius:4px;flex:1;min-width:220px;outline:none;font-family:inherit" oninput="_debouncedSave('url', _normalizeUrl(this.value))" onblur="_flushSave('url', _normalizeUrl(this.value))" onkeydown="if(event.key==='Enter'){_flushSave('url', _normalizeUrl(this.value)); this.blur();}" /><a id="urlOpen" href="${esc(job.url || '#')}" target="_blank" rel="noopener noreferrer" style="color:#90cdf4;font-size:12px;text-decoration:none;flex-shrink:0;${job.url ? "" : "display:none"}">🔗 Open</a></div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
       <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.6;text-align:right">
@@ -2323,7 +2323,7 @@ function ghSave(updates) {
           return { jobs: jobs, sha: meta.sha };
         });
       }
-      var decoded = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
+      var decoded = decodeURIComponent(escape(atob(meta.content.replace(/\\n/g, ""))));
       return { jobs: JSON.parse(decoded), sha: meta.sha };
     });
   }
@@ -2355,6 +2355,44 @@ function ghDeleteJob() {
       });
     });
 }
+// Per-field debounced save so we commit while typing without hammering GitHub.
+// Also flushes immediately on blur / Enter to guarantee no edit is left unsaved.
+var _saveTimers = {};
+var _lastSaved  = {};
+function _debouncedSave(field, value) {
+  if (_saveTimers[field]) clearTimeout(_saveTimers[field]);
+  _saveTimers[field] = setTimeout(function() {
+    _saveTimers[field] = null;
+    if (_lastSaved[field] === value) return;
+    _lastSaved[field] = value;
+    saveField(field, value);
+  }, 350);
+}
+function _flushSave(field, value) {
+  if (_saveTimers[field]) { clearTimeout(_saveTimers[field]); _saveTimers[field] = null; }
+  if (_lastSaved[field] === value) return;
+  _lastSaved[field] = value;
+  saveField(field, value);
+}
+function _normalizeUrl(raw) {
+  if (!raw) return "";
+  var v = raw.trim();
+  if (!v) return "";
+  if (!/^https?:\/\//i.test(v)) v = "https://" + v;
+  return v;
+}
+// Update the "Open" link next to the URL input whenever the URL field changes.
+document.addEventListener("DOMContentLoaded", function() {
+  var input = document.getElementById("urlInput");
+  var link  = document.getElementById("urlOpen");
+  if (input && link) {
+    input.addEventListener("input", function() {
+      var v = _normalizeUrl(input.value);
+      if (v) { link.href = v; link.style.display = ""; } else { link.style.display = "none"; }
+    });
+  }
+});
+
 function saveField(field, value) {
   JOB[field] = value;
   var upd = {}; upd[field] = value;
@@ -2370,6 +2408,24 @@ function saveField(field, value) {
 
 // Tiny toast in the bottom-right of the detail page, mirroring the dashboard's
 // showSaveStatus so per-field saves give clear feedback.
+// Flush any pending debounced saves before the tab closes so no edit is lost.
+window.addEventListener("beforeunload", function() {
+  Object.keys(_saveTimers || {}).forEach(function(field) {
+    if (_saveTimers[field]) {
+      clearTimeout(_saveTimers[field]);
+      _saveTimers[field] = null;
+      // Pull the current value from the corresponding input (best effort)
+      var el = null;
+      if (field === "jobTitle") el = document.getElementById("editTitle");
+      else if (field === "company") el = document.getElementById("editCompany");
+      else if (field === "url") el = document.getElementById("urlInput");
+      if (el) {
+        var v = (field === "url") ? _normalizeUrl(el.value) : el.value;
+        saveField(field, v);
+      }
+    }
+  });
+});
 var _detailToastEl = null;
 function _showDetailToast(msg, color, ttl) {
   if (!_detailToastEl) {
