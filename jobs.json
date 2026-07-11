@@ -8042,5 +8042,72 @@
     "companyWebsite": "https://www.dell.com",
     "companyLinkedin": "https://www.linkedin.com/company/delltechnologies",
     "companyOwnership": "Public (NYSE: DELL)"
+  },
+  {
+    "id": 1783992000200,
+    "company": "Dataiku",
+    "jobTitle": "Enterprise Account Executive - Federal / Public Sector",
+    "salary": "$160K-$170K base / ~$320K OTE (estimated 2x variable)",
+    "fitScore": 89,
+    "status": "New",
+    "dateAdded": "2026-07-11",
+    "dateApplied": "",
+    "url": "https://job-boards.greenhouse.io/dataiku/jobs/6099140004",
+    "location": "Remote (US) or Washington D.C.",
+    "notes": "NEW posting (marked 'New' on Greenhouse). Individual contributor, newly added for business expansion. Dataiku is 'The Platform for AI Success' — enterprise AI orchestration layer above data platforms, cloud, and AI services. Strong fit: 10+ yrs enterprise SW field sales matches Knute's Adobe/DocuSign/Salesforce/Oracle background; consultative selling; big data/analytics/BI/DW background aligns with TrackLight AI-analytics experience. Federal/Public Sector focus. Prior Dataiku entry in tracker was Discarded (not Public Sector specific).",
+    "description": "Dataiku is the Platform for AI Success — the enterprise orchestration layer for building, deploying, and governing AI. Sitting above data platforms, cloud infrastructure, and AI services, Dataiku connects the full enterprise AI stack. This is an individual contributor Strategic Account Executive role, newly added due to business expansion. Manage the entire sales cycle and own a territory of Federal/Public Sector prospects and customers. Requires 10+ years of software field sales, background selling innovation/new concepts to large Enterprises, and experience in data/big data/analytics/BI/DW.",
+    "requirementsMet": [
+      "10+ years enterprise SW field sales — Adobe/DocuSign/Salesforce/Oracle career",
+      "Selling innovation/new tech to enterprise — Founder/GTM Lead track record",
+      "Data/analytics/AI platform experience — TrackLight AI investigative analytics",
+      "Consultative, vision-match approach — Public sector deal cycles",
+      "Remote / DC-friendly — Fully remote acceptable"
+    ],
+    "requirementsNotMet": [
+      "Federal-specific procurement (vs. Knute's stronger SLED depth) — SEWP/GSA background helps but pure Federal civilian rolodex may need building"
+    ],
+    "companyOverview": "Dataiku is the enterprise orchestration layer for AI — a unified platform for building, deploying, and governing analytics, machine learning, and AI agents with the transparency, collaboration, and control enterprises require. Sitting above data platforms, cloud infrastructure, and AI services, Dataiku connects the full enterprise AI stack and enables centralized governance across multi-vendor environments. Trusted by leading global companies to operationalize AI as a business performance engine.",
+    "companyRevenue": "$300M+ ARR (estimated 2026)",
+    "companyEmployees": "~1,200",
+    "companyWebsite": "https://www.dataiku.com",
+    "companyLinkedin": "https://www.linkedin.com/company/dataiku",
+    "companyOwnership": "Private (backed by ICONIQ, Tiger Global, CapitalG, Battery Ventures)",
+    "source": "WebSearch + Greenhouse verified",
+    "territory": "US Federal / Public Sector",
+    "rawText": "Dataiku is looking for an experienced Strategic Account Executive to join our team. This is an individual contributor position, newly added due to business expansion. Responsible for managing the entire sales cycle and owning a territory with prospects and customers across a variety of industries. Requirements: 10+ years experience in software field sales; strong belief in customer centric selling philosophy; background in selling innovation and new concepts to large Enterprises; strong ability to develop a vision match with prospects; comfortable traveling 30 to 50%; data/big data/analytics/BI/DW experience desired. US base pay range $160,000 - $170,000 USD."
+  },
+  {
+    "id": 1783992000201,
+    "company": "Vanta",
+    "jobTitle": "Account Executive, SLED Government",
+    "salary": "~$280K-$320K OTE (estimated, growth-stage SaaS benchmark)",
+    "fitScore": 91,
+    "status": "New",
+    "dateAdded": "2026-07-11",
+    "dateApplied": "",
+    "url": "https://jobs.ashbyhq.com/vanta/c3b74285-982c-4648-bb79-d62c5b0adaf4",
+    "location": "Remote (US)",
+    "notes": "Reports to Head of Public Sector. 'Vanta for Government' is an AI-powered compliance platform (GovRAMP-focused). SLED-specific role — Knute's strongest fit segment. New team dedicated to public sector. Distinct from prior Discarded Vanta 'Senior Speciality Account Executive, Vanta for Government' (2026-06-08) which was federal-oriented. This one is explicitly SLED. Strong fit on GovRAMP/StateRAMP compliance selling angle.",
+    "description": "As an Account Executive, SLED Government at Vanta, you will drive revenue by guiding new business and growth with State, Local, and Education organizations. Reports to Head of Public Sector. Individual contributor. Develop/execute comprehensive strategy for Vanta for Government (AI-powered compliance platform) across SLED market. Serve as primary point of contact with SLED accounts, resellers, systems integrators, and channel partners. 8+ years progressive enterprise sales required, including 4+ years selling to SLED agencies within SaaS company. Strong understanding of SLED procurement, contract vehicles, GovRAMP compliance.",
+    "requirementsMet": [
+      "8+ years enterprise sales — Long career at Adobe/DocuSign/Salesforce/Oracle/BDNA",
+      "4+ years SLED SaaS selling — TrackLight + GovMotion advisory work",
+      "SLED procurement (GSA/NASPO/StateRAMP) — Core Knute domain",
+      "AI-powered compliance angle — TrackLight AI analytics + FedRAMP/FISMA/NIST background",
+      "Consultative long-term customer retention approach",
+      "Fully remote (LI-remote)"
+    ],
+    "requirementsNotMet": [
+      "GovRAMP-specific delivery experience — Adjacent to FedRAMP background, easily bridged"
+    ],
+    "companyOverview": "Vanta is the world's leading Trust Management Platform, helping thousands of companies build, maintain, and demonstrate trust in a real-time, transparent way. Vanta for Government is an AI-powered platform helping government agencies protect mission data, manage risk, streamline compliance (GovRAMP, SOC 2, ISO 27001, HIPAA), and build trust — faster and with less manual work. Public sector team is newly dedicated and growing quickly.",
+    "companyRevenue": "$220M+ ARR (est. 2026)",
+    "companyEmployees": "~1,100",
+    "companyWebsite": "https://www.vanta.com",
+    "companyLinkedin": "https://www.linkedin.com/company/vanta-security",
+    "companyOwnership": "Private (Sequoia, CrowdStrike, Y Combinator; $2.45B valuation)",
+    "source": "WebSearch + Ashby verified",
+    "territory": "US SLED - national",
+    "rawText": "Account Executive, SLED Government @ Vanta. Reporting directly to the Head of Public Sector. Drive revenue by guiding new business and growth with State, Local, and Education organizations. As an individual contributor, proactively cultivate, pursue, and capture SLED sales opportunities. Serve as primary point of contact between Vanta and key SLED accounts. Partner closely with SLED resellers, distributors, MSPs, and channel partners. Requirements: 8+ years progressive enterprise sales experience, including at least 4 years selling to SLED agencies within a SaaS company. Strong understanding of SLED sales cycles, procurement landscape, contract vehicles, compliance (GovRAMP), acquisition regulations, and partner ecosystems. #LI-remote"
   }
 ]
