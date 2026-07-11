@@ -644,6 +644,20 @@ async function _ghSaveSingleJob(jobId, updates) {
       });
       if (putResp.ok) {
         try { const r = await putResp.json(); _githubSha = (r && r.content && r.content.sha) || _githubSha; } catch(_){}
+        // Verify: re-read and confirm the update actually stuck. If a concurrent
+        // write clobbered ours between our PUT and this read, retry.
+        try {
+          const verify = await _ghReadJobsAndSha();
+          const j = verify.jobs.find(x => x.id === jobId);
+          const mismatch = j && Object.keys(updates).some(k => JSON.stringify(j[k]) !== JSON.stringify(updates[k]));
+          if (mismatch && attempt < maxAttempts) {
+            console.warn("Post-write verify failed for " + jobId + ", retrying...");
+            await new Promise(r => setTimeout(r, 300));
+            continue;
+          }
+        } catch (verifyErr) {
+          console.warn("Post-write verify errored (ignoring):", verifyErr);
+        }
         return true;
       }
       if ((putResp.status === 409 || putResp.status === 422) && attempt < maxAttempts) {
@@ -711,10 +725,24 @@ function scheduleSingleSave(jobId, updates) {
   }, 600));
 }
 
-function persistJobs(jobs) {
-  if (_saveTimer) clearTimeout(_saveTimer);
-  _saveTimer = setTimeout(() => saveJobsToGitHub(jobs), 1500);
+// Belt-and-suspenders: if the user closes the tab mid-debounce, fire every
+// pending save immediately so no edit is lost. Twin of the detail-page flush.
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeunload", () => {
+    if (!_jobSaveTimers.size) return;
+    for (const [jobId, timer] of _jobSaveTimers.entries()) {
+      clearTimeout(timer);
+      const updates = _pendingJobUpdates.get(jobId);
+      if (updates) _ghSaveSingleJob(jobId, updates); // fire-and-forget
+    }
+    _jobSaveTimers.clear();
+    _pendingJobUpdates.clear();
+  });
 }
+
+// persistJobs / saveJobsToGitHub removed — all persistence goes
+// through per-record helpers (_ghSaveSingleJob / _ghAddJob) that read
+// fresh state and use SHA-conflict retry.
 
 // Safely parse an error response body: try JSON, fall back to plain text,
 // fall back to status code. Never throws — returns a short human-readable string.
@@ -733,75 +761,6 @@ async function _safeErrorBody(resp) {
 }
 
 function _sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-async function _ghContentsGetSha() {
-  const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-    headers: { "Authorization": `Bearer ${GITHUB_TOKEN}` }
-  });
-  if (!r.ok) return null;
-  try { const m = await r.json(); return m.sha || null; } catch(_) { return null; }
-}
-
-async function _ghContentsPut(body) {
-  return fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-    method: "PUT",
-    headers: { "Authorization": `Bearer ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-}
-
-async function saveJobsToGitHub(jobs) {
-  if (!GITHUB_TOKEN) { console.warn("No GitHub token"); return; }
-  showSaveStatus("💾 Saving...", "#3182ce");
-  // Minified JSON to keep payload small and reliable across GitHub's edge
-  const payload = JSON.stringify(jobs);
-  const content = btoa(unescape(encodeURIComponent(payload)));
-  const maxAttempts = 4;
-  let lastErr = "";
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    try {
-      if (!_githubSha) _githubSha = await _ghContentsGetSha();
-      const body = { message: "Update jobs data", content: content, sha: _githubSha };
-      let resp = await _ghContentsPut(body);
-      // SHA conflict — refetch and retry once within this attempt
-      if (resp.status === 409 || resp.status === 422) {
-        console.warn("SHA conflict; refetching and retrying...");
-        _githubSha = await _ghContentsGetSha();
-        if (_githubSha) {
-          body.sha = _githubSha;
-          resp = await _ghContentsPut(body);
-        }
-      }
-      if (resp.ok) {
-        try {
-          const result = await resp.json();
-          _githubSha = (result && result.content && result.content.sha) || _githubSha;
-        } catch (_) { /* shape changes are fine; we just lose the new SHA */ }
-        showSaveStatus("✅ Saved", "#38a169");
-        return;
-      }
-      // Non-OK response — figure out whether it's worth retrying
-      lastErr = await _safeErrorBody(resp);
-      const transient = resp.status === 0 || resp.status === 429 || resp.status >= 500;
-      if (!transient || attempt === maxAttempts) {
-        throw new Error("HTTP " + resp.status + ": " + lastErr);
-      }
-      // Backoff: 600ms, 1.5s, 3.5s
-      await _sleep(400 + 600 * attempt + Math.floor(Math.random() * 300));
-    } catch (e) {
-      // Network/parse errors are also retried within the loop
-      lastErr = (e && e.message) || String(e);
-      const transient = /network|failed to fetch|load failed|ECONN|timeout/i.test(lastErr);
-      if (!transient || attempt === maxAttempts) {
-        console.error("GitHub save failed:", e);
-        showSaveStatus("❌ Save failed: " + lastErr.slice(0, 120), "#e53e3e");
-        return;
-      }
-      await _sleep(400 + 600 * attempt + Math.floor(Math.random() * 300));
-    }
-  }
-  showSaveStatus("❌ Save failed: " + (lastErr || "unknown"), "#e53e3e");
-}
 
 // Save a single job update via GitHub API (used by detail page)
 async function saveJobUpdate(jobId, updates) {
