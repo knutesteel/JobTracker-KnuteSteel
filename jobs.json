@@ -8182,5 +8182,41 @@
     "companyOwnership": "Private (SoftBank, Sequoia, Cisco, IBM investors; ~$7B post-merger valuation)",
     "source": "WebSearch + Remote Rocketship (verified live 2026-07-12)",
     "rawText": "SLED/Public Healthcare Account Executive — USA Colorado - Remote — $252k - $315k / year — Full Time — Senior. Description: Execute a territory plan focused on net-new logo acquisition and account growth. Build, manage, and progress a qualified sales pipeline. Work within complex customer organizations, including state, local, and education entities. Support and lead customer engagements through discovery, evaluation, proposal development, and solution alignment. Collaborate closely with channel partners and technology alliances to support deal execution. Maintain accurate opportunity tracking and forecasting. Requirements: Demonstrated experience selling into and partnering with Information Security / Cybersecurity teams; Experience selling into SLED/Public Sector accounts; Familiarity with public sector compliance and security frameworks (FedRAMP, StateRAMP, CJIS, NIST, or similar); Proven experience selling enterprise technology solutions; Foundational understanding of data security and backup technologies; Bachelor's degree in Business or a related field, or equivalent experience; Professional English language proficiency. Benefits: health and wellness benefits, vacation, paid holidays and refresh days, 401(k), life and disability. H1B Visa Sponsor."
+  },
+  {
+    "id": 1784337600001,
+    "company": "Clearview AI",
+    "jobTitle": "Account Executive - State & Local - GA",
+    "salary": "$180,000 - $250,000 OTE",
+    "fitScore": 71,
+    "status": "New",
+    "dateAdded": "2026-07-13",
+    "dateApplied": "",
+    "url": "https://clearview.pinpointhq.com/en/postings/599eecac-01ef-485a-8845-4be596c1e921",
+    "location": "Remote Georgia",
+    "territory": "State & Local - Georgia (SLED law enforcement)",
+    "notes": "Fully remote Georgia-based role. OTE $180K-$250K within target band. 5+ years SaaS to State & Local required — below Knute's 25+ years seniority, so this is more of a mid-market seat than a strategic account role. Clearview AI has ongoing legal/reputational headwinds (June 2026 Florida wrongful arrest lawsuit; July 2026 DC court order to reveal arrest tool after 8 false-arrest cases; August 2026 FedRAMP bid pending). Southeast GA fit is strong for Apollo Beach base; law enforcement AE is adjacent to Knute's TrackLight investigative-analytics work at GTM Lead. Ethical/political dimensions warrant closer review before applying. Sales - State & Local Department.",
+    "description": "Clearview AI is hiring an Account Executive - State & Local (Remote Georgia) responsible for meeting sales quotas within a territory of state and local law enforcement agencies. Develop and execute sales strategies for new clients, build pipeline through prospecting, channel partner relationships, and LinkedIn outreach, cultivate strong client relationships to close complex enterprise deals, and manage the full sales cycle from qualification through negotiation and close. Requires minimum 5+ years selling enterprise SaaS technology solutions to US State & Local customers, with expertise in prospecting via multi-channel outbound and strategic account planning. Fully remote with unlimited PTO, medical/dental/vision, and flexible work environment.",
+    "requirementsMet": [
+      "5+ years enterprise SaaS to US State & Local — Adobe, DocuSign, Salesforce, BDNA public sector background",
+      "Prospecting via multi-channel outbound (cold calling, LinkedIn, channel partners) — Career-long enterprise prospecting discipline",
+      "Full sales cycle enterprise closing — 25+ years enterprise SaaS deal ownership",
+      "Strategic account planning — Territory + account planning core competency",
+      "SLED customer relationship building — Established senior SLED public sector network",
+      "Remote Georgia location — Apollo Beach, FL is ideal for Southeast remote territory including GA",
+      "Investigative analytics / law enforcement adjacent — TrackLight AI-driven investigative analytics for government"
+    ],
+    "requirementsNotMet": [
+      "Direct facial recognition / biometrics product domain — Adjacent via TrackLight but not primary sold product",
+      "Existing law enforcement agency deep relationships — Broad SLED network but not necessarily police/sheriff department depth"
+    ],
+    "companyOverview": "Clearview AI is a US-based facial recognition company that develops and provides investigative tools primarily used by law enforcement, government agencies, and the military. Its platform matches images against a proprietary database of publicly available images to accelerate suspect identification, criminal investigations, victim recovery, and national security operations. Founded in 2017, the company has faced significant regulatory and legal scrutiny globally (multiple GDPR fines in EU; state-level bans in Illinois and elsewhere; ongoing US wrongful-arrest litigation as of 2026). Actively pursuing FedRAMP authorization (bid announced July 2026) to expand federal footprint. Georgia (Baldwin County) opened a $650K real-time crime center in 2026 integrating Clearview AI, indicating active SLED demand in-territory.",
+    "companyRevenue": "~$50M-$80M ARR (est., private)",
+    "companyEmployees": "~50-100 (est.)",
+    "companyWebsite": "https://www.clearview.ai",
+    "companyLinkedin": "https://www.linkedin.com/company/clearviewai",
+    "companyOwnership": "Private (Peter Thiel, Naval Ravikant, Kirenaga Partners investors)",
+    "source": "WebSearch + Clearview Pinpoint HQ careers page (verified live 2026-07-13)",
+    "rawText": "Account Executive - State & Local - GA. Department: Sales - State & Local. Employment Type: Full Time. Location: Remote Georgia. Workplace type: Fully remote. Compensation: $180,000 - $250,000 / year. Responsibilities: Meet sales quota within a territory of state and local law enforcement agencies across the United States; Develop and execute sales strategies for new clients; Build pipeline through prospecting and networking including cold calling, channel partner relationships, and LinkedIn outreach; Cultivate strong client relationships to close complex enterprise deals; Manage the full sales cycle from qualification through negotiation and close. Skills, Knowledge and Expertise: Minimum 5+ years selling enterprise SaaS technology solutions to US State & Local customers; Expertise in prospecting through multi-channel approaches; Strong client relationship building; Strategic account planning experience. Benefits: Medical, dental, vision plans; unlimited PTO; 100% remote work; flexible work environment. About Clearview AI: We specialize in delivering innovative solutions and exceptional services to meet the diverse needs of our clients, primarily law enforcement and government agencies using facial recognition and investigative tools."
   }
 ]
