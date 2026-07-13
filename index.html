@@ -19,6 +19,7 @@
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
   <script crossorigin src="https://unpkg.com/docx@9.0.2/build/index.umd.js"></script>
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
   <div id="root"></div>
@@ -771,16 +772,72 @@ async function _safeErrorBody(resp) {
 function _sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // Save a single job update via GitHub API (used by detail page)
-// Export all job data as JSON (safety net for users)
+// Export all job data as an Excel workbook. Falls back to JSON if SheetJS
+// hasn't loaded yet (offline / slow CDN). Column order + widths chosen for
+// readability at first open.
 function exportJobData(jobs) {
-  const data = JSON.stringify(jobs, null, 2);
-  const blob = new Blob([data], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "jobtracker-backup-" + new Date().toISOString().split("T")[0] + ".json";
-  a.click();
-  URL.revokeObjectURL(url);
+  const today = new Date().toISOString().split("T")[0];
+  const rows = (jobs || []).map((j) => ({
+    "Company": j.company || "",
+    "Job Title": j.jobTitle || "",
+    "URL": j.url || "",
+    "Salary": j.salary || "",
+    "Fit Score": (typeof j.fitScore === "number") ? j.fitScore : (j.fitScore || ""),
+    "Status": j.status || "",
+    "Date Added": j.dateAdded || "",
+    "Date Applied": j.dateApplied || "",
+    "Notes": j.notes || "",
+    "Interview Notes": j.interviewNotes || "",
+    "Requirements Met": Array.isArray(j.requirementsMet) ? j.requirementsMet.join("; ") : (j.requirementsMet || ""),
+    "Requirements Not Met": Array.isArray(j.requirementsNotMet) ? j.requirementsNotMet.join("; ") : (j.requirementsNotMet || ""),
+    "Company Overview": j.companyOverview || "",
+    "Revenue": j.revenue || "",
+    "Headcount": j.headcount || j.employees || "",
+    "Company Website": j.companyWebsite || j.website || "",
+    "Company LinkedIn": j.companyLinkedin || j.linkedin || "",
+    "Resume File": j.resumeFile || "",
+    "Cover Letter File": j.coverLetterFile || "",
+    "ID": j.id || "",
+  }));
+
+  // Fallback to JSON if SheetJS didn't load
+  if (typeof XLSX === "undefined") {
+    console.warn("SheetJS not loaded — falling back to JSON export.");
+    const blob = new Blob([JSON.stringify(jobs, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "jobtracker-backup-" + today + ".json"; a.click();
+    URL.revokeObjectURL(url);
+    return;
+  }
+
+  const ws = XLSX.utils.json_to_sheet(rows, { cellDates: false });
+  // Column widths tuned for readability. Keys must match the column names above.
+  const widths = {
+    "Company": 26, "Job Title": 44, "URL": 60, "Salary": 18,
+    "Fit Score": 10, "Status": 14, "Date Added": 12, "Date Applied": 13,
+    "Notes": 40, "Interview Notes": 40, "Requirements Met": 50,
+    "Requirements Not Met": 50, "Company Overview": 60, "Revenue": 16,
+    "Headcount": 14, "Company Website": 34, "Company LinkedIn": 40,
+    "Resume File": 30, "Cover Letter File": 30, "ID": 18,
+  };
+  ws["!cols"] = Object.keys(widths).map((k) => ({ wch: widths[k] }));
+  // Freeze the header row so columns stay visible while scrolling.
+  ws["!freeze"] = { xSplit: 0, ySplit: 1 };
+  ws["!autofilter"] = { ref: ws["!ref"] };
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Jobs");
+
+  // Summary sheet: counts by status
+  const counts = {};
+  (jobs || []).forEach((j) => { const s = j.status || "(none)"; counts[s] = (counts[s] || 0) + 1; });
+  const summary = [["Status", "Count"], ...Object.entries(counts).sort((a,b) => b[1]-a[1]), [], ["Total", (jobs||[]).length], ["Exported", today]];
+  const wsSum = XLSX.utils.aoa_to_sheet(summary);
+  wsSum["!cols"] = [{ wch: 20 }, { wch: 10 }];
+  XLSX.utils.book_append_sheet(wb, wsSum, "Summary");
+
+  XLSX.writeFile(wb, "jobtracker-" + today + ".xlsx");
 }
 
 // Import job data from JSON backup
@@ -2723,7 +2780,7 @@ function App() {
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <button onClick={() => exportJobData(jobs)} title="Export backup" style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", color: COLORS.white, borderRadius: 6, padding: "4px 10px", fontSize: 11, cursor: "pointer" }}>⬇ Export</button>
+          <button onClick={() => exportJobData(jobs)} title="Export to Excel (.xlsx)" style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", color: COLORS.white, borderRadius: 6, padding: "4px 10px", fontSize: 11, cursor: "pointer" }}>⬇ Export</button>
           <label title="Import backup" style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", color: COLORS.white, borderRadius: 6, padding: "4px 10px", fontSize: 11, cursor: "pointer" }}>
             ⬆ Import
             <input type="file" accept=".json" style={{ display: "none" }} onChange={(e) => {
