@@ -614,11 +614,19 @@ async function _ghReadJobsAndSha() {
   const meta = await resp.json();
   if (!meta.sha) throw new Error("missing SHA in response");
   if (!meta.content) {
-    // File too large for Contents API to inline content; fall back to raw URL.
-    // We accept the cache risk here only because we already have a fresh SHA.
-    const rawResp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}_${Math.random()}`, { cache: "no-store" });
-    if (!rawResp.ok) throw new Error("raw fallback HTTP " + rawResp.status);
-    return { jobs: await rawResp.json(), sha: meta.sha };
+    // File > 1 MB — Contents API returns empty content. Do NOT fall back to
+    // raw.githubusercontent.com; that CDN caches for minutes and returns stale
+    // JSON that causes single-record writes to silently clobber recent edits.
+    // Use the Blobs API — authoritative git object read, no CDN, supports 100 MB.
+    const blobResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/git/blobs/${meta.sha}`, {
+      headers: { "Authorization": `Bearer ${GITHUB_TOKEN}`, "Accept": "application/vnd.github+json" },
+      cache: "no-store",
+    });
+    if (!blobResp.ok) throw new Error("blobs API HTTP " + blobResp.status);
+    const blob = await blobResp.json();
+    if (!blob.content) throw new Error("blobs API returned no content");
+    const decoded = decodeURIComponent(escape(atob(blob.content.replace(/\s/g, ""))));
+    return { jobs: JSON.parse(decoded), sha: meta.sha };
   }
   const decoded = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ""))));
   return { jobs: JSON.parse(decoded), sha: meta.sha };
@@ -763,33 +771,6 @@ async function _safeErrorBody(resp) {
 function _sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // Save a single job update via GitHub API (used by detail page)
-async function saveJobUpdate(jobId, updates) {
-  try {
-    // Use the raw fallback for content (works even when files exceed 1MB Contents API limit)
-    const rawResp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${JOBS_FILE_PATH}?cb=${Date.now()}`);
-    if (!rawResp.ok) throw new Error("Failed to fetch current data");
-    const jobs = await rawResp.json();
-    // Get current SHA from Contents API metadata (works even for >1MB files; only content is gated)
-    const metaResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-      headers: { "Authorization": `Bearer ${GITHUB_TOKEN}` }
-    });
-    if (!metaResp.ok) throw new Error("Failed to fetch SHA");
-    let sha;
-    try { const meta = await metaResp.json(); sha = meta.sha; } catch(_) { throw new Error("Bad SHA response"); }
-    // Apply updates
-    const updated = jobs.map(j => j.id === jobId ? { ...j, ...updates } : j);
-    // Save back (minified for smaller payload)
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(updated))));
-    const putResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${JOBS_FILE_PATH}`, {
-      method: "PUT",
-      headers: { "Authorization": `Bearer ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "Update job " + jobId, content, sha }),
-    });
-    if (!putResp.ok) throw new Error("Save failed (HTTP " + putResp.status + ")");
-    return true;
-  } catch(e) { console.error("saveJobUpdate failed:", e); return false; }
-}
-
 // Export all job data as JSON (safety net for users)
 function exportJobData(jobs) {
   const data = JSON.stringify(jobs, null, 2);
@@ -2268,18 +2249,19 @@ function ghSave(updates) {
     }).then(function(meta) {
       if (!meta || !meta.sha) throw new Error("missing SHA");
       if (!meta.content) {
-        // File too large to inline — fall back to raw, but the SHA we got is
-        // still authoritative. The raw read may be slightly stale but the
-        // id-not-found guard above will catch genuine staleness.
+        // File > 1 MB — Contents API returns empty content. Use Blobs API
+        // instead of raw.githubusercontent.com (CDN-cached, causes stale
+        // reads → single-record writes silently clobber recent edits).
         return fetch(
-          "https://raw.githubusercontent.com/" + GH_REPO + "/main/" + GH_FILE +
-          "?cb=" + Date.now() + "_" + Math.random(),
-          { cache: "no-store" }
+          "https://api.github.com/repos/" + GH_REPO + "/git/blobs/" + meta.sha,
+          { headers: { "Authorization": "Bearer " + GH_TOKEN, "Accept": "application/vnd.github+json" }, cache: "no-store" }
         ).then(function(r) {
-          if (!r.ok) throw new Error("raw fallback HTTP " + r.status);
+          if (!r.ok) throw new Error("blobs HTTP " + r.status);
           return r.json();
-        }).then(function(jobs) {
-          return { jobs: jobs, sha: meta.sha };
+        }).then(function(blob) {
+          if (!blob.content) throw new Error("blobs API no content");
+          var d = decodeURIComponent(escape(atob(blob.content.replace(/\\s/g, ""))));
+          return { jobs: JSON.parse(d), sha: meta.sha };
         });
       }
       var decoded = decodeURIComponent(escape(atob(meta.content.replace(/\\n/g, ""))));
@@ -2295,24 +2277,6 @@ function changeStatus(newStatus) {
   // Discarded is now a soft-delete: save the status like any other change.
   JOB.status = newStatus;
   ghSave({ status: newStatus }).then(function() { window.close(); }).catch(function(e) { alert("Save failed: " + e.message); });
-}
-function ghDeleteJob() {
-  // Use raw URL for content (handles >1MB files), Contents API for SHA + PUT
-  return fetch("https://raw.githubusercontent.com/" + GH_REPO + "/main/" + GH_FILE + "?cb=" + Date.now())
-    .then(function(r) { if (!r.ok) throw new Error("fetch failed"); return r.json(); })
-    .then(function(jobs) {
-      return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
-        headers: { "Authorization": "Bearer " + GH_TOKEN }
-      }).then(function(m) { return m.json(); }).then(function(meta) {
-        var filtered = jobs.filter(function(j) { return j.id !== JOB.id; });
-        var content = btoa(unescape(encodeURIComponent(JSON.stringify(filtered))));
-        return fetch("https://api.github.com/repos/" + GH_REPO + "/contents/" + GH_FILE, {
-          method: "PUT",
-          headers: { "Authorization": "Bearer " + GH_TOKEN, "Content-Type": "application/json" },
-          body: JSON.stringify({ message: "Delete job " + JOB.id, content: content, sha: meta.sha })
-        });
-      });
-    });
 }
 // Per-field debounced save so we commit while typing without hammering GitHub.
 // Also flushes immediately on blur / Enter to guarantee no edit is left unsaved.
