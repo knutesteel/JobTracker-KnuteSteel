@@ -772,10 +772,43 @@ async function _safeErrorBody(resp) {
 function _sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // Save a single job update via GitHub API (used by detail page)
-// Export all job data as an Excel workbook. Falls back to JSON if SheetJS
-// hasn't loaded yet (offline / slow CDN). Column order + widths chosen for
-// readability at first open.
-function exportJobData(jobs) {
+// Load SheetJS on demand. Tries multiple CDNs so a single blocked host
+// doesn't force a JSON fallback. Returns a Promise that resolves when
+// window.XLSX is available.
+function _loadSheetJS() {
+  if (typeof XLSX !== "undefined") return Promise.resolve();
+  if (window._sheetJsLoading) return window._sheetJsLoading;
+  const urls = [
+    "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js",
+    "https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js",
+    "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js",
+    "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js",
+  ];
+  window._sheetJsLoading = (async () => {
+    for (const url of urls) {
+      try {
+        await new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = url;
+          s.crossOrigin = "anonymous";
+          s.onload = resolve;
+          s.onerror = () => reject(new Error("load failed: " + url));
+          document.head.appendChild(s);
+        });
+        if (typeof XLSX !== "undefined") { console.info("SheetJS loaded from", url); return; }
+      } catch (e) { console.warn(e.message); }
+    }
+    throw new Error("All SheetJS CDN sources failed");
+  })();
+  return window._sheetJsLoading;
+}
+
+// Kick off SheetJS load immediately so it's ready by the time user clicks Export.
+setTimeout(function() { _loadSheetJS().catch(function(){}); }, 0);
+
+// Export all job data as an Excel workbook. Loads SheetJS on demand if not
+// already present. Only falls back to JSON if every CDN fails.
+async function exportJobData(jobs) {
   const today = new Date().toISOString().split("T")[0];
   const rows = (jobs || []).map((j) => ({
     "Company": j.company || "",
@@ -800,9 +833,12 @@ function exportJobData(jobs) {
     "ID": j.id || "",
   }));
 
-  // Fallback to JSON if SheetJS didn't load
-  if (typeof XLSX === "undefined") {
-    console.warn("SheetJS not loaded — falling back to JSON export.");
+  // Ensure SheetJS is loaded before we build the workbook.
+  try {
+    await _loadSheetJS();
+  } catch (e) {
+    console.warn("SheetJS load failed across all CDNs — falling back to JSON export:", e);
+    alert("Excel export requires the SheetJS library, but it couldn't be loaded from any CDN. Downloading JSON backup instead.");
     const blob = new Blob([JSON.stringify(jobs, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
