@@ -8391,5 +8391,70 @@
     "companyWebsite": "https://www.elsevier.com",
     "companyLinkedin": "https://www.linkedin.com/company/elsevier",
     "companyOwnership": "Public — subsidiary of RELX Group PLC (LSE/NYSE: RELX)"
+  },
+  {
+    "id": 1784337600003,
+    "company": "Perplexity AI",
+    "jobTitle": "Account Executive (Enterprise)",
+    "salary": "$200K–$400K OTE + equity",
+    "fitScore": 72,
+    "status": "New",
+    "dateAdded": "2026-07-16",
+    "url": "https://jobs.ashbyhq.com/perplexity/acd466ba-536f-49da-968a-15b8c53298f8",
+    "source": "Ashby (Perplexity)",
+    "location": "Remote / San Francisco (Enterprise team)",
+    "territory": "Enterprise (national) — public sector adjacent via GSA OneGov deal",
+    "notes": "Not explicitly a public sector role, but Perplexity signed the first direct-to-government OneGov agreement with GSA (Nov 2025) making Perplexity Enterprise Pro available to federal agencies at $0.25/agency for 18 months. Strong crossover potential for Knute's PubSec profile. OTE aligns ($200K+). Small 'mighty' enterprise team — early enough to shape territory. 5+ yrs full-cycle enterprise SaaS required.",
+    "rawText": "Perplexity is seeking a highly motivated and skilled Account Executive to join our small but mighty Enterprise team. In this role, you will be responsible for driving new business growth and fostering strong relationships with potential clients. This role is ideal for proactive sales professionals who thrive at the intersection of technology and business, and who want to shape the future of enterprise AI.\n\nResponsibilities:\n- Drive new business by prospecting, pitching, and closing Perplexity Enterprise Pro solutions with large organizations\n- Diligently research prospects, develop account strategies, and execute outreach campaigns tailored to company and industry needs\n- Conduct high-impact product demonstrations and respond to RFPs and technical inquiries\n- Lead client engagement through the entire sales cycle—from initial presentation, technical evaluation, negotiation, to closing and onboarding\n- Build and nurture senior-level relationships across enterprise clients, championing Perplexity's value proposition and customer outcomes\n- Collaborate closely with Product, Marketing, and Customer Success to ensure customer satisfaction and solution fit\n- Maintain up-to-date knowledge of Perplexity's platform, industry trends, and competitor landscape\n- Meet or exceed individual and team revenue targets on a monthly and quarterly basis\n- Maintain accurate records of pipeline and account activity using CRM tools\n\nQualifications:\n- 5+ years of full-cycle SaaS sales experience, ideally with enterprise-level clients\n- Proven record of meeting or exceeding annual revenue targets in a high-growth environment\n- Skilled at complex sales cycles, tailoring messaging to different buyer personas and decision makers\n- Proven success outbound prospecting to large enterprise\n- Exceptional written and verbal communication; comfortable presenting to C-suite executives\n- Adept at identifying client pain points and mapping solutions that drive business value\n- Ability to collaborate effectively with both cross-functional teams and technical stakeholders\n- Experience with CRM systems (e.g. Salesforce)\n- Bachelor's degree or equivalent experience\n\nThe cash compensation for this role is $200,000-400,000 OTE based on experience level.\nEquity: In addition to the base salary, equity may be part of the total compensation package.\nBenefits: Comprehensive health, dental, and vision insurance for you and your dependents. Includes a 401(k) plan.",
+    "description": "Enterprise Account Executive at Perplexity AI to drive new business and grow relationships with large enterprise customers for Perplexity Enterprise Pro. Full-cycle, C-suite engagement, RFP response, and cross-functional collaboration. Not explicitly public-sector titled, but Perplexity has a first-of-kind GSA OneGov agreement making it a natural landing pad for a public-sector-savvy AE.",
+    "requirementsMet": [
+      "10+ yrs full-cycle enterprise SaaS closing (5+ required, has 20+)",
+      "Exceeding revenue targets in high-growth environments",
+      "Complex enterprise sales cycles with C-suite engagement",
+      "Outbound prospecting into large enterprise",
+      "Bachelor's degree + equivalent experience",
+      "Salesforce CRM proficiency"
+    ],
+    "requirementsNotMet": [
+      "Role is broad Enterprise, not explicitly Public Sector focused — Knute's specialization is PubSec (may or may not be a plus)"
+    ],
+    "companyOverview": "Perplexity AI is an AI-powered answer engine and enterprise search platform founded in 2022. Perplexity Enterprise Pro delivers grounded, source-cited AI answers for knowledge workers. In November 2025 Perplexity signed a first-of-kind GSA OneGov direct agreement making its enterprise product available to federal agencies for $0.25/agency over 18 months — one of only two AI services designated for AI Prioritization. As of mid-2026 Perplexity's enterprise footprint is growing rapidly with 100+ enterprise inbound requests over a single weekend after its Ask 2026 announcement.",
+    "companyRevenue": "~$150M ARR (est., 2026)",
+    "companyEmployees": "~500 (2026, est.)",
+    "companyWebsite": "https://www.perplexity.ai/",
+    "companyLinkedin": "https://www.linkedin.com/company/perplexity-ai/",
+    "companyOwnership": "Private (VC-backed: IVP, NEA, Bessemer, Jeff Bezos, NVIDIA)"
+  },
+  {
+    "id": 1784337600004,
+    "company": "AMD (Advanced Micro Devices)",
+    "jobTitle": "Public Sector / SLED Territory Executive (Remote)",
+    "salary": "$180K–$260K OTE est. (AMD pubsec IC comp)",
+    "fitScore": 65,
+    "status": "New",
+    "dateAdded": "2026-07-16",
+    "url": "https://careers.amd.com/careers-home/jobs/75824?lang=en-us",
+    "source": "AMD Careers (Remotive listing)",
+    "location": "Remote — nominal Illinois, US territory role",
+    "territory": "SLED / higher-education, direct end-user + OEM/channel motion",
+    "notes": "AMD's public sector team is growing off the back of the Instinct MI300/MI325 accelerator push into HPC/AI at national labs and R1 universities. Role is IC territory (not management). Location officially Illinois but role is remote territory-based. Salary est. lower than Knute's $200K+ target — likely $180-220 base plus commissions. Fit is moderate: AI compute/hardware selling motion is adjacent to Knute's SaaS/data-platform background; OEM/channel co-selling with Dell/HPE/Lenovo would be new muscle.",
+    "rawText": "Public Sector / SLED Territory Executive at AMD — Own and grow AMD's footprint within Public Sector accounts through direct end-user engagement and territory leadership. Develop multi-quarter account and territory plans targeting key SLED agencies and higher-education institutions. Drive sell-out and pipeline growth in partnership with OEMs and resellers. Consistently achieve quarterly and annual revenue, share, and pipeline goals.\n\nQualifications:\n- Proven success in Public Sector / SLED sales or business development, ideally with experience navigating procurement cycles and contract vehicles\n- Strong understanding of OEM and channel partner motions (ideally with Dell, HP, Lenovo or similar ecosystems)\n- Experience executing go-to-market strategies, influencing specifications, and managing multi-stakeholder engagements\n\n(Source: Remotive posting of AMD careers req 75824; retrieved 2026-07-16.)",
+    "description": "AMD Public Sector / SLED Territory Executive role driving AMD compute (EPYC CPU, Instinct AI accelerators, Radeon) into state, local, higher-ed accounts. Direct end-user selling combined with OEM/channel co-sell. Remote territory role with Illinois home-office nominal location.",
+    "requirementsMet": [
+      "20+ yrs Public Sector / SLED sales & BD (Adobe, DocuSign, Oracle, Salesforce, TrackLight)",
+      "GSA/NASPO/SEWP contract vehicle navigation",
+      "Multi-stakeholder enterprise deal execution",
+      "GTM strategy and specification-influence experience (GovMotion advisory)"
+    ],
+    "requirementsNotMet": [
+      "OEM/channel partner motion with Dell/HP/Lenovo — indirect hardware channel selling is not Knute's core motion (has some via Adobe/DocuSign reseller work)",
+      "Hardware/silicon commercial selling — Knute's background is SaaS/data platforms"
+    ],
+    "companyOverview": "AMD is a Fortune 200 semiconductor company delivering high-performance CPU (EPYC, Ryzen), GPU (Radeon), and AI accelerator (Instinct MI300/MI325/MI350) products. AMD is aggressively expanding its AI compute footprint into public sector HPC and AI workloads, competing with NVIDIA in DOE national labs, DoD, and R1 universities. Public sector revenue is a strategic growth area for AMD in 2026.",
+    "companyRevenue": "$25.8B (FY2024); ~$32B est. FY2025",
+    "companyEmployees": "~26,000",
+    "companyWebsite": "https://www.amd.com/",
+    "companyLinkedin": "https://www.linkedin.com/company/amd/",
+    "companyOwnership": "Public (NASDAQ: AMD)"
   }
 ]
