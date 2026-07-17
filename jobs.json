@@ -8456,5 +8456,72 @@
     "companyWebsite": "https://www.amd.com/",
     "companyLinkedin": "https://www.linkedin.com/company/amd/",
     "companyOwnership": "Public (NASDAQ: AMD)"
+  },
+  {
+    "id": 1784337600005,
+    "company": "Astris AI (a Lockheed Martin Company)",
+    "jobTitle": "Account Executive / Remote (Founding Sales Team)",
+    "salary": "$220K–$320K OTE est. (Lockheed pubsec + AI startup band)",
+    "fitScore": 88,
+    "status": "New",
+    "dateAdded": "2026-07-17",
+    "url": "https://talents.vaia.com/companies/page-mechanical-group-inc/east-new-york/account-executive-remote-astris-ai-a-lockheed-martin-company-59683975/",
+    "source": "Vaia/Page Mechanical repost of Astris AI listing",
+    "location": "Remote (US); up to 25% travel",
+    "territory": "Founding AE — defense industrial base, government, commercial high-assurance",
+    "notes": "Astris AI is Lockheed Martin's new AI subsidiary bringing 'defense-grade' AI to gov + commercial via the Astris AI Factory (Generative AI + MLOps platform). Founding sales team role, so early-stage GTM shaping. No security clearance required in the JD, though DIB relationships are 'desired.' Strong alignment with Knute's public sector + AI/data platform + govt procurement (FAR/DFARS) background. Startup-inside-a-prime dynamics — Carahsoft is already a listed distribution partner.",
+    "rawText": "Astris AI, a Lockheed Martin company, is bringing defense-grade AI to commercial and government enterprises through the Astris AI Factory: a unified platform for secure Generative AI and MLOps. We are seeking an Account Executive to be part of our founding sales team. This role goes beyond quota attainment — you'll shape our go-to-market motion, build strategic relationships, and open new markets where AI can deliver transformational impact. Responsibilities: Drive New Revenue; Develop Account Strategies; Customer Engagement across defense, aerospace, and commercial sectors; Opportunity Qualification; Proposal Leadership; Solution Storytelling; Cross-Functional Collaboration; Market Intelligence; Industry Presence. Basic Qualifications: 7+ years enterprise sales / BD / account management; AI/ML familiarity (GenAI, computer vision, NLP, data platforms); Government & Commercial acumen (FAR/DFARS, RFP/RFI); Communication, strategic execution, willingness to travel up to 25%. Desired: DIB industry relationships, AI expertise, MBA, capture experience, strategic thinking, collaborative mindset. Full-time remote; competitive base plus performance-based bonus.",
+    "description": "Founding-team AE at Astris AI, a Lockheed Martin AI subsidiary building secure GenAI + MLOps for defense, aerospace, and government. Full-cycle sales; shape GTM; sell into DIB and government via Carahsoft and direct.",
+    "requirementsMet": [
+      "7+ years enterprise tech sales (Knute has 20+)",
+      "Public sector procurement / FAR-DFARS familiarity (GovMotion, TrackLight)",
+      "AI/data platform selling motion (TrackLight investigative analytics)",
+      "Executive relationship building and complex capture",
+      "Strategic execution in complex multi-step pursuits",
+      "GTM strategy and cross-functional collaboration (founder at GovMotion)"
+    ],
+    "requirementsNotMet": [
+      "Existing DIB relationships (Knute's PS focus is civilian SLED + federal civilian, not primes)",
+      "No MBA (desired, not required)"
+    ],
+    "companyOverview": "Astris AI is Lockheed Martin's dedicated commercial AI subsidiary, launched in 2024 to bring defense-grade AI capabilities — the 'Astris AI Factory' platform for secure Generative AI and MLOps — to both government and high-assurance commercial customers. It operates as a startup inside Lockheed with distribution through Carahsoft to public sector.",
+    "companyRevenue": "Undisclosed (parent Lockheed Martin: ~$71B FY2024)",
+    "companyEmployees": "~50–150 est. (Astris subsidiary; parent Lockheed ~122,000)",
+    "companyWebsite": "https://astrisai.com",
+    "companyLinkedin": "https://www.linkedin.com/company/astris-ai/",
+    "companyOwnership": "Wholly-owned subsidiary of Lockheed Martin (NYSE: LMT)"
+  },
+  {
+    "id": 1784337600006,
+    "company": "Sonatype",
+    "jobTitle": "Enterprise Account Executive, Public Sector (Federal)",
+    "salary": "$260K–$340K OTE est. (federal AppSec hunter band)",
+    "fitScore": 82,
+    "status": "New",
+    "dateAdded": "2026-07-17",
+    "url": "https://jobs.lever.co/sonatype/400033c2-3fb7-4315-a375-b3d0f4d042f4",
+    "source": "Sonatype Lever job board",
+    "location": "Washington, D.C. — Remote (based in Virginia)",
+    "territory": "Net-new US Federal agencies (civilian and defense), pure hunter role",
+    "notes": "Sonatype = software-supply-chain security (DevSecOps + SBOM + open-source dependency management), positioned around Executive Order 14028 mandates. Role is a pure federal hunter with heavy focus on SEWP/GSA vehicles and Carahsoft channel — Knute's exact wheelhouse. 5+ yr requirement is well under Knute's 20 yrs; strong likelihood of popping in interviews given the AppSec/DevSecOps domain, which is adjacent but not identical to his Adobe/DocuSign/TrackLight sales history. Base-in-VA requirement is a drawback vs. FL — worth clarifying but likely blocker unless remote-friendly.",
+    "rawText": "Sonatype is the software supply chain security company. Enterprise Account Executive for the Federal Public Sector team — pure net-new logo acquisition and market expansion. Based in Virginia; operate as an elite 'hunter' breaking into untouched US Federal agencies, commands, and programs. Navigate federal procurement, leverage compliance mandates (like Executive Order 14028), independently build a thriving pipeline. Role Outcomes: Net-new logo acquisition; Net-new ARR quotas driven by first-time buyer contracts; Self-sourced 4x qualified pipeline; Market penetration for DevSecOps/SBOM. Responsibilities: Pure-play hunting; Account mapping; High-impact value prop delivery; Federal channel partner alignment (Carahsoft, VARs, GSIs); Rigorous sales qualification in Salesforce. Requirements: 5+ years quota-carrying enterprise software sales in US Federal; Documented net-new logo acquisition; Federal procurement expertise (SEWP, GSA); Domain fluency in AppSec/DevSecOps/cybersecurity/OSS management.",
+    "description": "Pure-hunter federal AE role at Sonatype driving net-new SBOM, DevSecOps, and software-supply-chain security into US Federal agencies. EO 14028–aligned messaging. Heavy Carahsoft/SEWP/GSA channel motion.",
+    "requirementsMet": [
+      "5+ years quota-carrying enterprise SaaS (Knute has 20+)",
+      "Federal procurement expertise — SEWP, GSA (GovMotion, TrackLight, DocuSign federal)",
+      "Net-new logo hunter track record",
+      "Carahsoft / channel-partner ecosystem relationships",
+      "Compliance-driven enterprise sales narrative (FedRAMP/FISMA/NIST alignment)"
+    ],
+    "requirementsNotMet": [
+      "Base-in-Virginia location requirement — Knute is in FL (may be flexible for right candidate)",
+      "AppSec/DevSecOps/SBOM domain specifically is adjacent, not core"
+    ],
+    "companyOverview": "Sonatype is the software supply chain security leader, founders of Nexus Repository and stewards of Maven Central. Its DevSecOps, SBOM management, and open-source dependency-management platforms serve 2,000+ enterprises including 70% of the Fortune 100 and 15M+ developers, and are aligned to federal mandates like EO 14028.",
+    "companyRevenue": "~$225M ARR est. (private, PE-backed)",
+    "companyEmployees": "~800",
+    "companyWebsite": "https://www.sonatype.com",
+    "companyLinkedin": "https://www.linkedin.com/company/sonatype/",
+    "companyOwnership": "Private, PE-backed (Vista Equity Partners, TPG)"
   }
 ]
