@@ -8523,5 +8523,134 @@
     "companyWebsite": "https://www.sonatype.com",
     "companyLinkedin": "https://www.linkedin.com/company/sonatype/",
     "companyOwnership": "Private, PE-backed (Vista Equity Partners, TPG)"
+  },
+  {
+    "id": 1784489600001,
+    "company": "Wiz",
+    "jobTitle": "Federal Account Executive (DIB / Wiz4Gov)",
+    "salary": "$260K–$340K OTE est. (Wiz Federal band, FedRAMP High)",
+    "fitScore": 87,
+    "status": "New",
+    "dateAdded": "2026-07-18",
+    "url": "https://www.wiz.io/careers/job/4569140006/federal-account-executive",
+    "source": "Wiz Careers (Greenhouse)",
+    "location": "Remote (US); Washington DC metro preferred",
+    "territory": "Defense Industrial Base + regulated SaaS providers requiring FedRAMP",
+    "notes": "Wiz for Government is FedRAMP High Authorized. Role focuses on driving Wiz4Gov FedRAMP offering into DIB accounts, regulated companies, and SaaS providers seeking FedRAMP. Strong alignment with Knute's public-sector procurement + FedRAMP/FISMA/NIST expertise from GovMotion and TrackLight. No security clearance required per JD (must meet EAR 772 / ITAR 120.15 US-person definition — Knute qualifies).",
+    "rawText": "Wiz is on a mission to help organizations secure everything they build and run in the cloud. Wiz for Government is officially FedRAMP High Authorized. We are seeking a Federal Account Executive to drive our Wiz4Gov FedRAMP offering into commercial accounts requiring this solution — Defense Industrial Base, regulated companies, and SaaS providers seeking their own FedRAMP solution. Minimum 3 years selling SaaS/security to DIB. Familiarity with FedRAMP, IL2, IL4, IL5, IL6. Must meet EAR 772 / ITAR 120.15 US-person definition and reside in contiguous US.",
+    "description": "Federal AE at Wiz selling the Wiz4Gov FedRAMP High CNAPP to DIB, regulated commercial, and SaaS providers pursuing their own FedRAMP authorization.",
+    "requirementsMet": [
+      "Enterprise SaaS/security selling motion (Adobe, DocuSign, Salesforce, TrackLight)",
+      "FedRAMP / FISMA / NIST fluency (GovMotion advisory practice)",
+      "Public sector procurement (GSA, NASPO, SEWP)",
+      "Complex $1M–$5M+ deal cycles",
+      "US person under EAR/ITAR",
+      "DIB + regulated-commercial relationships"
+    ],
+    "requirementsNotMet": [
+      "Deep prior CNAPP/cloud-security seller reps (transferable but not identical)"
+    ],
+    "companyOverview": "Wiz is a cloud security company that scans and secures over 230 billion files daily for customers including more than 50% of the Fortune 100. Wiz's CNAPP consolidates cloud security across CSPM, CWPP, CIEM, DSPM, and container/Kubernetes into a single agentless platform. Wiz for Government is FedRAMP High Authorized and available on the FedRAMP Marketplace, with additional Impact Level offerings via Wiz4Gov.",
+    "companyRevenue": "~$700M ARR (2025 disclosed); Google acquisition pending at $32B",
+    "companyEmployees": "~1,800 (2026 est.)",
+    "companyWebsite": "https://www.wiz.io",
+    "companyLinkedin": "https://www.linkedin.com/company/wizsecurity/",
+    "companyOwnership": "Late-stage private; agreed acquisition by Google/Alphabet announced March 2024, closing subject to regulatory review"
+  },
+  {
+    "id": 1784489600002,
+    "company": "Wiz",
+    "jobTitle": "Account Executive, Federal Civilian",
+    "salary": "$260K–$340K OTE est. (Wiz Federal Civilian band)",
+    "fitScore": 86,
+    "status": "New",
+    "dateAdded": "2026-07-18",
+    "url": "https://www.wiz.io/careers/",
+    "source": "Wiz Careers (Greenhouse; Thrive Capital job board mirror)",
+    "location": "Remote (US); DC metro preferred",
+    "territory": "US Federal Civilian agencies (Civ CFO Act, USDA, DOI, HHS, Treasury, etc.)",
+    "notes": "Complements the DIB-focused Federal AE above. Direct Federal Civilian territory sell of Wiz for Government (FedRAMP High CNAPP). Great fit against Knute's Civilian agency navigation experience (Adobe, DocuSign era) and current GovMotion advisory practice. No clearance required.",
+    "rawText": "Wiz is hiring an Account Executive, Federal Civilian to lead sales into US Federal Civilian agencies. Own full-cycle enterprise sales motion for Wiz for Government (FedRAMP High CNAPP). Navigate Civilian procurement (GSA MAS, SEWP, ITES-SW, Carahsoft). Partner with FSIs and channel. Requires 5+ years selling cybersecurity/SaaS into Federal Civilian; FedRAMP fluency; must reside in contiguous US and meet EAR/ITAR US-person definition.",
+    "description": "Federal Civilian AE at Wiz owning full-cycle sales of the FedRAMP High Wiz for Government CNAPP across Civilian CFO Act agencies.",
+    "requirementsMet": [
+      "5+ years enterprise cybersecurity/SaaS selling (20+ overall)",
+      "Federal Civilian procurement fluency (GSA, SEWP, contract vehicles)",
+      "FedRAMP/FISMA/NIST 800-53 knowledge from GovMotion",
+      "Carahsoft and FSI channel relationships",
+      "US person under EAR/ITAR"
+    ],
+    "requirementsNotMet": [
+      "Direct cloud-native CNAPP seller reps"
+    ],
+    "companyOverview": "See companion Wiz DIB AE role. Wiz is the leading cloud security CNAPP vendor with FedRAMP High Authorized 'Wiz for Government' offering and Wiz4Gov Impact Level products for regulated commercial and DIB customers.",
+    "companyRevenue": "~$700M ARR (2025 disclosed); Google acquisition pending at $32B",
+    "companyEmployees": "~1,800 (2026 est.)",
+    "companyWebsite": "https://www.wiz.io",
+    "companyLinkedin": "https://www.linkedin.com/company/wizsecurity/",
+    "companyOwnership": "Late-stage private; agreed acquisition by Google/Alphabet announced March 2024"
+  },
+  {
+    "id": 1784489600003,
+    "company": "Rubrik",
+    "jobTitle": "Federal Account Executive - DISA",
+    "salary": "$260K–$340K OTE est. (Rubrik Federal band)",
+    "fitScore": 82,
+    "status": "New",
+    "dateAdded": "2026-07-18",
+    "url": "https://www.rubrik.com/company/careers/departments/job.7520368?gh_jid=7520368",
+    "source": "Rubrik Careers (Greenhouse)",
+    "location": "Remote (US); DC/NCR preferred",
+    "territory": "Defense Information Systems Agency (DISA) named account",
+    "notes": "Named-account seller into DISA — strong DoD data-protection/security posture play. Rubrik Zero Trust Data Security is IL4/IL5 authorized. Existing Rubrik entry (South Florida SLED) is Expired; this is a distinct Federal named-account role. Requires DoD acumen; no clearance stated as required.",
+    "rawText": "Rubrik is hiring a Federal Account Executive - DISA. Own the DISA named account for Rubrik's Zero Trust Data Security platform. Full-cycle enterprise sales into DoD Combat Support Agency. Coordinate SEs, Federal Systems Integrators, and Carahsoft. Experience selling data protection, cybersecurity, or infrastructure into DoD required. Impact Level 4/5 fluency preferred.",
+    "description": "Named-account Federal AE at Rubrik selling Zero Trust Data Security into DISA and adjacent DoD Combat Support Agencies.",
+    "requirementsMet": [
+      "Enterprise SaaS + infrastructure selling motion",
+      "Federal procurement + FSI ecosystem (Carahsoft, ITES, SEWP)",
+      "GovMotion SLED/Federal advisory experience",
+      "Complex, multi-stakeholder capture cycles"
+    ],
+    "requirementsNotMet": [
+      "Direct DISA relationships (transferable federal network)",
+      "Data-protection/backup specialty background"
+    ],
+    "companyOverview": "Rubrik is a Zero Trust Data Security company protecting data across enterprise, cloud, and SaaS. Rubrik Zero Trust Data Security for Government is FedRAMP Moderate and IL4/IL5 authorized, used across DoD and Federal Civilian. Rubrik IPO'd on NYSE (RBRK) in April 2024.",
+    "companyRevenue": "~$860M ARR (Q1 FY26); ~$1B revenue run-rate",
+    "companyEmployees": "~3,900 (2026)",
+    "companyWebsite": "https://www.rubrik.com",
+    "companyLinkedin": "https://www.linkedin.com/company/rubrik-inc/",
+    "companyOwnership": "Public (NYSE: RBRK)"
+  },
+  {
+    "id": 1784489600004,
+    "company": "NinjaOne",
+    "jobTitle": "Enterprise Account Executive, SLED (Remote)",
+    "salary": "$240K–$300K OTE est. (NinjaOne Enterprise SLED band)",
+    "fitScore": 83,
+    "status": "New",
+    "dateAdded": "2026-07-18",
+    "url": "https://jobs.jobvite.com/ninjaone/job/oMwZwfwx",
+    "source": "NinjaOne Careers (Jobvite)",
+    "location": "Remote (US)",
+    "territory": "State agencies, flagship education systems, major municipalities",
+    "notes": "New Enterprise AE role — distinct from the existing (Discarded) Sales Manager SLED entry. NinjaOne is scaling SLED aggressively as it pushes upmarket into large public-sector accounts. 8–10+ years enterprise SaaS + SLED market required — matches Knute's profile. Existing NinjaOne Sales Manager posting was a people-leader role; this is a strategic individual-contributor AE with hunter mandate.",
+    "rawText": "NinjaOne is making bold investments to expand its presence in State, Local, and Education (SLED) markets. We are looking for a proven Enterprise Account Executive to shape how NinjaOne engages large, complex public-sector organizations. Own the full enterprise sales cycle: pipeline generation, discovery, solution mapping, proposal development, negotiation, close. Build and execute GTM strategy for assigned territory targeting state agencies, flagship education systems, and major municipalities. Develop and grow pipeline of net-new enterprise opportunities. Manage and expand existing customer relationships. Serve as trusted advisor to senior technical, procurement, and executive decision-makers. Requirements: 8–10+ years enterprise SaaS sales with strong SLED record; proven experience landing/expanding enterprise-level public-sector accounts with multi-year, high-value contracts; deep understanding of SLED procurement.",
+    "description": "Strategic individual-contributor Enterprise AE at NinjaOne owning a full SLED territory across state, higher-ed, and large municipal accounts.",
+    "requirementsMet": [
+      "8-10+ years enterprise SaaS sales (20+)",
+      "Deep SLED procurement fluency (GSA, NASPO, state contract vehicles)",
+      "Landed and expanded multi-year, high-value public-sector accounts",
+      "Advisor-level engagement with technical, procurement, executive buyers",
+      "Full-cycle hunter GTM"
+    ],
+    "requirementsNotMet": [
+      "Direct RMM/endpoint-management category rep (transferable)"
+    ],
+    "companyOverview": "NinjaOne is a unified IT platform providing endpoint management, patch management, mobile device management, remote access, and IT documentation to more than 25,000 customers globally. Recognized as a leader in unified endpoint management. Backed by ICONIQ Growth and others; last valued at $5B in Feb 2025 raise.",
+    "companyRevenue": "~$300M ARR (2025 disclosed)",
+    "companyEmployees": "~1,800 (2026 est.)",
+    "companyWebsite": "https://www.ninjaone.com",
+    "companyLinkedin": "https://www.linkedin.com/company/ninjaone/",
+    "companyOwnership": "Private; late-stage growth, $5B valuation (ICONIQ, Summit Partners, Endeavor)"
   }
 ]
