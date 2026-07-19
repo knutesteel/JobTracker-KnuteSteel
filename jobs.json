@@ -8652,5 +8652,72 @@
     "companyWebsite": "https://www.ninjaone.com",
     "companyLinkedin": "https://www.linkedin.com/company/ninjaone/",
     "companyOwnership": "Private; late-stage growth, $5B valuation (ICONIQ, Summit Partners, Endeavor)"
+  },
+  {
+    "id": 1784489600005,
+    "company": "Qualtrics",
+    "jobTitle": "Enterprise Account Executive - SLG - Southeast Territory (Remote)",
+    "salary": "$240K-$310K OTE (RepVue: Qualtrics Enterprise AE band; 52/48 split; ~$1.4M quota)",
+    "fitScore": 87,
+    "status": "New",
+    "dateAdded": "2026-07-19",
+    "url": "https://www.qualtrics.com/careers/us/en/job/5451640/Enterprise-Account-Executive-SLG-Southeast-Territory",
+    "source": "Qualtrics Careers (Workday)",
+    "location": "Remote (US)",
+    "territory": "State & Local Government - Southeast Territory (FL, GA, NC, SC, TN, AL, MS, LA)",
+    "notes": "Direct Southeast SLG territory role. Tight geographic fit with Apollo Beach, FL base. Qualtrics XM Platform is FedRAMP Moderate-authorized and increasingly agentic-AI-forward with Experience Agents. $1.4M quota, mature enterprise motion, 8+ years required. Strong overlap with Knute's public-sector GTM background at TrackLight/GovMotion. No clearance requirement. Not Salesforce (excluded per memory rule).",
+    "rawText": "Qualtrics is hiring an Enterprise Account Executive for the State & Local Government (SLG) Southeast Territory. Remote-eligible. Sell the Qualtrics XM Platform to state, county, and municipal agencies across the Southeast. Own full sales cycle: pipeline generation, C-suite discovery, product demos, executive presentations, procurement navigation, and close. Drive net-new revenue via new-logo acquisition and expansion within named accounts. Partner with SEs, alliances, marketing, and customer success. Requirements: 8+ years enterprise SaaS sales experience with 4+ years closing; bachelor's degree; proficiency with Salesforce CRM, LinkedIn Sales Navigator, and prospecting tools; proven track record of hitting/exceeding quota; SLG procurement fluency preferred.",
+    "description": "Southeast Territory Enterprise AE at Qualtrics selling the XM Platform into state and local government agencies across FL/GA/NC/SC/TN and adjacent states.",
+    "requirementsMet": [
+      "8+ years enterprise SaaS sales (20+ years)",
+      "SLG territory GTM ownership (TrackLight, GovMotion advisory)",
+      "C-suite consultative selling",
+      "Full-cycle new-logo hunter motion",
+      "Government procurement fluency (GSA, NASPO, state contract vehicles)",
+      "Southeast US territory fit (Apollo Beach, FL)"
+    ],
+    "requirementsNotMet": [
+      "Direct Qualtrics XM/experience-management category rep (transferable from data/analytics platform sales)"
+    ],
+    "companyOverview": "Qualtrics is the leader in Experience Management (XM), operating a FedRAMP Moderate-authorized SaaS platform used by 19,000+ organizations globally including 75% of the Fortune 100 and the majority of US federal cabinet agencies. Products span EmployeeXM, CustomerXM, BrandXM, and Strategy & Research, increasingly infused with agentic AI (Experience Agents) for automated survey design, sentiment analysis, and action orchestration.",
+    "companyRevenue": "~$1.79B (FY2024, last public before Silver Lake take-private)",
+    "companyEmployees": "~5,600 (2026 est.)",
+    "companyWebsite": "https://www.qualtrics.com",
+    "companyLinkedin": "https://www.linkedin.com/company/qualtrics/",
+    "companyOwnership": "Private; owned by Silver Lake and CPP Investments (take-private closed 2023)"
+  },
+  {
+    "id": 1784489600006,
+    "company": "VAST Data",
+    "jobTitle": "Sales Director, Data Platform - Federal Civilian",
+    "salary": "$300K-$400K OTE est. (Sales Director Federal band at VAST scale)",
+    "fitScore": 89,
+    "status": "New",
+    "dateAdded": "2026-07-19",
+    "url": "https://www.builtinsf.com/job/sales-director-data-platform-federal-civilian/8053680",
+    "source": "Built In SF (mirror of VAST Data Comeet listing)",
+    "location": "Remote (East Coast, US)",
+    "territory": "US Federal Civilian agencies (DOE, VA, HHS, NOAA, USDA, DOI, Treasury, etc.)",
+    "notes": "Very strong fit: Federal Civilian named-territory Sales Director for an AI-native data platform at scale (VAST has nearly an exabyte deployed across US public sector). Remote East Coast matches Apollo Beach base. Aligns directly with Knute's GovMotion Federal advisory practice and the AI/data platform strategic overlay he built at TrackLight. Public-sector data platform is one of the hottest 2026 buying centers. No clearance requirement stated. VAST is on the FedRAMP path and pre-IPO.",
+    "rawText": "VAST Data is hiring a Sales Director, Data Platform - Federal Civilian, remote East Coast. VAST Data is the data platform for the AI era - unified storage, database, and data management operating system for capturing, cataloging, refining, enriching, and protecting massive datasets for real-time analytics and AI training/inference. Senior high-impact IC seat for an executive who understands how to build markets, shape demand, and close transformational deals in complex Federal environments. Develop and execute long-term account strategies across Federal Civilian agencies aligned to mission priorities, budget cycles, and modernization initiatives. Drive new business and expansion for VAST's platform across AI, HPC, analytics, and enterprise data workloads. VAST currently supports DOE, VA, HHS, NOAA, and other Federal Civilian agencies with nearly an exabyte deployed. Requirements: minimum 10 years enterprise sales in Federal accounts, particularly data analytics/infrastructure; established Federal Civilian relationships; deep FSI/channel motion.",
+    "description": "Federal Civilian Sales Director at VAST Data owning multi-agency named-account strategy for an AI-era data platform with existing exabyte-scale public sector deployments.",
+    "requirementsMet": [
+      "10+ years enterprise sales (20+)",
+      "Federal Civilian procurement + agency relationship map (GovMotion practice)",
+      "Data/AI platform strategic selling (TrackLight AI analytics + Adobe/DocuSign data era)",
+      "Complex transformational deal cycles ($1M-$5M+)",
+      "FSI/channel ecosystem fluency (Carahsoft, ITES-SW, GSA MAS, NASA SEWP)",
+      "East Coast remote territory fit",
+      "AI-era platform value articulation"
+    ],
+    "requirementsNotMet": [
+      "Direct storage/HPC infrastructure sales tenure (transferable from data-platform GTM)"
+    ],
+    "companyOverview": "VAST Data is the data platform company for the AI era, unifying storage, database, and data management into a single operating system that captures, refines, and serves massive datasets for AI training/inference and enterprise analytics. Nearly an exabyte deployed across the US public sector including DOE, VA, HHS, NOAA. Positioned as a lead vendor for AI infrastructure buildouts.",
+    "companyRevenue": "~$200M ARR (2025 disclosed est.); valued at $9B in Dec 2023 Series E (Fidelity, NEA, Norwest, BOND)",
+    "companyEmployees": "~1,000 (2026 est.)",
+    "companyWebsite": "https://www.vastdata.com",
+    "companyLinkedin": "https://www.linkedin.com/company/vast-data/",
+    "companyOwnership": "Private; pre-IPO; $9B valuation Dec 2023"
   }
 ]
