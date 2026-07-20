@@ -8719,5 +8719,36 @@
     "companyWebsite": "https://www.vastdata.com",
     "companyLinkedin": "https://www.linkedin.com/company/vast-data/",
     "companyOwnership": "Private; pre-IPO; $9B valuation Dec 2023"
+  },
+  {
+    "id": 1784576000001,
+    "company": "ElevenLabs",
+    "jobTitle": "Account Executive Lead - North America - Government",
+    "salary": "$180K–$220K base + variable; est. $360K–$500K+ OTE (Lead-level, above standard AE band of $230K–$280K OTE)",
+    "fitScore": 93,
+    "status": "New",
+    "dateAdded": "2026-07-20",
+    "dateApplied": "",
+    "url": "https://www.opentoworkremote.com/view/1470545",
+    "location": "North America (Remote)",
+    "notes": "Greenfield GTM build: own and scale ElevenLabs' government motion across federal, state, and public sector NA. Foundational, first-in-role seat — ideal alignment with GovMotion founder experience + TrackLight GTM Lead track record. Voice AI is a category-creating opportunity in citizen engagement, 311/911 assistance, and multilingual public services. Fully remote. Lead-level comp likely $360K–$500K+ OTE. Original posting on ElevenLabs Ashby board (jobs.ashbyhq.com/elevenlabs).",
+    "description": "Build and own Government GTM across federal, state, and public sector NA. Identify strategic opportunities for voice in government services. Develop and execute account strategies for key agencies. Navigate procurement frameworks and long buying cycles. Build relationships with senior public sector leaders. Collaborate with Product and Engineering on gov-ready solutions.\n\nRequirements: 8+ years of experience selling into government/public-sector. Closed complex deals within federal/state or regulated environments. Experience building a new vertical or GTM motion. Strong executive presence with senior stakeholders. Passionate about AI modernizing government services. Thrive in fast-moving, strategic and tactical environments.\n\nBenefits: Innovative culture to define AI trajectory. Growth opportunities to drive impact. Learning and development stipend. Annual offsite and co-working stipend.",
+    "requirementsMet": [
+      "8+ years enterprise/public sector sales (20+ years across Adobe/DocuSign/Oracle/TrackLight)",
+      "Closed complex deals in federal/state/regulated environments (FedRAMP/FISMA/NIST at TrackLight; GSA/NASPO/SEWP experience)",
+      "Experience building new vertical/GTM motion (founded GovMotion; built TrackLight government GTM from scratch)",
+      "Strong executive presence with senior public sector stakeholders",
+      "AI-first orientation (TrackLight AI-driven investigative analytics)",
+      "Comfortable in fast-moving, strategic and tactical startup environments"
+    ],
+    "requirementsNotMet": [
+      "No voice-AI-specific deal history — will need to translate ElevenLabs' voice value prop into agency use cases (311/911, IVR modernization, multilingual citizen services)"
+    ],
+    "companyOverview": "ElevenLabs is the leading voice-AI research and product company, building models for lifelike text-to-speech, dubbing, conversational voice agents, and voice cloning. Enterprise customers include major media, gaming, and communications platforms; the company is now pushing into government use cases (citizen assistance, accessibility, multilingual outreach). Backed by Andreessen Horowitz, Sequoia, and others.",
+    "companyRevenue": "~$100M+ ARR (estimated, based on late-2025 Series C reporting)",
+    "companyEmployees": "~400–500 employees (estimated)",
+    "companyWebsite": "https://elevenlabs.io",
+    "companyLinkedin": "https://www.linkedin.com/company/elevenlabsio",
+    "companyOwnership": "Privately held (a16z, Sequoia, ICONIQ, NEA — Series C, ~$3.3B valuation as of 2025)"
   }
 ]
